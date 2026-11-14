@@ -21,11 +21,13 @@
     'wohnen.html': ['wohnen'],
     'beteiligungen.html': ['waage'],
     'miete.html': ['miete'],
+    'plaene.html': ['plaene'],
     'beteiligen.html': ['beteiligen'],
     'wege.html': ['wege', 'wege-apotheke']
   };
   // Zusätzliche Daten je Szene; data/wohnen.js und data/miete.js laden die Seiten selbst
-  var EXTRA = { klima: ['data/altstadt.js'], waage: ['data/beteiligungen.js'] };
+  var EXTRA = { klima: ['data/altstadt.js'], waage: ['data/beteiligungen.js'],
+    plaene: ['data/plangebiete.js', 'data/bezirke.js', 'vendor/pmtiles/pmtiles.js', 'vendor/protomaps/basemaps.js'] };
   // Szenen, die in der Datei einer anderen Szene stehen
   var DATEI = { 'wege-apotheke': 'wege' };
   var KEY = 'papierpanther-grafisch';

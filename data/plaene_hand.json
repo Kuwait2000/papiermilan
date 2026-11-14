@@ -1,0 +1,56 @@
+{
+ "_hinweis": "Von Hand gepflegt, gelesen von scraper/plaene_bauen.py. Schluessel ist die Planbezeichnung wie beim Landesdienst Bauleitplaene Bayern (z. B. '107 H'). Felder je Plan: kurz (Alltagsname), stichworte (regulaere Ausdruecke fuer Punkte ohne Plannummer, v. a. Bezirksausschuesse), text/text_l, hinweis/hinweis_l, bezirk.",
+ "ausschliessen": {
+  "67": "Bebauungsplan des Marktes Manching, die Stadt wird nur als Nachbarin beteiligt"
+ },
+ "gleich": {
+  "107": "107 H",
+  "120 C": "120 C Ä I"
+ },
+ "plaene": {
+  "107 H": {
+   "kurz": "Am Samhof",
+   "stichworte": [
+    "Samhof(?!er Weg)"
+   ]
+  },
+  "196": {
+   "kurz": "Am Dachsberg",
+   "stichworte": [
+    "Dachsberg"
+   ]
+  },
+  "122 A": {
+   "stichworte": [
+    "Lindbergh"
+   ]
+  },
+  "114 M Ä II": {
+   "stichworte": [
+    "Stinnesstra"
+   ]
+  },
+  "120 C Ä I": {
+   "stichworte": [
+    "Weningstr"
+   ]
+  },
+  "509": {
+   "kurz": "Etting-Steinbuckl",
+   "stichworte": [
+    "Steinbuckl"
+   ]
+  },
+  "934": {
+   "stichworte": [
+    "Weiherfeld Süd"
+   ]
+  },
+  "809 A": {
+   "stichworte": [
+    "Kempesee"
+   ]
+  }
+ },
+ "_gleich": "Bezeichnung in einem Vorlagentitel -> Plan. 107: die Erschliessungsvorlage nennt 'Bebauungsplan Nr. 107', gemeint ist 107 H. 120 C: der Grundsatzbeschluss zur 1. Aenderung ist der Beginn von 120 C Ä I."
+}

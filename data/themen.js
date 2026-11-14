@@ -64,6 +64,15 @@ window.THEMEN_DATEN = [
   "text_l": "Wie viel Miete ist üblich? Hier können Sie es ausrechnen."
  },
  {
+  "href": "plaene.html",
+  "farbe": "#2f5f86",
+  "titel": "Baugebiete und Pläne",
+  "titel_l": "Bau-Gebiete und Pläne",
+  "zahl": "16 Pläne im Verfahren",
+  "text": "und 427 geltende Bebauungspläne: wie weit jeder ist, mit Planzeichnung, Gutachten und den Beratungen im Bezirksausschuss.",
+  "text_l": "So viele Pläne für neue Bau-Gebiete macht die Stadt gerade. Hier sehen Sie: Wie weit ist jeder Plan?"
+ },
+ {
   "href": "wege.html",
   "farbe": "#1d6a6f",
   "titel": "Deine 15 Minuten",

@@ -100,3 +100,13 @@ Lizenzen
   über open.bydata.de) unter der Lizenz Creative Commons Namensnennung 3.0
   Deutschland (CC BY 3.0 DE), https://creativecommons.org/licenses/by/3.0/de/.
   Verändert: von EPSG:25832 nach WGS84 umgerechnet und auf etwa 5 m vereinfacht.
+- Die Umgriffe der Bebauungspläne in `data/plangebiete.*` und die daraus in
+  `data/plaene.*` übernommenen Daten (Aufstellungsbeschluss, Satzungsbeschluss,
+  Inkrafttreten, Links zur Planzeichnung) stammen aus dem Dienst „Bauleitpläne
+  Bayern (Umringe)“ des Landesamts für Digitalisierung, Breitband und
+  Vermessung, https://gdiserv.bayern.de/bauleitplanung/wms, unter der Lizenz
+  Creative Commons Namensnennung – Keine Bearbeitungen 4.0 International
+  (CC BY-ND 4.0), https://creativecommons.org/licenses/by-nd/4.0/deed.de.
+  Namensnennung: Bauleitpläne Bayern. Die Geometrien sind unverändert
+  übernommen; diese Dateien stehen nicht unter der Lizenz des übrigen Projekts.
+  Der Dienst ist eine Erstinformation ohne Gewähr.

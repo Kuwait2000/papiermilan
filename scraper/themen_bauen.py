@@ -50,6 +50,14 @@ def main():
 
     antraege = lade("antraege.json")["statistik"]
 
+    # Bebauungsplaene im Verfahren: wie auf plaene.html gezaehlt (Landesportal kennt sie oder der Rat hat sich zuletzt damit befasst)
+    plaene = lade("plaene.json")
+    plan_ab = plaene["zeitraum"]["alle_gremien_ab"] + "-01"
+    plan_lauf = sum(1 for p in plaene["plaene"]
+                    if p["status"]["schritt"] in ("grundsatz", "aufstellung", "entwurf")
+                    and (p["umgriff"] or p["letzte_bewegung"] >= plan_ab))
+    plan_kraft = sum(1 for p in plaene["plaene"] if p["status"]["schritt"] == "kraft")
+
     with open(os.path.join(DATEN_VZ, "miete.js"), encoding="utf-8") as f:
         miete = f.read()
     gueltig_bis = re.search(r'gueltig_bis: "([^"]+)"', miete).group(1)
@@ -120,6 +128,12 @@ def main():
              text="gilt der Mietspiegel. Rechnen Sie nach, was für Ihre Wohnung üblich ist – "
                   "und wo die Mietpreisbremse greift.",
              text_l="Wie viel Miete ist üblich? Hier können Sie es ausrechnen."),
+        dict(href="plaene.html", farbe="#2f5f86",
+             titel="Baugebiete und Pläne", titel_l="Bau-Gebiete und Pläne",
+             zahl=f"{plan_lauf} Pläne im Verfahren",
+             text=f"und {de(plan_kraft)} geltende Bebauungspläne: wie weit jeder ist, mit Planzeichnung, Gutachten "
+                  "und den Beratungen im Bezirksausschuss.",
+             text_l="So viele Pläne für neue Bau-Gebiete macht die Stadt gerade. Hier sehen Sie: Wie weit ist jeder Plan?"),
         dict(href="wege.html", farbe="#1d6a6f",
              titel="Deine 15 Minuten", titel_l="Deine 15 Minuten",
              zahl=f"{de(apo_stadt)} %",

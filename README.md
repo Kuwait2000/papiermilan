@@ -51,6 +51,9 @@ scraper/
   pruefen.py          Zusagen der Seite nachrechnen (Exit-Code)
   themen_bauen.py     Kennzahlen für die Themen-Kacheln -> data/themen.js
   beteiligungen_bauen.py  prüft data/beteiligungen.json -> data/beteiligungen.js
+  plangebiete_holen.py  Umgriffe der Bebauungspläne (Land) -> data/plangebiete.js
+  plaene_alt_holen.py Plan-Punkte vor 11/2023 (Stadtrat, Planungsausschuss) -> data/plaene_alt.json
+  plaene_bauen.py     Ratsdaten + Landesdienst + Handdatei -> data/plaene.js
   grafik_bauen.py     Daten der grafischen Fassung  -> data/grafik.js
   altstadt_bauen.py   Altstadt aus OpenStreetMap    -> data/altstadt.js
   wege_bauen.py       Fußnetz, Orte, Zensus, Bezirke -> data/wege-*.js, data/bezirke.js
@@ -187,6 +190,48 @@ Die Seite gibt wieder, was im Bericht steht, und bewertet nicht. Die Tabellenwer
 sind am 13.11.2026 mit dem Seitenbild des PDF abgeglichen; wo die Gesamtübersicht
 (S. 21) von den Einzelberichten abweicht, steht das im `_hinweis` der JSON. Für den nächsten Bericht: Werte in der JSON ersetzen, ein
 weiteres Jahr an `waage.jahre` anhängen, Skripte laufen lassen.
+
+### Baugebiete und Pläne (`plaene.html`)
+
+```bash
+cd scraper && python3 plangebiete_holen.py && python3 plaene_bauen.py && python3 themen_bauen.py
+```
+
+Anlass ist ein Antrag aus dem Bezirksausschuss Friedrichshofen/Hollerstauden
+(25.02.2025): Der Stand von Bebauungs- und Grünordnungsplänen soll an einer
+Stelle zu finden sein. Die Seite führt zwei Quellen zusammen:
+
+- **Ratsinfoportal**: `plaene_bauen.py` sucht in `data/rohdaten.json` alle
+  Punkte mit Planbezug, ordnet sie nach Plannummer, erkennt den
+  Verfahrensschritt am Titel der Vorlage (Grundsatz, Aufstellung, Entwurf,
+  Satzung) und sortiert die Anlagen nach Alltagsfragen (Verkehr, Lärm, Natur,
+  Boden und Wasser …), ebenfalls nur nach dem Titel. `plaene_alt_holen.py`
+  liest einmalig Stadtrat und Planungsausschuss von 2014 bis 10/2023 zurück
+  und behält nur die Punkte mit Planbezug (`data/plaene_alt.json`);
+  `rohdaten.json` bleibt unberührt. Für diese Jahre gibt es keine
+  Abstimmungsergebnisse.
+- **Bauleitpläne Bayern** (Landesamt für Digitalisierung, Breitband und
+  Vermessung, CC BY-ND 4.0): `plangebiete_holen.py` holt für alle Ingolstädter
+  Pläne Umgriff, Datum von Aufstellungsbeschluss, Satzungsbeschluss und
+  Inkrafttreten und die Links zur geltenden Planzeichnung. Ob ein Plan gilt,
+  steht nicht im Ratsinfoportal (das entscheidet die Bekanntmachung im
+  Amtsblatt); „in Kraft“ kommt deshalb ausschließlich von hier, und
+  `pruefen.py` wacht darüber. Der Dienst ist ein WMS ohne WFS und vereinfacht
+  die Geometrie je nach Maßstab; wie das Skript damit umgeht, steht in seinem
+  Kopf. Die Geometrien werden unverändert übernommen (ND).
+- `data/plaene_hand.json`: Alltagsnamen („Am Samhof“ für 107 H), Stichworte,
+  über die Punkte ohne Plannummer zugeordnet werden (vor allem aus den
+  Bezirksausschüssen), Gleichsetzungen und Ausschlüsse.
+
+Pläne der Nachbargemeinden, zu denen die Stadt nur gehört wird, fallen heraus.
+Planzeichnungen und Gutachten werden nur verlinkt, nicht gespiegelt. Die
+grafische Fassung ist `grafik/plaene.js` (Stadtkarte mit MapLibre wie bei
+„Deine 15 Minuten“). `data/plangebiete.js` ist als eigene Ebene angelegt und
+kann von anderen Karten mitgenutzt werden.
+
+Nach einem Daten-Update genügt `plaene_bauen.py`; `plangebiete_holen.py`
+(etwa drei Minuten, rund 450 Abfragen) lohnt, wenn ein Satzungsbeschluss
+gefallen ist und das Inkrafttreten noch aussteht.
 
 ### Deine 15 Minuten (`wege.html`)
 

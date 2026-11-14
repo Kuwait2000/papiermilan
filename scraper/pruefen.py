@@ -387,6 +387,58 @@ def p_wege_personen(zellen, orte):
         fehlt("wege-massnahmen.js fehlt (wege_bauen.py)")
 
 
+def p_plaene():
+    """Baugebiete und Plaene: Steckbriefe (plaene_bauen.py) und Umgriffe (plangebiete_holen.py)."""
+    if not os.path.exists(os.path.join(DATEN_VZ, "plaene.json")):
+        return
+    plaene = lade("plaene.json")["plaene"]
+    gebiete = lade("plangebiete.json")
+    erlaubt = {"www.ingolstadt.de", "wms1.riwagis.de"}
+
+    if "CC BY-ND" not in gebiete.get("lizenz", "") or not gebiete.get("namensnennung"):
+        fehlt("plangebiete.json: Lizenz oder Namensnennung fehlt (Bauleitplaene Bayern, CC BY-ND 4.0)")
+    if len(gebiete["features"]) < 400:
+        fehlt(f"plangebiete.json: nur {len(gebiete['features'])} Umgriffe, erwartet ueber 400")
+    for f in gebiete["features"]:
+        g = f["geometry"]
+        polygone = [g["coordinates"]] if g["type"] == "Polygon" else g["coordinates"]
+        for poly in polygone:
+            for x, y in poly[0]:
+                if not (11.0 < x < 11.8 and 48.5 < y < 49.0):
+                    fehlt(f"plangebiete.json: Umgriff {f['properties']['nr']} liegt weit ausserhalb der Stadt")
+                    break
+
+    ids = [p["id"] for p in plaene]
+    doppelt = {i for i in ids if ids.count(i) > 1}
+    if doppelt:
+        fehlt(f"plaene.json: doppelte Kennungen {sorted(doppelt)}")
+    nummern = {p["nr"] for p in plaene}
+    # Anlass der Seite: die beiden Plaene aus dem Antrag des BZA XI muessen auffindbar sein
+    for nr in ("107 H", "196"):
+        if nr not in nummern:
+            fehlt(f"plaene.json: Plan {nr} fehlt (Am Samhof / Am Dachsberg)")
+    for p in plaene:
+        st = p["status"]
+        if st["schritt"] == "kraft" and "inkraft" not in p["stationen"]:
+            fehlt(f"Plan {p['nr']}: als geltend gefuehrt, aber ohne Datum des Inkrafttretens")
+        if st["schritt"] == "kraft" and st["quelle"] != "land":
+            fehlt(f"Plan {p['nr']}: 'in Kraft' darf nur vom Landesdienst kommen, nicht aus Ratsbeschluessen")
+        if p["im_rat"] and not p["schritte"]:
+            fehlt(f"Plan {p['nr']}: als Ratsplan gefuehrt, aber ohne Vorlage")
+        urls = [z["url"] for z in p["zeichnungen"]] + [d["url"] for d in p["dazu"]]
+        urls += [a["url"] for e in p["schritte"] for a in e["anlagen"]] + [e["vorlage_url"] for e in p["schritte"]]
+        if p["amt"]:
+            urls += [u for u in (p["amt"]["plan_url"], p["amt"]["text_url"]) if u]
+        for u in urls:
+            teile = urllib.parse.urlparse(u)
+            if teile.scheme != "https" or teile.netloc not in erlaubt:
+                fehlt(f"Plan {p['nr']}: Link auf nicht erlaubten Host: {u[:80]}")
+                break
+    ohne = [p["nr"] for p in plaene if p["im_rat"] and not p["umgriff"] and p["letzte_bewegung"] >= "2023-11"]
+    if ohne:
+        warnt(f"Plaene mit Ratsvorlage seit 11/2023 ohne Umgriff im Landesdienst: {', '.join(ohne)}")
+
+
 def p_nur_oeffentliche_tops(kur, index):
     """
     Nicht-oeffentliche Tagesordnungspunkte duerfen nie kuratiert werden.
@@ -628,6 +680,7 @@ def main():
     if os.path.exists(os.path.join(DATEN_VZ, "antraege.json")):
         p_antraege_hosts(lade("antraege.json"))
     p_wege()
+    p_plaene()
     p_oberflaeche(feed)
     gruende = p_abdeckung(roh, feed["eintraege"])
 
