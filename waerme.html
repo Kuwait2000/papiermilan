@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' https://mnkeller.goatcounter.com; base-uri 'self'; form-action 'self'">
+<title>Wärmeplan Ingolstadt — PapierPanther</title>
+<meta name="description" content="Wärmeplan Ingolstadt: Was gilt für meine Adresse? Fernwärme-Gebiete, Gas/Wärmepumpen-Prüfgebiete, Anteile je Stadtbezirk und was der Stadtrat seither beschlossen hat.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://schanzer-papierpanther.de/waerme.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PapierPanther Ingolstadt">
+<meta property="og:url" content="https://schanzer-papierpanther.de/waerme.html">
+<meta property="og:title" content="Wärmeplan Ingolstadt — PapierPanther">
+<meta property="og:description" content="Was der Wärmeplan für Ihre Adresse und Ihren Bezirk vorsieht.">
+<meta property="og:image" content="https://schanzer-papierpanther.de/vorschau.png">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Wärmeplan Ingolstadt — PapierPanther">
+<meta name="twitter:image" content="https://schanzer-papierpanther.de/vorschau.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23003E59'/%3E%3Cg transform='translate%286 8%29 scale%281.3%29'%3E%3Cpath d='M12.6 15 L9 4.5 L18.2 10.4 Z' fill='%23fff'/%3E%3Cpath d='M27.4 15 L31 4.5 L21.8 10.4 Z' fill='%23fff'/%3E%3Cellipse cx='20' cy='21' rx='11.5' ry='11' fill='%23fff'/%3E%3Ccircle cx='16' cy='19.5' r='2' fill='%23003E59'/%3E%3Ccircle cx='24' cy='19.5' r='2' fill='%23003E59'/%3E%3Cpath d='M18.4 24.2l1.6 2.2 1.6-2.2z' fill='%23B00E2B'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preload" href="schrift/source-serif-4-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="schrift.css">
+<link rel="stylesheet" href="vendor/maplibre-gl/maplibre-gl.css">
+<style>
+  :root {
+    --primary: #003e59;
+    --primary-dark: #00263a;
+    --accent: #b00e2b;
+    --text: #16232b;
+    --text-muted: #566a74;
+    --text-faint: #5c6a72;
+    --bg: #f8f7f4;
+    --bg-warm: #f1efe9;
+    --card: #ffffff;
+    --border: #e4e0d8;
+    --border-strong: #8f8779;
+    --warn-bg: #fdf6e7;
+    --warn-border: #e8d9b0;
+    --warn-tx: #7d6320;
+    /* Balken: Ingolstadt in Petrol, Vergleichsstaedte in Grau, der
+       "sofort vermietbare" Teil des Leerstands in Ocker wie auf der Mieteseite. */
+    --ingolstadt: #003e59;
+    --vergleich: #b9b2a5;
+    --leer: #d5e3e7;
+    --marktaktiv: #b6752f;
+    --font-display: 'Source Serif 4', 'Iowan Old Style', Georgia, serif;
+    --font-body: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, system-ui, sans-serif;
+    --radius: 10px;
+    --shadow: 0 1px 3px rgba(22,35,43,.06), 0 0 0 1px rgba(22,35,43,.04);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: var(--font-body); color: var(--text); background: var(--bg);
+    line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
+  a { color: var(--accent); }
+
+  .site-header {
+    background: var(--primary); border-bottom: 3px solid var(--accent);
+    padding: .85rem 0; position: sticky; top: 0; z-index: 50;
+  }
+  .site-header .container { display: flex; align-items: center; gap: .65rem; flex-wrap: wrap; }
+  .logo-mark { flex: none; display: block; }
+  .brand {
+    font-family: var(--font-display); font-size: 1.28rem; font-weight: 700;
+    letter-spacing: -.01em; color: #fff; text-decoration: none;
+  }
+  .brand span { color: #a9c7d6; font-weight: 400; }
+  .btn-leicht {
+    font: inherit; font-size: .82rem; cursor: pointer;
+    background: none; border: 1px solid rgba(255,255,255,.5); color: #fff;
+    padding: .3rem .75rem; border-radius: 999px;
+  }
+  .btn-leicht:hover { background: rgba(255,255,255,.14); }
+  .btn-leicht[aria-pressed="true"] {
+    background: #fff; color: var(--primary-dark); border-color: #fff; font-weight: 600;
+  }
+
+  main { padding: 3rem 0 3.5rem; }
+  h1 {
+    font-family: var(--font-display); font-size: clamp(1.75rem, 4.5vw, 2.4rem);
+    font-weight: 700; letter-spacing: -.02em; margin-bottom: .5rem;
+    /* Ohne eigene Zeilenhoehe erbte die Ueberschrift 1.65 vom Fliesstext und
+       zerfiel in zwei weit auseinanderstehende Zeilen. */
+    line-height: 1.18; max-width: 30ch; text-wrap: balance;
+  }
+  .lede { color: var(--text-muted); font-size: 1.05rem; max-width: 62ch; margin-bottom: 1.75rem; }
+  .sprungmarken { display: flex; flex-wrap: wrap; gap: .4rem; margin: -.75rem 0 1.75rem; }
+  .sprungmarken a {
+    font-size: .82rem; text-decoration: none; color: var(--primary-dark);
+    border: 1px solid var(--border-strong); border-radius: 999px; padding: .2rem .75rem; background: var(--card);
+  }
+  .sprungmarken a:hover { background: var(--bg-warm); }
+
+  .disclaimer {
+    background: var(--warn-bg); border-bottom: 1px solid var(--warn-border);
+    color: var(--warn-tx); font-size: .74rem; padding: .5rem 0;
+  }
+  .disclaimer strong { font-weight: 600; }
+  .disclaimer p { max-width: 680px; }
+
+  h2 {
+    font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
+    margin: 3rem 0 .75rem; letter-spacing: -.01em;
+  }
+  h3 { font-size: 1.05rem; font-weight: 700; margin: 2rem 0 .5rem; }
+  p { margin-bottom: 1rem; max-width: 68ch; }
+
+  .karte {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 1.5rem 1.5rem 1.25rem; margin: 1.25rem 0 2rem;
+    max-width: 100%;
+  }
+  .diagramm {
+    /* Weisse Flaeche mit Linie oben wie eine Grafik in der Zeitung, ohne Rahmen
+       und Schatten. Auf dem Papiergrau wirkten die Diagramme blass. */
+    background: var(--card); border-top: 2px solid var(--text);
+    padding: .9rem 1.25rem 1.1rem; margin: 1.5rem 0 2.25rem;
+    max-width: 100%;
+  }
+  @media (max-width: 640px) { .karte { padding: 1.1rem 1rem 1rem; } }
+  .diagramm-titel { font-size: .95rem; font-weight: 600; color: var(--text); margin-bottom: .9rem; }
+  .diagramm-fuss { font-size: .78rem; color: var(--text-faint); margin-top: .9rem; margin-bottom: 0; }
+  .legende { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; font-size: .8rem; color: var(--text-muted); margin-bottom: .75rem; }
+  .legende span { display: inline-flex; align-items: center; gap: .4rem; }
+  .legende i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; }
+
+  .kennzahlen {
+    /* Zahlenleiste wie in der Zeitung statt einzelner Karten: Linie oben,
+       feine Trennstriche zwischen den Zahlen (Designrunde 2026-10-26).
+       overflow: hidden schneidet den linken Strich der ersten Spalte ab. */
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 0; margin: 0 0 .5rem; border-top: 2px solid var(--text); overflow: hidden;
+  }
+  .kachel {
+    border-left: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    margin-left: -1px; padding: .8rem 1rem .9rem;
+    min-width: 0; overflow-wrap: break-word; hyphens: auto;
+  }
+  .kachel p { margin: 0; }
+  .kachel-label { font-size: .8rem; font-weight: 600; color: var(--text-muted); line-height: 1.4; min-height: 2.8em; }
+  .kachel .kachel-wert {
+    font-family: var(--font-display); font-size: 1.4rem; font-weight: 700;
+    color: var(--text); line-height: 1.25; margin: .15rem 0 .3rem; white-space: nowrap;
+  }
+  .kachel-unter { font-size: .8rem; color: var(--text-faint); line-height: 1.45; }
+  .stichtag { font-size: .8rem; color: var(--text-faint); margin: .25rem 0 0; }
+  @media (max-width: 480px) {
+    .kennzahlen { grid-template-columns: 1fr 1fr; }
+    .kachel { padding: .7rem .75rem .8rem; }
+    .kachel .kachel-wert { font-size: 1.2rem; }
+    .kachel-label, .kachel-unter { font-size: .74rem; }
+  }
+
+  /* ---------- Balken (HTML statt SVG, damit sie auf dem Handy umbrechen) ---------- */
+  .balken { display: grid; gap: .55rem; --skala: .78; }
+  .b-zeile { display: grid; grid-template-columns: minmax(8rem, 15rem) 1fr; gap: .2rem .9rem; align-items: center; }
+  .b-label { font-size: .86rem; line-height: 1.35; }
+  .b-zeile.betont .b-label { font-weight: 700; }
+  .b-spuren { display: grid; gap: .2rem; }
+  .b-spur { display: flex; align-items: center; gap: .5rem; min-width: 0; }
+  .b-balken { height: 1.05rem; border-radius: 3px; background: var(--vergleich); flex: none; min-width: 2px; }
+  .b-balken.ingolstadt { background: var(--ingolstadt); }
+  .b-balken.leer { background: var(--leer); }
+  .b-balken.marktaktiv { background: var(--marktaktiv); height: .7rem; }
+  .b-zahl { font-size: .8rem; font-weight: 600; font-variant-numeric: tabular-nums; min-width: 0; line-height: 1.3; }
+  .b-zahl small { font-weight: 400; color: var(--text-faint); font-size: .76rem; }
+  @media (max-width: 560px) {
+    .b-zeile { grid-template-columns: 1fr; }
+    .balken { --skala: .5; }
+  }
+
+  .kasten {
+    background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--primary);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: .9rem 1.1rem; margin: 1.25rem 0 2rem; max-width: 68ch;
+  }
+  .kasten h3 { margin: 0 0 .35rem; font-size: 1rem; }
+  .kasten p { font-size: .92rem; margin-bottom: .5rem; }
+  .kasten p:last-child { margin-bottom: 0; }
+
+  .weiter { font-size: .92rem; }
+
+  .fehlt-liste { list-style: none; margin: .5rem 0 0; display: grid; gap: .5rem; }
+  .fehlt-liste li {
+    background: var(--card); border: 1px dashed var(--border-strong); border-radius: var(--radius);
+    padding: .65rem .9rem; font-size: .9rem;
+  }
+  .fehlt-liste strong { font-weight: 600; }
+  .fehlt-liste span { color: var(--text-muted); }
+
+  .quellen { font-size: .82rem; color: var(--text-faint); }
+  .quellen a { color: var(--primary-dark); }
+  .quellen ul { list-style: none; display: grid; gap: .25rem; margin-top: .5rem; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
+  .stand { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--border-strong); }
+  .site-footer {
+    border-top: 1px solid var(--border); background: var(--bg-warm);
+    padding: 1.75rem 0; font-size: .85rem; color: var(--text-muted);
+  }
+  .site-footer .container { display: flex; gap: 1.25rem; flex-wrap: wrap; }
+  .site-footer a { color: var(--primary-dark); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .ladehinweis { color: var(--text-faint); font-size: .9rem; }
+  /* ---------- Wärmeplan ---------- */
+  :root { --k-netz: #b8430f; --k-netz_spaeter: #dba23a; --k-gas_wp: #2f5f86; --k-einzel: #6b4c93; --k-ohne: #8f8779; }
+  .suche { position: relative; max-width: 34rem; margin: 1rem 0 .4rem; }
+  .suche label { display: block; font-size: .85rem; font-weight: 600; color: var(--text-muted); margin-bottom: .25rem; }
+  .suche input { width: 100%; font: inherit; font-size: 1.02rem; padding: .6rem .75rem; border: 1px solid var(--border-strong); border-radius: 8px; background: #fff; color: var(--text); }
+  #vorschlaege { list-style: none; position: absolute; left: 0; right: 0; top: 100%; z-index: 20; background: #fff;
+    border: 1px solid var(--border-strong); border-top: 0; border-radius: 0 0 8px 8px; box-shadow: 0 8px 20px rgba(22,35,43,.14); }
+  #vorschlaege button { display: block; width: 100%; text-align: left; font: inherit; background: none; border: 0; padding: .5rem .75rem; cursor: pointer; color: var(--text); }
+  #vorschlaege button:hover, #vorschlaege button:focus-visible { background: var(--bg-warm); }
+  .klein { font-size: .82rem !important; color: var(--text-faint); }
+  .antwort { background: var(--card); border: 1px solid var(--border); border-left: 6px solid var(--k); border-radius: 0 var(--radius) var(--radius) 0;
+    box-shadow: var(--shadow); padding: 1.1rem 1.25rem 1.2rem; margin: 1rem 0 2rem; max-width: 68ch; }
+  .antwort[hidden] { display: none; }
+  .antwort .wo { font-size: .82rem; color: var(--text-faint); margin: 0 0 .15rem; }
+  .antwort h3 { font-family: var(--font-display); font-size: 1.35rem; line-height: 1.25; margin: 0 0 .5rem; }
+  .antwort h4 { font-size: .9rem; margin: 1rem 0 .3rem; color: var(--text-muted); }
+  .antwort p { font-size: .96rem; margin-bottom: .6rem; }
+  .antwort ul { margin: 0 0 .6rem 1.15rem; font-size: .94rem; }
+  .antwort .zusatz { background: var(--bg-warm); border-radius: 6px; padding: .5rem .7rem; font-size: .9rem; }
+  .marke { display: inline-block; font-size: .78rem; font-weight: 700; color: #fff; background: var(--k); border-radius: 999px; padding: .15rem .7rem; margin-bottom: .45rem; }
+  .knopf { font: inherit; font-size: .92rem; font-weight: 600; cursor: pointer; background: var(--primary); color: #fff; border: 0; border-radius: 8px; padding: .5rem .95rem; margin-top: .3rem; }
+  .knopf:hover { background: var(--primary-dark); }
+  .gebiete { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: .8rem; margin: 1.25rem 0 1.5rem; }
+  .gebiet { background: var(--card); border: 1px solid var(--border); border-top: 5px solid var(--k); border-radius: 0 0 var(--radius) var(--radius); padding: .85rem 1rem 1rem; }
+  .gebiet h3 { margin: 0 0 .15rem; font-size: 1.02rem; }
+  .gebiet .anteil { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; line-height: 1.2; }
+  .gebiet .anteil small { font-family: var(--font-body); font-size: .78rem; font-weight: 400; color: var(--text-faint); }
+  .gebiet p { font-size: .9rem; margin: .4rem 0 0; }
+  .stapel { display: grid; gap: .6rem; }
+  .st-zeile { display: grid; grid-template-columns: minmax(7rem, 13rem) 1fr; gap: .15rem .9rem; align-items: center; }
+  .st-zeile.gewaehlt .st-name { font-weight: 700; }
+  .st-name { font-size: .88rem; line-height: 1.3; }
+  .st-balken { display: flex; height: 1.25rem; border-radius: 3px; overflow: hidden; background: var(--bg-warm); }
+  .st-balken i { display: block; height: 100%; background: var(--k); min-width: 0; }
+  .st-text { grid-column: 2; font-size: .78rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+  @media (max-width: 560px) { .st-zeile { grid-template-columns: 1fr; } .st-text { grid-column: 1; } }
+  .nicht { list-style: none; display: grid; gap: .55rem; margin: 1rem 0 1.5rem; max-width: 68ch; }
+  .nicht li { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 0 var(--radius) var(--radius) 0; padding: .65rem .95rem; font-size: .93rem; }
+  .nicht li strong { display: block; }
+  .liste { list-style: none; max-width: 68ch; }
+  .liste li { font-size: .92rem; padding: .7rem 0; border-top: 1px solid var(--border); }
+  .liste li:first-child { border-top: 2px solid var(--text); }
+  .liste time, .liste .wer { color: var(--text-faint); font-size: .8rem; }
+  .liste strong { display: block; font-size: .98rem; }
+  .liste a { color: var(--primary-dark); }
+  .zwei { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 1.5rem; }
+  .b-balken.fossil { background: var(--marktaktiv); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <svg class="logo-mark" width="34" height="34" viewBox="0 0 40 40" aria-hidden="true">
+      <path d="M12.6 15 L9 4.5 L18.2 10.4 Z" fill="#fff"/>
+      <path d="M27.4 15 L31 4.5 L21.8 10.4 Z" fill="#fff"/>
+      <ellipse cx="20" cy="21" rx="11.5" ry="11" fill="#fff"/>
+      <circle cx="16" cy="19.5" r="2" fill="#003E59"/>
+      <circle cx="24" cy="19.5" r="2" fill="#003E59"/>
+      <path d="M18.4 24.2l1.6 2.2 1.6-2.2z" fill="#B00E2B"/>
+    </svg>
+    <a class="brand" href="index.html">PapierPanther <span>Ingolstadt</span></a>
+    <button class="btn-leicht" id="btn-leicht" type="button" aria-pressed="false">Leichte Sprache</button>
+  </div>
+</header>
+
+<div class="disclaimer">
+  <div class="container">
+    <p id="txt-hinweis"></p>
+  </div>
+</div>
+
+<main>
+  <div class="container">
+    <h1 id="txt-h1"></h1>
+    <p class="lede" id="txt-lede"></p>
+    <nav class="sprungmarken" aria-label="Abschnitte">
+      <a href="#adresse-abschnitt" id="txt-sprung-adresse"></a>
+      <a href="#gebiete" id="txt-sprung-gebiete"></a>
+      <a href="#bezirke" id="txt-sprung-bezirke"></a>
+      <a href="#zahlen" id="txt-sprung-zahlen"></a>
+      <a href="#seither" id="txt-sprung-seither"></a>
+      <a href="#grenzen" id="txt-sprung-grenzen"></a>
+    </nav>
+
+    <section id="blick" aria-labelledby="txt-blick-h2">
+      <h2 class="sr-only" id="txt-blick-h2"></h2>
+      <div class="kennzahlen" id="kennzahlen"><p class="ladehinweis">Lade Wärmeplan …</p></div>
+      <p class="stichtag" id="txt-stichtag"></p>
+    </section>
+
+    <section id="adresse-abschnitt">
+      <h2 id="txt-adresse-h2"></h2>
+      <p id="txt-adresse-p"></p>
+      <div class="suche">
+        <label for="adresse" id="txt-adresse-label"></label>
+        <input id="adresse" type="search" autocomplete="off" aria-controls="vorschlaege">
+        <ul id="vorschlaege" hidden></ul>
+      </div>
+      <p class="klein" id="txt-adresse-klein"></p>
+      <div class="antwort" id="antwort" aria-live="polite" hidden></div>
+    </section>
+
+    <section id="gebiete">
+      <h2 id="txt-gebiete-h2"></h2>
+      <p id="txt-gebiete-p"></p>
+      <div class="gebiete" id="gebiete-liste"></div>
+      <h3 id="txt-nicht-h3"></h3>
+      <ul class="nicht" id="nicht-liste"></ul>
+    </section>
+
+    <section id="bezirke">
+      <h2 id="txt-bezirke-h2"></h2>
+      <p id="txt-bezirke-p"></p>
+      <div class="diagramm">
+        <p class="diagramm-titel" id="txt-bezirke-titel"></p>
+        <div class="legende" id="bezirke-legende"></div>
+        <div class="stapel" id="bezirke-stapel"></div>
+        <p class="diagramm-fuss" id="txt-bezirke-fuss"></p>
+      </div>
+    </section>
+
+    <section id="zahlen">
+      <h2 id="txt-zahlen-h2"></h2>
+      <p id="txt-zahlen-p"></p>
+      <div>
+        <div class="diagramm">
+          <p class="diagramm-titel" id="txt-heute-titel"></p>
+          <div class="balken" id="heute-balken"></div>
+          <p class="diagramm-fuss" id="txt-heute-fuss"></p>
+        </div>
+        <div class="diagramm">
+          <p class="diagramm-titel" id="txt-ziel-titel"></p>
+          <div class="balken" id="ziel-balken"></div>
+          <p class="diagramm-fuss" id="txt-ziel-fuss"></p>
+        </div>
+      </div>
+      <p id="txt-zahlen-p2"></p>
+    </section>
+
+    <section id="seither">
+      <h2 id="txt-seither-h2"></h2>
+      <p id="txt-seither-p"></p>
+      <ul class="liste" id="rat-liste"></ul>
+      <p class="klein" id="txt-seither-klein" style="margin-top:.8rem"></p>
+    </section>
+
+    <section id="grenzen">
+      <h2 id="txt-grenzen-h2"></h2>
+      <ul class="fehlt-liste" id="grenzen-liste"></ul>
+    </section>
+
+    <div class="stand quellen" id="quellen-block"><p>Lade Quellenangaben …</p></div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <a href="index.html">Übersicht</a>
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="https://github.com/mnkeller/papierpanther" rel="noopener noreferrer" target="_blank">Quellcode<span class="sr-only"> (öffnet in neuem Tab)</span></a>
+    <a href="https://www.ingolstadt.de/sessionnet/" rel="noopener noreferrer" target="_blank">Ratsinfoportal<span class="sr-only"> (öffnet in neuem Tab)</span></a>
+  </div>
+</footer>
+
+<script src="data/waerme.js"></script>
+<script src="data/wege-adressen.js"></script>
+<script src="data/bezirke.js"></script>
+<script>
+(function () {
+  "use strict";
+  var D = window.WAERME, ADR = window.WEGE_ADRESSEN;
+  if (!D) {
+    document.querySelectorAll(".ladehinweis").forEach(function (el) {
+      el.textContent = "Der Wärmeplan konnte nicht geladen werden.";
+    });
+    return;
+  }
+  var B = D.bericht;
+  var LS_KEY_LEICHT = "papierpanther-leichte-sprache";
+  var leicht = false;
+  try { leicht = localStorage.getItem(LS_KEY_LEICHT) === "1"; } catch (err) { /* Storage kann gesperrt sein */ }
+  function t(n, l) { return leicht ? l : n; }
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+    });
+  }
+  function lnk(url, inhalt) {
+    return "<a href=\"" + esc(url) + "\" rel=\"noopener noreferrer\" target=\"_blank\">" + inhalt +
+      "<span class=\"sr-only\"> (öffnet in neuem Tab)</span></a>";
+  }
+  function datumDE(iso) {
+    if (!iso) return "";
+    var p = iso.split("-");
+    return p[2] + "." + p[1] + "." + p[0];
+  }
+  function zahl(n, d) { return Number(n).toLocaleString("de-DE", { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }); }
+  function prozent(teil, ganz, d) {
+    var p = ganz ? teil / ganz * 100 : 0;
+    if (teil > 0 && p < 0.5 && !d) return "unter 1 %";
+    return zahl(p, d === undefined ? 0 : d) + " %";
+  }
+
+  /* ---------------- Die vier Klassen ---------------- */
+  var STADTWERKE = "https://sw-i.de/fernwaerme/faq-waermeplanung-kwp/";
+  var KLASSE = {
+    netz: {
+      n: "Wärmenetz-Gebiet", l: "Gebiet für Fern-Wärme",
+      kurz: ["Fernwärme ist hier gut machbar, weil das bestehende Netz in der Nähe liegt.", "Hier ist Fern-Wärme gut möglich. Das Netz ist in der Nähe."],
+      heisst: ["Der Plan hält einen Anschluss an die Fernwärme hier für gut umsetzbar. Das ist eine Einschätzung, keine Zusage: Ob und wann Ihr Haus angeschlossen werden kann, sagen Ihnen die Stadtwerke.",
+        "Der Plan sagt: Hier kann Fern-Wärme gut hinkommen. Das ist aber kein Versprechen. Fragen Sie die Stadt-Werke: Kann mein Haus Fern-Wärme bekommen? Und wann?"],
+      wege: [["Fernwärme", "Erdwärmepumpe", "Luftwärmepumpe", "Heizkessel für Holz oder Pellets", "Solarthermie oder Wärmepumpe als Ergänzung zum bestehenden Öl- oder Gaskessel"],
+        ["Fern-Wärme", "Wärme-Pumpe", "Heizung mit Holz", "Sonnen-Wärme vom Dach als Hilfe für die alte Heizung"]]
+    },
+    netz_spaeter: {
+      n: "Wärmenetz, geringe Priorität", l: "Fern-Wärme kommt vielleicht später",
+      kurz: ["Fernwärme ist technisch möglich, das Netz müsste aber erst hierher gebaut werden.", "Fern-Wärme ist hier möglich. Aber das Netz muss erst gebaut werden."],
+      heisst: ["Fernwärme ist hier grundsätzlich möglich. Das Netz reicht aber noch nicht bis hierher, und der Plan gibt dem Ausbau geringe Priorität. Einen Termin gibt es nicht. Wer bald eine neue Heizung braucht, sollte nicht auf den Anschluss warten, ohne vorher bei den Stadtwerken nachzufragen.",
+        "Hier gibt es noch keine Fern-Wärme. Das Netz muss erst gebaut werden. Niemand weiß, wann das passiert. Brauchen Sie bald eine neue Heizung? Dann fragen Sie vorher die Stadt-Werke."],
+      wege: [["Fernwärme, sobald das Netz ausgebaut ist", "Erdwärmepumpe", "Luftwärmepumpe", "Heizkessel für Holz oder Pellets", "Solarthermie oder Wärmepumpe als Ergänzung zum bestehenden Öl- oder Gaskessel"],
+        ["Fern-Wärme, wenn das Netz da ist", "Wärme-Pumpe", "Heizung mit Holz", "Sonnen-Wärme vom Dach als Hilfe für die alte Heizung"]]
+    },
+    gas_wp: {
+      n: "Gas/Wärmepumpen-Prüfgebiet", l: "Gebiet mit Gas-Leitung",
+      kurz: ["Hier liegt eine Gasleitung. Ein Wärmenetz ist nicht vorgesehen; was aus dem Gasnetz wird, ist offen.", "Hier gibt es Gas-Leitungen. Fern-Wärme ist nicht geplant."],
+      heisst: ["Ein Wärmenetz hält der Plan hier nicht für wirtschaftlich. Jedes Haus heizt für sich, im Zielbild vor allem mit einer Wärmepumpe. Weil eine Gasleitung in der Nähe liegt, wollen die Stadtwerke prüfen, ob dieser Teil des Netzes künftig Gas aus erneuerbaren Quellen führen kann. Der Plan nennt das selbst unsicher und derzeit nicht absehbar.",
+        "Hier ist keine Fern-Wärme geplant. Jedes Haus braucht eine eigene Heizung. Am besten eine Wärme-Pumpe. Hier liegt eine Gas-Leitung. Vielleicht kommt später anderes Gas durch die Leitung. Zum Beispiel Bio-Gas. Das weiß aber noch niemand."],
+      wege: [["Erdwärmepumpe", "Luftwärmepumpe", "Heizkessel für Holz oder Pellets", "Solarthermie oder Wärmepumpe als Ergänzung zum bestehenden Öl- oder Gaskessel"],
+        ["Wärme-Pumpe", "Heizung mit Holz", "Sonnen-Wärme vom Dach als Hilfe für die alte Heizung"]]
+    },
+    einzel: {
+      n: "Individuelle Heizlösung", l: "Jedes Haus heizt für sich",
+      kurz: ["Hier gibt es weder Fernwärme noch eine Gasleitung. Jedes Haus heizt für sich.", "Hier gibt es keine Fern-Wärme und kein Gas."],
+      heisst: ["Dieses Gebiet liegt außerhalb der Versorgung mit Fernwärme und Erdgas, und ein Wärmenetz hält der Plan nicht für wirtschaftlich. Jedes Haus braucht eine eigene Lösung, im Zielbild vor allem eine Wärmepumpe.",
+        "Hier gibt es keine Fern-Wärme. Und es gibt keine Gas-Leitung. Jedes Haus braucht eine eigene Heizung. Am besten eine Wärme-Pumpe."],
+      wege: [["Erdwärmepumpe", "Luftwärmepumpe", "Heizkessel für Holz oder Pellets", "Solarthermie oder Wärmepumpe als Ergänzung zum bestehenden Ölkessel"],
+        ["Wärme-Pumpe", "Heizung mit Holz", "Sonnen-Wärme vom Dach als Hilfe für die alte Heizung"]]
+    },
+    ohne: {
+      n: "In keiner Fläche des Plans", l: "Nicht im Plan",
+      kurz: ["Liegt in keiner der Flächen, die die Stadt veröffentlicht hat.", "Dazu steht nichts im Plan."],
+      heisst: ["Diese Adresse liegt in keiner der Flächen, die die Stadt veröffentlicht hat. Das kommt am Rand der Bebauung, in Gewerbegebieten und bei einzelnen Höfen vor. Für eine Auskunft fragen Sie die Stadtwerke oder die Energieberatung.",
+        "Zu dieser Adresse steht nichts im Plan. Fragen Sie bitte die Stadt-Werke."],
+      wege: [[], []]
+    }
+  };
+
+  /* ---------------- Fläche zu einem Punkt ---------------- */
+  function imRing(x, y, ring) {
+    var drin = false;
+    for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      var xi = ring[i][0], yi = ring[i][1], xj = ring[j][0], yj = ring[j][1];
+      if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) drin = !drin;
+    }
+    return drin;
+  }
+  function inGeometrie(x, y, g) {
+    var polygone = g.type === "Polygon" ? [g.coordinates] : g.coordinates;
+    return polygone.some(function (p) {
+      return imRing(x, y, p[0]) && !p.slice(1).some(function (loch) { return imRing(x, y, loch); });
+    });
+  }
+  // Überlappen sich Flächen, gewinnt die Klasse, die in der Legende weiter oben steht (wie im Skript)
+  var RANG = {};
+  D.klassen.forEach(function (k, i) { RANG[k] = i; });
+  var FLAECHEN = D.gebiete.features.slice().sort(function (a, b) { return RANG[a.properties.klasse] - RANG[b.properties.klasse]; });
+  function finde(lon, lat) {
+    for (var i = 0; i < FLAECHEN.length; i++) if (inGeometrie(lon, lat, FLAECHEN[i].geometry)) return FLAECHEN[i].properties;
+    return null;
+  }
+
+  /* ---------------- Adressen (wie auf „Deine 15 Minuten“) ---------------- */
+  function norm(s) {
+    return s.toLowerCase().replace(/ß/g, "ss").replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue")
+      .replace(/str\.?(?=\s|$)/g, "strasse").replace(/[^a-z0-9]+/g, " ").trim();
+  }
+  var STRASSEN = !ADR ? [] : ADR.strassen.map(function (s) {
+    var nummern = s[1].split("|"), lat = [], lon = [], a = 0, b = 0;
+    for (var i = 0; i < nummern.length; i++) { a += s[2][i]; b += s[3][i]; lat.push(a / 1e5); lon.push(b / 1e5); }
+    return { name: s[0], schl: norm(s[0]), nummern: nummern, nkey: nummern.map(function (x) { return norm(x).replace(/ /g, ""); }), lat: lat, lon: lon };
+  });
+  function vorschlaege(eingabe) {
+    var m = eingabe.trim().match(/^(.*?)[\s,]*(\d+\s*[a-zA-Z]?(?:\s*-\s*\d+)?)?$/);
+    var strasse = norm(m ? m[1] : eingabe), nr = m && m[2] ? norm(m[2]).replace(/ /g, "") : "";
+    if (strasse.length < 3) return [];
+    return STRASSEN.filter(function (s) { return s.schl.indexOf(strasse) !== -1; })
+      .sort(function (a, b) { return ((b.schl.indexOf(strasse) === 0) - (a.schl.indexOf(strasse) === 0)) || a.name.localeCompare(b.name, "de"); })
+      .slice(0, 8).map(function (s) {
+        var i = nr ? s.nkey.indexOf(nr) : -1, genau = i >= 0;
+        if (nr && i < 0) {   // nächstliegende Hausnummer
+          var z = parseInt(nr, 10);
+          i = s.nummern.reduce(function (best, x, k) { return Math.abs(parseInt(x, 10) - z) < Math.abs(parseInt(s.nummern[best], 10) - z) ? k : best; }, 0);
+        }
+        if (i < 0) i = Math.floor(s.nummern.length / 2);
+        return { text: s.name + (nr ? " " + s.nummern[i] : ""), strasse: s, i: i, lat: s.lat[i], lon: s.lon[i], mitNummer: !!nr, genau: genau };
+      });
+  }
+  // Liegt eine Straße in mehreren Klassen, sagt die Antwort das dazu
+  function klassenDerStrasse(s) {
+    var z = {};
+    for (var i = 0; i < s.nummern.length; i++) { var f = finde(s.lon[i], s.lat[i]); var k = f ? f.klasse : "ohne"; z[k] = (z[k] || 0) + 1; }
+    return z;
+  }
+  // Bezirk der Adresse selbst; die Fläche kann über mehrere Bezirke reichen
+  function bezirkVon(lon, lat) {
+    var f = (window.BEZIRKE ? window.BEZIRKE.features : []).filter(function (b) { return inGeometrie(lon, lat, b.geometry); })[0];
+    return f ? { nr: f.properties.beznr, name: f.properties.bezname } : null;
+  }
+
+  var gewaehlt = null;   // { text, lat, lon, ... } der letzten Auswahl
+  function zeigeAntwort() {
+    var box = document.getElementById("antwort");
+    if (!gewaehlt) { box.hidden = true; return; }
+    var f = finde(gewaehlt.lon, gewaehlt.lat), k = f ? f.klasse : "ohne", K = KLASSE[k], i = leicht ? 1 : 0;
+    var bez = bezirkVon(gewaehlt.lon, gewaehlt.lat);
+    var html = "<p class=\"wo\">" + esc(gewaehlt.text) + (bez ? " · " + t("Bezirk ", "Bezirk ") + esc(bez.name) : "") + "</p>" +
+      "<span class=\"marke\">" + t(K.n, K.l) + "</span>" +
+      "<h3>" + K.kurz[i] + "</h3><p>" + K.heisst[i] + "</p>";
+    if (f && (f.name || f.hinweis) && !leicht) {
+      html += "<p class=\"zusatz\">" + (f.name ? "Im Plan heißt die Fläche „" + esc(f.name) + "“." : "") +
+        (f.hinweis ? (f.name ? " " : "") + "Anmerkung der Stadt dazu: " + esc(f.hinweis) : "") + "</p>";
+    }
+    if (!gewaehlt.mitNummer) {
+      var z = klassenDerStrasse(gewaehlt.strasse), arten = Object.keys(z);
+      html += "<p class=\"klein\">" + (arten.length > 1
+        ? t("Ohne Hausnummer gilt die Antwort für die Mitte der Straße. Die Straße liegt in mehreren Gebieten: ", "Die Straße liegt in mehreren Gebieten. Bitte geben Sie auch die Haus-Nummer ein: ") +
+          arten.map(function (a) { return t(KLASSE[a].n, KLASSE[a].l) + " (" + z[a] + ")"; }).join(", ") + "."
+        : t("Alle " + gewaehlt.strasse.nummern.length + " Hausnummern dieser Straße liegen im selben Gebiet.", "Das gilt für die ganze Straße.")) + "</p>";
+    } else if (!gewaehlt.genau) {
+      html += "<p class=\"klein\">" + t("Diese Hausnummer kennen die Daten nicht; die Antwort gilt für die nächstliegende.", "Diese Haus-Nummer kennen wir nicht. Die Antwort ist für ein Haus in der Nähe.") + "</p>";
+    }
+    if (K.wege[i].length) {
+      html += "<h4>" + t("Diese Wege nennt der Plan für hier", "Das geht hier") + "</h4><ul>" +
+        K.wege[i].map(function (w) { return "<li>" + w + "</li>"; }).join("") + "</ul>";
+    }
+    html += "<h4>" + t("Was das für Sie heißt", "Das heißt für Sie") + "</h4><ul>" +
+      "<li>" + t("Sie müssen wegen des Plans nichts tun. Er verpflichtet niemanden und gibt niemandem einen Anspruch.", "Sie müssen jetzt nichts tun. Der Plan ist keine Vorschrift.") + "</li>" +
+      (k === "netz" || k === "netz_spaeter"
+        ? "<li>" + t("Vor einer neuen Heizung lohnt die Frage an die Stadtwerke, ob und wann ein Anschluss möglich ist: " + lnk(STADTWERKE, "Fragen und Antworten der Stadtwerke") + ".",
+            "Brauchen Sie eine neue Heizung? Fragen Sie vorher die " + lnk(STADTWERKE, "Stadt-Werke") + ".") + "</li>"
+        : "<li>" + t("Vor einer neuen Heizung lohnt eine unabhängige Energieberatung. Sie rechnet für Ihr Haus durch, was passt und was gefördert wird.",
+            "Brauchen Sie eine neue Heizung? Dann lassen Sie sich beraten.") + "</li>") +
+      "<li>" + t("Wohnen Sie zur Miete, entscheidet die Vermieterin oder der Vermieter über die Heizung. Fragen Sie nach, was geplant ist.", "Wohnen Sie zur Miete? Dann entscheidet Ihr Vermieter über die Heizung.") + "</li>" +
+      "</ul><button class=\"knopf\" type=\"button\" id=\"zur-karte\">" + t("Auf der Karte ansehen", "Auf der Karte zeigen") + "</button>";
+    box.style.setProperty("--k", "var(--k-" + k + ")");
+    box.innerHTML = html; box.hidden = false;
+    document.getElementById("zur-karte").addEventListener("click", function () {
+      window.WAERME_ORT = { lon: gewaehlt.lon, lat: gewaehlt.lat, text: gewaehlt.text };
+      var knopf = document.getElementById("btn-grafisch");
+      if (knopf && knopf.getAttribute("aria-pressed") !== "true") knopf.click();
+      document.dispatchEvent(new CustomEvent("waerme-ort"));
+    });
+    // In der Bezirksgrafik den Bezirk der Adresse hervorheben
+    document.querySelectorAll(".st-zeile").forEach(function (z) { z.classList.toggle("gewaehlt", !!bez && z.getAttribute("data-nr") === bez.nr); });
+  }
+
+  var feld = document.getElementById("adresse"), liste = document.getElementById("vorschlaege"), aktuell = [];
+  function waehle(v) {
+    feld.value = v.text; liste.innerHTML = ""; liste.hidden = true;
+    gewaehlt = v; zeigeAntwort();
+  }
+  feld.addEventListener("input", function () {
+    aktuell = vorschlaege(feld.value);
+    liste.innerHTML = "";
+    aktuell.forEach(function (v) {
+      var li = document.createElement("li"), b = document.createElement("button");
+      b.type = "button"; b.textContent = v.text;
+      b.addEventListener("click", function () { waehle(v); });
+      li.appendChild(b); liste.appendChild(li);
+    });
+    liste.hidden = aktuell.length === 0;
+  });
+  feld.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" && aktuell.length) { e.preventDefault(); waehle(aktuell[0]); }
+    if (e.key === "Escape") liste.hidden = true;
+  });
+
+  // Die grafische Fassung nutzt dieselbe Suche und dieselben Texte
+  window.WAERME_HILFE = { finde: finde, vorschlaege: vorschlaege, bezirkVon: bezirkVon, KLASSE: KLASSE };
+
+  /* ---------------- Zahlen ---------------- */
+  var A = D.adressen, J = A.je_klasse;
+  var netzAnteil = (J.netz + J.netz_spaeter) / A.gesamt * 100;
+  var gasAnteil = J.gas_wp / A.gesamt * 100;
+  var gas = B.energietraeger_prozent[0], oel = B.energietraeger_prozent[1];
+
+  function kacheln() {
+    var k = document.getElementById("kennzahlen");
+    k.textContent = "";
+    [[zahl(gas.wert, 1) + " %", t("der Heizenergie kommen heute aus Erdgas", "der Wärme kommt heute aus Erd-Gas"), t("dazu " + zahl(oel.wert, 1) + " % aus Heizöl", "und " + zahl(oel.wert, 0) + " % aus Heiz-Öl")],
+     [zahl(netzAnteil, 0) + " %", t("der Adressen liegen in einem Wärmenetz-Gebiet", "der Häuser liegen in einem Gebiet für Fern-Wärme"), t("eigene Zählung; die Stadt nennt etwa 13 % der Gebäude", "so haben wir es gezählt")],
+     [zahl(gasAnteil, 0) + " %", t("liegen in einem Gas/Wärmepumpen-Prüfgebiet", "liegen in einem Gebiet mit Gas-Leitung"), t("hier ist offen, was aus dem Gasnetz wird", "dort ist noch vieles offen")],
+     [datumDE(D.beschluss.datum), t("hat der Stadtrat den Plan beschlossen", "hat der Stadt-Rat Ja gesagt"), t("gegen vier Stimmen", "4 Stadt-Räte waren dagegen")]
+    ].forEach(function (z) {
+      var d = document.createElement("div"); d.className = "kachel";
+      d.innerHTML = "<p class=\"kachel-label\">" + z[1] + "</p><p class=\"kachel-wert\">" + z[0] + "</p><p class=\"kachel-unter\">" + z[2] + "</p>";
+      k.appendChild(d);
+    });
+  }
+
+  function baueGebiete() {
+    document.getElementById("gebiete-liste").innerHTML = ["netz", "netz_spaeter", "gas_wp", "einzel"].map(function (k) {
+      var K = KLASSE[k], n = D.gebiete.features.filter(function (f) { return f.properties.klasse === k; }).length;
+      return "<div class=\"gebiet\" style=\"--k:var(--k-" + k + ")\"><h3>" + t(K.n, K.l) + "</h3>" +
+        "<p class=\"anteil\">" + prozent(J[k], A.gesamt) + " <small>" + t("der Adressen · " + n + " Flächen", "der Häuser") + "</small></p>" +
+        "<p>" + K.heisst[leicht ? 1 : 0] + "</p></div>";
+    }).join("");
+  }
+
+  var NICHT = [
+    ["Er ist keine Vorschrift.", "Nach § 23 Absatz 4 des Wärmeplanungsgesetzes hat ein Wärmeplan keine rechtliche Außenwirkung. Er begründet keine einklagbaren Rechte oder Pflichten. Die Gebiete sind laut Bericht „als Orientierung und nicht als verpflichtende Anweisungen zu verstehen“.",
+      "Der Plan ist keine Vorschrift.", "Niemand muss wegen dem Plan seine Heizung ändern."],
+    ["Er ist keine Zusage für einen Anschluss.", "Ein Wärmenetz-Gebiet heißt: grundsätzlich geeignet. Der Bericht verlangt für jedes Gebiet weitere Untersuchungen zu Wirtschaftlichkeit und Machbarkeit; Ausbaupläne sollen danach folgen. Im Zielbild rechnet der Plan selbst damit, dass 70 Prozent der Gebäude in diesen Gebieten angeschlossen werden, nicht alle.",
+      "Der Plan ist kein Versprechen.", "Auch in einem Gebiet für Fern-Wärme bekommt nicht jedes Haus Fern-Wärme."],
+    ["Er nennt keinen Termin.", "Wann wo gebaut wird, steht nicht im Plan. Für die Netze sollen zuerst Transformationspläne und Machbarkeitsstudien entstehen.",
+      "Der Plan nennt kein Datum.", "Niemand weiß, wann die Fern-Wärme kommt."],
+    ["Er zwingt niemanden an die Fernwärme.", "Einen Anschluss- und Benutzungszwang gibt es durch den Plan nicht. Der Stadtrat könnte ihn nur mit einem eigenen Beschluss für ein förmlich ausgewiesenes Gebiet einführen; der Plan schlägt lediglich vor, eine solche Ausweisung zu prüfen (Maßnahme 5). Auch eine Ausweisung allein verpflichtet nach § 27 des Wärmeplanungsgesetzes niemanden, eine bestimmte Wärmeversorgung zu nutzen.",
+      "Niemand muss Fern-Wärme nehmen.", "Dafür müsste der Stadt-Rat extra einen Beschluss machen."]
+  ];
+  function baueNicht() {
+    document.getElementById("nicht-liste").innerHTML = NICHT.concat(GEG).map(function (g) {
+      return "<li><strong>" + t(g[0], g[2]) + "</strong>" + t(g[1], g[3]) + "</li>";
+    }).join("");
+  }
+  /* Rechtsstand am Gesetzestext geprüft am 14.11.2026 (gesetze-im-internet.de: § 71 GModG weggefallen, § 43 GModG, § 23 und § 27 WPG).
+     Ändert sich das Gesetz, diesen Eintrag und das Datum anpassen. */
+  var GESETZ = "https://www.gesetze-im-internet.de/geg/__43.html";
+  var GEG = [
+    ["Er löst keine Pflicht beim Heizungstausch aus.", "Der Bericht von 2024 und die Seiten von Stadt und Stadtwerken beschreiben noch die 65-Prozent-Regel des Gebäudeenergiegesetzes, die in Großstädten ab Juli 2026 greifen sollte. Diese Regel gibt es nicht mehr: Seit dem 29. Juli 2026 heißt das Gesetz Gebäudemodernisierungsgesetz, der frühere § 71 ist weggefallen. Wer seither eine Gas- oder Ölheizung in ein bestehendes Haus einbaut, muss ab 2029 einen steigenden Anteil klimafreundlicher Brennstoffe nutzen: mindestens 10 Prozent ab 2029, 15 ab 2030, 30 ab 2035 und 60 ab 2040 (" + lnk(GESETZ, "§ 43 GModG") + "). Das gilt in ganz Deutschland gleich, egal in welchem Gebiet des Wärmeplans das Haus steht. Stand: 14.11.2026, keine Rechtsberatung.",
+      "Für neue Heizungen gilt ein Gesetz für ganz Deutschland.", "Das Gesetz ist seit Juli 2026 neu. Es hat nichts mit dem Gebiet im Plan zu tun. Der Plan von 2024 beschreibt noch das alte Gesetz."]
+  ];
+
+  function baueBezirke() {
+    var klassen = ["netz", "netz_spaeter", "gas_wp", "einzel", "ohne"];
+    document.getElementById("bezirke-legende").innerHTML = klassen.map(function (k) {
+      return "<span><i style=\"background:var(--k-" + k + ")\"></i>" + t(KLASSE[k].n, KLASSE[k].l) + "</span>";
+    }).join("");
+    document.getElementById("bezirke-stapel").innerHTML = D.bezirke.map(function (b) {
+      var z = b.je_klasse, teile = [];
+      if (z.netz) teile.push(t("Wärmenetz ", "Fern-Wärme ") + prozent(z.netz, b.adressen));
+      if (z.netz_spaeter) teile.push(t("geringe Priorität ", "später ") + prozent(z.netz_spaeter, b.adressen));
+      if (z.gas_wp) teile.push(t("Gas/Wärmepumpe ", "Gas-Leitung ") + prozent(z.gas_wp, b.adressen));
+      if (z.einzel) teile.push(t("individuell ", "eigene Heizung ") + prozent(z.einzel, b.adressen));
+      return "<div class=\"st-zeile\" data-nr=\"" + b.nr + "\"><span class=\"st-name\">" + esc(b.name) + "</span>" +
+        "<span class=\"st-balken\" role=\"img\" aria-label=\"" + esc(b.name + ": " + teile.join(", ")) + "\">" +
+        klassen.map(function (k) { return z[k] ? "<i style=\"--k:var(--k-" + k + ");width:" + (z[k] / b.adressen * 100).toFixed(2) + "%\"></i>" : ""; }).join("") +
+        "</span><span class=\"st-text\">" + teile.join(" · ") + t(" · " + zahl(b.adressen) + " Adressen", "") + "</span></div>";
+    }).join("");
+  }
+
+  function balken(id, reihen, max) {
+    document.getElementById(id).innerHTML = reihen.map(function (r) {
+      return "<div class=\"b-zeile\"><span class=\"b-label\">" + esc(t(r.name, r.name_l || r.name)) + "</span><span class=\"b-spuren\"><span class=\"b-spur\">" +
+        "<span class=\"b-balken " + (r.fossil ? "fossil" : "ingolstadt") + "\" style=\"width:calc(" + (r.wert / max * 100).toFixed(1) + "% * var(--skala))\"></span>" +
+        "<span class=\"b-zahl\">" + zahl(r.wert, 1) + " %" + (r.gebaeude && !leicht ? " <small>" + zahl(r.gebaeude) + " Gebäude</small>" : "") + "</span></span></span></div>";
+    }).join("");
+  }
+
+  function baueRat() {
+    document.getElementById("rat-liste").innerHTML = D.rat.slice().reverse().map(function (r) {
+      var txt = t(r.text, r.text_l || "");
+      return "<li><time datetime=\"" + r.datum + "\">" + datumDE(r.datum) + "</time> <span class=\"wer\">· " + esc(r.gremium) +
+        (r.stand ? " · " + esc(r.stand) : "") + "</span><strong>" + esc(t(r.titel, r.titel_l)) + "</strong>" + (txt ? esc(txt) + " " : "") +
+        "<span class=\"wer\">" + lnk(r.url, t(r.vorlage ? "Vorlage " + esc(r.vorlage) : "Sitzung im Ratsinfoportal", "Papier bei der Stadt")) +
+        (r.niederschrift_url && !leicht ? " · " + lnk(r.niederschrift_url, "Niederschrift") : "") + "</span></li>";
+    }).join("");
+  }
+
+  var GRENZEN = [
+    ["Wie viel Wärme Ihr Haus braucht.", "Der Plan hat für jedes Gebäude Wärmebedarf, Baualter und Heizung erfasst. Veröffentlicht sind diese Daten nicht, im Bericht stehen sie nur als Kartenbilder je Baublock. Diese Seite kennt deshalb nur das Gebiet, nicht das Haus.",
+      "Wie viel Wärme Ihr Haus braucht.", "Das steht nicht in den Daten von der Stadt."],
+    ["Ob und wann die Fernwärme in Ihre Straße kommt.", "Das entscheiden die Stadtwerke mit ihren Ausbauplänen. Der Plan zeigt nur, wo ein Netz grundsätzlich in Frage kommt.",
+      "Wann die Fern-Wärme kommt.", "Das wissen nur die Stadt-Werke."],
+    ["Die genaue Grenze am Grundstück.", "Die Flächen sind mit dem Mittelpunkt des Gebäudes aus OpenStreetMap verglichen. Liegt ein Haus an der Grenze zweier Gebiete, kann die Zuordnung falsch sein. Maßgeblich ist die Karte der Stadt.",
+      "Die genaue Grenze.", "Liegt Ihr Haus am Rand von einem Gebiet? Dann kann die Antwort falsch sein."],
+    ["Wie viele Gebäude es genau sind.", "Die Anteile je Bezirk zählen Hausnummern aus OpenStreetMap, nicht Gebäude aus dem Kataster. Ein Wohnblock mit vier Eingängen zählt hier vierfach, eine Halle ohne Hausnummer gar nicht. Der Bericht selbst zählt " + zahl(B.gebaeude.wert) + " Gebäude und nennt keine Zahlen je Bezirk.",
+      "Wie viele Häuser es genau sind.", "Wir haben Haus-Nummern gezählt. Das ist nicht ganz genau."],
+    ["Ob der Plan noch aktuell ist.", "Der Bericht ist vom " + datumDE(B.datum) + ", die Flächen der Stadt vom November 2024. Ein Wärmeplan muss regelmäßig fortgeschrieben werden; ändert die Stadt die Flächen, zieht diese Seite erst beim nächsten Abruf nach.",
+      "Ob der Plan noch stimmt.", "Der Plan ist von 2024. Die Stadt kann ihn ändern."]
+  ];
+  function baueGrenzen() {
+    document.getElementById("grenzen-liste").innerHTML = GRENZEN.map(function (g) {
+      return "<li><strong>" + t(g[0], g[2]) + "</strong> <span>" + t(g[1], g[3]) + "</span></li>";
+    }).join("");
+  }
+  function baueQuellen() {
+    document.getElementById("quellen-block").innerHTML = "<p><strong>" + t("Quellen", "Woher die Angaben kommen") + "</strong></p><ul>" +
+      "<li>" + lnk(D.quelle.seite, t("Karte der Eignungsgebiete auf 2035.de", "Karte von der Stadt")) +
+      t(" (" + esc(D.quelle.herausgeber) + "): Umrisse, Namen und Anmerkungen der 141 Flächen, abgerufen am " + datumDE(D.quelle.abgerufen_am) + ". Die Datei trägt keine Lizenzangabe; die Umrisse sind bis auf das Runden der Koordinaten unverändert.", "") + "</li>" +
+      "<li>" + lnk(B.url, t("Energienutzungsplan Ingolstadt, Abschlussbericht (PDF, 139 Seiten)", "Der Wärme-Plan (PDF)")) +
+      t(", " + esc(B.verfasser) + ", " + datumDE(B.datum) + ": alle Zahlen zu Wärmebedarf, Energieträgern und Zielbild, aus dem Fließtext der Seiten " +
+        [B.gebaeude.s, B.waermebedarf_gwh.s, B.energietraeger_s, B.fernwaerme_abwaerme_prozent.s, B.ziel_anschlussquote_prozent.s + "–" + B.sanierungsrate_bund_prozent.s].join(", ") + ".", "") + "</li>" +
+      "<li>" + lnk("https://www.ingolstadt.de/sessionnet/", t("Ratsinfoportal der Stadt Ingolstadt", "Papiere vom Stadt-Rat")) +
+      t(": Vorlagen und Niederschriften, Stand " + datumDE(D.stand_ratsdaten) + ".", "") + "</li>" +
+      "<li>" + lnk("https://www.openstreetmap.org/copyright", t("OpenStreetMap-Mitwirkende", "OpenStreetMap")) +
+      t(" (ODbL 1.0): Hausadressen für die Suche und die Zählung je Bezirk. Stadtbezirke: Stadt Ingolstadt (CC BY 3.0 DE).", "") + "</li>" +
+      "<li>" + t("Zusammengeführt von scraper/waerme_bauen.py am " + datumDE(D.erzeugt_am) + ". Ihre Eingabe bleibt in Ihrem Browser und wird nicht übertragen.", "Ihre Adresse bleibt auf Ihrem Gerät.") + "</li></ul>";
+  }
+
+  /* ---------------- Texte ---------------- */
+  var TEXTE = {
+    "hinweis": {
+      n: "<strong>PapierPanther ist kein Angebot der Stadt Ingolstadt.</strong> " +
+        "Die Flächen stammen von der Stadt, die Auswertung ist unsere eigene. Verbindlich sind allein der Wärmeplan der Stadt und die Auskunft der Stadtwerke. Dies ist ein Prototyp und keine Energie- oder Rechtsberatung.",
+      l: "<strong>PapierPanther ist kein Angebot der Stadt Ingolstadt.</strong> " +
+        "Die Angaben kommen aus dem Wärme-Plan von der Stadt. Es gilt nur, was die Stadt selbst schreibt. Die Seite ist noch ein Test."
+    },
+    "h1": { n: "Wärmeplan", l: "Der Wärme-Plan" },
+    "lede": {
+      n: "Wie heizt Ingolstadt, wenn Öl und Erdgas auslaufen? Der Wärmeplan der Stadt teilt das Stadtgebiet in Gebiete für Fernwärme und Gebiete, in denen jedes Haus für sich heizt. Hier sehen Sie, was für Ihre Adresse drinsteht und was daraus folgt.",
+      l: "Viele Häuser heizen mit Öl oder Gas. Das soll sich ändern. Die Stadt hat dafür einen Plan gemacht. Hier sehen Sie: Was steht im Plan für Ihr Haus?"
+    },
+    "sprung-adresse": { n: "Meine Adresse", l: "Meine Adresse" },
+    "sprung-gebiete": { n: "Die vier Gebiete", l: "Die 4 Gebiete" },
+    "sprung-bezirke": { n: "Je Bezirk", l: "Mein Bezirk" },
+    "sprung-zahlen": { n: "Heute und 2035", l: "Heute und 2035" },
+    "sprung-seither": { n: "Seit dem Beschluss", l: "Was seitdem passiert ist" },
+    "sprung-grenzen": { n: "Was die Seite nicht weiß", l: "Das wissen wir nicht" },
+    "blick-h2": { n: "Auf einen Blick", l: "Das Wichtigste" },
+    "stichtag": {
+      n: "Bericht vom " + datumDE(B.datum) + ", Flächen der Stadt abgerufen am " + datumDE(D.quelle.abgerufen_am) + ". Anteile: eigene Zählung von " + zahl(A.gesamt) + " Hausnummern.",
+      l: "Der Plan ist von 2024."
+    },
+    "adresse-h2": { n: "Was gilt für meine Adresse?", l: "Was steht im Plan für mein Haus?" },
+    "adresse-p": {
+      n: "Geben Sie Straße und Hausnummer ein. Die Antwort sagt, in welchem Gebiet des Wärmeplans das Haus liegt und was der Plan dort vorsieht.",
+      l: "Schreiben Sie Ihre Straße und Ihre Haus-Nummer in das Feld."
+    },
+    "adresse-label": { n: "Straße und Hausnummer", l: "Ihre Adresse" },
+    "adresse-klein": {
+      n: "Nichts verlässt Ihr Gerät: Die Suche läuft in Ihrem Browser.",
+      l: "Ihre Adresse bleibt auf Ihrem Gerät."
+    },
+    "gebiete-h2": { n: "Die vier Gebiete des Plans", l: "Die 4 Gebiete im Plan" },
+    "gebiete-p": {
+      n: "Der Plan ordnet jede bebaute Fläche einer von vier Klassen zu. Die Texte geben wieder, was Stadt und Bericht dazu schreiben.",
+      l: "Im Plan gibt es 4 Arten von Gebieten."
+    },
+    "nicht-h3": { n: "Was der Plan nicht ist", l: "Das ist der Plan nicht" },
+    "bezirke-h2": { n: "Was heißt das für meinen Bezirk?", l: "Wie ist es in meinem Bezirk?" },
+    "bezirke-p": {
+      n: "Die Fernwärme-Gebiete liegen dort, wo das Netz der Stadtwerke heute schon ist: vor allem in der Mitte und im Norden, südlich der Donau nur in Teilen von Südost und an der Münchener Straße. In fünf der zwölf Stadtbezirke liegt keine oder fast keine Adresse in einem Wärmenetz-Gebiet. Diese Auswertung gibt es weder im Bericht noch auf der Karte der Stadt.",
+      l: "Fern-Wärme gibt es vor allem in der Mitte und im Norden von der Stadt. In vielen Bezirken ist keine Fern-Wärme geplant."
+    },
+    "bezirke-titel": { n: "Anteil der Adressen je Gebietsklasse, nach Stadtbezirk", l: "So viele Häuser liegen in welchem Gebiet" },
+    "bezirke-fuss": {
+      n: "Eigene Zählung: Hausnummern aus OpenStreetMap, der Fläche der Stadt zugeordnet. Grau: Adressen außerhalb aller Flächen.",
+      l: "Das haben wir selbst gezählt."
+    },
+    "zahlen-h2": { n: "Heute und im Zielbild 2035", l: "Heute und im Jahr 2035" },
+    "zahlen-p": {
+      n: "Ingolstadt braucht laut Bericht rund " + zahl(B.waermebedarf_gwh.wert) + " Gigawattstunden Wärme im Jahr, knapp die Hälfte davon in Wohnungen. Mehr als " + B.anteil_vor_1979_prozent.wert + " Prozent der " + zahl(B.gebaeude.wert) + " Gebäude wurden vor 1979 gebaut, also vor der ersten Wärmeschutzverordnung.",
+      l: "In Ingolstadt gibt es etwa " + zahl(B.gebaeude.wert) + " Gebäude. Die meisten sind alt. Sie brauchen viel Wärme."
+    },
+    "heute-titel": { n: "Womit Ingolstadt heute heizt (Anteil an der Endenergie)", l: "Damit heizt Ingolstadt heute" },
+    "heute-fuss": {
+      n: "Ocker: fossil. Die Fernwärme stammt zu über " + B.fernwaerme_abwaerme_prozent.wert + " Prozent aus Abwärme der Raffinerie und der Müllverwertung. Bericht S. " + B.energietraeger_s + " und " + B.fernwaerme_abwaerme_prozent.s + ", einschließlich Audi.",
+      l: "Braun heißt: Das schadet dem Klima."
+    },
+    "ziel-titel": { n: "Womit die Gebäude 2035 heizen sollen (Anteil der Gebäude)", l: "Damit sollen die Häuser im Jahr 2035 heizen" },
+    "ziel-fuss": {
+      n: "Ein Rechenmodell, keine Vorhersage. Die Balken zählen Gebäude, die Grafik darüber zählt Energie; sie lassen sich nicht direkt vergleichen. Bericht S. " + B.ziel_s + "–" + (B.ziel_s + 1) + ".",
+      l: "Das ist ein Ziel. Ob es so kommt, weiß niemand."
+    },
+    "zahlen-p2": {
+      n: "Das Zielbild ist nach den Worten des Berichts ein „Extremfall“: Es nimmt an, dass jedes Jahr " + B.sanierungsrate_angenommen_prozent.wert + " Prozent der Gebäude saniert werden (bundesweit sind es derzeit " + zahl(B.sanierungsrate_bund_prozent.wert, 1) + " Prozent), dass in den Wärmenetz-Gebieten " + B.ziel_anschlussquote_prozent.wert + " Prozent der Gebäude ans Netz gehen (heute " + B.fernwaerme_anschlussquote.von + " bis " + B.fernwaerme_anschlussquote.bis + " Prozent) und dass alle übrigen auf Wärmepumpe oder Biomasse umstellen. Selbst dann sinken die Treibhausgase der Wärmeversorgung bis 2035 um etwa " + B.thg_minderung_2035_prozent.wert + " Prozent, nicht um 100. Der Bericht schlägt " + B.massnahmen.wert + " Maßnahmen vor.",
+      l: "Der Plan sagt selbst: Das Ziel ist sehr schwer zu schaffen. Dafür müssen sehr viele Häuser umgebaut werden."
+    },
+    "seither-h2": { n: "Seit dem Beschluss", l: "Was seitdem passiert ist" },
+    "seither-p": {
+      n: "Ein Plan ist nur so viel wert wie das, was ihm folgt. Hier steht, was der Stadtrat seit Oktober 2024 zur Wärmeversorgung beraten und beschlossen hat. Das Neueste steht oben.",
+      l: "Das hat der Stadt-Rat seitdem zum Heizen besprochen."
+    },
+    "seither-klein": {
+      n: "Ausgewählt von Hand aus den Ratsdaten. Ein Gebiet zum Neu- oder Ausbau von Wärmenetzen nach § 26 Wärmeplanungsgesetz hat der Stadtrat in den ausgewerteten Sitzungen nicht ausgewiesen. Was die Stadtwerke in ihren eigenen Gremien entscheiden, steht nicht im Ratsinfoportal.",
+      l: ""
+    },
+    "grenzen-h2": { n: "Was diese Seite nicht weiß", l: "Das wissen wir nicht" }
+  };
+
+  function texteAnwenden() {
+    Object.keys(TEXTE).forEach(function (id) {
+      var e = document.getElementById("txt-" + id);
+      if (e) e.innerHTML = TEXTE[id][leicht ? "l" : "n"];
+    });
+    feld.placeholder = t("z. B. Theresienstraße 22", "zum Beispiel: Theresienstraße 22");
+    kacheln(); baueGebiete(); baueNicht(); baueBezirke();
+    balken("heute-balken", B.energietraeger_prozent, 71);
+    balken("ziel-balken", B.ziel_2035_prozent, 71);
+    baueRat(); baueGrenzen(); baueQuellen(); zeigeAntwort();
+  }
+  texteAnwenden();
+
+  var btnLeicht = document.getElementById("btn-leicht");
+  btnLeicht.setAttribute("aria-pressed", leicht ? "true" : "false");
+  btnLeicht.addEventListener("click", function () {
+    leicht = !leicht;
+    btnLeicht.setAttribute("aria-pressed", leicht ? "true" : "false");
+    try { localStorage.setItem(LS_KEY_LEICHT, leicht ? "1" : "0"); } catch (err) { /* Storage kann gesperrt sein */ }
+    texteAnwenden();
+  });
+})();
+</script>
+
+<script src="kopf.js" defer></script>
+<script src="grafik/kern.js" defer></script>
+<script src="zaehler.js" defer></script>
+</body>
+</html>

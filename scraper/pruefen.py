@@ -483,6 +483,42 @@ def p_plaene():
         warnt(f"Plaene mit Ratsvorlage seit 11/2023 ohne Umgriff im Landesdienst: {', '.join(ohne)}")
 
 
+def p_waerme():
+    """Waermeplan: Flaechen der Stadt (waerme_bauen.py), Zaehlung je Bezirk und Links auf waerme.html."""
+    if not os.path.exists(os.path.join(DATEN_VZ, "waerme.json")):
+        return
+    w = lade("waerme.json")
+    flaechen = w["gebiete"]["features"]
+    if len(flaechen) < 100:
+        fehlt(f"waerme.json: nur {len(flaechen)} Flaechen, erwartet rund 140")
+    erlaubt_klassen = set(w["klassen"]) - {"ohne"}
+    for f in flaechen:
+        if f["properties"]["klasse"] not in erlaubt_klassen:
+            fehlt(f"waerme.json: Flaeche {f['properties']['id']} hat unbekannte Klasse {f['properties']['klasse']!r}")
+        ring = f["geometry"]["coordinates"][0] if f["geometry"]["type"] == "Polygon" else f["geometry"]["coordinates"][0][0]
+        if not all(11.2 < x < 11.62 and 48.64 < y < 48.87 for x, y in ring):
+            fehlt(f"waerme.json: Flaeche {f['properties']['id']} liegt ausserhalb der Stadt")
+    if not w["quelle"].get("herausgeber") or "2035.de" not in w["quelle"].get("datei", ""):
+        fehlt("waerme.json: Herkunft der Flaechen fehlt (Stadt Ingolstadt, 2035.de)")
+    a = w["adressen"]
+    if sum(a["je_klasse"].values()) != a["gesamt"] or sum(b["adressen"] for b in w["bezirke"]) != a["gesamt"]:
+        fehlt("waerme.json: Adressen je Klasse oder je Bezirk ergeben nicht die Gesamtzahl")
+    if a["je_klasse"]["ohne"] > a["gesamt"] * 0.03:
+        warnt(f"waerme.json: {a['je_klasse']['ohne']} Adressen liegen in keiner Flaeche; hat die Stadt die Flaechen geaendert?")
+    if len(w["bezirke"]) != 12:
+        fehlt(f"waerme.json: {len(w['bezirke'])} Bezirke statt 12")
+    for teil in ("energietraeger_prozent", "ziel_2035_prozent", "fernwaerme_2035_prozent"):
+        summe = sum(x["wert"] for x in w["bericht"][teil])
+        if abs(summe - 100) > 0.6:
+            fehlt(f"waerme.json: bericht.{teil} ergibt {summe:.1f} statt 100 Prozent")
+    for r in w["rat"]:
+        for u in (r["url"], r["niederschrift_url"]):
+            if u and urllib.parse.urlparse(u).hostname != "www.ingolstadt.de":
+                fehlt(f"waerme.json: Link im Abschnitt Rat fuehrt nicht zur Stadt: {u}")
+    if not any(r["vorlage"] == w["beschluss"]["vorlage"] for r in w["rat"]):
+        warnt("waerme.json: Der Beschluss des Waermeplans (V0651/24) steht nicht mehr im Feed")
+
+
 def p_nur_oeffentliche_tops(kur, index):
     """
     Nicht-oeffentliche Tagesordnungspunkte duerfen nie kuratiert werden.
@@ -725,6 +761,7 @@ def main():
         p_antraege_hosts(lade("antraege.json"))
     p_wege()
     p_plaene()
+    p_waerme()
     p_oberflaeche(feed)
     gruende = p_abdeckung(roh, feed["eintraege"])
 

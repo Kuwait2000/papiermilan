@@ -46,6 +46,15 @@ window.THEMEN_DATEN = [
   "text_l": "So viele Anlagen machen in Ingolstadt Strom aus Sonne."
  },
  {
+  "href": "waerme.html",
+  "farbe": "#b8430f",
+  "titel": "Wärmeplan",
+  "titel_l": "Wärme-Plan",
+  "zahl": "21 % der Adressen",
+  "text": "liegen in einem Gebiet, das der Wärmeplan für Fernwärme vorsieht, 69 % in einem Prüfgebiet mit Gasleitung. Was steht für Ihre Adresse drin?",
+  "text_l": "So viele Häuser liegen in einem Gebiet für Fern-Wärme. Was steht im Plan für Ihr Haus?"
+ },
+ {
   "href": "wohnen.html",
   "farbe": "#4d5a1f",
   "titel": "Wohnen",

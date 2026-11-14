@@ -18,6 +18,7 @@
     'haushalt.html': ['haushalt'],
     'hsk.html': ['sparplan'],
     'klima.html': ['klima', 'sonne'],
+    'waerme.html': ['waerme'],
     'wohnen.html': ['wohnen'],
     'beteiligungen.html': ['waage'],
     'miete.html': ['miete'],
@@ -27,6 +28,7 @@
   };
   // Zusätzliche Daten je Szene; data/wohnen.js und data/miete.js laden die Seiten selbst
   var EXTRA = { klima: ['data/altstadt.js'], waage: ['data/beteiligungen.js'],
+    waerme: ['data/bezirke.js', 'vendor/pmtiles/pmtiles.js', 'vendor/protomaps/basemaps.js'],
     plaene: ['data/plangebiete.js', 'data/bezirke.js', 'vendor/pmtiles/pmtiles.js', 'vendor/protomaps/basemaps.js'] };
   // Szenen, die in der Datei einer anderen Szene stehen
   var DATEI = { 'wege-apotheke': 'wege' };

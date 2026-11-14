@@ -54,6 +54,7 @@ scraper/
   plangebiete_holen.py  Umgriffe der Bebauungspläne (Land) -> data/plangebiete.js
   plaene_alt_holen.py Plan-Punkte vor 11/2023 (Stadtrat, Planungsausschuss) -> data/plaene_alt.json
   plaene_bauen.py     Ratsdaten + Landesdienst + Handdatei -> data/plaene.js
+  waerme_bauen.py     Eignungsgebiete der Wärmeplanung (2035.de) + Adressen + Ratsdaten -> data/waerme.js
   grafik_bauen.py     Daten der grafischen Fassung  -> data/grafik.js
   altstadt_bauen.py   Altstadt aus OpenStreetMap    -> data/altstadt.js
   wege_bauen.py       Fußnetz, Orte, Zensus, Bezirke -> data/wege-*.js, data/bezirke.js
@@ -232,6 +233,42 @@ kann von anderen Karten mitgenutzt werden.
 Nach einem Daten-Update genügt `plaene_bauen.py`; `plangebiete_holen.py`
 (etwa drei Minuten, rund 450 Abfragen) lohnt, wenn ein Satzungsbeschluss
 gefallen ist und das Inkrafttreten noch aussteht.
+
+### Wärmeplan (`waerme.html`)
+
+```bash
+cd scraper && python3 waerme_bauen.py && python3 themen_bauen.py
+```
+
+Die Stadt zeigt die Eignungsgebiete ihrer kommunalen Wärmeplanung auf
+https://2035.de/map/ als eingefärbte Flächen. Diese Seite nimmt dieselben
+Flächen und beantwortet damit Fragen, die die Karte der Stadt offen lässt:
+
+- **Adresse statt Farbe**: Wer Straße und Hausnummer eingibt, bekommt in einem
+  Satz, in welchem Gebiet das Haus liegt, was der Plan dort vorsieht und was
+  daraus folgt. Die Suche läuft im Browser (Adressen aus `data/wege-adressen.js`).
+- **Je Stadtbezirk**: `waerme_bauen.py` ordnet jede der rund 27.000 Hausnummern
+  der Fläche zu, in der sie liegt, und zählt je Bezirk. Das ist eine eigene
+  Auswertung: Der Bericht zählt Gebäude aus dem Kataster und nennt keine
+  Bezirkszahlen. Gegenprobe im Skript: 18.895 Adressen in
+  Gas/Wärmepumpen-Prüfgebieten gegenüber „ca. 18.700 Gebäuden“ im Bericht (S. 80).
+- **Was der Plan nicht ist**: nicht bindend (§ 23 Abs. 4 WPG), keine
+  Anschlusszusage, kein Termin, kein Anschlusszwang. Der Bericht von 2024 und
+  die Seiten von Stadt und Stadtwerken beschreiben noch die 65-Prozent-Regel
+  des alten § 71 GEG; seit 29.07.2026 gilt das Gebäudemodernisierungsgesetz
+  (§ 43 GModG). Der Rechtsstand ist am 14.11.2026 am Gesetzestext geprüft und
+  steht mit Datum in `waerme.html` (`GEG`); bei einer Gesetzesänderung dort anpassen.
+- **Seit dem Beschluss**: Einträge aus `data/feed.json`, von Hand ausgewählt
+  (Liste `RAT` im Skript). Der Beschluss vom 22.10.2024 („gegen vier Stimmen“)
+  ist aus der Niederschrift gelesen.
+
+Die Zahlen aus dem Abschlussbericht (greenventory, 28.05.2024) stehen mit
+Seitenzahl in `AUS_DEM_BERICHT` im Skript; sie stammen aus dem Fließtext, nicht
+aus Tabellen oder Abbildungen. Die GeoJSON-Datei der Stadt trägt keine
+Lizenzangabe (siehe NOTICE). Die grafische Fassung ist `grafik/waerme.js`
+(Stadtkarte mit Adresssuche); der Knopf „Auf der Karte ansehen“ der Textseite
+übergibt die Adresse dorthin. `pruefen.py` wacht über Flächenzahl, Summen und
+Links. Wärmebedarf, Baualter oder Heizung je Gebäude gibt es nicht als offene Daten.
 
 ### Deine 15 Minuten (`wege.html`)
 

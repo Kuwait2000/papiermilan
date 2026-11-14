@@ -6,7 +6,7 @@ Baut die Kennzahlen fuer die Themen-Kacheln (Startseite und themen.html).
 
 Je Themenseite eine Zahl, berechnet aus den Datendateien, die diese Seiten
 selbst verwenden -- damit Kachel und Seite nie auseinanderlaufen. Nach jedem
-Update der zugrunde liegenden Daten (antraege, haushalt, hsk, beteiligungen, klima, miete)
+Update der zugrunde liegenden Daten (antraege, haushalt, hsk, beteiligungen, klima, waerme, miete)
 neu laufen lassen; feed_bauen.py tut das nicht.
 
 Ergebnis: ../data/themen.js (window.THEMEN_DATEN)
@@ -57,6 +57,12 @@ def main():
                     if p["status"]["schritt"] in ("grundsatz", "aufstellung", "entwurf")
                     and (p["umgriff"] or p["letzte_bewegung"] >= plan_ab))
     plan_kraft = sum(1 for p in plaene["plaene"] if p["status"]["schritt"] == "kraft")
+
+    # Waermeplan: Anteil der Adressen in einem Waermenetz-Gebiet, wie auf waerme.html gezaehlt
+    waerme = lade("waerme.json")
+    w_je = waerme["adressen"]["je_klasse"]
+    w_netz = (w_je["netz"] + w_je["netz_spaeter"]) / waerme["adressen"]["gesamt"] * 100
+    w_gas = w_je["gas_wp"] / waerme["adressen"]["gesamt"] * 100
 
     with open(os.path.join(DATEN_VZ, "miete.js"), encoding="utf-8") as f:
         miete = f.read()
@@ -117,6 +123,12 @@ def main():
              text=f"gibt es in Ingolstadt ({solar['jahr']}), dazu {de(ladepunkte)} öffentliche Ladepunkte. "
                   "Plus: Wetter seit 1961.",
              text_l="So viele Anlagen machen in Ingolstadt Strom aus Sonne."),
+        dict(href="waerme.html", farbe="#b8430f",
+             titel="Wärmeplan", titel_l="Wärme-Plan",
+             zahl=f"{de(w_netz)} % der Adressen",
+             text=f"liegen in einem Gebiet, das der Wärmeplan für Fernwärme vorsieht, {de(w_gas)} % in einem Prüfgebiet "
+                  "mit Gasleitung. Was steht für Ihre Adresse drin?",
+             text_l="So viele Häuser liegen in einem Gebiet für Fern-Wärme. Was steht im Plan für Ihr Haus?"),
         dict(href="wohnen.html", farbe="#4d5a1f",
              titel="Wohnen", titel_l="Wohnen",
              zahl=f"{de(miet_anteil, 1)} %",

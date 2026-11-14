@@ -110,3 +110,12 @@ Lizenzen
   Namensnennung: Bauleitpläne Bayern. Die Geometrien sind unverändert
   übernommen; diese Dateien stehen nicht unter der Lizenz des übrigen Projekts.
   Der Dienst ist eine Erstinformation ohne Gewähr.
+- Die Eignungsgebiete der kommunalen Wärmeplanung in `data/waerme.*`
+  (Umrisse, Namen, Anmerkungen) stammen von der Stadt Ingolstadt, Stabsstelle
+  Strategien Klima, Biodiversität & Donau, aus der Karte auf https://2035.de/map/
+  (Datei eignungsgebiete_ingolstadt-v1.geojson, Stand November 2024). Die Datei
+  trägt keine Lizenzangabe; diese Daten stehen deshalb nicht unter der Lizenz
+  des übrigen Projekts. Verändert: Koordinaten auf sechs Nachkommastellen
+  gerundet, Klassen umbenannt, Adresszahl und Bezirk je Fläche ergänzt. Die
+  Kennzahlen stammen aus dem „Energienutzungsplan Ingolstadt, Abschlussbericht“
+  (greenventory GmbH im Auftrag der Stadt Ingolstadt, 28.05.2024).

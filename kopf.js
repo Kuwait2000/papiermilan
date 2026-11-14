@@ -12,6 +12,7 @@
     ['hsk.html', 'Sparplan', 'Wo die Stadt sparen will', 'Spar-Plan', 'Wo die Stadt sparen will'],
     ['beteiligungen.html', 'Unternehmen der Stadt', 'Stadtwerke, Klinikum, Busse: wer sie bezahlt', 'Firmen der Stadt', 'Wem gehören Bus, Wasser und Bad?'],
     ['klima.html', 'Klima', 'Wetter, Solarstrom, Ladepunkte', 'Klima', 'Wetter und Strom aus Sonne'],
+    ['waerme.html', 'Wärmeplan', 'Was für Ihre Adresse im Plan steht', 'Wärme-Plan', 'Wie heizt mein Haus in Zukunft?'],
     ['wohnen.html', 'Wohnen', 'Mieten oder besitzen, Eigentümer, Leerstand', 'Wohnen', 'Wem gehören die Wohnungen?'],
     ['miete.html', 'Miete', 'Mietspiegel-Rechner, Mietpreisbremse', 'Miete', 'Wie viel Miete ist üblich?'],
     ['plaene.html', 'Baugebiete und Pläne', 'Wie weit jeder Bebauungsplan ist', 'Bau-Gebiete und Pläne', 'Wo darf gebaut werden?'],
