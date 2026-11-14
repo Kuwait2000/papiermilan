@@ -18,7 +18,7 @@ So 10-12) entsteht je Haltestelle im Stadtgebiet:
   Wartezeit (halber Takt) rechnet erst die Seite dazu.
 Die Fahrzeit je Linienabschnitt ist der Median der Fahrten im Fenster (plus 30 Minuten
 danach, damit Fahrten vom Fensterende noch zu Ende gerechnet werden).
-Dazu je Haltestelle der Einstiegsknoten im Fussnetz (data/wege-netz.json).
+Dazu je Haltestelle die Einstiegsknoten im Fussnetz (data/wege-netz.json), je Person ohne Inseln.
 
 Ergebnis: data/wege-bus.json + data/wege-bus.js (window.WEGE_BUS).
 """
@@ -26,7 +26,8 @@ import collections, csv, heapq, io, itertools, json, math, os, statistics, sys, 
 from datetime import date
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from wege_bauen import datei, xy, im_polygon, LAT0, LON0, MX, MY   # noqa: E402
+from wege_bauen import (datei, xy, im_polygon, LAT0, LON0, MX, MY, netz_aus_datei,   # noqa: E402
+                        Kantenraster, einrast_masken, lade_personen)
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 CACHE_NAME = os.path.join('..', 'oepnv', 'gtfs.zip')   # relativ zu scraper/.cache/wege
@@ -79,46 +80,11 @@ def aktive_dienste(z, datum, spalte):
     return aktiv
 
 
-class Einraster:
-    """Naechste begehbare Kante im Fussnetz (wie Kantenraster in wege_bauen.py, auf der fertigen Datei)."""
-
-    def __init__(self):
-        with open(os.path.join(DATEN, 'wege-netz.json'), encoding='utf-8') as f:
-            n = json.load(f)
-        lat = list(itertools.accumulate(n['lat']))
-        lon = list(itertools.accumulate(n['lon']))
-        self.pos = [xy(a / 1e5, b / 1e5) for a, b in zip(lat, lon)]
-        von = list(itertools.accumulate(n['von']))
-        nach = [a + d for a, d in zip(von, n['nach'])]
-        gesperrt = n['kanten_felder'].index('gesperrt')
-        self.kanten = [(a, b, l) for a, b, l, t in zip(von, nach, n['laenge'], n['typ'])
-                       if not n['kanten_typen'][t][gesperrt]]
-        self.gitter = collections.defaultdict(list)
-        for k, (a, b, _) in enumerate(self.kanten):
-            (xa, ya), (xb, yb) = self.pos[a], self.pos[b]
-            for i in range(int(min(xa, xb) // 50), int(max(xa, xb) // 50) + 1):
-                for j in range(int(min(ya, yb) // 50), int(max(ya, yb) // 50) + 1):
-                    self.gitter[(i, j)].append(k)
-
-    def einstieg(self, x, y):
-        best = (300.0, None, 0.0)
-        ci, cj = int(x // 50), int(y // 50)
-        for i in range(ci - 7, ci + 8):
-            for j in range(cj - 7, cj + 8):
-                for k in self.gitter.get((i, j), ()):
-                    a, b, _ = self.kanten[k]
-                    (xa, ya), (xb, yb) = self.pos[a], self.pos[b]
-                    dx, dy = xb - xa, yb - ya
-                    q = dx * dx + dy * dy
-                    t = 0.0 if q == 0 else max(0.0, min(1.0, ((x - xa) * dx + (y - ya) * dy) / q))
-                    d = math.hypot(xa + t * dx - x, ya + t * dy - y)
-                    if d < best[0]:
-                        best = (d, k, t)
-        d, k, t = best
-        if k is None:
-            return [], []
-        a, b, l = self.kanten[k]
-        return [a, b], [round(d + t * l), round(d + (1 - t) * l)]
+def einraster():
+    """Naechste Kante im Fussnetz je Einrast-Maske (wie bei den Orten in wege_bauen.py): Wer nur ueber
+    eine Insel an den Halt kaeme (Kind: Halt auf der Fahrbahn ohne Gehweg), bekommt einen weiteren Einstieg."""
+    netz = netz_aus_datei()
+    return Kantenraster(netz, einrast_masken(netz, lade_personen()))
 
 
 def main():
@@ -147,13 +113,14 @@ def main():
         v.sort()
     print('%d Haltestellen im Stadtgebiet, %d Fahrten im Fahrplan' % (len(stadt), len(trips)))
 
-    raster = Einraster()
+    raster = einraster()
     haltestellen = []
     for sid in stadt:
         r = zeile[sid]
         name = r['stop_name'].replace('Ingolstadt, ', '')
-        knoten, abstand = raster.einstieg(*xy(float(r['stop_lat']), float(r['stop_lon'])))
-        haltestellen.append([name, round(float(r['stop_lat']), 5), round(float(r['stop_lon']), 5), knoten, abstand])
+        einstieg = sorted(raster.einstieg(*xy(float(r['stop_lat']), float(r['stop_lon'])), 300).items())
+        haltestellen.append([name, round(float(r['stop_lat']), 5), round(float(r['stop_lon']), 5),
+                             [k for k, _ in einstieg], [round(d) for _, d in einstieg]])
 
     takt, ziele, statistik = {}, {}, {}
     dienste_je_tag = {}

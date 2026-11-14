@@ -31,7 +31,7 @@ Das Netz wird verdichtet: Zwischenpunkte ohne Merkmal fallen weg, solange die
 Linie um hoechstens 3 m abweicht; die Kantenlaenge bleibt die echte Weglaenge.
 Die Projektionen (UTM, LAEA) sind hier selbst umgesetzt, ohne Bibliothek.
 """
-import base64, collections, heapq, io, json, math, os, socket, ssl, subprocess, sys, time, urllib.error, urllib.parse, \
+import base64, collections, heapq, io, itertools, json, math, os, re, socket, ssl, subprocess, sys, time, urllib.error, urllib.parse, \
     urllib.request, zipfile
 from datetime import date
 
@@ -137,6 +137,12 @@ ABFRAGEN = {
             'nwr["railway"~"^(station|halt)$"](area.a);'
             'nwr["tourism"~"^(hotel|hostel|guest_house|information|attraction|museum|viewpoint)$"](area.a);'
             ');out tags geom;',
+    # Weitere Alltagsorte (eigene Abfrage, damit die grosse Orte-Abfrage nicht ueber die Zeitgrenze waechst)
+    'alltag': '[out:json][timeout:300];' + GEMEINDE + '('
+              'nwr["shop"~"^(chemist|drugstore)$"](area.a);nwr["amenity"="cinema"](area.a);'
+              'nwr["leisure"="fitness_centre"](area.a);nwr["leisure"="sports_centre"]["sport"~"fitness"](area.a);'
+              'nwr["amenity"="bicycle_rental"](area.a);'
+              ');out tags geom;',
     'schatten': '[out:json][timeout:600];' + GEMEINDE + '('
                 'node["natural"="tree"](area.a);way["natural"="tree_row"](area.a);'
                 'nwr["natural"="wood"](area.a);nwr["landuse"="forest"](area.a);nwr["leisure"="park"](area.a);'
@@ -426,9 +432,12 @@ CODES = {
     'bauwerk': ['keins', 'bruecke', 'tunnel'],
     'bordstein': ['unbekannt', 'abgesenkt', 'hoch'],
     'barriere': ['nein', 'ja'],
+    'rad': ['fahren', 'schieben', 'gesperrt'],
+    'einbahn': ['nein', 'vor', 'rueck'],
 }
 KANTEN_FELDER = ['klasse', 'lit', 'treppe', 'oberflaeche', 'gehweg', 'querung', 'schatten', 'gesperrt',
-                 'rollstuhl', 'benannt', 'bauwerk']
+                 'rollstuhl', 'benannt', 'bauwerk', 'rad', 'einbahn']
+RAD, EINBAHN = KANTEN_FELDER.index('rad'), KANTEN_FELDER.index('einbahn')
 KNOTEN_FELDER = ['querung', 'bordstein', 'barriere']
 OBERFLAECHE = {}
 for _w in ('asphalt', 'concrete', 'concrete:plates', 'concrete:lanes', 'paving_stones', 'paving_stones:lanes',
@@ -441,6 +450,8 @@ for _w in ('compacted', 'fine_gravel'):
 for _w in ('gravel', 'pebblestone', 'unpaved', 'dirt', 'earth', 'ground', 'grass', 'sand', 'mud', 'woodchips', 'rock'):
     OBERFLAECHE[_w] = 4
 FUSS_OK = ('yes', 'designated', 'permissive', 'destination')
+RAD_OK = ('yes', 'designated', 'permissive', 'destination', 'use_sidepath', 'optional_sidepath')
+KFZ = ('wohnstrasse', 'erschliessung', 'anlieger', 'sammelstrasse', 'hauptstrasse')
 
 
 def code(feld, wert):
@@ -477,6 +488,35 @@ def gehweg(t):
     return 0
 
 
+def rad(t, fuss_gesperrt):
+    """0 fahren, 1 schieben, 2 gesperrt. Gehwege, Fussgaengerzonen und Treppen ohne bicycle=yes: schieben."""
+    hw, r = t['highway'], t.get('bicycle', '')
+    if t.get('motorroad') == 'yes':
+        return 2
+    if r in RAD_OK and hw != 'steps':
+        return 0
+    if r in ('no', 'private') and KLASSE[hw] in KFZ:
+        return 1 if gehweg(t) == 1 and not fuss_gesperrt else 2   # schieben nur auf einem Gehweg an der Strasse
+    if r in ('no', 'private', 'dismount') or hw in ('footway', 'pedestrian', 'corridor', 'steps', 'bridleway'):
+        return 2 if fuss_gesperrt else 1
+    if t.get('access') in ('no', 'private'):
+        return 2 if fuss_gesperrt else 1
+    return 0
+
+
+def einbahn(t):
+    """Fuer Raeder: 0 beide Richtungen, 1 nur in Wegrichtung, 2 nur gegen sie (oneway=-1)."""
+    if t.get('oneway:bicycle') == 'no' or any(v.startswith('opposite') for k, v in t.items() if k.startswith('cycleway')):
+        return 0
+    ow = t.get('oneway:bicycle') or t.get('oneway') or ('yes' if t.get('junction') in ('roundabout', 'circular') else '')
+    return 1 if ow in ('yes', 'true', '1') else (2 if ow == '-1' else 0)
+
+
+def gedreht(m):
+    """Merkmal einer Kante in Gegenrichtung (nur die Einbahn-Richtung wechselt)."""
+    return m if not m[EINBAHN] else m[:EINBAHN] + (3 - m[EINBAHN],) + m[EINBAHN + 1:]
+
+
 def kanten_merkmale(t):
     """Merkmale eines OSM-Wegs, ohne Schatten. None = nicht begehbar oder privat."""
     hw = t['highway']
@@ -497,7 +537,8 @@ def kanten_merkmale(t):
             gehweg(t) if KLASSE[hw] in ('wohnstrasse', 'erschliessung', 'anlieger', 'sammelstrasse', 'hauptstrasse') else 0,
             querung(t) if klasse == 'querung' else 0, 0, gesperrt,
             0 if rs is None else (2 if rs == 'no' else 1), 1 if t.get('name') else 0,
-            1 if t.get('bridge', 'no') != 'no' else (2 if tunnel not in ('no', 'building_passage') else 0)]
+            1 if t.get('bridge', 'no') != 'no' else (2 if tunnel not in ('no', 'building_passage') else 0),
+            rad(t, gesperrt), 0 if hw == 'steps' else einbahn(t)]
 
 
 def knoten_merkmale(t):
@@ -535,7 +576,7 @@ def netz_bauen():
             mm[6] = 1 if treffer * 2 >= n else 0
             schluessel = (min(a, b), max(a, b))
             if schluessel not in segment:
-                segment[schluessel] = (tuple(mm), lang)
+                segment[schluessel] = (tuple(mm) if a < b else gedreht(tuple(mm)), lang)
 
     nachbarn = collections.defaultdict(list)
     for (a, b) in segment:
@@ -546,9 +587,14 @@ def netz_bauen():
     def seg(a, b):
         return segment[(min(a, b), max(a, b))]
 
+    def richtung(a, b):
+        """Merkmal des Segments a-b, Einbahn bezogen auf die Laufrichtung a -> b."""
+        m = seg(a, b)[0]
+        return m if a < b else gedreht(m)
+
     def fest(i):
         nb = nachbarn[i]
-        return len(nb) != 2 or nb[0] == nb[1] or km[i] != (0, 0, 0) or seg(i, nb[0])[0] != seg(i, nb[1])[0]
+        return len(nb) != 2 or nb[0] == nb[1] or km[i] != (0, 0, 0) or richtung(nb[0], i) != richtung(i, nb[1])
 
     # 2. Ketten zwischen festen Knoten verdichten
     kanten, besucht, behalten = [], set(), set()
@@ -564,7 +610,7 @@ def netz_bauen():
     def verdichte(zug):
         for a, b in zip(zug, zug[1:]):
             besucht.add((min(a, b), max(a, b)))
-        merkmal = seg(zug[0], zug[1])[0]
+        merkmal = richtung(zug[0], zug[1])
         idx = vereinfache([pos[i] for i in zug], VEREINFACHUNG_M)
         for i0, i1 in zip(idx, idx[1:]):
             lang = sum(seg(zug[k], zug[k + 1])[1] for k in range(i0, i1))
@@ -583,7 +629,7 @@ def netz_bauen():
     # 3. Doppelte Kanten: kuerzere behalten
     einzig = {}
     for a, b, lang, m in kanten:
-        k = (min(a, b), max(a, b), m)
+        k = (min(a, b), max(a, b), m if a < b else gedreht(m))
         if a != b and (k not in einzig or lang < einzig[k]):
             einzig[k] = lang
 
@@ -625,9 +671,12 @@ def netz_bauen():
             stapel.extend(sorted((j for j in adj[i] if j not in nummer), key=lambda j: -math.hypot(
                 pos[j][0] - pos[i][0], pos[j][1] - pos[i][1])))
 
-    kanten = sorted((min(nummer[a], nummer[b]), max(nummer[a], nummer[b]), lang, m) for (a, b, m), lang in einzig.items())
+    kanten = sorted((min(nummer[a], nummer[b]), max(nummer[a], nummer[b]), lang, m if nummer[a] < nummer[b] else gedreht(m))
+                    for (a, b, m), lang in einzig.items())
+    # xy aus den auf 1e-5 Grad gerundeten Koordinaten der Datei: So rasten Zellen und Orte hier genau
+    # dort ein, wo wege.js einrastet (sonst kippt ein Punkt zwischen zwei fast gleich nahen Wegen).
     return {'knoten': [(knoten[i]['lat'], knoten[i]['lon']) for i in reihe],
-            'xy': [pos[i] for i in reihe],
+            'xy': [xy(round(knoten[i]['lat'], 5), round(knoten[i]['lon'], 5)) for i in reihe],
             'merkmale': [km[i] for i in reihe],
             'kanten': kanten, 'osm_wege': len(wege)}
 
@@ -657,7 +706,9 @@ def netz_ausgabe(netz):
                    'von: Differenz zur vorigen Kante (Kanten nach von sortiert), nach: nach minus von (von < nach). '
                    'laenge: echte Weglaenge in m (auch ueber weggelassene Zwischenpunkte). '
                    'typ: Index in kanten_typen, Felder siehe kanten_felder, Werte siehe codes. '
-                   'Kanten sind in beide Richtungen begehbar. knoten_merkmale: Paare (Knoten minus voriger '
+                   'Kanten sind zu Fuss in beide Richtungen begehbar; einbahn gilt fuers Rad: vor = nur von -> nach '
+                   'frei, rueck = nur nach -> von, in der Gegenrichtung wird geschoben. '
+                   'rad: fahren, schieben (Gehweg, Fussgaengerzone, Treppe ohne bicycle=yes) oder gesperrt. knoten_merkmale: Paare (Knoten minus voriger '
                    'Knoten, Index in knoten_typen), nur fuer Knoten mit Querung, Bordstein oder Barriere. '
                    'Ampeln an Strassenkreuzungen zaehlen als Querung „ampel“. gesperrt = foot=no oder access=no: '
                    'im Netz markiert, fuer Fussgaenger nicht nutzbar.'),
@@ -673,14 +724,33 @@ def netz_ausgabe(netz):
     }
 
 
+def netz_aus_datei():
+    """data/wege-netz.json zurueck ins Format von netz_bauen() (fuer oepnv_bauen.py)."""
+    with open(os.path.join(DATEN, 'wege-netz.json'), encoding='utf-8') as f:
+        n = json.load(f)
+    lat = [a / 1e5 for a in itertools.accumulate(n['lat'])]
+    lon = [b / 1e5 for b in itertools.accumulate(n['lon'])]
+    von = list(itertools.accumulate(n['von']))
+    merkmale = [(0, 0, 0)] * n['knoten_anzahl']
+    k = 0
+    for d, t in zip(n['knoten_merkmale'][::2], n['knoten_merkmale'][1::2]):
+        k += d
+        merkmale[k] = tuple(n['knoten_typen'][t])
+    return {'knoten': list(zip(lat, lon)), 'xy': [xy(a, b) for a, b in zip(lat, lon)], 'merkmale': merkmale,
+            'kanten': [(a, a + d, l, tuple(n['kanten_typen'][t])) for a, d, l, t in zip(von, n['nach'], n['laenge'], n['typ'])]}
+
+
 # ------------------------------------------------------------- Einrasten
 
 class Kantenraster:
-    """Naechste begehbare Kante zu einem Punkt (Gitter mit 50 m Maschen)."""
+    """Naechste begehbare Kante zu einem Punkt (Gitter mit 50 m Maschen).
+    masken: Einrast-Kosten je Kante (INF = nicht einrasten) fuer Personen und Rad, siehe einrast_masken();
+    einstieg() bindet einen Ort ueber die naechste Kante jeder Maske an, damit niemand nur ueber eine
+    Insel (etwa einen Bahnsteig, der fuer den Rollstuhl nur ueber Treppen angebunden ist) hinkommt."""
     M = 50.0
 
-    def __init__(self, netz):
-        self.netz, self.zellen = netz, collections.defaultdict(list)
+    def __init__(self, netz, masken=()):
+        self.netz, self.zellen, self.masken = netz, collections.defaultdict(list), [None] + list(masken)
         for k, (a, b, _, m) in enumerate(netz['kanten']):
             if m[7]:   # gesperrt
                 continue
@@ -713,12 +783,17 @@ class Kantenraster:
         return best
 
     def einstieg(self, x, y, maxd):
-        """{knoten: Meter bis dorthin} ueber die naechste Kante, oder {}."""
-        d, k, t = self.naechste(x, y, maxd)
-        if k is None:
-            return {}
-        a, b, lang, _ = self.netz['kanten'][k]
-        return {a: d + t * lang, b: d + (1 - t) * lang}
+        """{knoten: Meter bis dorthin} ueber die naechste Kante (je Maske), oder {}."""
+        aus, gesehen = {}, set()
+        for kosten in self.masken:
+            d, k, t = self.naechste(x, y, maxd, kosten)
+            if k is None or k in gesehen:
+                continue
+            gesehen.add(k)
+            a, b, lang, _ = self.netz['kanten'][k]
+            for kn, m in ((a, d + t * lang), (b, d + (1 - t) * lang)):
+                aus[kn] = min(m, aus.get(kn, INF))
+        return aus
 
 
 # --------------------------------------------------------------------- Orte
@@ -732,7 +807,10 @@ KATEGORIEN = [  # id, Bezeichnung
     ('bank_post', 'Bank/Post'), ('kirche', 'Kirche/Gebetshaus'), ('toilette', 'Toilette'), ('cafe', 'Café'),
     ('hotel', 'Hotel'), ('touristinfo', 'Tourist-Info'), ('sehenswuerdigkeit', 'Sehenswürdigkeit'),
     ('trinkwasser', 'Trinkwasser'), ('sitzbank', 'Sitzbank'), ('treff', 'Treffpunkt'),
+    ('drogerie', 'Drogerie'), ('kino', 'Kino'), ('fitness', 'Fitnessstudio'), ('leihrad', 'Leihrad'),
 ]
+# Gesucht, aber in OSM fuer Ingolstadt nicht vorhanden (Stand 11/2026): Buergerbuero/Buergeramt (kein Eintrag
+# mit diesem Namen, die Rathaeuser tragen ihn nicht) und Carsharing (amenity=car_sharing: keiner).
 KAT_NR = {k: i for i, (k, _) in enumerate(KATEGORIEN)}
 
 
@@ -752,6 +830,14 @@ FACHRICHTUNG = ('haut', 'derma', 'augen', 'hno', 'hals-nasen', 'ortho', 'gynäk'
                 'klinik', 'sanversz')
 
 
+# Drogeriemarkt-Ketten zaehlen nur als Drogerie, auch wenn OSM sie als shop=supermarket fuehrt (Mueller, Altstadt)
+DROGERIEKETTE = re.compile(r'^(dm|dm-drogerie markt|müller|rossmann|budni|budnikowsky)\b', re.I)
+
+
+def ist_drogeriekette(t):
+    return bool(DROGERIEKETTE.match(t.get('brand', '') or '') or DROGERIEKETTE.match(t.get('name', '') or ''))
+
+
 def ist_grundschule(t):
     n = t.get('name', '').lower()
     return (t.get('school') == 'primary' or '1' in t.get('isced:level', '').replace(',', ';').split(';')
@@ -763,7 +849,7 @@ def kategorien(t):
         return []
     a, s, l, tour = t.get('amenity'), t.get('shop'), t.get('leisure'), t.get('tourism')
     k = []
-    if s == 'supermarket':
+    if s == 'supermarket' and not ist_drogeriekette(t):
         k.append('supermarkt')
     if s in ('bakery', 'pastry'):
         k.append('baecker')
@@ -813,6 +899,14 @@ def kategorien(t):
         k.append('sitzbank')
     if a in ('community_centre', 'social_centre') and t.get('community_centre') != 'club_home':
         k.append('treff')
+    if s in ('chemist', 'drugstore') or (s == 'supermarket' and ist_drogeriekette(t)):
+        k.append('drogerie')
+    if a == 'cinema':
+        k.append('kino')
+    if l == 'fitness_centre' or (l == 'sports_centre' and 'fitness' in t.get('sport', '')):
+        k.append('fitness')
+    if a == 'bicycle_rental':
+        k.append('leihrad')
     return k
 
 
@@ -847,8 +941,11 @@ def anbinden(e, raster):
 
 
 def orte_bauen(raster):
-    orte, ohne = [], collections.Counter()
-    for e in overpass('orte')['elements']:
+    orte, ohne, gesehen = [], collections.Counter(), set()
+    for e in overpass('orte')['elements'] + overpass('alltag')['elements']:
+        if (e['type'], e['id']) in gesehen:
+            continue
+        gesehen.add((e['type'], e['id']))
         t = e.get('tags', {})
         kats = kategorien(t)
         if not kats:
@@ -868,6 +965,8 @@ def orte_bauen(raster):
         # Viele Einstiege einer grossen Flaeche: die naechsten 40 reichen.
         knoten = sorted(einstieg.items(), key=lambda kv: kv[1])[:40]
         for kat in kats:
+            if kat == 'drogerie' and doppelt(orte, KAT_NR[kat], t.get('name', ''), mx, my):
+                continue
             orte.append({'kat': KAT_NR[kat], 'name': t.get('name', ''), 'lat': round(LAT0 + my / MY, 5),
                          'lon': round(LON0 + mx / MX, 5), 'merkmale': merkmale,
                          'knoten': [kn for kn, _ in knoten], 'abstand': [round(d) for _, d in knoten],
@@ -877,6 +976,19 @@ def orte_bauen(raster):
     if ohne:
         print('Orte ohne Weg in 300 m (ausgelassen):', dict(ohne))
     return orte
+
+
+def doppelt(orte, kat, name, x, y, abstand_m=50):
+    """Dieselbe Drogerie zweimal in OSM (Mueller als Supermarkt und als Drogerie): gleicher Name, unter 50 m.
+    Nur fuer Drogerien: Haltestellen beider Fahrtrichtungen tragen ebenfalls denselben Namen und bleiben getrennt."""
+    if not name:
+        return False
+    for o in orte:
+        if o['kat'] == kat and o['name'] == name:
+            ox, oy = xy(o['lat'], o['lon'])
+            if math.hypot(ox - x, oy - y) < abstand_m:
+                return True
+    return False
 
 
 def brunnen_der_stadt(raster, orte):
@@ -1011,7 +1123,7 @@ def zensus_lesen(bezirke):
         if w.get('einwohner', 0) <= 0:
             continue
         la, lo = laea_nach_wgs84(x, y)
-        px, py = xy(la, lo)
+        px, py = xy(round(la, 5), round(lo, 5))   # wie in der Datei: Seite und Skript rasten am selben Punkt ein
         nr = bezirk_von(px, py, bezirke)
         if nr:
             zellen.append({'x': x, 'y': y, 'lat': la, 'lon': lo, 'px': px, 'py': py, 'bezirk': nr,
@@ -1044,6 +1156,7 @@ class Typen:
         pfade = {c('klasse', 'fussweg'), c('klasse', 'pfad'), c('klasse', 'feldweg')}
         gesichert = {c('querung', 'ampel'), c('querung', 'zebrastreifen')}
         self.haupt, self.gesicherte_querung, self.attr = [], [], []
+        self.ende = [(a, b) for a, b, _, _ in netz['kanten']]
         for a, b, lang, m in netz['kanten']:
             self.haupt.append(m[0] in haupt)
             self.gesicherte_querung.append(m[5] in gesichert)
@@ -1055,6 +1168,7 @@ class Typen:
                 'pflaster': m[3] == c('oberflaeche', 'pflaster_grob'),
                 'unbenannter_pfad': m[0] in pfade and not m[9],
                 'unbenannte_zufahrt': m[0] == c('klasse', 'erschliessung') and not m[9],
+                'rad': m[RAD], 'einbahn': m[EINBAHN],
                 'laenge': round(lang),   # wie in der Datei, die wege.js liest
             })
         self.knoten_gesichert = [km[0] in gesichert for km in netz['merkmale']]
@@ -1113,7 +1227,78 @@ def gewichte(typen, ohne_bank_kante, person, allgemein):
         kante.append(s)
     knoten = [INF if (p.get('hindernisse_gesperrt') and typen.hindernis[k]) else (p['ampel_s'] if typen.ampel[k] else 0)
               for k in range(len(typen.ampel))]
-    return {'v': v, 'kante': kante, 'knoten': knoten, 'abbiegen': bool(p.get('nur_gesichert_queren'))}
+    g = {'v': v, 'kante': kante, 'knoten': knoten, 'abbiegen': bool(p.get('nur_gesichert_queren'))}
+    if allgemein.get('insel_knoten_min'):
+        g['einrasten'] = einrastbar(typen, g, allgemein['insel_knoten_min'])
+    return g
+
+
+def gewichte_rad(typen, person, allgemein, rad_werte):
+    """Wie gewichte(), aber auf dem Rad (wie gewichte() in wege.js mit Verkehrsart rad, bei Tag).
+    kante: Sekunden von -> nach, kante_r: nach -> von. Gegen eine Einbahn und auf Gehwegen wird geschoben."""
+    p, v, vs = person, person['rad_kmh'] / 3.6, rad_werte['schieben_kmh'] / 3.6
+    kante, kante_r = [], []
+    for m in typen.attr:
+        if m['rad'] == 2:
+            kante.append(INF)
+            kante_r.append(INF)
+            continue
+        fahren = m['laenge'] / v
+        schieben = m['laenge'] / vs
+        f = 1.0
+        if p.get('faktor_unbenannt') and m['unbenannter_pfad']:
+            f = p['faktor_unbenannt']
+        if p.get('faktor_unbenannt_zufahrt') and m['unbenannte_zufahrt']:
+            f = p['faktor_unbenannt_zufahrt']
+        hin = schieben if m['rad'] == 1 or m['einbahn'] == 2 else fahren
+        her = schieben if m['rad'] == 1 or m['einbahn'] == 1 else fahren
+        zu = rad_werte['treppe_s'] if m['treppe'] else 0
+        kante.append(hin * f + zu)
+        kante_r.append(her * f + zu)
+    knoten = [p['ampel_s'] if a else 0 for a in typen.ampel]
+    return {'v': v, 'kante': kante, 'kante_r': kante_r, 'knoten': knoten, 'abbiegen': False}
+
+
+def einrastbar(typen, g, min_knoten):
+    """Einrast-Kosten je Kante: die Kosten, wenn die Kante zu einem Netzstueck mit mindestens min_knoten
+    Knoten gehoert, das diese Person nutzen kann; sonst INF. Kleinere Stuecke sind Inseln: Wer dort
+    einrastet, kommt nirgends hin (wie einrastbar() in wege.js)."""
+    n = len(typen.ampel)
+    eltern = list(range(n))
+
+    def wurzel(i):
+        while eltern[i] != i:
+            eltern[i] = eltern[eltern[i]]
+            i = eltern[i]
+        return i
+    kr = g.get('kante_r', g['kante'])
+    offen = [g['kante'][e] < INF or kr[e] < INF for e in range(len(g['kante']))]
+    for e, (a, b) in enumerate(typen.ende):
+        if offen[e] and g['knoten'][a] < INF and g['knoten'][b] < INF:
+            eltern[wurzel(a)] = wurzel(b)
+    groesse = collections.Counter(wurzel(i) for i in range(n) if g['knoten'][i] < INF)
+    gross = lambda i: g['knoten'][i] < INF and groesse[wurzel(i)] >= min_knoten
+    return [g['kante'][e] if offen[e] and (gross(a) or gross(b)) else INF for e, (a, b) in enumerate(typen.ende)]
+
+
+def einrast_masken(netz, personen):
+    """Verschiedene Einrast-Masken aller Personen (zu Fuss und, wo vorgesehen, auf dem Rad)."""
+    typen = Typen(netz)
+    keine_bank = [False] * len(netz['kanten'])
+    allg = personen['allgemein']
+    aus, gesehen = [], set()
+    for pid in personen['reihe']:
+        p = personen['personen'][pid]
+        maske_je = [gewichte(typen, keine_bank, p, allg)['einrasten']]
+        if p.get('rad_kmh'):
+            maske_je.append(einrastbar(typen, gewichte_rad(typen, p, allg, personen['verkehrsarten']['rad']),
+                                       allg['insel_knoten_min']))
+        for maske in maske_je:
+            schluessel = tuple(c == INF for c in maske)
+            if schluessel not in gesehen:
+                gesehen.add(schluessel)
+                aus.append([INF if c == INF else 0 for c in maske])
+    return aus
 
 
 def _eintragen(marke, k, t, o):
@@ -1234,10 +1419,11 @@ def minuten(t):
 
 
 def einstiege(raster, zellen, g):
-    """Je Zelle {knoten: Sekunden bis dorthin} ueber die naechste fuer diese Person begehbare Kante."""
+    """Je Zelle {knoten: Sekunden bis dorthin} ueber die naechste fuer diese Person begehbare Kante
+    (ohne Inseln, siehe einrastbar())."""
     aus = []
     for z in zellen:
-        d, k, t = raster.naechste(z['px'], z['py'], 300, g['kante'])
+        d, k, t = raster.naechste(z['px'], z['py'], 300, g['einrasten'])
         if k is None:
             aus.append({})
             continue
@@ -1322,7 +1508,7 @@ def ab_rathausplatz(netz, raster, orte, personen):
     for pid in personen['reihe']:
         p = personen['personen'][pid]
         g = gewichte(typen, bank, p, personen['allgemein'])
-        d, k, t = raster.naechste(x, y, 300, g['kante'])
+        d, k, t = raster.naechste(x, y, 300, g['einrasten'])
         a, b, _, _ = netz['kanten'][k]
         quellen = [(d / g['v'] + t * g['kante'][k], a, 0), (d / g['v'] + (1 - t) * g['kante'][k], b, 0)]
         marke = (zwei_naechste_kind if g['abbiegen'] else zwei_naechste)(quellen, netz, typen, g)
@@ -1461,7 +1647,10 @@ def main():
         massnahmen_roh = json.load(f)
     bez_geo, bezirke = bezirke_bauen()
     netz = netz_bauen()
-    raster = Kantenraster(netz)
+    masken = einrast_masken(netz, personen)
+    raster = Kantenraster(netz, masken)
+    print('Einrasten: %d Masken; Kanten auf Inseln je Maske: %s'
+          % (len(masken), [sum(1 for c in m if c == INF) for m in masken]))
     orte = orte_bauen(raster)
     grosse = grosse_ziele_bauen(raster)
     adressen = adressen_bauen()

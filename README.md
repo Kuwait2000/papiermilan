@@ -247,8 +247,8 @@ Ansicht „Alle Personen“ legt die fünf 15-Minuten-Flächen als Schichtbild
 übereinander, die größte unten. Die Wegsuche (Dijkstra) läuft in `wege.js` im
 Browser; für das Kind über gerichtete Kanten mit Straßenseite, damit es Haupt-
 und Sammelstraßen nur an Ampel oder Zebrastreifen quert. Alle Werte je Person
-und Bedingung stehen oben in `wege.js` (`PERSONEN`, `BEDINGUNGEN`) und werden
-auf der Seite als Tabelle gezeigt. Die Flächen werden geglättet (Schließen mit
+und Bedingung stehen in `data/wege-personen.json` (in `wege.js` als `PERSONEN`,
+`BEDINGUNGEN`) und werden auf der Seite als Tabelle gezeigt. Die Flächen werden geglättet (Schließen mit
 70 m, Löcher unter 4 ha gefüllt, Inseln unter 1 ha weggelassen). Adresssuche
 und Standort bleiben im Browser.
 
@@ -293,6 +293,48 @@ die zweitnächsten Orte der Zellen. Darunter steht „Was der Sparplan für Wege
 bedeutet“ aus `data/wege-massnahmen.json` (von Hand gepflegt: Maßnahmen aus
 `data/hsk.json` mit eindeutigem Ort, Text in beiden Sprachen, Quelle).
 
+**Unterwegs: zu Fuß, mit Bus, mit dem Rad.** Die Einzelansicht hat drei
+Verkehrsarten. **Mit dem Rad** nutzt dasselbe Netz und dieselbe Suche wie zu Fuß,
+mit eigenen Gewichten (`gewichteRad` in `wege.js`, `gewichte_rad` in
+`wege_bauen.py`): Tempo je Person aus `rad_kmh` in `data/wege-personen.json`
+(Erwachsene und Besucher:in 15 km/h, Ältere 12 km/h; Kind und Rollstuhl/Kinderwagen
+haben kein Rad und sind dann nicht wählbar). Radwege, Radstreifen und Straßen ohne
+Radverbot sind fahrbar; Gehwege, Fußgängerzonen und Treppen ohne `bicycle=yes`
+sowie die Gegenrichtung von Einbahnstraßen (ohne `oneway:bicycle=no` oder
+`cycleway=opposite*`) nur schiebend mit `verkehrsarten.rad.schieben_kmh`
+(4 km/h), Treppen dazu mit Zuschlag; Kraftfahrstraßen (`motorroad=yes`) und
+Straßen mit Radverbot ohne Gehweg sind gesperrt. Ampeln: Ampelknoten bis
+`verkehrsarten.rad.kreuzung_m` (35 m) auseinander bilden eine Kreuzung (rund 190
+in der Stadt); die Suche merkt sich je Knoten die Kreuzung, an der der beste Weg
+zuletzt gewartet hat, und rechnet für weitere Ampelknoten derselben Kreuzung
+keine Wartezeit (zu Fuß zählt weiter jeder Ampelknoten). Nacht gilt wie zu Fuß, Hitze
+nicht (die Regel ist ein Umweg über Schatten für Fußgänger). Ringe 5/10/15
+Minuten auf einem eigenen Raster über die erreichte Fläche (24 m), Ziel-Liste wie
+zu Fuß; „Wenn dieser Ort schließt“ gibt es nur zu Fuß, weil die Zellen Gehminuten
+enthalten.
+
+**Ein neuer Ort** (Einzelansicht, zu Fuß und mit dem Rad): Man wählt eine Kategorie
+aus der Zielliste der Person und setzt einen gedachten Ort auf die Karte. Der
+Browser rechnet zweimal rückwärts zu den Zensus-Zellen (`rechneNeu` in `wege.js`):
+von allen bestehenden Orten der Kategorie zugleich und vom neuen Ort aus, mit den
+Gewichten der Person, der Verkehrsart und der Bedingung. Die Zahl sind die
+Menschen (beim Kind unter 18, bei der älteren Person ab 65), die vorher keinen
+Ort dieser Kategorie in 15 Minuten hatten und mit dem neuen einen hätten; ihre
+Zellen erscheinen blau. Das Gegenstück ist „Wenn dieser Ort schließt“. Bei „Mit
+Bus“ ist der Rechner ausgeblendet. Drogeriemarkt-Ketten (dm, Müller, Rossmann,
+Budni) zählen nur als Drogerie, auch wenn OSM sie als `shop=supermarket` führt;
+derselbe Ort zweimal (gleicher Name unter 50 m) zählt einmal.
+
+**Einrasten ohne Inseln.** Startpunkt, Wohnzellen, Orte und Haltestellen rasten
+auf die nächste Kante ein, die die Person nutzen kann und die zu einem Netzstück
+mit mindestens `allgemein.insel_knoten_min` (50) Knoten gehört (`einrastbar` in
+`wege.js` und `wege_bauen.py`). Kleinere Stücke sind Inseln, etwa ein
+Bahnsteig, der für den Rollstuhl nur über Treppen angebunden ist, oder ein Bus-Halt
+auf der Fahrbahn einer Hauptstraße ohne Gehweg (Kind). Orte und Haltestellen
+bekommen dafür je Einrast-Maske (Personen zu Fuß und auf dem Rad) einen
+Einstieg; `pruefen.py` meldet Haltestellen und Orte, die für eine Person nur über
+eine Insel erreichbar wären.
+
 **Mit Bus** (`scraper/oepnv_bauen.py`):
 
 ```bash
@@ -330,10 +372,14 @@ schreibt je eine `.json` und `.js`:
   Beleuchtung, Treppe, Oberfläche, Gehweg, Querung, Schatten, Sperrung
   (`foot=no` bleibt markiert im Netz), Rollstuhl, Name und Brücke/Tunnel;
   Knoten tragen Querungsart, Bordstein und Barrieren. Zwischenpunkte ohne
-  Merkmal fallen weg, solange die Linie um höchstens 3 m abweicht. Nur die
+  Merkmal fallen weg, solange die Linie um höchstens 3 m abweicht. Fürs Rad
+  tragen Kanten zusätzlich `rad` (fahren, schieben, gesperrt) und `einbahn`
+  (bezogen auf die Richtung von → nach in der Datei). Nur die
   größte zusammenhängende Komponente bleibt. Grenze: 2 MB als `.js`.
-- `data/wege-orte` (window.WEGE_ORTE): Alltagsorte in 26 Kategorien mit
-  Einstiegsknoten; Flächen (Parks, Spielplätze, Sportanlagen, Schulhöfe)
+- `data/wege-orte` (window.WEGE_ORTE): Alltagsorte in 31 Kategorien mit
+  Einstiegsknoten (Drogerie, Kino, Fitnessstudio und Leihrad aus einer eigenen,
+  kleinen Overpass-Abfrage `alltag`; Bürgerbüro und Carsharing gibt es in OSM für
+  Ingolstadt nicht und fehlen deshalb); Flächen (Parks, Spielplätze, Sportanlagen, Schulhöfe)
   hängen über Randpunkte alle 20 m am Netz, nicht über ihren Mittelpunkt.
   Trinkwasserbrunnen zusätzlich aus dem Datensatz der Stadt (open.bydata,
   CC BY 4.0; Brunnen unter 30 m neben einem OSM-Brunnen fallen weg). Dazu

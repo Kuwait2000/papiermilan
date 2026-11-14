@@ -277,6 +277,7 @@ def p_wege():
         fehlt(f"wege-zellen: {ew} Einwohner, erwartet 130.000 bis 145.000")
     p_wege_personen(zellen, orte)
     p_wege_phase5(netz, orte)
+    p_wege_rad_inseln(netz, orte)
 
 
 def p_wege_phase5(netz, orte):
@@ -327,6 +328,49 @@ def p_wege_phase5(netz, orte):
                 if d >= len(h) or v % 32 > bus["grenze_min"]:
                     fehlt(f"wege-bus {fid}: Ziel ausserhalb oder ueber {bus['grenze_min']} Minuten")
                     break
+
+
+def p_wege_rad_inseln(netz, orte):
+    """
+    Rad im Netz (Merkmale rad und einbahn, Werte in wege-personen) und Einrasten
+    ohne Inseln: Jede Haltestelle und jeder Ort braucht fuer jede Person einen
+    Einstieg in einem Netzstueck, das sie nutzen kann. Sonst zeigt die Karte etwa
+    fuer den Rollstuhl ab Hauptbahnhof gar nichts (Bahnsteig nur ueber Treppen).
+    """
+    for feld in ("rad", "einbahn"):
+        if feld not in netz["kanten_felder"]:
+            fehlt(f"wege-netz: Kantenmerkmal {feld} fehlt (wege_bauen.py neu laufen lassen)")
+            return
+    i_rad, i_ein = netz["kanten_felder"].index("rad"), netz["kanten_felder"].index("einbahn")
+    je_typ = collections.Counter(netz["typ"])
+    fahren = sum(n for t, n in je_typ.items() if netz["kanten_typen"][t][i_rad] == 0)
+    einbahn = sum(n for t, n in je_typ.items() if netz["kanten_typen"][t][i_ein])
+    if fahren < netz["kanten_anzahl"] // 2 or einbahn < 300:
+        fehlt(f"wege-netz: Rad unplausibel ({fahren} fahrbare Kanten, {einbahn} Einbahn-Kanten von {netz['kanten_anzahl']})")
+    personen = lade("wege-personen.json")
+    rad = personen.get("verkehrsarten", {}).get("rad", {})
+    if not rad.get("schieben_kmh") or "treppe_s" not in rad or not personen["allgemein"].get("insel_knoten_min"):
+        fehlt("wege-personen: verkehrsarten.rad (schieben_kmh, treppe_s) oder allgemein.insel_knoten_min fehlt")
+        return
+    if not any(p.get("rad_kmh") for p in personen["personen"].values()):
+        fehlt("wege-personen: keine Person mit rad_kmh")
+    from wege_bauen import Typen, einrast_masken, netz_aus_datei, INF   # noqa: E402
+    roh = netz_aus_datei()
+    masken = einrast_masken(roh, personen)
+    typen = Typen(roh)
+    gross = [set() for _ in masken]
+    for m, g in zip(masken, gross):
+        for e, (a, b) in enumerate(typen.ende):
+            if m[e] < INF:
+                g.update((a, b))
+    if os.path.exists(os.path.join(DATEN_VZ, "wege-bus.json")):
+        h = lade("wege-bus.json")["haltestellen"]
+        aus = [x[0] for x in h if any(not g.intersection(x[3]) for g in gross)]
+        if aus:
+            fehlt(f"wege-bus: {len(aus)} Haltestellen nur ueber eine Insel erreichbar, z. B. {aus[:3]} (oepnv_bauen.py)")
+    aus = [o[1] or o[8] for o in orte["orte"] if any(not g.intersection(o[5]) for g in gross)]
+    if len(aus) > 20:
+        fehlt(f"wege-orte: {len(aus)} Orte fuer eine Person nur ueber eine Insel erreichbar, z. B. {aus[:3]}")
 
 
 def p_wege_personen(zellen, orte):

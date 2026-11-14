@@ -161,6 +161,13 @@
   .wenn-knopf { grid-column: 1 / -1; justify-self: start; font: inherit; font-size: .76rem; background: none; border: 0; padding: 0;
     color: var(--accent); text-decoration: underline; cursor: pointer; }
   .wenn-knopf[aria-pressed="true"] { font-weight: 600; }
+  .neu-block { margin-top: 1.1rem; padding-top: .9rem; border-top: 1px solid var(--border-strong); }
+  .neu-wahl { display: flex; flex-wrap: wrap; gap: .4rem; align-items: center; margin: .4rem 0; }
+  .neu-wahl select { font: inherit; font-size: .84rem; padding: .3rem .4rem; border: 1px solid var(--border-strong); border-radius: 7px; background: #fff; }
+  #neu-setzen[aria-pressed="true"] { background: #0b6e99; border-color: #0b6e99; color: #fff; }
+  #neu-ergebnis { font-size: .9rem; }
+  #neu-ergebnis .zahl { display: block; font-size: 1.7rem; font-weight: 800; color: #0b6e99; line-height: 1.15; }
+  .neu-modus #karte canvas { cursor: crosshair; }
   .wenn { grid-column: 1 / -1; background: var(--bg-warm); border-radius: 7px; padding: .5rem .65rem; margin: .2rem 0 .1rem; font-size: .84rem; }
   .wenn p { margin: 0 0 .3rem; max-width: none; }
   .wenn p:last-child { margin-bottom: 0; }
@@ -198,6 +205,8 @@
   .ziel-min-2 { color: #8a5a00; font-weight: 700; }
   .bus-wahl { display: flex; flex-wrap: wrap; gap: .4rem .8rem; align-items: center; margin-top: .6rem; }
   .bus-wahl label { display: flex; gap: .45rem; align-items: baseline; cursor: pointer; }
+  .bus-wahl .art-titel { width: 100%; font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--text-muted); }
+  .wahl label:has(input:disabled) { color: var(--text-faint); cursor: default; }
   .bus-wahl select { font: inherit; font-size: .84rem; padding: .25rem .35rem; border: 1px solid var(--border-strong); border-radius: 7px; background: #fff; }
   .spalten-kopf { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: .6rem; font-size: .72rem; color: var(--text-faint); text-align: right; }
   .spalten-kopf span { min-width: 3.4em; }
@@ -294,9 +303,12 @@
         <div id="einzel">
           <h2 id="txt-person-h"></h2>
           <div class="wahl" id="personen"></div>
-          <div class="bus-wahl">
-            <label><input type="checkbox" id="bus-an"> <span id="txt-bus-label"></span></label>
-            <select id="bus-fenster" aria-label="Zeitfenster" disabled></select>
+          <div class="bus-wahl" role="radiogroup" aria-labelledby="txt-art-h">
+            <span class="art-titel" id="txt-art-h"></span>
+            <label><input type="radio" name="art" value="fuss" checked> <span id="txt-art-fuss"></span></label>
+            <label><input type="radio" name="art" value="bus"> <span id="txt-bus-label"></span></label>
+            <label><input type="radio" name="art" value="rad"> <span id="txt-art-rad"></span></label>
+            <select id="bus-fenster" aria-label="Zeitfenster" disabled hidden></select>
           </div>
           <p class="klein" id="hinweis-bus" aria-live="polite"></p>
           <div class="legende-karte" aria-hidden="true">
@@ -309,6 +321,16 @@
           <ul id="ziele" aria-live="polite"><li class="ladehinweis">Lade Karte …</li></ul>
           <p id="ziele-summe"></p>
           <p class="klein" id="txt-ziele-fuss"></p>
+          <div id="neu-block" class="neu-block">
+            <h2 id="txt-neu-h"></h2>
+            <p class="klein" id="txt-neu-p"></p>
+            <div class="neu-wahl">
+              <select id="neu-kat" aria-label="Art des neuen Orts"></select>
+              <button class="knopf" type="button" id="neu-setzen" aria-pressed="false"><span id="txt-neu-setzen"></span></button>
+              <button class="knopf" type="button" id="neu-weg" hidden><span id="txt-neu-weg"></span></button>
+            </div>
+            <p id="neu-ergebnis" aria-live="polite"></p>
+          </div>
           <div id="grosse-block" hidden>
             <h2 id="txt-grosse-h"></h2>
             <div class="spalten-kopf"><span></span><span id="txt-grosse-kopf-fuss"></span><span id="txt-grosse-kopf-bus"></span></div>
@@ -353,6 +375,7 @@
       <div id="werte"></div>
       <p id="txt-wie-p3"></p>
       <p id="txt-wie-p4"></p>
+      <p id="txt-wie-p5"></p>
     </section>
 
     <section id="luecken">

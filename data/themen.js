@@ -77,7 +77,7 @@ window.THEMEN_DATEN = [
   "farbe": "#1d6a6f",
   "titel": "Deine 15 Minuten",
   "titel_l": "Deine 15 Minuten",
-  "zahl": "47 %",
+  "zahl": "48 %",
   "text": "der Menschen ab 65 erreichen in ihrem Tempo eine Apotheke in 15 Minuten zu Fuß, in Oberhaunstadt 0 %. Wie ist es bei Ihnen?",
   "text_l": "So viele ältere Menschen haben eine Apotheke in der Nähe. Wie ist es bei Ihnen?"
  },
