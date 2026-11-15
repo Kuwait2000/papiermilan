@@ -4,6 +4,8 @@
    'unsafe-inline' auskommt (siehe README, Abschnitt Sicherheit). */
 (function () {
   "use strict";
+  var H = window.PP_HILFEN;
+  var zahl = H.zahl, absatz = H.absatzHtml, svgEl = H.svgEl, text = H.svgText;
   var D = window.KLIMA_DATEN;
   if (!D) {
     document.querySelectorAll(".ladehinweis").forEach(function (el) {
@@ -14,25 +16,8 @@
   var B = D.bericht;
 
   /* ---------------- Formatierung ---------------- */
-  function zahl(n, stellen) {
-    return new Intl.NumberFormat("de-DE", {
-      minimumFractionDigits: stellen || 0, maximumFractionDigits: stellen || 0,
-    }).format(n);
-  }
   function vz(n, stellen) { return (n > 0 ? "+" : n < 0 ? "−" : "±") + zahl(Math.abs(n), stellen); }
   function mwp(kw) { return zahl(kw / 1000, 1) + " MWp"; }
-  function svgEl(tag, attrs, kinder) {
-    var el = document.createElementNS("http://www.w3.org/2000/svg", tag);
-    for (var k in attrs) el.setAttribute(k, attrs[k]);
-    (kinder || []).forEach(function (kind) { el.appendChild(kind); });
-    return el;
-  }
-  function text(x, y, inhalt, klasse, anker) {
-    var t = svgEl("text", { x: x, y: y, class: klasse || "" });
-    if (anker) t.setAttribute("text-anchor", anker);
-    t.textContent = inhalt;
-    return t;
-  }
   function titel(inhalt) { var t = svgEl("title", {}); t.textContent = inhalt; return t; }
   function runderSchritt(maxWert) {
     var basis = Math.pow(10, Math.floor(Math.log10(maxWert / 5)));
@@ -41,12 +26,6 @@
       if (maxWert / (faktoren[i] * basis) <= 5) return faktoren[i] * basis;
     }
     return 10 * basis;
-  }
-  function absatz(klasse, inhalt) {
-    var p = document.createElement("p");
-    p.className = klasse;
-    p.innerHTML = inhalt;
-    return p;
   }
   function legende(eintraege) {
     var div = document.createElement("div");
@@ -138,7 +117,7 @@
         "stammen diese Zahlen, auch Balkonkraftwerke sind dabei.",
       l: "Solar-Anlagen machen Strom aus Sonnen-Licht. In Ingolstadt kommt fast der " +
         "ganze grüne Strom von Solar-Anlagen. Jede Anlage muss beim Staat gemeldet " +
-        "werden. Daher kennen wir die Zahlen. Auch kleine Anlagen am Balkon zählen mit.",
+        "werden. Daher sind die Zahlen bekannt. Auch kleine Anlagen am Balkon zählen mit.",
     },
     "tab-pv-bestand": { n: "Leistung", l: "Leistung" },
     "tab-pv-zubau": { n: "Zubau je Jahr", l: "Neu pro Jahr" },

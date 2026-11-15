@@ -4,6 +4,8 @@
    'unsafe-inline' auskommt (siehe README, Abschnitt Sicherheit). */
 (function () {
   "use strict";
+  var H = window.PP_HILFEN;
+  var zahl = H.zahl, el = H.el, absatz = H.absatzHtml, datumDE = H.datum;
   var D = window.BETEILIGUNGEN_DATEN;
   if (!D) {
     document.querySelectorAll(".ladehinweis").forEach(function (el) {
@@ -17,33 +19,12 @@
   var FEST = W.freizeit_fest.abschreibungen + W.freizeit_fest.zinsen;
 
   /* ---------------- Formatierung ---------------- */
-  function zahl(n, stellen) {
-    return new Intl.NumberFormat("de-DE", {
-      minimumFractionDigits: stellen || 0, maximumFractionDigits: stellen || 0,
-    }).format(n);
-  }
   function mio(teur, stellen) {
     var s = stellen === undefined ? 1 : stellen;
     return zahl(Math.abs(teur) / 1000, s).replace(/^/, teur < 0 ? "−" : "") + " Mio. €";
   }
-  function el(tag, klasse, inhalt) {
-    var e = document.createElement(tag);
-    if (klasse) e.className = klasse;
-    if (inhalt !== undefined) e.textContent = inhalt;
-    return e;
-  }
-  function absatz(klasse, inhalt) {
-    var p = document.createElement("p");
-    p.className = klasse;
-    p.innerHTML = inhalt;
-    return p;
-  }
   function lnk(url, inhalt) {
     return "<a href=\"" + url + "\" rel=\"noopener noreferrer\" target=\"_blank\">" + inhalt + "</a>";
-  }
-  function datumDE(iso) {
-    var p = iso.split("-");
-    return p[2] + "." + p[1] + "." + p[0];
   }
 
   /* ---------------- Einfache Sprache ---------------- */

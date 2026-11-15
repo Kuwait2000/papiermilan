@@ -1,7 +1,8 @@
 /* Grafische Fassung der Seiten.
 
-   Neben „Einfache Sprache“ sitzt ein Knopf „Grafisch“. Er blendet den Inhalt der
-   Seite aus und zeigt stattdessen interaktive Grafiken mit denselben Daten. Die
+   Unter der Hauptüberschrift sitzt der Schalter „Text | Schaubild“. „Schaubild“
+   blendet den Inhalt der Seite aus und zeigt stattdessen interaktive Grafiken
+   mit denselben Daten. Der Schalter bleibt in beiden Fassungen sichtbar. Die
    Grafiken und ihre Daten werden erst beim ersten Umschalten geladen, damit die
    normale Seite nicht langsamer wird. Die Wahl bleibt für alle Seiten gespeichert;
    „#grafisch“ in der Adresse öffnet die Seite direkt grafisch.
@@ -60,7 +61,7 @@
      Alle Klassen tragen „gf-“, damit sie nicht mit denen der Seiten kollidieren. */
   var css = document.createElement('style');
   css.textContent = [
-    'body.grafisch-an main > :not(.grafik) { display: none !important; }',
+    'body.grafisch-an main > :not(.grafik):not(.ansicht-schalter) { display: none !important; }',
     '.grafik { --tinte: #16232b; --grau: #566a74; --linie: #e4e0d8; --linie-stark: #8f8779; --papier-warm: #f1efe9; --navy-dark: #00263a;',
     '  --font-display: "Source Serif 4", "Iowan Old Style", Georgia, serif; --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;',
     '  max-width: 1280px; margin: 0 auto; padding: 1.75rem 1.5rem 1rem; color: var(--tinte); font-family: var(--font-body); font-size: 15px; line-height: 1.5; }',
@@ -113,14 +114,16 @@
     '.grafik svg [tabindex]:focus { outline: none; }',
     '.grafik svg [tabindex]:focus-visible { outline: 2px solid #b00e2b; outline-offset: 3px; border-radius: 4px; }',
     '.grafik svg [tabindex]:focus-visible .ring { opacity: 1; }',
-    '.btn-grafisch svg { width: 15px; height: 15px; vertical-align: -2px; margin-right: 5px; }',
-    '@media (max-width: 760px) { .btn-grafisch .gf-wort { display: none; } .btn-grafisch svg { margin-right: 0; } }',
-    // Auf schmalen Handys passt die Kopfzeile mit dem zusätzlichen Knopf sonst nicht ganz
-    '@media (max-width: 420px) {',
-    '  .site-header .container { gap: .3rem !important; }',
-    '  .site-header .wordmark { font-size: .9rem !important; }',
-    '  .site-header .btn-leicht { padding: .26rem .5rem !important; }',
-    '}',
+    /* Schalter „Text | Schaubild“: zwei Knöpfe, einer ist gedrückt. */
+    '.ansicht-schalter { display: flex; margin: .9rem 0 1.1rem; }',
+    'main > .ansicht-schalter { max-width: 1100px; margin: 1rem auto 0; padding: 0 1.25rem; }',
+    '.ansicht-schalter .gruppe { display: inline-flex; border: 1px solid #003e59; border-radius: 999px; overflow: hidden; background: #fff; }',
+    '.ansicht-schalter button { font: inherit; font-size: .9rem; line-height: 1.2; min-height: 2.25rem; padding: .4rem 1rem; border: 0; background: transparent; color: #003e59; cursor: pointer; }',
+    '.ansicht-schalter button + button { border-left: 1px solid #003e59; }',
+    '.ansicht-schalter button:hover { background: #e8f0f4; }',
+    '.ansicht-schalter button[aria-pressed="true"] { background: #003e59; color: #fff; font-weight: 600; }',
+    '.ansicht-schalter button:focus-visible { outline: 2px solid #b00e2b; outline-offset: -3px; }',
+    '.ansicht-schalter svg { width: 15px; height: 15px; vertical-align: -2px; margin-right: 6px; }',
     '@media (max-width: 640px) {',
     '  .grafik { padding: 1.25rem .9rem .5rem; }',
     '  .grafik .leiste { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }',
@@ -148,14 +151,30 @@
     '<circle cx="47" cy="41" r="2.6" fill="#003E59"/><circle cx="69" cy="41" r="2.6" fill="#003E59"/><path d="M55 51l3 4 3-4z" fill="#B00E2B"/></symbol></svg>';
   document.body.appendChild(sym.firstChild);
 
-  /* Knopf in der Kopfzeile, direkt vor „Einfache Sprache“ */
+  /* Schalter „Text | Schaubild“. In der Textfassung steht er direkt unter der
+     Hauptüberschrift. In der grafischen Fassung ist deren Abschnitt ausgeblendet,
+     dann rückt er an den Anfang von <main>. Der zweite Knopf behält die Kennung
+     btn-grafisch, weil einzelne Seiten ihn von sich aus auslösen. */
+  var schalter = document.createElement('div');
+  schalter.className = 'ansicht-schalter';
+  var gruppe = document.createElement('div');
+  gruppe.className = 'gruppe'; gruppe.setAttribute('role', 'group'); gruppe.setAttribute('aria-label', 'Darstellung der Seite');
+  var btnText = document.createElement('button');
+  btnText.type = 'button'; btnText.id = 'btn-text'; btnText.textContent = 'Text';
+  btnText.setAttribute('aria-pressed', 'true');
   var btn = document.createElement('button');
-  btn.type = 'button'; btn.id = 'btn-grafisch'; btn.className = 'btn-leicht btn-grafisch';
-  btn.setAttribute('aria-pressed', 'false'); /* Beginnt mit dem sichtbaren Wort, damit Sprachsteuerung den Knopf findet
-     (WCAG 2.5.3); am Handy ist nur das Symbol zu sehen, der Name bleibt. */
-  btn.setAttribute('aria-label', 'Grafisch: Seite als Schaubilder zeigen');
-  btn.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="8" width="3" height="7" rx="1" fill="currentColor"/><rect x="6.5" y="4" width="3" height="11" rx="1" fill="currentColor"/><rect x="12" y="1" width="3" height="14" rx="1" fill="currentColor"/></svg><span class="gf-wort">Grafisch</span>';
-  btnLeicht.parentNode.insertBefore(btn, btnLeicht);
+  btn.type = 'button'; btn.id = 'btn-grafisch';
+  btn.setAttribute('aria-pressed', 'false');
+  btn.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="8" width="3" height="7" rx="1" fill="currentColor"/><rect x="6.5" y="4" width="3" height="11" rx="1" fill="currentColor"/><rect x="12" y="1" width="3" height="14" rx="1" fill="currentColor"/></svg>Schaubild';
+  gruppe.appendChild(btnText); gruppe.appendChild(btn); schalter.appendChild(gruppe);
+  var h1Seite = main.querySelector('h1');
+  function setzeSchalter(oben) {
+    var fokus = schalter.contains(document.activeElement) ? document.activeElement : null;
+    if (oben || !h1Seite) main.insertBefore(schalter, main.firstChild);
+    else h1Seite.parentNode.insertBefore(schalter, h1Seite.nextSibling);
+    if (fokus) fokus.focus();
+  }
+  setzeSchalter(false);
 
   var bereich = null, geladen = null, aktiv = false, beobachter = null, offeneKarten = [];
 
@@ -263,13 +282,14 @@
   function an(speichern) {
     if (aktiv) return;
     aktiv = true;
-    btn.setAttribute('aria-pressed', 'true');
+    btn.setAttribute('aria-pressed', 'true'); btnText.setAttribute('aria-pressed', 'false');
     document.body.classList.add('grafisch-an');
+    setzeSchalter(true);
     if (speichern) try { localStorage.setItem(KEY, '1'); } catch (e) { /* Storage kann gesperrt sein */ }
     if (!bereich) {
       bereich = document.createElement('div'); bereich.className = 'grafik'; bereich.id = 'grafik';
       bereich.innerHTML = '<p class="gf-laden">Grafiken werden geladen …</p>';
-      main.insertBefore(bereich, main.firstChild);
+      main.insertBefore(bereich, schalter.nextSibling);
       ladeAlles().then(baue, function () { bereich.innerHTML = '<p class="gf-laden">Die Grafiken ließen sich nicht laden. Bitte die Seite neu laden.</p>'; });
     } else {
       bereich.hidden = false;
@@ -279,13 +299,15 @@
   function aus(speichern) {
     if (!aktiv) return;
     aktiv = false;
-    btn.setAttribute('aria-pressed', 'false');
+    btn.setAttribute('aria-pressed', 'false'); btnText.setAttribute('aria-pressed', 'true');
     document.body.classList.remove('grafisch-an');
+    setzeSchalter(false);
     if (bereich) bereich.hidden = true;
     liste.forEach(function (id) { var d = szenen[id]; if (d && d.pause) { d.pause(); d.angehalten = true; } });
     if (speichern) try { localStorage.setItem(KEY, '0'); } catch (e) { /* Storage kann gesperrt sein */ }
   }
-  btn.addEventListener('click', function () { if (aktiv) aus(true); else { an(true); window.scrollTo(0, 0); } });
+  btn.addEventListener('click', function () { if (!aktiv) { an(true); window.scrollTo(0, 0); } });
+  btnText.addEventListener('click', function () { if (aktiv) { aus(true); window.scrollTo(0, 0); } });
   // Einfache Sprache gibt es nur als Text: Wer sie wählt, verlässt die grafische Fassung
   btnLeicht.addEventListener('click', function () { if (aktiv) aus(true); });
 

@@ -115,7 +115,7 @@ GRAFIK.szene({
       var a = e.target.closest ? e.target.closest('a[data-steckbrief]') : null;
       if (!a) return;
       e.preventDefault();
-      var knopf = document.getElementById('btn-grafisch');
+      var knopf = document.getElementById('btn-text');
       if (knopf) knopf.click();
       if (location.hash === '#plan-' + a.getAttribute('data-steckbrief')) window.dispatchEvent(new HashChangeEvent('hashchange'));
       else location.hash = 'plan-' + a.getAttribute('data-steckbrief');

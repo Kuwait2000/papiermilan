@@ -4,6 +4,8 @@
    'unsafe-inline' auskommt (siehe README, Abschnitt Sicherheit). */
 (function () {
   "use strict";
+  var H = window.PP_HILFEN;
+  var zahl = H.zahl, el = H.el, absatz = H.absatzHtml, datumDE = H.datum;
   var D = window.WOHNEN_DATEN;
   if (!D) {
     document.querySelectorAll(".ladehinweis").forEach(function (el) {
@@ -17,31 +19,10 @@
   var IN = Z.vergleich.filter(function (v) { return v.stadt === "Ingolstadt"; })[0];
 
   /* ---------------- Formatierung ---------------- */
-  function zahl(n, stellen) {
-    return new Intl.NumberFormat("de-DE", {
-      minimumFractionDigits: stellen || 0, maximumFractionDigits: stellen || 0,
-    }).format(n);
-  }
   function pz(n) { return zahl(n, 1) + "\u00a0%"; }
   function euro(n) { return zahl(n, 2) + "\u00a0€"; }
-  function el(tag, klasse, inhalt) {
-    var e = document.createElement(tag);
-    if (klasse) e.className = klasse;
-    if (inhalt !== undefined) e.textContent = inhalt;
-    return e;
-  }
-  function absatz(klasse, inhalt) {
-    var p = document.createElement("p");
-    p.className = klasse;
-    p.innerHTML = inhalt;
-    return p;
-  }
   function lnk(url, inhalt) {
     return "<a href=\"" + url + "\" rel=\"noopener noreferrer\" target=\"_blank\">" + inhalt + "</a>";
-  }
-  function datumDE(iso) {
-    var p = iso.split("-");
-    return p[2] + "." + p[1] + "." + p[0];
   }
   function rund100(n) { return Math.round(n / 100) * 100; }
 
@@ -167,7 +148,7 @@
       l: "Die meisten leeren Wohnungen gehören einzelnen Menschen. Denn ihnen gehören auch die meisten Wohnungen. " +
         "Bei der Stadt und der GWG sind nur sehr wenige Wohnungen leer.",
     },
-    "leer-nicht-h3": { n: "Was die Zahlen nicht sagen", l: "Was wir nicht wissen" },
+    "leer-nicht-h3": { n: "Was die Zahlen nicht sagen", l: "Was die Zahlen nicht sagen" },
     "leer-nicht-p": {
       n: "Wie lange die Wohnungen leer stehen und warum, geht aus den veröffentlichten Tabellen nicht hervor. Und die Zahlen sind von 2022: " +
         "Laut " + lnk(D.fortschreibung.url, "Verwaltung") + " ist die Zahl der Wohnungen seither von rund " + zahl(D.fortschreibung.wohnungen_2022) +
@@ -175,7 +156,7 @@
         "Ferienwohnungen spielen in Ingolstadt kaum eine Rolle: " + zahl(N22.ferien) + " Wohnungen werden privat als Ferien- oder Freizeitwohnung genutzt. " +
         "Ob die Stadt gegen Leerstand vorgehen darf, hat der Stadtentwicklungsausschuss im Juli 2026 beraten – " +
         "anlässlich eines Antrags auf eine Zweckentfremdungssatzung. Das erklärt ein späterer Abschnitt dieser Seite.",
-      l: "Wir wissen nicht: Wie lange sind die Wohnungen schon leer? Und warum? " +
+      l: "Die Zahlen sagen nicht: Wie lange sind die Wohnungen schon leer? Und warum? " +
         "Die Zahlen sind von 2022. Neuere Zahlen zu leeren Wohnungen gibt es nicht. " +
         "Ferien-Wohnungen gibt es in Ingolstadt nur sehr wenige.",
     },
@@ -183,17 +164,17 @@
     "fehlt-h2": { n: "Was hier noch fehlt", l: "Was noch fehlt" },
     "fehlt-p": {
       n: "Diese Seite wächst. Als Nächstes kommt, was die Stadt beim Wohnen tun kann und was nicht, und was Wohnen mit dem städtischen Haushalt zu tun hat. " +
-        "Für einige Fragen haben wir noch keine offenen Daten gefunden:",
-      l: "Diese Seite ist noch nicht fertig. Für manche Fragen haben wir noch keine Zahlen:",
+        "Für einige Fragen fehlen hier noch offene Daten:",
+      l: "Diese Seite ist noch nicht fertig. Für manche Fragen fehlen noch Zahlen:",
     },
   };
 
   /* Die "fehlt"-Eintraege aus data/wohnen.js haben nur eine normale Fassung. */
   var FEHLT_LEICHT = {
     "Aktuelle Leerstandszahlen": ["Neue Zahlen zu leeren Wohnungen", "Niemand zählt das regelmäßig."],
-    "Dauer und Gründe des Leerstands": ["Warum Wohnungen leer sind", "Diese Zahlen haben wir nicht gefunden."],
-    "Zahlen nach Stadtbezirken": ["Zahlen für Ihren Stadt-Teil", "Diese Zahlen haben wir noch nicht."],
-    "Sozialwohnungen und auslaufende Bindungen": ["Sozial-Wohnungen", "Das haben wir noch nicht geprüft."],
+    "Dauer und Gründe des Leerstands": ["Warum Wohnungen leer sind", "Diese Zahlen fehlen."],
+    "Zahlen nach Stadtbezirken": ["Zahlen für Ihren Stadt-Teil", "Diese Zahlen fehlen noch."],
+    "Sozialwohnungen und auslaufende Bindungen": ["Sozial-Wohnungen", "Das ist noch nicht geprüft."],
   };
 
   /* ---------------- Bausteine ---------------- */

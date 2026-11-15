@@ -4,6 +4,8 @@
    'unsafe-inline' auskommt (siehe README, Abschnitt Sicherheit). */
 (function () {
   "use strict";
+  var H = window.PP_HILFEN;
+  var zahl = H.zahl, el = H.el, absatz = H.absatzHtml, datumDE = H.datum, svgEl = H.svgEl, text = H.svgText;
   var D = window.MIETE_DATEN;
   if (!D) {
     document.querySelectorAll(".ladehinweis").forEach(function (el) {
@@ -15,38 +17,9 @@
   var BR = D.bremse;
 
   /* ---------------- Formatierung ---------------- */
-  function zahl(n, stellen) {
-    return new Intl.NumberFormat("de-DE", {
-      minimumFractionDigits: stellen || 0, maximumFractionDigits: stellen || 0,
-    }).format(n);
-  }
   function euro(n, stellen) { return zahl(n, stellen === undefined ? 2 : stellen) + " €"; }
   function proz(n) { return (n > 0 ? "+" : n < 0 ? "−" : "±") + zahl(Math.abs(n)) + " %"; }
-  function svgEl(tag, attrs, kinder) {
-    var el = document.createElementNS("http://www.w3.org/2000/svg", tag);
-    for (var k in attrs) el.setAttribute(k, attrs[k]);
-    (kinder || []).forEach(function (kind) { el.appendChild(kind); });
-    return el;
-  }
-  function text(x, y, inhalt, klasse, anker) {
-    var t = svgEl("text", { x: x, y: y, class: klasse || "" });
-    if (anker) t.setAttribute("text-anchor", anker);
-    t.textContent = inhalt;
-    return t;
-  }
   function titel(inhalt) { var t = svgEl("title", {}); t.textContent = inhalt; return t; }
-  function absatz(klasse, inhalt) {
-    var p = document.createElement("p");
-    p.className = klasse;
-    p.innerHTML = inhalt;
-    return p;
-  }
-  function el(tag, klasse, inhalt) {
-    var e = document.createElement(tag);
-    if (klasse) e.className = klasse;
-    if (inhalt !== undefined) e.textContent = inhalt;
-    return e;
-  }
   function legende(eintraege) {
     var div = el("div", "legende");
     eintraege.forEach(function (e) {
@@ -70,10 +43,6 @@
       svgEl("rect", { width: 6, height: 6, fill: f }),
       svgEl("rect", { width: 2.2, height: 6, fill: "rgba(255,255,255,.6)" }),
     ]);
-  }
-  function datumDE(iso) {
-    var p = iso.split("-");
-    return p[2] + "." + p[1] + "." + p[0];
   }
   function lnk(url, inhalt) {
     var a = document.createElement("a");
@@ -166,7 +135,7 @@
     "zahlen-p": {
       n: "Alle Werte stammen aus dem offiziellen Mietspiegel. Was neue Wohnungen in Inseraten kosten, ist nicht als offene Daten verfügbar " +
         "und fehlt deshalb hier.",
-      l: "Die Zahlen kommen aus dem Mietspiegel der Stadt. Was Wohnungen in Anzeigen kosten, wissen wir nicht.",
+      l: "Die Zahlen kommen aus dem Mietspiegel der Stadt. Was Wohnungen in Anzeigen kosten, steht hier nicht.",
     },
     "tab-flaeche": { n: "Nach Größe", l: "Nach Größe" },
     "tab-baujahr": { n: "Nach Baujahr", l: "Nach Baujahr" },

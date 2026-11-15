@@ -616,7 +616,7 @@ def kommende_termine_auslesen(kuerzel, cache):
     """
     Sitzungstermine ohne veroeffentlichte Tagesordnung, aktueller Monat plus
     zwei Folgemonate — dort kann man als Buerger:in noch einwirken (siehe
-    PROTOTYP-INGOLSTADT.md, "Wenn es weitergeht"). Nur Termine ab heute:
+    PROTOTYP-INGOLSTADT.md, "Was aus den Plänen wurde"). Nur Termine ab heute:
     ein Termin ohne Link in der Vergangenheit wurde meist einfach nie
     veroeffentlicht (z.B. eine formlos gebliebene Aufsichtsratssitzung),
     nicht "kommend".

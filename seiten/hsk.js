@@ -4,6 +4,8 @@
    'unsafe-inline' auskommt (siehe README, Abschnitt Sicherheit). */
 (function () {
   "use strict";
+  var H = window.PP_HILFEN;
+  var zahl = H.zahl, svgEl = H.svgEl, esc = H.esc;
   var D = window.HSK_DATEN;
   if (!D) {
     document.querySelectorAll(".ladehinweis").forEach(function (el) {
@@ -18,11 +20,6 @@
   var JAHRE = KZV.jahre;
 
   /* ---------------- Formatierung ---------------- */
-  function zahl(n, stellen) {
-    return new Intl.NumberFormat("de-DE", {
-      minimumFractionDigits: stellen || 0, maximumFractionDigits: stellen || 0,
-    }).format(n);
-  }
   // TEUR -> "20,7 Mio. €"; unter 1 Mio. in Euro, auf Hunderter gerundet
   // (die Tabellen der Stadt haben eine Nachkommastelle in TEUR).
   function geld(teur, stellen) {
@@ -32,11 +29,6 @@
     return zahl(Math.round(teur * 10) * 100, 0) + " €";
   }
   function mio(teur, stellen) { return zahl(teur / 1000, stellen === undefined ? 1 : stellen); }
-  function esc(s) {
-    return String(s).replace(/[&<>"]/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
-    });
-  }
   function datumDe(iso) {
     if (/^\d{4}$/.test(iso)) return iso;
     var t = iso.split("-");
@@ -52,12 +44,6 @@
       else e.setAttribute(k, attrs[k]);
     }
     if (html !== undefined) e.innerHTML = html;
-    return e;
-  }
-  function svgEl(tag, attrs, kinder) {
-    var e = document.createElementNS("http://www.w3.org/2000/svg", tag);
-    for (var k in attrs) e.setAttribute(k, attrs[k]);
-    (kinder || []).forEach(function (kind) { e.appendChild(kind); });
     return e;
   }
   function svgText(x, y, inhalt, klasse, anker) {
@@ -370,8 +356,8 @@
         "<p>Ingolstadt hat nicht mehr genug Geld für die täglichen Dinge. Die Regierung von Ober-Bayern passt " +
         "auf die Stadt auf. Sie hat gesagt: Ihr dürft euch kein Geld mehr leihen. Erst müsst ihr einen Spar-Plan " +
         "machen.</p>" +
-        "<p>Der Spar-Plan sagt: So viel Geld müssen wir sparen. Hier wollen wir sparen. Und: Jedes Jahr schauen " +
-        "wir nach, ob es geklappt hat.</p>" +
+        "<p>Der Spar-Plan sagt: So viel Geld muss die Stadt sparen. Hier will sie sparen. Und: Jedes Jahr schaut " +
+        "sie nach, ob es geklappt hat.</p>" +
         "<h3>Warum hat die Stadt zu wenig Geld?</h3>" +
         "<p>Firmen zahlen Steuern an die Stadt. Diese Steuer heißt Gewerbe-Steuer. Früher waren das etwa " +
         zahl(ST.gewerbesteuer_schnitt_2012_2024_mio, 0) + " Millionen Euro im Jahr. 2026 sind es nur noch etwa " +
@@ -1161,7 +1147,7 @@
         "Summenzeilen. Dabei fiel ein Fehler in der Quelle auf: Im Blatt „Personalkosten, 2 %-Ziel“ fehlen in der gedruckten " +
         "Summe 2027 die 87,7 TEUR der Zeile 001.7. Die Zahlen aus dem Konzepttext stehen mit Seitenangabe in " +
         "<code>data/hsk_bericht.json</code>. Stand der Daten: " + esc(D.erzeugt_am) + ".",
-      "Wir haben alle Zahlen nach-gerechnet. Stand: " + esc(D.erzeugt_am) + ".")));
+      "Alle Zahlen sind nach-gerechnet. Stand: " + esc(D.erzeugt_am) + ".")));
   }
 
   /* ---------------- Alles zusammen ---------------- */

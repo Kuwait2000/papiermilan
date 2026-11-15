@@ -4,6 +4,8 @@
    'unsafe-inline' auskommt (siehe README, Abschnitt Sicherheit). */
 (function () {
   "use strict";
+  var H = window.PP_HILFEN;
+  var zahl = H.zahl, svgEl = H.svgEl, text = H.svgText, esc = H.esc;
   var D = window.HAUSHALT_DATEN;
   if (!D) {
     document.querySelectorAll(".ladehinweis").forEach(function (el) {
@@ -31,22 +33,9 @@
     var p = (teil / basis) * 100;
     return vorzeichen(p) + new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 }).format(Math.abs(p)) + " %";
   }
-  function zahl(n) { return new Intl.NumberFormat("de-DE", { maximumFractionDigits: 0 }).format(n); }
   // Kurzer Achsen-/Balkenwert ohne Einheit: "215,9"
   function mioKurz(n) {
     return new Intl.NumberFormat("de-DE", { minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(n / 1e6);
-  }
-  function svgEl(tag, attrs, kinder) {
-    var el = document.createElementNS("http://www.w3.org/2000/svg", tag);
-    for (var k in attrs) el.setAttribute(k, attrs[k]);
-    (kinder || []).forEach(function (kind) { el.appendChild(kind); });
-    return el;
-  }
-  function text(x, y, inhalt, klasse, anker) {
-    var t = svgEl("text", { x: x, y: y, class: klasse || "" });
-    if (anker) t.setAttribute("text-anchor", anker);
-    t.textContent = inhalt;
-    return t;
   }
   function textMitTeilen(x, y, teile) {
     var t = svgEl("text", { x: x, y: y });
@@ -165,11 +154,11 @@
       n: "<strong>PapierPanther ist kein Angebot der Stadt Ingolstadt.</strong> " +
         "Alle Zahlen stammen aus dem amtlichen Haushaltsplan im Ratsinfoportal " +
         "(Haushaltssatzung, Gruppierungsübersichten und Vorbericht). " +
-        "Wir haben sie gegen die gedruckten Summenzeilen geprüft. Verbindlich ist " +
+        "Sie sind gegen die gedruckten Summenzeilen geprüft. Verbindlich ist " +
         "trotzdem immer das Originaldokument, das unten verlinkt ist.",
       l: "<strong>PapierPanther ist kein Angebot der Stadt Ingolstadt.</strong> " +
         "Alle Zahlen kommen aus dem amtlichen Haushalts-Plan. Den finden Sie im " +
-        "Rats-Info-Portal der Stadt. Wir haben die Zahlen geprüft. Das Original-Dokument " +
+        "Rats-Info-Portal der Stadt. Die Zahlen sind geprüft. Das Original-Dokument " +
         "gilt aber immer. Sie finden es unten als Link.",
     },
     "lede": {
@@ -178,7 +167,7 @@
         "aktuellen Haushalt als Diagramme sichtbar.",
       l: "Diese Seite erklärt den Haushalt der Stadt Ingolstadt. Ein Haushalt ist ein " +
         "Plan für Geld. Er zeigt: Woher kommt Geld? Wofür gibt die Stadt Geld aus? " +
-        "Wir zeigen die Zahlen auch als Bilder.",
+        "Die Zahlen gibt es auch als Bilder.",
     },
     "kam-h2": { n: "Was ist Kameralistik?", l: "Was ist Kameralistik?" },
     "kam-teaser": {
@@ -418,14 +407,14 @@
   function baueBeispielKameralistik() {
     var el = document.getElementById("beispiel-kameralistik");
     var zufuehrung = D.auswahl_untergruppen && D.auswahl_untergruppen["280"];
-    var einn = mio(vwh.verwaltungshaushalt_einnahmen);
-    var ausg = mio(vwh.verwaltungshaushalt_ausgaben);
-    var vmhWert = mio(vwh.vermoegenshaushalt_einnahmen);
-    var zufWert = zufuehrung ? mio(zufuehrung["ansatz_" + jahr]) : null;
+    var einn = esc(mio(vwh.verwaltungshaushalt_einnahmen));
+    var ausg = esc(mio(vwh.verwaltungshaushalt_ausgaben));
+    var vmhWert = esc(mio(vwh.vermoegenshaushalt_einnahmen));
+    var zufWert = zufuehrung ? esc(mio(zufuehrung["ansatz_" + jahr])) : null;
 
     if (leicht) {
       el.innerHTML =
-        "<p>Im Jahr " + jahr + " hat der Verwaltungshaushalt <span class=\"kennzahl\">" +
+        "<p>Im Jahr " + esc(jahr) + " hat der Verwaltungshaushalt <span class=\"kennzahl\">" +
         einn + "</span> Einnahmen. Er hat <span class=\"kennzahl\">" + ausg + "</span> " +
         "Ausgaben. Der Vermögenshaushalt hat auf beiden Seiten " + vmhWert + ". Das " +
         "muss so sein. Das schreibt das Gesetz vor.</p>" +
@@ -435,7 +424,7 @@
           : "");
     } else {
       el.innerHTML =
-        "<p>Im Haushaltsjahr " + jahr + " stehen im Verwaltungshaushalt " +
+        "<p>Im Haushaltsjahr " + esc(jahr) + " stehen im Verwaltungshaushalt " +
         "<span class=\"kennzahl\">" + einn + "</span> Einnahmen und " +
         "<span class=\"kennzahl\">" + ausg + "</span> Ausgaben gegenüber. Der " +
         "Vermögenshaushalt ist mit " + vmhWert + " auf beiden Seiten ausgeglichen. Das " +
@@ -450,25 +439,25 @@
   /* ---------------- Beispiel-Kasten: Probleme ---------------- */
   function baueBeispielProbleme() {
     var el = document.getElementById("beispiel-probleme");
-    var luecke = mio(vwh.zuschussbedarf);
+    var luecke = esc(mio(vwh.zuschussbedarf));
 
     if (leicht) {
       el.innerHTML =
-        "<p>Der Verwaltungshaushalt " + jahr + " hat zu wenig eigenes Geld. Es fehlen " +
+        "<p>Der Verwaltungshaushalt " + esc(jahr) + " hat zu wenig eigenes Geld. Es fehlen " +
         "<span class=\"kennzahl\">" + luecke + "</span>. Das steht so in der " +
         "Haushaltssatzung." +
-        (statusGilt ? " Der Stadtrat hat sie am " + STATUS.beschluss + " beschlossen. Sie gilt aber " +
+        (statusGilt ? " Der Stadtrat hat sie am " + esc(STATUS.beschluss) + " beschlossen. Sie gilt aber " +
           "noch nicht. Die Regierung von Oberbayern muss erst die Kredite erlauben." : "") + "</p>" +
         "<p>Die Stadt spart seit dem Jahr 2024. Am 18. Dezember 2025 hat der Stadtrat " +
         "weitere Spar-Maßnahmen beschlossen. Frühere Spar-Pakete haben nicht " +
         "gereicht.</p>";
     } else {
       el.innerHTML =
-        "<p>Der Verwaltungshaushalt " + jahr + " deckt seine laufenden Ausgaben nicht " +
+        "<p>Der Verwaltungshaushalt " + esc(jahr) + " deckt seine laufenden Ausgaben nicht " +
         "aus eigenen Einnahmen. Es bleibt ein Zuschussbedarf von " +
         "<span class=\"kennzahl\">" + luecke + "</span>. Das steht so in der " +
         "Haushaltssatzung" +
-        (statusGilt ? ", die der Stadtrat am " + STATUS.beschluss + " beschlossen hat. In Kraft ist " +
+        (statusGilt ? ", die der Stadtrat am " + esc(STATUS.beschluss) + " beschlossen hat. In Kraft ist " +
           "sie noch nicht, weil die Regierung von Oberbayern die darin geplanten Kredite erst " +
           "genehmigen muss (siehe Hinweis oben)." : ".") + "</p>" +
         "<p>Die Stadt steckt laut eigenem Vorbericht seit 2024 in einem mehrstufigen " +
@@ -1542,19 +1531,19 @@
     hinweis.hidden = !statusGilt;
     if (statusGilt) {
       hinweis.innerHTML = t(
-        "<strong>Stand des Haushalts " + STATUS.jahr + ":</strong> Der Stadtrat hat ihn am " +
-          STATUS.beschluss + " <a href=\"" + STATUS.beschlussUrl + "\" target=\"_blank\" rel=\"noopener noreferrer\">" +
+        "<strong>Stand des Haushalts " + esc(STATUS.jahr) + ":</strong> Der Stadtrat hat ihn am " +
+          esc(STATUS.beschluss) + " <a href=\"" + esc(STATUS.beschlussUrl) + "\" target=\"_blank\" rel=\"noopener noreferrer\">" +
           "beschlossen<span class=\"sr-only\"> (öffnet in neuem Tab)</span></a>. In Kraft ist er noch nicht: " +
           "Die darin geplanten Kredite muss die Regierung von Oberbayern als Rechtsaufsicht genehmigen, und sie " +
           "verlangt dafür ein Haushaltssicherungskonzept der Stadt (<a href=\"hsk.html\">der Sparplan, hier erklärt</a>). " +
           "Bis dahin gilt die vorläufige " +
-          "Haushaltsführung, und Kredite werden nur einzeln bewilligt, bis " + STATUS.stand +
-          " rund " + STATUS.genehmigtMio + " Mio. € (<a href=\"" + STATUS.aufsichtUrl + "\" target=\"_blank\" " +
+          "Haushaltsführung, und Kredite werden nur einzeln bewilligt, bis " + esc(STATUS.stand) +
+          " rund " + esc(STATUS.genehmigtMio) + " Mio. € (<a href=\"" + esc(STATUS.aufsichtUrl) + "\" target=\"_blank\" " +
           "rel=\"noopener noreferrer\">Bekanntgabe im Stadtrat<span class=\"sr-only\"> (öffnet in neuem Tab)</span></a>). " +
-          "Alle Zahlen für " + STATUS.jahr + " auf dieser Seite sind deshalb Planwerte des beschlossenen Haushalts.",
-        "<strong>Wichtig:</strong> Der Stadtrat hat den Haushalt " + STATUS.jahr + " am " + STATUS.beschluss +
+          "Alle Zahlen für " + esc(STATUS.jahr) + " auf dieser Seite sind deshalb Planwerte des beschlossenen Haushalts.",
+        "<strong>Wichtig:</strong> Der Stadtrat hat den Haushalt " + esc(STATUS.jahr) + " am " + esc(STATUS.beschluss) +
           " beschlossen. Er gilt aber noch nicht. Die Regierung von Oberbayern muss erst erlauben, dass die " +
-          "Stadt sich Geld leiht. Die Zahlen für " + STATUS.jahr + " sind darum ein Plan. " +
+          "Stadt sich Geld leiht. Die Zahlen für " + esc(STATUS.jahr) + " sind darum ein Plan. " +
           "Die Stadt hat dafür einen <a href=\"hsk.html\">Spar-Plan</a> gemacht.");
     }
 

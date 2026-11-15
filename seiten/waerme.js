@@ -4,6 +4,8 @@
    'unsafe-inline' auskommt (siehe README, Abschnitt Sicherheit). */
 (function () {
   "use strict";
+  var H = window.PP_HILFEN;
+  var esc = H.esc, datumDE = H.datum, zahl = H.zahl;
   var D = window.WAERME, ADR = window.WEGE_ADRESSEN;
   if (!D) {
     document.querySelectorAll(".ladehinweis").forEach(function (el) {
@@ -17,21 +19,10 @@
   try { leicht = localStorage.getItem(LS_KEY_LEICHT) === "1"; } catch (err) { /* Storage kann gesperrt sein */ }
   function t(n, l) { return leicht ? l : n; }
 
-  function esc(s) {
-    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
-    });
-  }
   function lnk(url, inhalt) {
     return "<a href=\"" + esc(url) + "\" rel=\"noopener noreferrer\" target=\"_blank\">" + inhalt +
       "<span class=\"sr-only\"> (öffnet in neuem Tab)</span></a>";
   }
-  function datumDE(iso) {
-    if (!iso) return "";
-    var p = iso.split("-");
-    return p[2] + "." + p[1] + "." + p[0];
-  }
-  function zahl(n, d) { return Number(n).toLocaleString("de-DE", { minimumFractionDigits: d || 0, maximumFractionDigits: d || 0 }); }
   function prozent(teil, ganz, d) {
     var p = ganz ? teil / ganz * 100 : 0;
     if (teil > 0 && p < 0.5 && !d) return "unter 1 %";
@@ -221,7 +212,7 @@
           arten.map(function (a) { return t(KLASSE[a].n, KLASSE[a].l) + " (" + z[a] + ")"; }).join(", ") + "."
         : t("Alle " + gewaehlt.strasse.nummern.length + " Hausnummern dieser Straße liegen im selben Gebiet.", "Das gilt für die ganze Straße.")) + "</p>";
     } else if (!gewaehlt.genau) {
-      html += "<p class=\"klein\">" + t("Diese Hausnummer kennen die Daten nicht; die Antwort gilt für die nächstliegende.", "Diese Haus-Nummer kennen wir nicht. Die Antwort ist für ein Haus in der Nähe.") + "</p>";
+      html += "<p class=\"klein\">" + t("Diese Hausnummer kennen die Daten nicht; die Antwort gilt für die nächstliegende.", "Diese Haus-Nummer steht nicht in den Daten. Die Antwort ist für ein Haus in der Nähe.") + "</p>";
     }
     if (K.wege[i].length) {
       html += "<h4>" + t("Diese Wege nennt der Plan für hier", "Das geht hier") + "</h4><ul>" +
@@ -294,7 +285,7 @@
     var k = document.getElementById("kennzahlen");
     k.textContent = "";
     [[zahl(gas.wert, 1) + " %", t("der Heizenergie kommen heute aus Erdgas", "der Wärme kommt heute aus Erd-Gas"), t("dazu " + zahl(oel.wert, 1) + " % aus Heizöl", "und " + zahl(oel.wert, 0) + " % aus Heiz-Öl")],
-     [zahl(netzAnteil, 0) + " %", t("der Adressen liegen in einem Wärmenetz-Gebiet", "der Häuser liegen in einem Gebiet für Fern-Wärme"), t("eigene Zählung; die Stadt nennt etwa 13 % der Gebäude", "so haben wir es gezählt")],
+     [zahl(netzAnteil, 0) + " %", t("der Adressen liegen in einem Wärmenetz-Gebiet", "der Häuser liegen in einem Gebiet für Fern-Wärme"), t("eigene Zählung; die Stadt nennt etwa 13 % der Gebäude", "eigene Zählung")],
      [zahl(gasAnteil, 0) + " %", t("liegen in einem Gas/Wärmepumpen-Prüfgebiet", "liegen in einem Gebiet mit Gas-Leitung"), t("hier ist offen, was aus dem Gasnetz wird", "dort ist noch vieles offen")],
      [datumDE(D.beschluss.datum), t("hat der Stadtrat den Plan beschlossen", "hat der Stadt-Rat Ja gesagt"), t("gegen vier Stimmen", "4 Stadt-Räte waren dagegen")]
     ].forEach(function (z) {
@@ -380,7 +371,7 @@
     ["Die genaue Grenze am Grundstück.", "Die Flächen sind mit dem Mittelpunkt des Gebäudes aus OpenStreetMap verglichen. Liegt ein Haus an der Grenze zweier Gebiete, kann die Zuordnung falsch sein. Maßgeblich ist die Karte der Stadt.",
       "Die genaue Grenze.", "Liegt Ihr Haus am Rand von einem Gebiet? Dann kann die Antwort falsch sein."],
     ["Wie viele Gebäude es genau sind.", "Die Anteile je Bezirk zählen Hausnummern aus OpenStreetMap, nicht Gebäude aus dem Kataster. Ein Wohnblock mit vier Eingängen zählt hier vierfach, eine Halle ohne Hausnummer gar nicht. Der Bericht selbst zählt " + zahl(B.gebaeude.wert) + " Gebäude und nennt keine Zahlen je Bezirk.",
-      "Wie viele Häuser es genau sind.", "Wir haben Haus-Nummern gezählt. Das ist nicht ganz genau."],
+      "Wie viele Häuser es genau sind.", "Gezählt sind Haus-Nummern. Das ist nicht ganz genau."],
     ["Ob der Plan noch aktuell ist.", "Der Bericht ist vom " + datumDE(B.datum) + ", die Flächen der Stadt vom November 2024. Ein Wärmeplan muss regelmäßig fortgeschrieben werden; ändert die Stadt die Flächen, zieht diese Seite erst beim nächsten Abruf nach.",
       "Ob der Plan noch stimmt.", "Der Plan ist von 2024. Die Stadt kann ihn ändern."]
   ];
@@ -402,7 +393,7 @@
       t(" (ODbL 1.0): Hausadressen für die Suche und die Zählung je Bezirk. Stadtbezirke: Stadt Ingolstadt (CC BY 3.0 DE).", "") + "</li>" +
       (window.BAUBLOCK ? "<li>" + lnk(window.BAUBLOCK.quelle.karte, t("Energie-Atlas Bayern, Planungsgrundlagen Wärme", "Energie-Atlas Bayern")) +
         t(": Heizung, Baualter und Wärmebedarf je Baublock. Datenquelle: Bayerisches Landesamt für Umwelt, www.lfu.bayern.de, Lizenz " + lnk(window.BAUBLOCK.quelle.lizenz_url, "CC BY 4.0") +
-          ", auf Grundlage des Zensus 2022; abgerufen am " + datumDE(window.BAUBLOCK.erzeugt_am) + ". Bearbeitet: Umrisse aus dem Kartendienst zurückgerechnet und vereinfacht, den Gebieten des Wärmeplans von uns zugeordnet.", "") + "</li>" : "") +
+          ", auf Grundlage des Zensus 2022; abgerufen am " + datumDE(window.BAUBLOCK.erzeugt_am) + ". Bearbeitet: Umrisse aus dem Kartendienst zurückgerechnet und vereinfacht, den Gebieten des Wärmeplans für diese Seite zugeordnet.", "") + "</li>" : "") +
       "<li>" + t("Zusammengeführt von scraper/waerme_bauen.py am " + datumDE(D.erzeugt_am) + ". Ihre Eingabe bleibt in Ihrem Browser und wird nicht übertragen.", "Ihre Adresse bleibt auf Ihrem Gerät.") + "</li></ul>";
   }
 
@@ -410,7 +401,7 @@
   var TEXTE = {
     "hinweis": {
       n: "<strong>PapierPanther ist kein Angebot der Stadt Ingolstadt.</strong> " +
-        "Die Flächen stammen von der Stadt, die Auswertung ist unsere eigene. Verbindlich sind allein der Wärmeplan der Stadt und die Auskunft der Stadtwerke. Dies ist ein Prototyp und keine Energie- oder Rechtsberatung.",
+        "Die Flächen stammen von der Stadt, die Auswertung ist eine eigene. Verbindlich sind allein der Wärmeplan der Stadt und die Auskunft der Stadtwerke. Dies ist ein Prototyp und keine Energie- oder Rechtsberatung.",
       l: "<strong>PapierPanther ist kein Angebot der Stadt Ingolstadt.</strong> " +
         "Die Angaben kommen aus dem Wärme-Plan von der Stadt. Es gilt nur, was die Stadt selbst schreibt. Die Seite ist noch ein Test."
     },
@@ -426,7 +417,7 @@
     "sprung-bloecke": { n: "Heizung heute", l: "So wird heute geheizt" },
     "bloecke-h2": { n: "Womit die Gebiete heute heizen", l: "So wird heute geheizt" },
     "bloecke-p": {
-      n: "Der Plan sagt, was werden soll. Der Zensus 2022 zeigt, wo die Stadt heute steht: Das Landesamt für Umwelt hat für jeden Baublock ausgewertet, mit welchem Energieträger die meisten Gebäude heizen. Wir haben diese Blöcke den Gebieten des Wärmeplans zugeordnet. Diese Gegenüberstellung steht weder im Bericht noch auf der Karte der Stadt.",
+      n: "Der Plan sagt, was werden soll. Der Zensus 2022 zeigt, wo die Stadt heute steht: Das Landesamt für Umwelt hat für jeden Baublock ausgewertet, mit welchem Energieträger die meisten Gebäude heizen. Diese Seite ordnet die Blöcke den Gebieten des Wärmeplans zu. Diese Gegenüberstellung steht weder im Bericht noch auf der Karte der Stadt.",
       l: "Der Plan sagt, wie es werden soll. Hier sehen Sie, wie die Häuser heute heizen."
     },
     "bloecke-titel": { n: "Wohnungen nach dem überwiegenden Energieträger ihres Baublocks, je Gebietsklasse", l: "Damit heizen die Häuser heute, je Gebiet" },
@@ -435,7 +426,7 @@
       l: "Die Zahlen sind aus dem Jahr 2022."
     },
     "sprung-seither": { n: "Seit dem Beschluss", l: "Was seitdem passiert ist" },
-    "sprung-grenzen": { n: "Was die Seite nicht weiß", l: "Das wissen wir nicht" },
+    "sprung-grenzen": { n: "Was die Seite nicht weiß", l: "Das weiß die Seite nicht" },
     "blick-h2": { n: "Auf einen Blick", l: "Das Wichtigste" },
     "stichtag": {
       n: "Bericht vom " + datumDE(B.datum) + ", Flächen der Stadt abgerufen am " + datumDE(D.quelle.abgerufen_am) + ". Anteile: eigene Zählung von " + zahl(A.gesamt) + " Hausnummern.",
@@ -465,7 +456,7 @@
     "bezirke-titel": { n: "Anteil der Adressen je Gebietsklasse, nach Stadtbezirk", l: "So viele Häuser liegen in welchem Gebiet" },
     "bezirke-fuss": {
       n: "Eigene Zählung: Hausnummern aus OpenStreetMap, der Fläche der Stadt zugeordnet. Grau: Adressen außerhalb aller Flächen.",
-      l: "Das haben wir selbst gezählt."
+      l: "Das ist eine eigene Zählung."
     },
     "zahlen-h2": { n: "Heute und im Zielbild 2035", l: "Heute und im Jahr 2035" },
     "zahlen-p": {
@@ -495,7 +486,7 @@
       n: "Ausgewählt von Hand aus den Ratsdaten. Ein Gebiet zum Neu- oder Ausbau von Wärmenetzen nach § 26 Wärmeplanungsgesetz hat der Stadtrat in den ausgewerteten Sitzungen nicht ausgewiesen. Was die Stadtwerke in ihren eigenen Gremien entscheiden, steht nicht im Ratsinfoportal.",
       l: ""
     },
-    "grenzen-h2": { n: "Was diese Seite nicht weiß", l: "Das wissen wir nicht" }
+    "grenzen-h2": { n: "Was diese Seite nicht weiß", l: "Das weiß die Seite nicht" }
   };
 
   function texteAnwenden() {

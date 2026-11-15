@@ -46,6 +46,7 @@ index.html            Startseite: Auf einen Blick, Themen-Kacheln, alle Einträg
 basis.css             Farben, Schriften, Kopf- und Fußzeile für alle Seiten
 themenseite.css       Bausteine der Zahlen-Themenseiten (Legende, Kacheln, Quellen)
 seiten/               das Skript jeder Seite (seiten/index.js gehört zu index.html)
+seiten/hilfen.js      gemeinsame Hilfsfunktionen (esc, zahl, datum, el, svgEl), lädt vor dem Seitenskript
 themen.html           Themen im Überblick (Kacheln mit je einer Kernzahl)
 kopf.js               gemeinsame Kopfzeile aller Seiten (Start · Themen · So funktioniert's)
 themen-kacheln.js     zeichnet die Themen-Kacheln aus data/themen.js
@@ -148,8 +149,8 @@ cd scraper && python3 themen_bauen.py   # nach jedem Daten-Update
 
 ### Grafische Fassung (`grafik/`)
 
-Neben „Einfache Sprache“ hat jede Themenseite und die Startseite einen Knopf
-„Grafisch“. `grafik/kern.js` blendet dann den Inhalt aus und lädt erst jetzt die
+Jede Themenseite und die Startseite hat unter der Hauptüberschrift den Schalter
+„Text | Schaubild“. Bei „Schaubild“ blendet `grafik/kern.js` den Inhalt aus und lädt erst jetzt die
 Szenen aus `grafik/<name>.js`, dazu `vendor/d3/` und `data/grafik.js`. Welche
 Seite welche Szenen zeigt, steht oben in `grafik/kern.js` (`SEITEN`). Die Wahl
 bleibt gespeichert; `#grafisch` in der Adresse öffnet eine Seite direkt grafisch.

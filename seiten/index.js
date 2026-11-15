@@ -4,6 +4,8 @@
    'unsafe-inline' auskommt (siehe README, Abschnitt Sicherheit). */
 (function () {
   'use strict';
+  var H = window.PP_HILFEN;
+  var el = H.el, datumDe = H.datum;
 
   var daten = window.FEED;
 
@@ -66,8 +68,8 @@
       l: 'Stadt-Politik in Ingolstadt — <em>leicht erklärt.</em>'
     },
     heroP: {
-      n: 'Ob Fahrradbügel, Kita-Plätze oder Gebühren: Der Stadtrat und die zwölf Bezirksausschüsse behandeln jede Woche Themen, die den Alltag in Ingolstadt betreffen. Alles steht öffentlich im Ratsinfoportal — nur eben verteilt über hunderte Einzelpunkte in Amtssprache. Der PapierPanther sammelt sie ein, fasst sie zusammen und sortiert sie danach, wen sie betreffen. Suchen Sie einfach Ihren Stadtbezirk.',
-      l: 'Der Stadt-Rat trifft viele Entscheidungen. Die 12 Bezirks-Ausschüsse entscheiden mit. Es geht um Rad-Wege, Kita-Plätze oder Gebühren. Alle Infos stehen im Rats-Info-Portal der Stadt. Aber der Text dort ist schwer zu lesen. Der PapierPanther sammelt die Infos. Er schreibt sie einfacher auf. Er sortiert sie nach Thema. Suchen Sie einfach Ihren Stadt-Bezirk.'
+      n: 'Ob Fahrradbügel, Kita-Plätze oder Gebühren: Der Stadtrat und die zwölf Bezirksausschüsse behandeln jede Woche Themen, die den Alltag in Ingolstadt betreffen. Alles steht öffentlich im Ratsinfoportal — nur eben verteilt über hunderte Einzelpunkte in Amtssprache. Der PapierPanther sammelt sie ein, fasst sie zusammen und sortiert sie danach, wen sie betreffen.',
+      l: 'Der Stadt-Rat trifft viele Entscheidungen. Die 12 Bezirks-Ausschüsse entscheiden mit. Es geht um Rad-Wege, Kita-Plätze oder Gebühren. Alle Infos stehen im Rats-Info-Portal der Stadt. Aber der Text dort ist schwer zu lesen. Der PapierPanther sammelt die Infos. Er schreibt sie einfacher auf. Er sortiert sie nach Thema.'
     },
     bezirkStadtweit: { n: 'Ganz Ingolstadt', l: 'Ganz Ingolstadt' },
     bezirkKopfTitel: { n: '{b}: Das ist hier los', l: '{b}: Das passiert hier' },
@@ -304,12 +306,6 @@
     return el('div', klasse, text);
   }
 
-  function el(tag, klasse, text) {
-    var n = document.createElement(tag);
-    if (klasse) n.className = klasse;
-    if (text != null) n.textContent = text;
-    return n;
-  }
 
   /* An jeden target="_blank"-Link gehaengt: das sichtbare ↗-Symbol reicht
      fuer Sehende, Screenreader brauchen eine eigene Ansage. */
@@ -506,10 +502,6 @@
     return m && namen[+m[2] - 1] ? namen[+m[2] - 1] + ' ' + m[1] : jm;
   }
 
-  function datumDe(iso) {
-    var t = String(iso).split('-');
-    return t.length === 3 ? t[2] + '.' + t[1] + '.' + t[0] : iso;
-  }
 
   /* Jahresliste als Text: "2025" · "2025 und 2026" · "2023–2024" bei
      durchgehender Folge · sonst "2023, 2024 und 2026". */

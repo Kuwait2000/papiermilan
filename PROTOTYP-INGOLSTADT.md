@@ -1,15 +1,15 @@
 # PapierPanther — Datenlage und Befunde
 
-Hintergrunddokument zu [README.md](README.md). Stand der Recherche: 31.07.2026 —
-**dieser Stand ist historisch**, die Zahlen unten (Sitzungen, TOPs, Einträge)
-spiegeln den Datensatz zum Zeitpunkt der jeweiligen Messung, nicht den
-aktuellen. Für den aktuellen Stand, den Schnellstart und den Aufbau der
-Datenpipeline siehe [README.md](README.md) — dort wird auch gepflegt, sobald
-sich etwas ändert. Dieses Dokument bleibt als Recherche- und
-Entscheidungsprotokoll stehen.
+Rechercheprotokoll zu [README.md](README.md). Es hält fest, was die
+Untersuchung des Ingolstädter Ratsinfoportals im Juli 2026 ergeben hat und
+warum die Seite so gebaut ist, wie sie ist.
 
-**Zweck:** festhalten, was die Datenrecherche im Ingolstädter Ratsinfoportal
-ergeben hat, und welche Fragen offen waren.
+**Was hier steht und was nicht:** Die Befunde zum Portal gelten weiter. Die
+Mengenangaben (Sitzungen, Tagesordnungspunkte, Einträge) sind Messungen mit
+Datum und beschreiben den Datensatz von damals. Den heutigen Aufbau, den
+Schnellstart und alle Skripte beschreibt [README.md](README.md), die Regeln für
+Texte und Stände [KURATION.md](KURATION.md). Aktuelle Zahlen stehen in der
+Fußzeile der Seite.
 
 **Bewusste Beschränkungen:**
 
@@ -21,7 +21,7 @@ ergeben hat, und welche Fragen offen waren.
 
 ## Was die Datenrecherche ergeben hat
 
-Das ist das eigentliche Ergebnis von Phase 2 des Toolkits — die Ingolstädter Datenlandschaft:
+Die Ingolstädter Datenlandschaft, Stand 29.07.2026:
 
 | Frage | Befund |
 |---|---|
@@ -33,7 +33,7 @@ Das ist das eigentliche Ergebnis von Phase 2 des Toolkits — die Ingolstädter 
 | robots.txt | Sperrt weder `/sessionnet/` noch `/sessionnetbza/` (geprüft 29.07.2026) |
 | Datentiefe | Sitzungskalender reicht bis **2003** zurück |
 | Livestreams | Stadtrat als Video, Ausschüsse als Audio, `ingolstadt.de/live` |
-| Beteiligungsplattform | `ingolstadt-macht-mit.de` (bisher nicht ausgewertet) |
+| Beteiligungsplattform | `ingolstadt-macht-mit.de` (nicht ausgewertet, auf `beteiligen.html` verlinkt) |
 | Offenes Datenportal | Keines gefunden |
 
 ### Die Bezirksausschüsse sind der Fund
@@ -50,7 +50,8 @@ Stadtrat fehlt:
 Zwei Eigenheiten:
 
 - **Keine Vorlagennummern.** In 186 geprüften BZA-Punkten kam keine einzige vor.
-  Deshalb gibt es für BZA-Punkte keinen Beratungsstand — sie erscheinen trotzdem.
+  Deshalb gibt es für BZA-Punkte keinen Beratungsweg. Ihr Stand ergibt sich aus
+  dem Sitzungstermin (siehe [KURATION.md](KURATION.md)).
 - **Viel Sitzungsroutine.** Etwa ein Drittel jeder BZA-Tagesordnung ist Formalie
   („Feststellung der Beschlussfähigkeit", „Genehmigung des Protokolls"). Diese
   Punkte werden in `ris_ingolstadt.py` über `VERFAHREN_MUSTER` markiert und aus
@@ -85,123 +86,48 @@ Struktur, an der der Parser hängt (bei Portal-Updates die Bruchstelle):
 Aus `vo0053.php` lässt sich ohne einen einzigen PDF-Zugriff ablesen, welches
 Gremium wann und **in welcher Rolle** befasst war. Gefundene Rollen: `Vorberatung`,
 `Entscheidung`, `Bekanntgabe`. Unbekannte Rollen werden unverändert
-durchgereicht, statt verworfen zu werden.
+durchgereicht, statt verworfen zu werden. Die Rollen des Bezirks Oberbayern
+(„beschließend nach § 7 GeschO", „vorberatend nach …", „Kenntnisnahme") ordnet
+`feed_bauen.py::rolle_art` denselben Ständen zu.
 
-Daraus leitet `feed_bauen.py` den Stand ab, der als Filterachse und als Badge
-erscheint:
+Welche Stände die Seite daraus bildet und wie sie beschriftet sind, steht in
+[KURATION.md](KURATION.md), Abschnitt „Stand". Zwei Grundsätze stammen aus der
+Recherche und gelten weiter:
 
-| Stand | Bedeutung |
-|---|---|
-| Wird noch beraten | nur Vorberatung, keine Entscheidungsstation |
-| Entscheidung geplant | Entscheidungsstation liegt in der Zukunft |
-| Entscheidung angesetzt | Entscheidungsstation liegt in der Vergangenheit |
-| Bekanntgabe | wird nur mitgeteilt, nicht beschlossen |
-| Nur besprochen, nichts entschieden | mündliche Berichte und alle BZA-Punkte (früher „Ohne Vorlage") |
+- **Die Rolle ist die geplante Rolle.** Eine Entscheidungsstation in der
+  Vergangenheit heißt nicht, dass der Beschluss gefasst wurde. Er kann vertagt
+  worden sein. „Entschieden" steht deshalb nur dort, wo
+  `scraper/niederschriften_lesen.py` das Ergebnis im Protokoll gefunden hat.
+- **Der Stand ist kein Filter, der etwas versteckt.** Ohne Auswahl erscheinen
+  alle Einträge, auch reine Beratungen ohne jede Entscheidung.
 
-Die Rollen des Bezirks Oberbayern („beschließend nach § 7 GeschO",
-„vorberatend nach …", „Kenntnisnahme") werden über `feed_bauen.py::rolle_art`
-denselben Ständen zugeordnet.
-
-Auf der Seite erscheinen diese Stände nur noch als vier Hinweise („Noch offen",
-„Entschieden", „Ergebnis steht im Protokoll", „Nur zur Information") — Tabelle
-und Regeln in [KURATION.md](KURATION.md). „Entschieden" kommt aus
-`scraper/niederschriften_lesen.py`, das die Sitzungsprotokolle liest:
-Abstimmungszeilen, „Vorlage:"-Blöcke der SessionNet-Niederschriften und das
-TOP-Format des Bezirks Oberbayern. Hängt im Portal das Protokoll der
-vorherigen Sitzung an, ordnet das Skript es über Datum/Nummer im PDF der
-richtigen Sitzung zu (`data/niederschriften.json`).
-
-**Wichtige Einschränkung, bewusst so beschriftet:** Die Rolle ist die *geplante*
-Rolle. „Entscheidung angesetzt" heißt **nicht**, dass der Beschluss gefasst wurde —
-er kann vertagt worden sein. Deshalb steht dort nicht „entschieden", und die Karte
-weist im aufgeklappten Bereich darauf hin, dass erst die Niederschrift das Ergebnis
-belegt.
-
-Der Stand ist ausdrücklich **kein Filter, der etwas versteckt**: ohne Auswahl
-erscheinen alle Einträge, auch reine Beratungen ohne jede Entscheidung.
-
-Eine Beobachtung aus dem Testlauf: Für Mai–Juli 2026 gibt es **keine** Einträge mit
-„Wird noch beraten", weil alle Vorlagen dieses Zeitraums ihre Entscheidungsstation
-schon hinter sich haben. Kommende Sitzungen stehen zwar im Kalender (Termin,
-Gremium, Ort), aber **ohne Tagesordnung** — die wird erst mit der Ladung
-veröffentlicht, etwa eine bis zwei Wochen vorher. Der Status funktioniert also, es
-gibt derzeit nur keine Daten dafür; er füllt sich, sobald Oktober-Tagesordnungen
-online sind. Die Logik ist mit synthetischen Fällen gegengeprüft.
+Kommende Sitzungen stehen früh im Kalender (Termin, Gremium, Ort), aber ohne
+Tagesordnung. Die erscheint erst mit der Ladung, etwa eine bis zwei Wochen
+vorher.
 
 ---
 
-## Aufbau
+## Erfahrungen aus der Aufbereitung
 
-```
-index.html                     Oberfläche (Daten NICHT eingebettet, siehe unten)
-impressum.html                 Impressum (§ 5 DDG)
-datenschutz.html               Datenschutzerklärung
-scraper/
-  ris_ingolstadt.py            liest beide Portale aus       -> data/rohdaten.json
-  entwuerfe_bauen.py           erzeugt Kurations-Vorschläge  -> data/kuration.json
-  vorlagen_holen.py            holt PDF-Text zur Kuration    -> data/vorlagen_charge.json
-  feed_bauen.py                Rohdaten + Kuration           -> data/feed.json + feed.js
-  pruefen.py                   Zusicherungen gegen den Feed (Referenzen, Datenverlust,
-                               behauptete Beschlüsse, erlaubte Hosts, u. a.)
-  .cache/                      HTML-Cache, damit Wiederholläufe das Portal schonen
-data/
-  rohdaten.json                unveränderte Auslesung beider Quellen
-  kuration.json                HAND-/MASCHINELL-GEPFLEGT: Klartext + Schlagworte
-  feed.json                    erzeugt — nicht händisch ändern
-  feed.js                      dasselbe als window.FEED — das laedt index.html per <script src>
-```
-
-Seit dem Umzug der Daten in eine eigene Datei fasst `feed_bauen.py` `index.html`
-**nicht mehr an** — es schreibt ausschließlich `data/feed.json` und `data/feed.js`.
-Gestaltung und Logik der Seite liegen vollständig und ausschließlich in
-`index.html` selbst. Der Grund für den Umzug: Bei den heutigen ~1.700 Einträgen
-wären das mehrere MB Daten inline im HTML, die vor dem ersten Bildaufbau
-vollständig geladen werden müssten — ausgelagert lädt die Seite die Daten per
-klassischem `<script src="data/feed.js">`, was (anders als `fetch()`) auch über
-`file://` funktioniert.
-
-Die **Trennung von `rohdaten.json` und `kuration.json` ist bewusst**: Neu-Scrapen
-überschreibt niemals die aufbereiteten Texte. Verknüpft wird über den Schlüssel
-`<quelle>:<sitzungs-id>#<top-nr>`, z. B. `stadt:13534#Ö 2` oder `bza:14155#Ö 5.1`.
-Das Quellen-Präfix ist nötig, weil die Sitzungs-IDs der beiden Instanzen
-grundsätzlich kollidieren können.
-
-### Aufbereitung skalieren
-
-`entwuerfe_bauen.py` erzeugt für alle offenen Punkte regelbasiert Vorschläge —
+`entwuerfe_bauen.py` erzeugt für offene Punkte regelbasiert Vorschläge:
 geputzter Titel, Schlagworte über Stichwortlisten, bei BZA-Punkten der Bezirk
-automatisch aus dem Gremiennamen. Diese Einträge tragen `"entwurf": true` und
-werden in der Oberfläche als *maschineller Entwurf* gekennzeichnet.
+aus dem Gremiennamen. Diese Einträge tragen `"entwurf": true`. Der `klartext`
+bleibt bei Entwürfen leer. Die Karte zeigt dann nur den Titel, statt Text zu
+erfinden. Bestehende Einträge werden nie überschrieben.
 
-```bash
-python3 entwuerfe_bauen.py --probelauf        # erst ansehen
-python3 entwuerfe_bauen.py --quelle bza       # dann schreiben
-```
+- **Bei BZA-Titeln reicht die Regelbasis** für Schlagworte und Bezirk, weil die
+  Titel schon Alltagssprache sind („Basketballkorb für den Piuspark").
+- **Bei Stadtrats-Titeln reicht sie nicht.** Dort steckt die
+  Übersetzungsleistung, und die braucht den Text der Vorlage.
+- **Zu breite Stichwörter erzeugen falsche Zuordnungen, und die sind
+  schädlicher als fehlende.** Aufgefallen und behoben: „markt" traf
+  *Viktualienmarkt*, „pflege" traf *Schwenkweiherpflege*, „kanal" traf
+  *Kanalstraße*, „see" hätte *Museen* getroffen. Die Listen arbeiten deshalb
+  mit Wortgrenzen und zusammengesetzten Begriffen.
 
-Bestehende Einträge werden **nie** überschrieben. Der `klartext` bleibt bei
-Entwürfen absichtlich leer — die Karte zeigt dann nur den Titel, statt Text zu
-erfinden. Für sprachliche Nachbearbeitung schreibt `--prompt-bundle` die offenen
-Punkte als Textdatei heraus.
-
-Zwei Erfahrungswerte aus dem Bau: Bei den **BZA-Titeln reicht die Regelbasis**, weil
-sie schon Alltagssprache sind („Basketballkorb für den Piuspark"). Bei
-**Stadtrats-Titeln reicht sie nicht** — dort steckt die Übersetzungsleistung, und
-die bleibt Handarbeit oder LLM-Arbeit. Deshalb sind derzeit nur die BZA-Punkte als
-Entwürfe eingespielt.
-
-Zu breite Stichwörter erzeugen falsche Zuordnungen, und die sind schädlicher als
-fehlende. Aufgefallen und behoben: „markt" traf *Viktualienmarkt*, „pflege" traf
-*Schwenkweiherpflege*, „kanal" traf *Kanalstraße*, „see" hätte *Museen* getroffen.
-Die Listen arbeiten deshalb mit Wortgrenzen und zusammengesetzten Begriffen.
-
-Stand damals (Einführung der Entwurfs-Automatisierung, 31.07.2026): **51
-Sitzungen, 470 Tagesordnungspunkte** (Mai–Juli 2026) aus beiden Quellen, davon
-64 als Sitzungsroutine ausgesondert. Aufbereitet waren **136 Einträge** — 22 von
-Hand, 114 maschinelle Entwürfe. Der Zwei-Jahres-Rückstand (siehe unten) ist seither
-eingespielt und vollständig von Hand/LLM kuratiert; für den aktuellen Stand
-(Sitzungen, TOPs, offene Einträge) siehe die Fußzeile der Seite oder
-[README.md](README.md). `feed_bauen.py` meldet am Ende jedes Laufs, wie viele
-Punkte noch offen sind, und welche Einträge keinen Stadtbezirk haben.
+Stand bei Einführung der Entwürfe (31.07.2026): 51 Sitzungen und 470
+Tagesordnungspunkte aus Mai bis Juli 2026, davon 64 als Sitzungsroutine
+ausgesondert. Aufbereitet waren 136 Einträge, 22 von Hand und 114 als Entwurf.
 
 ---
 
@@ -209,27 +135,27 @@ Punkte noch offen sind, und welche Einträge keinen Stadtbezirk haben.
 
 Bewusste Entscheidung: **keine Einzelprüfung jedes Eintrags**, sondern ein klarer
 Hinweis plus Quellenlink. Der Aufwand für redaktionelle Verifikation stünde in
-keinem Verhältnis zum Nutzen eines Prototyps.
-
-Konkret:
+keinem Verhältnis zum Nutzen.
 
 - Der Hinweisbalken oben sagt, dass die Texte automatisiert und mit KI aufbereitet
   sind, **Fehler enthalten können** und das Originaldokument maßgeblich ist.
-- Jede Karte hat einen **immer sichtbaren Button „Im Ratsinfoportal prüfen"**, der
-  direkt auf die Vorlage verlinkt — nicht erst nach dem Aufklappen.
-- Aufgeklappt zeigt jede Karte zusätzlich den amtlichen Wortlaut sowie Links zu
-  Sitzung, Vorlage und allen Anlagen.
-- Die Oberfläche sagt an zwei Stellen, dass dies **kein Angebot der Stadt** ist.
-
-**Was der Prototyp strukturell nicht zeigt:** Beschlussergebnisse. Was beraten
-wurde, ist nicht, was entschieden wurde — siehe nächster Abschnitt.
+- Jede Karte verlinkt sichtbar auf das Ratsinfoportal, nicht erst nach dem
+  Aufklappen.
+- Aufgeklappt zeigt jede Karte den amtlichen Wortlaut sowie Links zu Sitzung,
+  Vorlage und allen Anlagen.
+- Die Oberfläche sagt an mehreren Stellen, dass dies **kein Angebot der Stadt** ist.
+- `scraper/pruefen.py` bricht ab, wenn ein Text nicht mehr zu seinem
+  Tagesordnungspunkt passt oder ein Beschluss behauptet wird, den kein Protokoll
+  belegt.
 
 ---
 
 ## Befund: Beschlüsse und Sitzungsinhalte auswerten
 
 Recherchiert am 29.07.2026 an echten Dokumenten. Ergebnis: **machbar und
-überraschend billig** — die Protokolle reichen aus.
+billig**, die Protokolle reichen aus. Umgesetzt ist das in
+`scraper/niederschriften_lesen.py`.
+
 
 **Sind die Niederschriften öffentlich?** Ja. Der öffentliche Teil steht online im
 Ratsinfoportal, als PDF am jeweiligen Sitzungseintrag. (Nur Kommissionen und
@@ -257,8 +183,7 @@ In allen 12 Abstimmungen der Stichprobe lautete die Formel „Mit allen Stimmen"
 also einstimmig. Wie eine strittige Abstimmung notiert wird, ist damit **nicht
 belegt**: Formulierungen wie „Stimmenmehrheit", „Gegenstimmen", „Enthaltung" oder
 „abgelehnt" kamen in der Stichprobe **null Mal** vor. Zahlenmäßige
-Stimmenverhältnisse werden nicht protokolliert. Das müsste an einer strittigen
-Sitzung noch geprüft werden.
+Stimmenverhältnisse werden nicht protokolliert. Die Stichprobe hat das offen gelassen.
 
 **Aufwand pro Protokoll** (gemessen):
 
@@ -286,85 +211,39 @@ Station explizit:
 Damit ist ohne jeden PDF-Zugriff erkennbar, **wo die Entscheidung fiel** und ob
 sie schon gefallen ist. Nur der Beschlusstext selbst fehlt.
 
-**Empfohlene Reihenfolge**, wenn das weiterverfolgt wird:
-
-1. `vo0053.php` mitauslesen — billig, rein strukturell, unterscheidet sofort
-   „wird noch beraten" von „ist entschieden"
-2. Niederschriften-PDFs nur für Stadtrat und Fachausschüsse ziehen und den
-   Abschnitt je TOP am Muster `Abstimmung über … / Mit … Stimmen:` herausschneiden
-3. Erst diesen Ausschnitt (wenige hundert Zeichen statt 60 Seiten) aufbereiten —
-   das drückt die Kosten um mehr als eine Größenordnung
-4. Den Verzug von 4–8 Wochen offen ausweisen („Beschluss noch nicht protokolliert")
-
-## Hosting — eingerichtet
+## Hosting und Rechtliches
 
 Die Seite läuft auf **GitHub Pages** aus dem Repository
-`github.com/mnkeller/papierpanther`, Branch `main`:
-<https://schanzer-papierpanther.de/> (eigene Domain per `CNAME`;
-`mnkeller.github.io/papierpanther/` leitet dorthin weiter)
+`github.com/mnkeller/papierpanther`, Branch `main`, unter
+<https://schanzer-papierpanther.de/> (eigene Domain per `CNAME`). Ein
+`git push` auf `main` aktualisiert den Live-Stand.
 
-`index.html` ist eine einzige Datei ohne externe Unterressourcen — ein `git push`
-auf `main` genügt, um den Live-Stand zu aktualisieren.
-
-**Architekturfrage — erledigt:** Die Feed-Daten standen anfangs inline in
-`index.html` (881 Bytes je Eintrag, bei 136 Einträgen noch unproblematische
-117 KB). Mit dem Zwei-Jahres-Rückstand ausgelagert nach `data/feed.json` +
-`data/feed.js` (siehe „Aufbau" oben) — bei den heutigen ~1.700 Einträgen wären
-das sonst mehrere MB inline im HTML gewesen, vollständig geladen und als
-ebenso viele Karten ins DOM gerendert, bevor die Seite ueberhaupt etwas zeigt.
-Die Seite zeigt beim ersten Aufschlag ohnehin nur 8 Karten und lädt den Rest
-nach — Paginierung der Anzeige gibt es also bereits, nur (noch) nicht beim
-Laden der Rohdaten selbst. Bei weiterem Wachstum bliebe das der nächste
-Schritt.
-
-### Rechtliches — erledigt
-
-- **Impressum** nach § 5 DDG: [impressum.html](impressum.html), verlinkt im
-  Seitenfuß, mit Verantwortlichem nach § 18 Abs. 2 MStV.
-- **Datenschutzerklärung**: [datenschutz.html](datenschutz.html). Die Seite
-  setzt keine Cookies und bindet nichts Externes ein; personenbezogene Daten
+- **Daten außerhalb der Seite.** Die Feed-Daten standen anfangs in `index.html`.
+  Seit dem Zwei-Jahres-Rückstand liegen sie in `data/feed.js` und werden per
+  `<script src>` geladen. Das funktioniert, anders als `fetch()`, auch über
+  `file://`. Die Datei ist inzwischen mehrere Megabyte groß. Sie in Teilen
+  nachzuladen wäre der nächste Schritt.
+- **Impressum** nach § 5 DDG mit Verantwortlichem nach § 18 Abs. 2 MStV:
+  [impressum.html](impressum.html).
+- **Datenschutzerklärung:** [datenschutz.html](datenschutz.html). Die Seite
+  setzt keine Cookies und bindet nichts Externes ein. Personenbezogene Daten
   fallen nur über die Server-Logs von GitHub an (Drittlandübermittlung USA).
-- Der Hinweis „kein offizielles Angebot der Stadt Ingolstadt" ist von einer
-  Höflichkeit zu einer rechtlich relevanten Aussage geworden. Er steht im
-  Hinweisbalken, im Fußtext und im Impressum.
-
-### Wenn eine eigene Domain dazukommt
-
-Bei Partei-Infrastruktur (netzbegruenung) wäre abzuwägen: Das Tool tritt als
-neutrale Bürgerinformation auf. Auf Parteiservern gehostet kann diese Neutralität
-in Frage stehen, unabhängig von der Qualität der Aufbereitung. Das ist eine
-politische Entscheidung, keine technische.
+- **Kein Angebot der Stadt.** Der Hinweis ist eine rechtlich relevante Aussage.
+  Er steht im Hinweisbalken, im Fußtext und im Impressum.
+- **Neutralität.** Die Seite tritt als neutrale Bürgerinformation auf. Auf
+  Servern einer Partei gehostet könnte diese Neutralität in Frage stehen,
+  unabhängig von der Qualität der Aufbereitung. Das ist eine politische
+  Entscheidung, keine technische.
 - **Urheberrecht:** Beschlüsse, Vorlagen und Satzungen sind weitgehend amtliche
-  Werke (§ 5 UrhG). Auf die Originaldokumente zu **verlinken** ist unproblematisch
-  und genau das, was der Prototyp tut. Die PDFs der Stadt selbst zu spiegeln wäre
-  eine andere Frage — und ist nicht nötig.
+  Werke (§ 5 UrhG). Auf die Originaldokumente zu verlinken ist unproblematisch.
+  Die PDFs der Stadt zu spiegeln wäre eine andere Frage und ist nicht nötig.
 - **Rücksicht auf die Quelle:** Die Pause von 1,2 Sekunden pro Abruf, der eigene
-  User-Agent und der Dateicache in `scraper/.cache/` sind kein Beiwerk. Wenn ein
-  Server das automatisiert tut, gilt das erst recht. Ein voller Lauf über beide
-  Portale sind rund 700 Abrufe; mit Cache bleiben es bei Wiederholung wenige.
+  User-Agent und der Dateicache in `scraper/.cache/` gehören zum Konzept.
 
-## Bewertungsfragen
+---
 
-Wofür der Prototyp gebaut ist — diese Fragen sollte er beantworten:
+## Gemessen: wie groß war der Rückstand von zwei Jahren?
 
-1. **Relevanz:** Treffen die 136 Einträge, was Ingolstädter:innen wissen wollen?
-   Die BZA-Punkte sind sehr konkret („Fahrradbügel Mauthstraße") — ist das die
-   richtige Körnung, oder ist es zu kleinteilig?
-2. **Mischung:** Stadtrat und Bezirksausschüsse stehen jetzt gleichrangig im
-   selben Feed. Funktioniert das, oder gehören sie getrennt?
-3. **Entwürfe:** Bei 114 Einträgen steht nur ein Titel, kein erklärender Satz, und
-   sie sind als „maschineller Entwurf" markiert. Ist das brauchbar oder wirkt es
-   unfertig?
-4. **Achsen:** Trägt die Bezirksachse jetzt? Und ist der *Stand* verständlich —
-   insbesondere die Unterscheidung „angesetzt" gegen „entschieden"?
-5. **Sprache:** Bei den 22 handgemachten Einträgen — klar genug oder noch zu nah am
-   Amtsdeutsch?
-6. **Aufwand:** Die Schlagwortzuordnung trifft bei etwa zwei Dritteln der
-   BZA-Punkte. Reicht das, oder braucht es doch eine LLM-Runde?
-7. **Beschlüsse:** Reicht der Beratungsstand für einen ersten Nutzen, oder braucht
-   es die Ergebnisse aus den Niederschriften? (Machbarkeit ist geklärt — siehe Befund.)
-
-## Gemessen: wie groß ist der Rückstand von zwei Jahren?
 
 Erhoben am 31.07.2026 für **August 2024 bis Juli 2026**, indem alle 48
 Kalendermonate beider Portale gezogen wurden (exakte Sitzungszahl) und je Quelle
@@ -395,19 +274,36 @@ Konsequenz für die Aufbereitung:
   (360 Sitzungen + ~750 Beratungswege + ~750 Vorlagen), bei 1,2 s Pause etwa
   40 Minuten.
 
-## Wenn es weitergeht
+---
 
-- **Kommende Sitzungen aufnehmen.** Der Kalender kennt Termine, für die noch keine
-  Tagesordnung veröffentlicht ist (Gremium, Datum, Ort, aber kein
-  `si0056.php`-Link). Genau dort kann man noch einwirken — das wäre der nächste
-  naheliegende Ausbau, und er ist billig: nur die Kalendertabelle parsen.
-- Beschlüsse aus Niederschriften erschließen (Reihenfolge im Befund oben).
-- Die fünf Einträge ohne Stadtbezirk zuordnen — Weiherfeld, Sandrach,
-  Unterbrunnenreuth und Baggersee habe ich absichtlich nicht geraten.
-- Stadtrats-Entwürfe erzeugen (`entwuerfe_bauen.py --quelle stadt`, 231 Punkte) und
-  sprachlich nachbearbeiten.
-- Stadtratsanträge nach Fraktion (`vo0040.php`) als dritte Quelle erschließen.
-- Erst dann: Hosting, Reichweite, Verwaltungskontakt (Phase 5 des Toolkits).
+## Fragen an den ersten Prototyp
+
+Diese Fragen sollte die erste Fassung (Juli 2026, 136 Einträge) beantworten.
+Sie bleiben als Maßstab stehen:
+
+1. **Relevanz:** Treffen die Einträge, was Ingolstädter:innen wissen wollen? Ist
+   die Körnung der BZA-Punkte („Fahrradbügel Mauthstraße") richtig oder zu
+   kleinteilig?
+2. **Mischung:** Stadtrat und Bezirksausschüsse stehen gleichrangig im selben
+   Feed. Funktioniert das, oder gehören sie getrennt?
+3. **Entwürfe:** Wirkt ein Eintrag, der nur aus dem Titel besteht, brauchbar
+   oder unfertig?
+4. **Achsen:** Trägt die Bezirksachse? Ist der Stand verständlich?
+5. **Sprache:** Klar genug oder noch zu nah am Amtsdeutsch?
+
+## Was aus den Plänen wurde
+
+Die Liste „Wenn es weitergeht" vom Juli 2026, mit heutigem Stand:
+
+| Vorhaben | Stand |
+|---|---|
+| Kommende Sitzungen aus dem Kalender aufnehmen | umgesetzt (`ris_ingolstadt.py`, Abschnitt „Demnächst" der Startseite) |
+| Beschlüsse aus Niederschriften erschließen | umgesetzt (`niederschriften_lesen.py`) |
+| Stadtrats-Punkte aufbereiten | umgesetzt, läuft mit jedem Daten-Update weiter |
+| Stadtratsanträge nach Fraktion (`vo0040.php`) | umgesetzt (`antraege.html`) |
+| Hosting | umgesetzt, siehe oben |
+| Einträge ohne Stadtbezirk zuordnen | offen. `feed_bauen.py` meldet sie am Ende jedes Laufs. Orte wie Weiherfeld, Sandrach, Unterbrunnenreuth und Baggersee sind absichtlich nicht geraten. |
+| Verwaltungskontakt | nicht begonnen |
 
 ---
 

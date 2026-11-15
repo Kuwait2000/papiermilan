@@ -33,7 +33,7 @@ GRAFIK.szene({
   notizen: [
     ['Bedienung', 'Adresse in das Feld über der Karte eingeben oder auf eine Fläche klicken. Die Knöpfe blenden einzelne Klassen ein und aus. „Einfärben nach“ zeigt statt der Gebiete, womit die Baublöcke heute überwiegend heizen, wie alt die Gebäude sind oder wie viel Wärme sie brauchen.'],
     ['Baublöcke', 'Ein Baublock ist eine von Straßen umschlossene Fläche. Angegeben ist jeweils der häufigste Wert im Block, nicht der jedes Hauses. Blöcke ohne Wohngebäude oder mit gesperrten Zahlen fehlen. Der Wärmebedarf ist ein Rechenmodell des Landesamts, keine Messung.'],
-    ['Daten', 'Eignungsgebiete: Stadt Ingolstadt (2035.de), Stand November 2024, ohne Lizenzangabe, Umrisse unverändert. Der Plan ist rechtlich nicht bindend. Adressen und Grundkarte: © OpenStreetMap-Mitwirkende. Stadtbezirke: Stadt Ingolstadt (CC BY 3.0 DE). Baublöcke: Datenquelle: Bayerisches Landesamt für Umwelt, www.lfu.bayern.de (CC BY 4.0), auf Grundlage des Zensus 2022; Umrisse vereinfacht, Zuordnung zu den Gebieten von uns.']
+    ['Daten', 'Eignungsgebiete: Stadt Ingolstadt (2035.de), Stand November 2024, ohne Lizenzangabe, Umrisse unverändert. Der Plan ist rechtlich nicht bindend. Adressen und Grundkarte: © OpenStreetMap-Mitwirkende. Stadtbezirke: Stadt Ingolstadt (CC BY 3.0 DE). Baublöcke: Datenquelle: Bayerisches Landesamt für Umwelt, www.lfu.bayern.de (CC BY 4.0), auf Grundlage des Zensus 2022; Umrisse vereinfacht, eigene Zuordnung zu den Gebieten.']
   ],
   init: function (api) {
     if (!D || !H) { api.szene.innerHTML = '<p class="gf-laden">Die Daten zum Wärmeplan ließen sich nicht laden.</p>'; return; }

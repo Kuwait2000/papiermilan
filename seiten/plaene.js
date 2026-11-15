@@ -4,6 +4,8 @@
    'unsafe-inline' auskommt (siehe README, Abschnitt Sicherheit). */
 (function () {
   "use strict";
+  var H = window.PP_HILFEN;
+  var esc = H.esc, datumDE = H.datum;
   var D = window.PLAENE;
   if (!D) {
     document.querySelectorAll(".ladehinweis").forEach(function (el) {
@@ -17,19 +19,9 @@
   try { leicht = localStorage.getItem(LS_KEY_LEICHT) === "1"; } catch (err) { /* Storage kann gesperrt sein */ }
   function t(n, l) { return leicht ? l : n; }
 
-  function esc(s) {
-    return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
-      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
-    });
-  }
   function lnk(url, inhalt) {
     return "<a href=\"" + esc(url) + "\" rel=\"noopener noreferrer\" target=\"_blank\">" + inhalt +
       "<span class=\"sr-only\"> (öffnet in neuem Tab)</span></a>";
-  }
-  function datumDE(iso) {
-    if (!iso) return "";
-    var p = iso.split("-");
-    return p[2] + "." + p[1] + "." + p[0];
   }
   function monatDE(iso) {
     var m = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
@@ -74,13 +66,13 @@
           "Dieser Plan wird noch gemacht. Im Stadt-Rat war er zuletzt nicht.");
       }
       return t("Zu diesem Plan gibt es in den ausgewerteten Sitzungen keinen Verfahrensschritt, nur Beschlüsse rund um das Gebiet, zum Beispiel zur Erschließung. Im Landesportal ist er nicht verzeichnet.",
-        "Zu diesem Plan haben wir keinen Schritt gefunden. Es gibt nur Beschlüsse zu dem Gebiet. Zum Beispiel zu den Straßen.");
+        "Zu diesem Plan ist kein Schritt bekannt. Es gibt nur Beschlüsse zu dem Gebiet. Zum Beispiel zu den Straßen.");
     }
     var d = datumDE(s.datum), offen = !s.ergebnis;
     if (offen) {
       return t("Zuletzt stand am " + d + " dieser Schritt auf der Tagesordnung: " + SCHRITT_NAME[s.schritt][0] + " (" + esc(s.gremium) +
-        "). Das Abstimmungsergebnis haben wir für diese Sitzung nicht ausgelesen.",
-        "Am " + d + " ging es um diesen Schritt: " + SCHRITT_NAME[s.schritt][1] + ". Wie abgestimmt wurde, wissen wir nicht.");
+        "). Das Abstimmungsergebnis ist für diese Sitzung nicht ausgelesen.",
+        "Am " + d + " ging es um diesen Schritt: " + SCHRITT_NAME[s.schritt][1] + ". Wie abgestimmt wurde, steht hier nicht.");
     }
     if (s.ergebnis !== "beschlossen") {
       return t("Am " + d + " stand dieser Schritt zur Abstimmung: " + SCHRITT_NAME[s.schritt][0] + " (" + esc(s.gremium) + "). Ergebnis: " + esc(s.ergebnis) + ".",
@@ -89,7 +81,7 @@
     if (s.schritt === "satzung") {
       if (!p.umgriff) {
         return t(wer(s.gremium) + " hat den Plan am " + d + " als Satzung beschlossen. Im Landesportal Bauleitpläne Bayern ist er unter dieser Nummer nicht verzeichnet; ob und seit wann er gilt, lässt sich hier nicht sagen.",
-          wer(s.gremium) + " hat den Plan am " + d + " beschlossen. Ob er schon gilt, wissen wir nicht.");
+          wer(s.gremium) + " hat den Plan am " + d + " beschlossen. Ob er schon gilt, steht hier nicht.");
       }
       return t(wer(s.gremium) + " hat den Plan am " + d + " als Satzung beschlossen. Gültig wird er erst, wenn die Stadt das im Amtsblatt bekannt macht. Im Landesportal Bauleitpläne Bayern ist er noch nicht als in Kraft getreten verzeichnet (abgerufen am " + datumDE(D.land.abgerufen_am) + ").",
         wer(s.gremium) + " hat den Plan am " + d + " beschlossen. Der Plan gilt erst, wenn die Stadt das im Amts-Blatt schreibt. Das ist wohl noch nicht passiert.");
@@ -191,7 +183,7 @@
     }
     if (!hatPlan) {
       html += "<p class=\"klein\">" + t("Weder im Landesportal noch als eigene Anlage einer Vorlage ist eine Planzeichnung verlinkt. Sie kann in der Vorlage selbst stecken.",
-        "Wir haben keinen Plan als eigenes Papier gefunden.") + "</p>";
+        "Es gibt hier keinen Plan als eigenes Papier.") + "</p>";
     }
 
     // Unterlagen des letzten Verfahrensschritts nach Alltagsfragen
@@ -297,7 +289,7 @@
     mehr.textContent = t("Auch die " + alt.length + " älteren Pläne zeigen",
       "Auch " + alt.length + " ältere Pläne zeigen");
     if (!zeige.length) {
-      liste.innerHTML = "<p class=\"klein\">" + t("Kein Plan passt zu dieser Auswahl.", "Dazu haben wir keinen Plan gefunden.") + "</p>";
+      liste.innerHTML = "<p class=\"klein\">" + t("Kein Plan passt zu dieser Auswahl.", "Dazu gibt es hier keinen Plan.") + "</p>";
     }
     if (offen) { var z = document.getElementById(offen); if (z) z.scrollIntoView(); }
   }
@@ -326,7 +318,7 @@
     },
     "sprung-plaene": { n: "Alle Pläne", l: "Alle Pläne" },
     "sprung-verfahren": { n: "So entsteht ein Plan", l: "So entsteht ein Plan" },
-    "sprung-grenzen": { n: "Was die Seite nicht weiß", l: "Das wissen wir nicht" },
+    "sprung-grenzen": { n: "Was die Seite nicht weiß", l: "Das weiß die Seite nicht" },
     "blick-h2": { n: "Auf einen Blick", l: "Das Wichtigste" },
     "stichtag": {
       n: "Landesportal abgerufen am " + datumDE(D.land.abgerufen_am) + ". Stand der Ratsdaten: " + datumDE(D.stand) + ". Alle Gremien seit " + monatDE(ALT_AB) +
@@ -350,7 +342,7 @@
       n: "Manche Pläne drehen eine Runde zweimal: Ändert sich der Entwurf nach den Stellungnahmen deutlich, genehmigt der Stadtrat ihn erneut und er wird noch einmal ausgelegt. Wie Sie bei einer Auslegung mitreden, steht unter <a href=\"beteiligen.html\">Beteiligen</a>.",
       l: "Manchmal wird ein Entwurf stark geändert. Dann dürfen alle noch einmal ihre Meinung sagen. Mehr dazu steht bei <a href=\"beteiligen.html\">Mitmachen</a>."
     },
-    "grenzen-h2": { n: "Was diese Seite nicht weiß", l: "Das wissen wir nicht" }
+    "grenzen-h2": { n: "Was diese Seite nicht weiß", l: "Das weiß die Seite nicht" }
   };
   var WEG = [
     ["Aufstellungsbeschluss", "Der Stadtrat beschließt, für ein Gebiet einen Plan zu machen oder einen alten zu ändern. Oft gibt es dazu schon eine erste Skizze und eine frühe Beteiligung der Öffentlichkeit.",
@@ -374,7 +366,7 @@
     ["Die genauen Grenzen.", "Die Umrisse auf der Karte der grafischen Fassung sind auf etwa zehn Meter genau. Maßgeblich ist die Planzeichnung der Stadt.",
       "Die genauen Grenzen.", "Die Karte zeigt die Gebiete nur ungefähr. Genau steht es im Plan von der Stadt."],
     ["Den Inhalt der Gutachten.", "Die Anlagen sind nach ihrem Titel einer Frage zugeordnet, nicht gelesen. Ein Gutachten kann also unter einer anderen Frage stehen, als Sie erwarten.",
-      "Was in den Gutachten steht.", "Wir haben die Papiere nur nach ihrem Namen sortiert."]
+      "Was in den Gutachten steht.", "Die Papiere sind nur nach ihrem Namen sortiert."]
   ];
 
   function kacheln() {
@@ -393,7 +385,7 @@
   function kastenTest() {
     document.getElementById("kasten-test").innerHTML = t(
       "<h3>Diese Seite ist ein Entwurf</h3><p>Anlass ist ein Antrag aus dem Bezirksausschuss Friedrichshofen/Hollerstauden vom 25.02.2025: Der aktuelle Stand von Bebauungs- und Grünordnungsplänen soll an einer Stelle zu finden sein. Fehlt etwas, ist etwas falsch zugeordnet oder unverständlich? Bitte melden, der Weg steht im <a href=\"impressum.html\">Impressum</a>.</p>",
-      "<h3>Diese Seite ist noch ein Entwurf</h3><p>Fehlt etwas? Oder ist etwas falsch? Bitte schreiben Sie uns. Die Adresse steht im <a href=\"impressum.html\">Impressum</a>.</p>");
+      "<h3>Diese Seite ist noch ein Entwurf</h3><p>Fehlt etwas? Oder ist etwas falsch? Bitte schreiben Sie eine Nachricht. Die Adresse steht im <a href=\"impressum.html\">Impressum</a>.</p>");
   }
   function baueWeg() {
     document.getElementById("weg").innerHTML = WEG.map(function (w) {

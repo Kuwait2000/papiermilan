@@ -4,6 +4,8 @@
    'unsafe-inline' auskommt (siehe README, Abschnitt Sicherheit). */
 (function () {
   'use strict';
+  var H = window.PP_HILFEN;
+  var el = H.el, datumDe = H.datum;
 
   var D = window.ANTRAEGE_DATEN;
   var listeEl = document.getElementById('antraege-liste');
@@ -19,17 +21,7 @@
   var leicht = false;
   try { leicht = localStorage.getItem(LS_KEY_LEICHT) === '1'; } catch (err) { /* Storage kann gesperrt sein */ }
 
-  function el(tag, klasse, text) {
-    var n = document.createElement(tag);
-    if (klasse) n.className = klasse;
-    if (text != null) n.textContent = text;
-    return n;
-  }
 
-  function datumDe(iso) {
-    var t = String(iso).split('-');
-    return t.length === 3 ? t[2] + '.' + t[1] + '.' + t[0] : iso;
-  }
 
   var TEXTE = {
     lede: {
