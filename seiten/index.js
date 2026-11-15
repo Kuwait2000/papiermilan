@@ -188,7 +188,7 @@
     achseAnlass:     { n: 'Anlass', l: 'Das Thema' },
     achseEbene:      { n: 'Wer berät', l: 'Wer redet darüber?' },
     ebenenTitel:     { n: 'Anzeigen:', l: 'Zeigen:' },
-    ebenenOhneObb:   { n: 'Der Bezirk Oberbayern ist ausgeblendet. Er ist eine eigene Ebene über der Stadt und zuständig für Soziales, Kliniken und Kultur in ganz Oberbayern.',
+    ebenenOhneObb:   { n: 'Der Bezirk Oberbayern ist ausgeblendet. Er ist eine eigene Ebene neben Stadt und Landkreis und zuständig für Soziales, Kliniken und Kultur in ganz Oberbayern.',
                        l: 'Der Bezirk Oberbayern ist nicht dabei. Er ist größer als die Stadt. Sie können ihn dazu schalten.' },
     ebenenNurObb:    { n: 'Sie sehen nur den Bezirk Oberbayern, nichts aus Ingolstadt.',
                        l: 'Sie sehen nur den Bezirk Oberbayern. Die Stadt Ingolstadt ist nicht dabei.' },
@@ -290,7 +290,7 @@
          Ob der Ausschuss etwas beschlossen hat (Buergerhaushalt, Antrag an
          die Stadt), wissen wir nicht — also behaupten wir es auch nicht. */
       klasse += 'info';
-      text = leicht ? 'Der Bezirks-Ausschuss hat darüber gesprochen. Das Ergebnis kennen wir nicht.'
+      text = leicht ? 'Der Bezirks-Ausschuss hat darüber gesprochen. Das Ergebnis steht hier nicht.'
                     : 'Im Bezirksausschuss behandelt – ein Ergebnis ist hier nicht erfasst';
     } else if (e.stand === 'Steht auf der Tagesordnung') {
       klasse += 'info';
