@@ -1,7 +1,7 @@
 {
   "erzeugt_von": "scraper/antraege_holen_lesen.py",
   "quelle_hinweis": "Anträge der Stadtratsfraktionen aus dem Ratsinfoportal der Stadt Ingolstadt, laufende Wahlperiode. Status stammt aus den bereits gescrapten Tagesordnungen und dem kuratierten Feed dieser Seite, nicht aus einer eigenen Recherche.",
-  "abgerufen_am": "2026-11-10",
+  "abgerufen_am": "2026-11-15",
   "parteien": {
     "CSU": [
       {
@@ -1546,13 +1546,13 @@
         "vorlage": "V0488/26",
         "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23243",
         "pdf_url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=252488&type=do",
-        "in_beratung": false,
-        "stand": null,
-        "ref": null,
-        "klartext_titel": null,
-        "klartext": null,
-        "klartext_titel_leicht": null,
-        "klartext_leicht": null
+        "in_beratung": true,
+        "stand": "Nur besprochen, nichts entschieden",
+        "ref": "stadt:13552#Ö1",
+        "klartext_titel": "Abschluss und Online-Gedenkbuch des NS-Opfer-Forschungsprojekts",
+        "klartext": "Die SPD-Stadtratsfraktion beantragt, dass das 2021 gestartete und Ende 2026 auslaufende Forschungsprojekt „Opfer des Nationalsozialismus in Ingolstadt“ dem Stadtrat oder Kulturausschuss abschließend präsentiert wird und das im Projekt erarbeitete Online-Gedenkbuch mit den Opferbiografien noch bis Jahresende veröffentlicht wird. Zudem soll die Verwaltung aufzeigen, wie das Gedenkbuch danach unter Einbindung der Zivilgesellschaft und von Schüler:innen fortgeschrieben werden kann.",
+        "klartext_titel_leicht": "Ein Online-Gedenkbuch für NS-Opfer aus Ingolstadt",
+        "klartext_leicht": "Seit 2021 erforscht ein Projekt das Schicksal von Menschen aus Ingolstadt, die im Nationalsozialismus verfolgt wurden. Das Projekt endet 2026. Die SPD-Fraktion möchte, dass die Ergebnisse dem Stadtrat vorgestellt werden und ein Online-Gedenkbuch mit den Biografien veröffentlicht wird."
       },
       {
         "kvonr": "23236",
@@ -2250,11 +2250,11 @@
         "pdf_url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=219468&type=do",
         "in_beratung": true,
         "stand": "Nur besprochen, nichts entschieden",
-        "ref": "stadt:10122#Ö10",
-        "klartext_titel": "hierzu: Gründung einer Ingolstädter Pflegekonferenz",
-        "klartext": "",
-        "klartext_titel_leicht": "",
-        "klartext_leicht": ""
+        "ref": "stadt:10270#Ö1",
+        "klartext_titel": "SPD beantragt eine Pflegekonferenz für Ingolstadt",
+        "klartext": "Die SPD-Stadtratsfraktion beantragt, dass die Gesundheitsregionplus der Stadt Ingolstadt Pflegekonferenzen als regionalen Ausschuss nach dem Sozialgesetzbuch XI ausrichtet. Solche Konferenzen sollen die pflegerische Infrastruktur und Versorgung besser koordinieren und als Beratungs- und Abstimmungsgremien dienen. Die Fraktion begründet das mit der älter werdenden Bevölkerung: 2021 waren 9,6 Prozent der Menschen in Ingolstadt mindestens 75 Jahre alt, 2041 sollen es 11,4 Prozent sein; die Gruppe wächst demnach bis Anfang der 2040er-Jahre um etwa 4.000 bis 5.000 Personen. In Bayern gab es laut Antrag bis Ende 2023 vier Pflegekonferenzen, unter anderem in München. Die Ansiedlung bei der Gesundheitsregionplus soll Doppelstrukturen verringern. Die Kommission für Seniorenarbeit bekommt den Antrag am 11. Juli 2024 zur Kenntnis; als Entscheidungsgremium nennt der Antrag den Stadtrat am 23. Juli 2024.",
+        "klartext_titel_leicht": "Die SPD will eine Pflege-Konferenz für Ingolstadt",
+        "klartext_leicht": "In Ingolstadt leben bald mehr alte Menschen. Die Pflege wird deshalb wichtiger. Die SPD im Stadt-Rat hat einen Antrag gestellt. Ein Antrag ist ein Vorschlag an den Stadt-Rat. Die SPD will eine Pflege-Konferenz für Ingolstadt. Dort sprechen Menschen über die Pflege in der Stadt. In München gibt es schon eine Pflege-Konferenz. Die Kommission für Senioren-Arbeit bekommt den Antrag am 11. Juli 2024. Der Stadt-Rat soll am 23. Juli 2024 entscheiden."
       },
       {
         "kvonr": "19165",
@@ -2267,12 +2267,12 @@
         "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=19165",
         "pdf_url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=219212&type=do",
         "in_beratung": true,
-        "stand": null,
-        "ref": null,
-        "klartext_titel": null,
-        "klartext": null,
-        "klartext_titel_leicht": null,
-        "klartext_leicht": null
+        "stand": "Bekanntgabe",
+        "ref": "stadt:10318#Ö 3",
+        "klartext_titel": "SPD will Radfahren auf Friedhöfen am Vormittag testen",
+        "klartext": "Die SPD-Stadtratsfraktion beantragt ein Pilotprojekt: Auf Friedhöfen soll das Radfahren auf asphaltierten Wegen bis 10.30 Uhr erlaubt sein. Bisher ist Radfahren auf städtischen Friedhöfen wie dem Südfriedhof nicht gestattet. Die Fraktion begründet den Antrag damit, dass der Weg von den Fahrradabstellanlagen am Zaun bis zum Grab gerade für ältere Menschen weit sein kann; am frühen Vormittag seien wenige Besucher da und es fänden erfahrungsgemäß keine Beerdigungen statt. Als Vergleich nennt sie ein Pilotprojekt auf dem Münchener Westfriedhof, bei dem das Radfahren von 10 bis 15 Uhr möglich war. Außerdem soll der Fahrradbeirat weitere Maßnahmen suchen, die Seniorinnen und Senioren das Radfahren im Stadtgebiet erleichtern. Der Antrag vom 5. Juni 2024 stand am 14. November 2024 auf der Tagesordnung der Kommission für Seniorenarbeit.",
+        "klartext_titel_leicht": "Rad-Fahren auf dem Friedhof soll getestet werden",
+        "klartext_leicht": "Auf den Friedhöfen von der Stadt dürfen Sie nicht Rad fahren. Für alte Menschen ist der Weg zum Grab oft weit. Die Partei SPD im Stadt-Rat hat deshalb einen Vorschlag. Die Stadt soll das Rad-Fahren auf Friedhöfen testen. Es soll bis 10.30 Uhr am Vormittag erlaubt sein. Es soll nur auf Wegen mit Asphalt erlaubt sein. Asphalt ist ein fester, glatter Belag. Eine Gruppe für Rad-Verkehr soll weitere Ideen suchen. Der Vorschlag war am 14. November 2024 Thema in der Kommission für Senioren-Arbeit."
       },
       {
         "kvonr": "19155",
@@ -3296,11 +3296,11 @@
         "pdf_url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=207838&type=do",
         "in_beratung": true,
         "stand": "Nur besprochen, nichts entschieden",
-        "ref": "stadt:10100#Ö8",
-        "klartext_titel": "Antrag der Stadtratsfraktion BÜNDNIS 90/DIE GRÜNEN vom 19.09.2023",
-        "klartext": "",
-        "klartext_titel_leicht": "",
-        "klartext_leicht": ""
+        "ref": "stadt:11343#Ö1",
+        "klartext_titel": "Grüne wollen abgegrenzten 25-Meter-Schwimmbereich in einem Ingolstädter See prüfen lassen",
+        "klartext": "Die Stadtratsfraktion BÜNDNIS 90/DIE GRÜNEN beantragt, dass die Stadt prüft, ob an einem der Ingolstädter Seen ein abgegrenzter Schwimmerbereich von 25 Metern Länge eingerichtet werden kann. Er soll dauerhaft mit Leinen abgetrennt sein, idealerweise mit einem umlaufenden Steg. Die Fraktion begründet das mit dem Interesse, auch nach Schließung des Freibads unter freiem Himmel zu schwimmen, und nennt den Badeplatz im Piuspark ein attraktives, aber unsicheres Angebot. Als Beispiele führt sie öffentliche Schwimmbereiche in Oslo und Kopenhagen an. Das Ergebnis der Prüfung soll dem Stadtrat vorgestellt werden. Die Sportkommission berät am 31. Januar 2024 vor, der Stadtrat soll am 29. Februar 2024 entscheiden.",
+        "klartext_titel_leicht": "Vorschlag: Ein Bereich zum Schwimmen im See",
+        "klartext_leicht": "Eine Gruppe im Stadt-Rat hat einen Vorschlag. Die Gruppe heißt Bündnis 90/Die Grünen. Die Stadt soll etwas prüfen. Kann es an einem See einen Bereich für Schwimmer geben? Der Bereich soll 25 Meter lang sein. Leinen im Wasser sollen den Bereich abgrenzen. In Oslo und Kopenhagen gibt es so etwas schon. Die Sport-Kommission berät am 31. Januar 2024. Der Stadt-Rat soll am 29. Februar 2024 entscheiden."
       },
       {
         "kvonr": "17300",
@@ -5342,7 +5342,7 @@
         "pdf_url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255392&type=do",
         "in_beratung": true,
         "stand": "Nur besprochen, nichts entschieden",
-        "ref": "stadt:14372#Ö2",
+        "ref": "stadt:14372#Ö3",
         "klartext_titel": "ÖDP will KIRIN-Geld nur in Raten und unter strengen Bedingungen",
         "klartext": "Die ÖDP-Stadtratsgruppe hat einen Änderungsantrag zur Förderung des KI-Robotik-Zentrums KIRIN gestellt. Die Stadt soll zwar bis zu 3,0 Millionen Euro für 2027 bis 2031 in Aussicht stellen, höchstens 600.000 Euro im Jahr, aber in jährlichen Raten. Vor der ersten Zahlung sollen die Partner einen bereinigten Finanzplan vorlegen; die ÖDP verweist auf Widersprüche, etwa Jahresbeträge von 635.700 Euro für 2027 und 673.600 Euro für 2029 über der Obergrenze. Außerdem verlangt sie schriftliche Zusagen von Firmen, davon mindestens die Hälfte aus Ingolstadt, und einen Antrag beim Landesprogramm „Hightech Transfer Bayern“. Ab 2029 soll nur weiter gezahlt werden, wenn ein Zwischenbericht Ende 2028 die Ziele bestätigt; Einnahmen des Zentrums sollen den Zuschuss mindern. Die Verwaltung soll zudem prüfen, ob ein Schwerpunkt bei Klima und Umwelt bessere Chancen hätte, und die Nachbarlandkreise um eine Kostenbeteiligung bitten. Der Antrag liegt dem Stadtrat am 13. November 2026 vor.",
         "klartext_titel_leicht": "Die ÖDP will strenge Regeln für das Roboter-Zentrum",
@@ -5430,13 +5430,13 @@
         "vorlage": "V0289/26",
         "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23040",
         "pdf_url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=250201&type=do",
-        "in_beratung": false,
-        "stand": null,
-        "ref": null,
-        "klartext_titel": null,
-        "klartext": null,
-        "klartext_titel_leicht": null,
-        "klartext_leicht": null
+        "in_beratung": true,
+        "stand": "Nur besprochen, nichts entschieden",
+        "ref": "stadt:13552#Ö3",
+        "klartext_titel": "Schule in den oberen Etagen des Kaufhof-Areals prüfen",
+        "klartext": "Die ödp-Stadtratsgruppe beantragt zu prüfen, ob die oberen Etagen des Kaufhof-Areals für schulische Zwecke genutzt werden können, da diese Option im vorgestellten Nutzungskonzept „Ludwig 29“ bisher fehlte. Als Vorbilder werden ähnliche Umnutzungen ehemaliger Kaufhäuser zu Schulen in Lübeck, Augsburg, Hannover und Hamburg genannt; Hintergrund ist der bestehende Sanierungsstau und Raummangel bei Ingolstädter Schulen wie dem Katharinen-Gymnasium.",
+        "klartext_titel_leicht": "Könnte im alten Kaufhof eine Schule entstehen?",
+        "klartext_leicht": "Das leere Kaufhof-Gebäude soll neu genutzt werden. Andere Städte haben aus alten Kaufhäusern schon Schulen gemacht. Die ödp-Gruppe möchte, dass Ingolstadt prüft, ob das auch hier geht – weil manche Schulen zu wenig Platz haben."
       },
       {
         "kvonr": "22956",
@@ -5936,11 +5936,11 @@
         "pdf_url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=200777&type=do",
         "in_beratung": true,
         "stand": "Wird noch beraten",
-        "ref": "stadt:9466#Ö1",
-        "klartext_titel": "Antrag der ödp-Stadtratsgruppe vom 20.03.2023",
-        "klartext": "",
-        "klartext_titel_leicht": "",
-        "klartext_leicht": ""
+        "ref": "stadt:9647#Ö 1",
+        "klartext_titel": "ÖDP beantragt eine stadtweite Beteiligung für Seniorinnen und Senioren",
+        "klartext": "Die ÖDP-Stadtratsgruppe beantragt, dass die Stadt eine Beteiligung für Seniorinnen und Senioren auf den Weg bringt, so wie sie für Kinder und Jugendliche bereits läuft. Dem Stadtrat soll dafür dargelegt werden, welche Erfahrungen und Ergebnisse eine Seniorenbeteiligung im Jahr 2015 in einigen Stadtteilen gebracht hat und welche Maßnahmen daraus umgesetzt wurden. Die Veranstaltungen unter dem Motto „Älter werden im Stadtteil“ waren laut Antrag gut besucht, liefen aber Ende 2015 aus, weil eine Projektstelle nicht verlängert wurde. Die ÖDP sieht deshalb Bedarf für eine neue, diesmal stadtweite Beteiligung und verweist auf den demografischen Wandel. Die Kommission für Seniorenarbeit berät am 9. November 2023, danach ist der Ausschuss für Soziales, Gesundheit, Stiftungen und Familien am 16. November 2023 vorgesehen.",
+        "klartext_titel_leicht": "Alte Menschen sollen in Ingolstadt mitreden",
+        "klartext_leicht": "Eine Gruppe im Stadt-Rat hat einen Vorschlag. Die Gruppe heißt ÖDP. Kinder und Jugendliche können in Ingolstadt schon mitreden. Die Gruppe will das auch für alte Menschen. Im Jahr 2015 gab es das schon in einigen Stadt-Teilen. Dann hat es aufgehört. Die Stadt soll berichten: Was hat es damals gebracht? Die Kommission für Senioren-Arbeit berät am 9. November 2023."
       },
       {
         "kvonr": "15362",
@@ -6898,11 +6898,11 @@
         "pdf_url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=216056&type=do",
         "in_beratung": true,
         "stand": "Nur besprochen, nichts entschieden",
-        "ref": "stadt:10108#Ö3",
-        "klartext_titel": "hierzu liegt vor: — Neubau eines gemeinsamen Feuerwehrgerätehauses für die Freiwilligen Feuerwehren, Ringsee, …",
-        "klartext": "",
-        "klartext_titel_leicht": "",
-        "klartext_leicht": ""
+        "ref": "stadt:10226#Ö1",
+        "klartext_titel": "Fraktionen wollen Pläne für das gemeinsame Feuerwehrhaus im Südosten erweitern",
+        "klartext": "Die Stadtratsfraktionen von CSU, SPD, Grünen und FW sowie die Ausschussgemeinschaft FDP/JU wollen die Vorlage zum Neubau eines gemeinsamen Feuerwehrgerätehauses für die Freiwilligen Feuerwehren Ringsee, Rothenturm und Unsernherrn ändern. Das Gebäude soll so geplant werden, dass dort auch Personal und Einsatzmittel der Berufsfeuerwehr stationiert werden können, und zugleich Ausbildungsstützpunkt für alle Ingolstädter Feuerwehren sein. Auch Lösungen wie Heimarbeitsplätze sollen in der Planung berücksichtigt werden; der Antrag verweist dazu auf ein Beispiel in Schwalbach. Außerdem soll die Planung der Gerätehäuser Friedrichshofen und Dünzlau sofort aufgenommen werden, und dem Stadtrat soll der Stand der im Antrag V0074/23 genannten Sofortmaßnahmen dargelegt werden. Die Kommission für Brand- und Katastrophenschutz sowie Rettungswesen befasst sich am 21. März 2024 damit; als letzte Station nennt der Antrag den Stadtrat am 10. April 2024.",
+        "klartext_titel_leicht": "Parteien wollen das neue Feuerwehr-Haus anders planen",
+        "klartext_leicht": "Die Stadt plant ein neues Feuerwehr-Haus. Es ist für die Freiwilligen Feuerwehren Ringsee, Rothenturm und Unsernherrn. Mehrere Gruppen im Stadt-Rat wollen den Plan ändern. Auch die Berufs-Feuerwehr soll dort Platz haben. Alle Feuerwehren aus Ingolstadt sollen dort lernen und üben können. Die Stadt soll auch gleich Feuerwehr-Häuser in Friedrichshofen und Dünzlau planen. Die Kommission für Brand-Schutz spricht am 21. März 2024 darüber. Der Stadt-Rat spricht am 10. April 2024 darüber."
       },
       {
         "kvonr": "18677",
@@ -7070,8 +7070,8 @@
   },
   "statistik": {
     "gesamt": 391,
-    "in_beratung": 220,
-    "kuratiert": 215,
-    "nur_eingereicht": 171
+    "in_beratung": 222,
+    "kuratiert": 218,
+    "nur_eingereicht": 169
   }
 }

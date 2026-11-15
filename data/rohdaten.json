@@ -5,8 +5,8 @@
       "software": "Session (Somacos GmbH & Co. KG)",
       "basis_url": "https://www.ingolstadt.de/sessionnet",
       "endung": "php",
-      "anzahl_sitzungen": 391,
-      "anzahl_tops": 3337
+      "anzahl_sitzungen": 393,
+      "anzahl_tops": 3358
     },
     "bza": {
       "name": "Ratsinfoportal der Bezirksausschüsse der Stadt Ingolstadt",
@@ -26,15 +26,287 @@
     }
   },
   "hinweis": "Oeffentlich zugaengliche Seiten, ohne Anmeldung abgerufen.",
-  "abgerufen_am": "2026-11-10",
+  "abgerufen_am": "2026-11-15",
   "zeitraum": {
     "von": "2023-11",
     "bis": "2027-01"
   },
-  "anzahl_sitzungen": 656,
-  "anzahl_tops": 6472,
+  "anzahl_sitzungen": 658,
+  "anzahl_tops": 6493,
   "anzahl_verfahren": 904,
   "sitzungen": [
+    {
+      "id": "13552",
+      "kennung": "KBA/04/2026",
+      "gremium": "Ausschuss für Kultur und Bildung",
+      "raum": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
+      "datum": "2026-11-24",
+      "datum_anzeige": "24.11.2026",
+      "zeit": "16:00 Uhr",
+      "url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552",
+      "dokumente": [
+        {
+          "titel": "Öffentliche Bekanntmachung",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255548&type=do"
+        },
+        {
+          "titel": "Livestream",
+          "url": "https://www.ingolstadt.de/live"
+        }
+      ],
+      "tops": [
+        {
+          "nr": "Ö 1",
+          "titel": "Aktuelle Information zum Kulturgeschehen",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 2",
+          "titel": "Forschungsprojekt „Opfer des Nationalsozialismus in Ingolstadt“ inkl. Veröffentlichung des Online-Gedenkbuches",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö",
+          "titel": "- Antrag der SPD-Stadtratsfraktion vom 24.07.2026 -",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0488/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23243",
+          "dokumente": [
+            {
+              "titel": "Stadtratsantrag SPD",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=252488&type=do"
+            }
+          ],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö",
+          "titel": "Stellungnahme der Verwaltung",
+          "zusatz": "Referent: Herr Grandmontagne",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0646/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23402",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255122&type=do"
+            }
+          ],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 3",
+          "titel": "Aufhebung der Satzung über die Gebühren für die Benutzung der Museen der Stadt Ingolstadt (Museumsgebührensatzung) und Aufhebung der Satzung über die Benutzung der Museen der Stadt Ingolstadt (Museumssatzung) — Neufassung der Allgemeinen Geschäftsbedingungen für die Nutzung der Museen der Stadt Ingolstadt",
+          "zusatz": "Referenten: Herr Grandmontagne und Herr Müller",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0666/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23423",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254605&type=do"
+            },
+            {
+              "titel": "Anlage 1 - Aufhebungssatzung Gebühren Museen",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254612&type=do"
+            },
+            {
+              "titel": "Anlage 2 - Aufhebungssatzung Benutzung Museen",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254613&type=do"
+            },
+            {
+              "titel": "Anlage 3 - AGB Museen",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254614&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-11-24",
+              "datum_anzeige": "24.11.2026",
+              "gremium": "Ausschuss für Kultur und Bildung",
+              "top_nr": "3",
+              "oeffentlich": true,
+              "rolle": "Vorberatung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552&toselect=91263"
+            }
+          ]
+        },
+        {
+          "nr": "Ö 4",
+          "titel": "Änderung der Benutzungs- und Gebührensatzung der Stadtbücherei Ingolstadt — Änderung der Benutzungs- und Gebührensatzung der Schulmedienzentrale",
+          "zusatz": "Referenten: Herr Grandmontagne, Herr Müller",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0258/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23008",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=249857&type=do"
+            },
+            {
+              "titel": "Satzung Anlage 1 - Änderung der Benutzungssatzung Stadtbücherei Stand 06.10.2026",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254191&type=do"
+            },
+            {
+              "titel": "Satzung Anlage 2 - Änderung der Gebührensatzung Stadtbücherei Stand 06.10.2026",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254190&type=do"
+            },
+            {
+              "titel": "Satzung Anlage 3 - Änderung der Benutzungssatzung SMZ Stand 06.10.2026",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254189&type=do"
+            },
+            {
+              "titel": "Satzung Anlage 4 - Änderung der Gebührensatzung SMZ Stand 06.10.2026",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254188&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-11-24",
+              "datum_anzeige": "24.11.2026",
+              "gremium": "Ausschuss für Kultur und Bildung",
+              "top_nr": "4",
+              "oeffentlich": true,
+              "rolle": "Vorberatung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552&toselect=91260"
+            }
+          ]
+        },
+        {
+          "nr": "Ö 5",
+          "titel": "Ganztag an Ingolstädter Grundschulen - strategische Weiterentwicklung der bestehenden Ganztagsangebote an Grundschulen in städtischer Trägerschaft",
+          "zusatz": "Mündlicher Bericht: Herr Grandmontagne",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 6",
+          "titel": "Eine Schule in unserem Kaufhof?",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö",
+          "titel": "-Prüfantrag der ödp-Stadtratsgruppe vom 27.05.2026-",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0289/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23040",
+          "dokumente": [
+            {
+              "titel": "Stadtratsantrag ÖDP",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=250201&type=do"
+            }
+          ],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö",
+          "titel": "Stellungnahme der Verwaltung",
+          "zusatz": "Referent: Herr Grandmontage",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0714/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23477",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255173&type=do"
+            }
+          ],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 7",
+          "titel": "Wiederbestellung des Stadtheimatpflegers",
+          "zusatz": "Referentin: Frau Wittmann-Brand",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0687/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23448",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254739&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-11-24",
+              "datum_anzeige": "24.11.2026",
+              "gremium": "Ausschuss für Kultur und Bildung",
+              "top_nr": "7",
+              "oeffentlich": true,
+              "rolle": "Vorberatung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552&toselect=91264"
+            }
+          ]
+        },
+        {
+          "nr": "Ö 8",
+          "titel": "Kammerphilharmonie Ingolstadt GmbH; — Ausübung der Gesellschafterrechte zum Wirtschaftsplan 2027",
+          "zusatz": "Referenten: Bürgermeister Wöhrl, Herr Grandmontagne",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        }
+      ],
+      "quelle": "stadt"
+    },
     {
       "id": "13872",
       "kennung": "BV-XII/01/2026",
@@ -102,6 +374,199 @@
           "vorlage_url": "",
           "dokumente": [],
           "beratungen": []
+        }
+      ],
+      "quelle": "stadt"
+    },
+    {
+      "id": "13551",
+      "kennung": "SGA/03/2026",
+      "gremium": "Ausschuss für Soziales, Gesundheit, Stiftungen und Familien",
+      "raum": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
+      "datum": "2026-11-19",
+      "datum_anzeige": "19.11.2026",
+      "zeit": "16:00 Uhr",
+      "url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13551",
+      "dokumente": [
+        {
+          "titel": "Öffentliche Bekanntmachung",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255518&type=do"
+        },
+        {
+          "titel": "Livestream",
+          "url": "https://www.ingolstadt.de/live"
+        }
+      ],
+      "tops": [
+        {
+          "nr": "Ö 1",
+          "titel": "Jahresabschluss und Bericht über die Erfüllung des Stiftungszweckes der Exzellenzstiftung — Ingolstädter Wissenschaft - Ignaz Kögler für das Jahr 2025",
+          "zusatz": "Referent: Herr Müller",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0696/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23457",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254856&type=do"
+            },
+            {
+              "titel": "Anlage zu V0696-26 Jahresabschluss 2025",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254857&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-11-19",
+              "datum_anzeige": "19.11.2026",
+              "gremium": "Ausschuss für Soziales, Gesundheit, Stiftungen und Familien",
+              "top_nr": "1",
+              "oeffentlich": true,
+              "rolle": "Bekanntgabe",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13551&toselect=91176"
+            }
+          ]
+        },
+        {
+          "nr": "Ö 2",
+          "titel": "Haushaltspläne des Peter-Steuart-Hauses und der Waisenhausstiftung für das Jahr 2027",
+          "zusatz": "Referent: Herr Müller",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0695/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23456",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255459&type=do"
+            },
+            {
+              "titel": "Anlage zu V0695-26 HH-Pläne PSH und WHS 2027",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255460&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-11-19",
+              "datum_anzeige": "19.11.2026",
+              "gremium": "Ausschuss für Soziales, Gesundheit, Stiftungen und Familien",
+              "top_nr": "2",
+              "oeffentlich": true,
+              "rolle": "Vorberatung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13551&toselect=91180"
+            }
+          ]
+        },
+        {
+          "nr": "Ö 3",
+          "titel": "Sachstandsinformation zur Umsetzung des Gewalthilfegesetzes ab 01.01.2027",
+          "zusatz": "Mündlicher Bericht: Herr Fischer",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 4",
+          "titel": "Rückforderung von Fördermitteln von der Heilig-Geist-Stiftung aufgrund der Aufgabe der stationären Pflegeeinrichtung in der Fechtgasse und Umnutzung zu Service Wohnen",
+          "zusatz": "Referent: Herr Fischer",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0629/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23385",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=253953&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-10-22",
+              "datum_anzeige": "22.10.2026",
+              "gremium": "Ausschuss für Finanzen und Personal",
+              "top_nr": "15",
+              "oeffentlich": true,
+              "rolle": "Entscheidung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13545&toselect=90514"
+            },
+            {
+              "datum": "2026-11-19",
+              "datum_anzeige": "19.11.2026",
+              "gremium": "Ausschuss für Soziales, Gesundheit, Stiftungen und Familien",
+              "top_nr": "4",
+              "oeffentlich": true,
+              "rolle": "Vorberatung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13551&toselect=91177"
+            }
+          ]
+        },
+        {
+          "nr": "Ö 5",
+          "titel": "Gewährung eines Verwaltungskostenzuschusses an die Träger der Flüchtlings- und Integrationsberatung nach der Beratungs- und Integrationsrichtlinie des Freistaates Bayern",
+          "zusatz": "Referent: Herr Fischer",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0683/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23442",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255298&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-11-19",
+              "datum_anzeige": "19.11.2026",
+              "gremium": "Ausschuss für Soziales, Gesundheit, Stiftungen und Familien",
+              "top_nr": "5",
+              "oeffentlich": true,
+              "rolle": "Vorberatung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13551&toselect=91178"
+            }
+          ]
+        },
+        {
+          "nr": "Ö 6",
+          "titel": "Einrichtung eines Stadtteilmanagements im Quartier \"Stinnesstraße\"",
+          "zusatz": "Referent: Herr Fischer",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0179/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=22927",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254764&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-11-19",
+              "datum_anzeige": "19.11.2026",
+              "gremium": "Ausschuss für Soziales, Gesundheit, Stiftungen und Familien",
+              "top_nr": "6",
+              "oeffentlich": true,
+              "rolle": "Entscheidung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13551&toselect=91179"
+            }
+          ]
         }
       ],
       "quelle": "stadt"
@@ -1189,6 +1654,10 @@
           "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255178&type=do"
         },
         {
+          "titel": "Öffentliche Bekanntmachung ergänzt",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255560&type=do"
+        },
+        {
           "titel": "Livestream",
           "url": "https://www.ingolstadt.de/live"
         }
@@ -1205,6 +1674,24 @@
           "vorlage": "",
           "vorlage_url": "",
           "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö",
+          "titel": "Hierzu liegt vor:",
+          "zusatz": "",
+          "antragsteller": "Antrag der SPD-Stadtratsfraktion vom 09.11.2026 zum Thema Aktivierung und Vermarktung kommunaler Gewerbeflächen – Perspektiven für Ansiedlung und Erweiterung von Unternehmen in Ingolstadt",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0725/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23488",
+          "dokumente": [
+            {
+              "titel": "Stadtratsantrag SPD",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255482&type=do"
+            }
+          ],
           "beratungen": []
         },
         {
@@ -1263,7 +1750,7 @@
         },
         {
           "nr": "Ö",
-          "titel": "Hierzu liegt vor: — -Änderungsantrag der ödp-Stadtratsgruppe zu V0693/26 vom 05.11.2026-",
+          "titel": "Hierzu liegt vor: — Änderungsantrag der ödp-Stadtratsgruppe vom 05.11.2026",
           "zusatz": "",
           "antragsteller": "",
           "nachtrag": "09.11.2026",
@@ -1275,6 +1762,42 @@
             {
               "titel": "Stadtratsantrag ÖDP",
               "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255392&type=do"
+            }
+          ],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö",
+          "titel": "Hierzu liegt vor: — Änderungsantrag der Ausschussgemeinschaft UWG/FDP vom 05.11.2026",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "12.11.2026",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0727/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23490",
+          "dokumente": [
+            {
+              "titel": "Stadtratsantrag UWG/FDP",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255487&type=do"
+            }
+          ],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö",
+          "titel": "Hierzu liegt vor: — Ergänzungsantrag der SPD-Stadtratsfraktion vom 12.11.2026 zum Thema Gesundheitswirtschaft als zusätzliches wirtschaftliches Zukunftsfeld für Ingolstadt",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "13.11.2026",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0737/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23500",
+          "dokumente": [
+            {
+              "titel": "Stadtratsantrag SPD",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255552&type=do"
             }
           ],
           "beratungen": []
@@ -2841,6 +3364,66 @@
         },
         {
           "nr": "Ö 11",
+          "titel": "Erteilung einer Baugenehmigung zum Neubau eines Logistikzentrums mit Parkhaus und Nebenanlagen in der Carl-Benz-Straße 14",
+          "zusatz": "Referentin: Frau Wittmann-Brand",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0686/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23446",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254704&type=do"
+            },
+            {
+              "titel": "Anlage 1 Lageplan",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255012&type=do"
+            },
+            {
+              "titel": "Anlage 2 Luftbild",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255013&type=do"
+            },
+            {
+              "titel": "Anlage 3 Grundrisse",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255014&type=do"
+            },
+            {
+              "titel": "Anlage 4 Ansichten",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255015&type=do"
+            },
+            {
+              "titel": "Anlage 5 Freiflächenplan",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255016&type=do"
+            },
+            {
+              "titel": "Anlage 6 Betriebsbeschreibung vom 20.04.2026",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255017&type=do"
+            },
+            {
+              "titel": "Anlage 7 Verkehrsstudie vom 01.04.2026",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255018&type=do"
+            },
+            {
+              "titel": "Anlage 8 Schalltechniches Gutachten vom 28.04.2026",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255019&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-10-29",
+              "datum_anzeige": "29.10.2026",
+              "gremium": "Stadtrat",
+              "top_nr": "11",
+              "oeffentlich": true,
+              "rolle": "Entscheidung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=91045"
+            }
+          ]
+        },
+        {
+          "nr": "Ö 12",
           "titel": "Änderung der Geschäftsordnung für den Stadtrat der Stadt Ingolstadt; — Widmung, Einziehung, Teileinziehung und Umstufung von Straßen",
           "zusatz": "Referenten: Oberbürgermeister Dr. Kern, Herr Müller, Herr Franz",
           "antragsteller": "",
@@ -2868,7 +3451,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "11",
+              "top_nr": "12",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90731"
@@ -2876,7 +3459,7 @@
           ]
         },
         {
-          "nr": "Ö 12",
+          "nr": "Ö 13",
           "titel": "Haushaltssicherungskonzept (HSK)",
           "zusatz": "Referent: Herr Fleckinger",
           "antragsteller": "",
@@ -2925,7 +3508,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "12",
+              "top_nr": "13",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90878"
@@ -2933,7 +3516,7 @@
           ]
         },
         {
-          "nr": "Ö 13",
+          "nr": "Ö 14",
           "titel": "Weitere Maßnahmen zur Umsetzung des Dachbeschlusses",
           "zusatz": "",
           "antragsteller": "",
@@ -3036,7 +3619,7 @@
           "beratungen": []
         },
         {
-          "nr": "Ö 14",
+          "nr": "Ö 15",
           "titel": "Neuerlass/Neufassung einer Satzung für die Erhebung der Hundesteuer — Maßnahme zur Aufnahme in das HSK",
           "zusatz": "Referenten: Herr Fleckinger, Herr Müller",
           "antragsteller": "",
@@ -3077,7 +3660,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "14",
+              "top_nr": "15",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90879"
@@ -3085,7 +3668,7 @@
           ]
         },
         {
-          "nr": "Ö 15",
+          "nr": "Ö 16",
           "titel": "Sanierung Technisches Rathaus Bürogebäude und Tiefgarage, Spitalstraße 3, 85049 Ingolstadt / Projektgenehmigung",
           "zusatz": "Referent: Herr Franz",
           "antragsteller": "",
@@ -3151,7 +3734,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "15",
+              "top_nr": "16",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90861"
@@ -3181,7 +3764,7 @@
           "beratungen": []
         },
         {
-          "nr": "Ö 16",
+          "nr": "Ö 17",
           "titel": "Erlass von Allgemeinverfügungen zur Benutzung der Naherholungsgebiete Auwaldsee, Schaffirrsee und Mailinger Aue",
           "zusatz": "Referent: Oberbürgermeister Dr. Kern",
           "antragsteller": "",
@@ -3222,7 +3805,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "16",
+              "top_nr": "17",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90730"
@@ -3230,7 +3813,7 @@
           ]
         },
         {
-          "nr": "Ö 17",
+          "nr": "Ö 18",
           "titel": "Beteiligungsbericht 2026",
           "zusatz": "Referent: Oberbürgermeister Dr. Kern",
           "antragsteller": "",
@@ -3263,7 +3846,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "17",
+              "top_nr": "18",
               "oeffentlich": true,
               "rolle": "Bekanntgabe",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90862"
@@ -3271,7 +3854,7 @@
           ]
         },
         {
-          "nr": "Ö 18",
+          "nr": "Ö 19",
           "titel": "Stadtbus Ingolstadt GmbH: — Fahrplanmaßnahmen ÖPNV Ingolstadt",
           "zusatz": "Referent: Oberbürgermeister Dr. Kern",
           "antragsteller": "",
@@ -3291,7 +3874,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "18",
+              "top_nr": "19",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90736"
@@ -3299,7 +3882,7 @@
           ]
         },
         {
-          "nr": "Ö 19",
+          "nr": "Ö 20",
           "titel": "Digitales Gründerzentrum der Region Ingolstadt GmbH (brigk); — Ausübung Gesellschafterrechte zum Jahresabschluss 2025",
           "zusatz": "Referent: Oberbürgermeister Dr. Kern",
           "antragsteller": "",
@@ -3327,7 +3910,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "19",
+              "top_nr": "20",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90864"
@@ -3335,7 +3918,7 @@
           ]
         },
         {
-          "nr": "Ö 20",
+          "nr": "Ö 21",
           "titel": "Internationale Bauausstellung Metropolregion München GmbH; — Ausübung der Gesellschafterrechte zum Jahresabschluss 2025",
           "zusatz": "Referent: Oberbürgermeister Dr. Kern, Herr Prof. Dr. Rosenfeld",
           "antragsteller": "",
@@ -3359,7 +3942,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "20",
+              "top_nr": "21",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90863"
@@ -3367,7 +3950,7 @@
           ]
         },
         {
-          "nr": "Ö 21",
+          "nr": "Ö 22",
           "titel": "Errichtung eines Ingolstädter Technologie-Transferzentrums für humanoide Robotik und Künstliche Intelligenz",
           "zusatz": "",
           "antragsteller": "",
@@ -3448,7 +4031,7 @@
           ]
         },
         {
-          "nr": "Ö 22",
+          "nr": "Ö 23",
           "titel": "Jahresabschlüsse 2025 der Heilig-Geist-Spital-Stiftung Ingolstadt und der — fiduziarischen Stiftung van Schoor",
           "zusatz": "Referent: Oberbürgermeister Dr. Kern",
           "antragsteller": "",
@@ -3476,7 +4059,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "22",
+              "top_nr": "23",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90734"
@@ -3484,7 +4067,7 @@
           ]
         },
         {
-          "nr": "Ö 23",
+          "nr": "Ö 24",
           "titel": "Wirtschaftspläne für das Wirtschaftsjahr Oktober 2026 bis September 2027 — einschl. Mittelfristplanung bis 2029/30 der Ingolstädter Kommunalbetriebe AöR, der Stadtwerke Ingolstadt Freizeitanlagen GmbH und der Ingolstädter Verkehrsgesellschaft mbH",
           "zusatz": "Referenten: Oberbürgermeister Dr. Kern, Bürgermeister De Lapuente",
           "antragsteller": "",
@@ -3517,7 +4100,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "23",
+              "top_nr": "24",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90871"
@@ -3525,7 +4108,7 @@
           ]
         },
         {
-          "nr": "Ö 24",
+          "nr": "Ö 25",
           "titel": "Gebührenbericht für kostenrechnende Einrichtungen",
           "zusatz": "Referent: Herr Müller",
           "antragsteller": "",
@@ -3558,7 +4141,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "24",
+              "top_nr": "25",
               "oeffentlich": true,
               "rolle": "Bekanntgabe",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90737"
@@ -3566,7 +4149,7 @@
           ]
         },
         {
-          "nr": "Ö 25",
+          "nr": "Ö 26",
           "titel": "Feuerwehrbedarfsplan der Stadt Ingolstadt — hier: Umsetzungsbeschluss zur notwendigen Weiterentwicklung der Feuerwehr Ingolstadt",
           "zusatz": "Referent: Herr Müller",
           "antragsteller": "",
@@ -3603,7 +4186,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "25",
+              "top_nr": "26",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90739"
@@ -3637,7 +4220,7 @@
           "beratungen": []
         },
         {
-          "nr": "Ö 26",
+          "nr": "Ö 27",
           "titel": "Änderung der Satzung über Aufwendungs- und Kostenersatz für Einsätze und andere Leistungen der Feuerwehren der Stadt Ingolstadt (Feuerwehraufwendungs- und Kostenersatzsatzung - FwKS) — hier: Anpassung an das neue Umsatzsteuerrecht für Kommunen ab 2027(§2b UStG)",
           "zusatz": "Referent: Herr Müller",
           "antragsteller": "",
@@ -3670,7 +4253,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "26",
+              "top_nr": "27",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90738"
@@ -3678,7 +4261,7 @@
           ]
         },
         {
-          "nr": "Ö 27",
+          "nr": "Ö 28",
           "titel": "Änderung der Satzung über kommunale Auszeichnungen der Stadt Ingolstadt",
           "zusatz": "",
           "antragsteller": "",
@@ -3766,7 +4349,7 @@
           "beratungen": []
         },
         {
-          "nr": "Ö 28",
+          "nr": "Ö 29",
           "titel": "1. Vorgezogene Zusammenführung der Mittelschulsprengel Auf der Schanz und Friedrichshofen sowie Auflösung der Mittelschule Friedrichshofen; — Änderung der Sprengelorganisation — — 2. Änderung der amtlichen Bezeichnung der „Mittelschule Ingolstadt, Aufder Schanz\" in die amtliche Bezeichnung mit Schulnamen „Magdalena-Herrle-Mittelschule Ingolstadt“",
           "zusatz": "Referent: Herr Grandmontagne",
           "antragsteller": "",
@@ -3807,7 +4390,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "28",
+              "top_nr": "29",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90740"
@@ -3815,7 +4398,7 @@
           ]
         },
         {
-          "nr": "Ö 29",
+          "nr": "Ö 30",
           "titel": "Neuausschreibung der Mittagsverpflegung an Kitas und Schulen in städtischer Sachaufwandsträgerschaft – Projektgenehmigung",
           "zusatz": "Referent: Herr Grandmontagne",
           "antragsteller": "",
@@ -3848,7 +4431,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "29",
+              "top_nr": "30",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90741"
@@ -3856,7 +4439,7 @@
           ]
         },
         {
-          "nr": "Ö 30",
+          "nr": "Ö 31",
           "titel": "Regelung für die Betreuung von Besuchen von oder bei Partnerstädten",
           "zusatz": "",
           "antragsteller": "",
@@ -3923,7 +4506,7 @@
           "beratungen": []
         },
         {
-          "nr": "Ö 31",
+          "nr": "Ö 32",
           "titel": "Unverzügliche Einstellung und Digitalisierung der Druckpublikationen des Stadttheaters Ingolstadt",
           "zusatz": "",
           "antragsteller": "",
@@ -3972,7 +4555,7 @@
           "beratungen": []
         },
         {
-          "nr": "Ö 32",
+          "nr": "Ö 33",
           "titel": "Abschlussbericht Empfangs- und Unterbringungszentrum CAR — und Projektgenehmigung Einrichtung Wasserversorgung",
           "zusatz": "Referent: Herr Grandmontagne",
           "antragsteller": "",
@@ -4010,7 +4593,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "32",
+              "top_nr": "33",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90742"
@@ -4018,7 +4601,7 @@
           ]
         },
         {
-          "nr": "Ö 33",
+          "nr": "Ö 34",
           "titel": "Gebühren für die Benutzung der Obdachlosenunterkünfte; Gebührenbericht 2025, Weiterbeauftragung des Sicherheitsdienstes, Änderung der Satzung über die Gebührenerhebung und Aufnahme der Maßnahme in das HSK",
           "zusatz": "Referent: Herr Fischer",
           "antragsteller": "",
@@ -4072,7 +4655,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "33",
+              "top_nr": "34",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90746"
@@ -4080,7 +4663,7 @@
           ]
         },
         {
-          "nr": "Ö 34",
+          "nr": "Ö 35",
           "titel": "Gotthold-Ephraim-Lessing-Grundschule - Erweiterung / 1. Ergänzende Projektgenehmigung",
           "zusatz": "Referent: Herr Franz",
           "antragsteller": "",
@@ -4131,7 +4714,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "34",
+              "top_nr": "35",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90747"
@@ -4139,7 +4722,7 @@
           ]
         },
         {
-          "nr": "Ö 35",
+          "nr": "Ö 36",
           "titel": "Vorhabenbezogener Bebauungs- und Grünordnungsplan Nr. 935 „Solarparks Winden südlich B 16“ mit Änderung des Flächennutzungsplans im Parallelverfahren; — -Durchführungsvertrag-",
           "zusatz": "Referentin: Frau Wittmann-Brand",
           "antragsteller": "",
@@ -4200,7 +4783,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "35",
+              "top_nr": "36",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90748"
@@ -4208,7 +4791,7 @@
           ]
         },
         {
-          "nr": "Ö 36",
+          "nr": "Ö 37",
           "titel": "Vorhabenbezogener Bebauungs- und Grünordnungsplan Nr. 935 „Solarparks Winden südlich B 16“ mit Änderung des Flächennutzungsplans im Parallelverfahren; — -Satzungsbeschluss-",
           "zusatz": "Referentin: Frau Wittmann-Brand",
           "antragsteller": "",
@@ -4293,70 +4876,10 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "36",
-              "oeffentlich": true,
-              "rolle": "Entscheidung",
-              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90749"
-            }
-          ]
-        },
-        {
-          "nr": "Ö 37",
-          "titel": "Erteilung einer Baugenehmigung zum Neubau eines Logistikzentrums mit Parkhaus und Nebenanlagen in der Carl-Benz-Straße 14",
-          "zusatz": "Referentin: Frau Wittmann-Brand",
-          "antragsteller": "",
-          "nachtrag": "",
-          "oeffentlich": true,
-          "verfahren": false,
-          "vorlage": "V0686/26",
-          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23446",
-          "dokumente": [
-            {
-              "titel": "Vorlage",
-              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254704&type=do"
-            },
-            {
-              "titel": "Anlage 1 Lageplan",
-              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255012&type=do"
-            },
-            {
-              "titel": "Anlage 2 Luftbild",
-              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255013&type=do"
-            },
-            {
-              "titel": "Anlage 3 Grundrisse",
-              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255014&type=do"
-            },
-            {
-              "titel": "Anlage 4 Ansichten",
-              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255015&type=do"
-            },
-            {
-              "titel": "Anlage 5 Freiflächenplan",
-              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255016&type=do"
-            },
-            {
-              "titel": "Anlage 6 Betriebsbeschreibung vom 20.04.2026",
-              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255017&type=do"
-            },
-            {
-              "titel": "Anlage 7 Verkehrsstudie vom 01.04.2026",
-              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255018&type=do"
-            },
-            {
-              "titel": "Anlage 8 Schalltechniches Gutachten vom 28.04.2026",
-              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255019&type=do"
-            }
-          ],
-          "beratungen": [
-            {
-              "datum": "2026-10-29",
-              "datum_anzeige": "29.10.2026",
-              "gremium": "Stadtrat",
               "top_nr": "37",
               "oeffentlich": true,
               "rolle": "Entscheidung",
-              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=91045"
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90749"
             }
           ]
         },
@@ -6233,7 +6756,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "26",
+              "top_nr": "27",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90738"
@@ -6274,7 +6797,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "24",
+              "top_nr": "25",
               "oeffentlich": true,
               "rolle": "Bekanntgabe",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90737"
@@ -6332,7 +6855,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "25",
+              "top_nr": "26",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90739"
@@ -6487,7 +7010,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "12",
+              "top_nr": "13",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90878"
@@ -6549,7 +7072,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "33",
+              "top_nr": "34",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90746"
@@ -6705,7 +7228,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "14",
+              "top_nr": "15",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90879"
@@ -6774,7 +7297,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "17",
+              "top_nr": "18",
               "oeffentlich": true,
               "rolle": "Bekanntgabe",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90862"
@@ -6815,7 +7338,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "23",
+              "top_nr": "24",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90871"
@@ -6994,7 +7517,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "32",
+              "top_nr": "33",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90742"
@@ -7022,10 +7545,34 @@
           "nachtrag": "",
           "oeffentlich": true,
           "verfahren": false,
-          "vorlage": "",
-          "vorlage_url": "",
-          "dokumente": [],
-          "beratungen": []
+          "vorlage": "V0629/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23385",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=253953&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-10-22",
+              "datum_anzeige": "22.10.2026",
+              "gremium": "Ausschuss für Finanzen und Personal",
+              "top_nr": "15",
+              "oeffentlich": true,
+              "rolle": "Entscheidung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13545&toselect=90514"
+            },
+            {
+              "datum": "2026-11-19",
+              "datum_anzeige": "19.11.2026",
+              "gremium": "Ausschuss für Soziales, Gesundheit, Stiftungen und Familien",
+              "top_nr": "4",
+              "oeffentlich": true,
+              "rolle": "Vorberatung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13551&toselect=91177"
+            }
+          ]
         },
         {
           "nr": "Ö 16",
@@ -7094,7 +7641,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "15",
+              "top_nr": "16",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90861"
@@ -7185,7 +7732,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "34",
+              "top_nr": "35",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90747"
@@ -8015,7 +8562,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "35",
+              "top_nr": "36",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90748"
@@ -8108,7 +8655,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "36",
+              "top_nr": "37",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90749"
@@ -8243,7 +8790,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "34",
+              "top_nr": "35",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90747"
@@ -8349,7 +8896,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "15",
+              "top_nr": "16",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90861"
@@ -9114,7 +9661,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "28",
+              "top_nr": "29",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90740"
@@ -9155,7 +9702,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "29",
+              "top_nr": "30",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90741"
@@ -9201,7 +9748,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "32",
+              "top_nr": "33",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90742"
@@ -9309,7 +9856,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "34",
+              "top_nr": "35",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90747"
@@ -9511,10 +10058,10 @@
       "id": "14324",
       "kennung": "BZA-I/05/2026",
       "gremium": "Bezirksausschuss I-Mitte",
-      "raum": "Gemeindesaal St. Matthäus, Schrannenstraße 7, 85049 Ingolstadt —",
+      "raum": "Gemeindesaal St. Matthäus, Schrannenstraße 7, 85049 Ingolstadt",
       "datum": "2026-10-13",
       "datum_anzeige": "13.10.2026",
-      "zeit": "19:30 Uhr",
+      "zeit": "19:30-23:04 Uhr",
       "url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14324",
       "dokumente": [
         {
@@ -10016,7 +10563,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "33",
+              "top_nr": "34",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90746"
@@ -10565,7 +11112,7 @@
               "datum": "2026-10-29",
               "datum_anzeige": "29.10.2026",
               "gremium": "Stadtrat",
-              "top_nr": "16",
+              "top_nr": "17",
               "oeffentlich": true,
               "rolle": "Entscheidung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90730"
@@ -177144,24 +177691,6 @@
   ],
   "kommende_termine": [
     {
-      "gremium": "Ausschusses für Soziales, Gesundheit, Stiftungen und Familien",
-      "artikel": "des",
-      "datum": "2026-11-19",
-      "datum_anzeige": "19.11.2026",
-      "zeit": "16:00 Uhr",
-      "ort": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
-      "quelle": "stadt"
-    },
-    {
-      "gremium": "Ausschusses für Kultur und Bildung",
-      "artikel": "des",
-      "datum": "2026-11-24",
-      "datum_anzeige": "24.11.2026",
-      "zeit": "16:00 Uhr",
-      "ort": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
-      "quelle": "stadt"
-    },
-    {
       "gremium": "Inklusionsrates",
       "artikel": "des",
       "datum": "2026-11-25",
@@ -177187,6 +177716,15 @@
       "zeit": "09:30-11:00 Uhr",
       "ort": "Sitzungssaal im 5. OG des Verwaltungsgebäudes",
       "quelle": "bezirk_obb"
+    },
+    {
+      "gremium": "Bezirksausschusses I-Mitte",
+      "artikel": "des",
+      "datum": "2026-12-01",
+      "datum_anzeige": "01.12.2026",
+      "zeit": "",
+      "ort": "- geplanter Sitzungstermin -",
+      "quelle": "bza"
     },
     {
       "gremium": "Ausschusses für Finanzen und Personal",

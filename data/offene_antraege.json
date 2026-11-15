@@ -1,6 +1,6 @@
 {
   "hinweis": "Antraege ohne Sitzungstermin, aus der Liste 'Aktuelle Stadtratsantraege' im Ratsinfoportal der Stadt Ingolstadt. Sobald die Tagesordnung seiner Sitzung veroeffentlicht ist, verschwindet ein Antrag von hier und taucht stattdessen ganz normal ueber ris_ingolstadt.py auf. Bis dahin steht ein schon angesetzter Termin im Feld 'termin'.",
-  "abgerufen_am": "2026-11-10",
+  "abgerufen_am": "2026-11-15",
   "antraege": [
     {
       "quelle": "stadt",
@@ -575,24 +575,6 @@
         {
           "titel": "Stadtratsantrag FW",
           "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=252563&type=do"
-        }
-      ]
-    },
-    {
-      "quelle": "stadt",
-      "kvonr": "23243",
-      "titel": "Forschungsprojekt „Opfer des Nationalsozialismus in Ingolstadt“",
-      "antragsteller": "SPD-Stadtratsfraktion",
-      "antragsdatum": "2026-07-24",
-      "antragsdatum_anzeige": "24.07.2026",
-      "vorlage": "V0488/26",
-      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23243",
-      "ziel_gremium": "",
-      "termin": "2026-11-24",
-      "dokumente": [
-        {
-          "titel": "Stadtratsantrag SPD",
-          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=252488&type=do"
         }
       ]
     },
@@ -2493,24 +2475,6 @@
         {
           "titel": "Stadtratsantrag SPD",
           "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=253301&type=do"
-        }
-      ]
-    },
-    {
-      "quelle": "stadt",
-      "kvonr": "23040",
-      "titel": "Eine Schule in unseren Kaufhof?",
-      "antragsteller": "",
-      "antragsdatum": "",
-      "antragsdatum_anzeige": "",
-      "vorlage": "V0289/26",
-      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23040",
-      "ziel_gremium": "Ausschuss für Kultur und Bildung Ausschuss für Kultur und Bildung öffentlich - Vorberatung Stadtrat",
-      "termin": "2026-11-24",
-      "dokumente": [
-        {
-          "titel": "Stadtratsantrag ÖDP",
-          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=250201&type=do"
         }
       ]
     },

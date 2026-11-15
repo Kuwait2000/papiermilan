@@ -1,6 +1,6 @@
 {
  "erzeugt_von": "scraper/klima_bauen.py",
- "erzeugt_am": "2026-11-10",
+ "erzeugt_am": "2026-11-15",
  "klima": {
   "station": "Kösching",
   "station_id": "02700",
@@ -862,14 +862,14 @@
    {
     "jahr": 2026,
     "vollstaendig": false,
-    "bis": "09.11.2026",
+    "bis": "14.11.2026",
     "mitteltemperatur": null,
     "heisse_tage": 40,
     "sommertage": 84,
     "tropennaechte": 4,
-    "frosttage": 46,
+    "frosttage": 48,
     "eistage": 11,
-    "niederschlag_mm": 422,
+    "niederschlag_mm": 435,
     "abweichung": null
    }
   ],
@@ -3021,23 +3021,23 @@
    },
    {
     "jahr": 2026,
-    "zubau_anzahl": 1350,
-    "zubau_kw": 21202,
-    "bestand_anzahl": 9697,
-    "bestand_kw": 127182,
+    "zubau_anzahl": 1382,
+    "zubau_kw": 21510,
+    "bestand_anzahl": 9729,
+    "bestand_kw": 127490,
     "bestand_kwh": 0,
-    "zubau_kw_dach": 12844,
-    "bestand_kw_dach": 107901,
-    "zubau_anzahl_dach": 687,
+    "zubau_kw_dach": 13149,
+    "bestand_kw_dach": 108207,
+    "zubau_anzahl_dach": 716,
     "zubau_kw_freiflaeche": 7496,
     "bestand_kw_freiflaeche": 16399,
     "zubau_anzahl_freiflaeche": 2,
-    "zubau_kw_stecker": 862,
-    "bestand_kw_stecker": 2882,
-    "zubau_anzahl_stecker": 661
+    "zubau_kw_stecker": 865,
+    "bestand_kw_stecker": 2885,
+    "zubau_anzahl_stecker": 664
    }
   ],
-  "in_planung_kw": 11972,
+  "in_planung_kw": 12004,
   "quelle": "https://www.marktstammdatenregister.de/MaStR/Einheit/Einheiten/ErweiterteOeffentlicheEinheitenuebersicht"
  },
  "speicher": {
@@ -3652,20 +3652,20 @@
    },
    {
     "jahr": 2026,
-    "zubau_anzahl": 990,
-    "zubau_kw": 5270,
-    "bestand_anzahl": 4527,
-    "bestand_kw": 27765,
-    "bestand_kwh": 41266
+    "zubau_anzahl": 1015,
+    "zubau_kw": 5476,
+    "bestand_anzahl": 4552,
+    "bestand_kw": 27971,
+    "bestand_kwh": 41565
    }
   ],
   "quelle": "https://www.marktstammdatenregister.de/MaStR/Einheit/Einheiten/ErweiterteOeffentlicheEinheitenuebersicht"
  },
  "laden": {
-  "stand": "01.09.2026",
-  "quelle": "https://data.bundesnetzagentur.de/Bundesnetzagentur/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenregister_BNetzA_2026-09-01.csv",
-  "einrichtungen": 858,
-  "ladepunkte": 1516,
+  "stand": "12.11.2026",
+  "quelle": "https://data.bundesnetzagentur.de/Bundesnetzagentur/DE/Fachthemen/ElektrizitaetundGas/E-Mobilitaet/Ladesaeulenregister_BNetzA_2026-11-12.csv",
+  "einrichtungen": 869,
+  "ladepunkte": 1538,
   "schnell": 222,
   "reihe": [
    {
@@ -3735,18 +3735,18 @@
    },
    {
     "jahr": 2024,
-    "zubau": 112,
-    "bestand": 1408
+    "zubau": 106,
+    "bestand": 1402
    },
    {
     "jahr": 2025,
     "zubau": 94,
-    "bestand": 1502
+    "bestand": 1496
    },
    {
     "jahr": 2026,
-    "zubau": 14,
-    "bestand": 1516
+    "zubau": 42,
+    "bestand": 1538
    }
   ]
  },
