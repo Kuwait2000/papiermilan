@@ -51,16 +51,22 @@ def top_ref(quelle, sitzung, top, bare_pos=None):
 
 
 # Gremien, die keine Buergerinformation im Sinne dieser Seite sind: Aufsichts-
-# und Verwaltungsraete staedtischer Gesellschaften, Zweckverbaende, Beiraete.
+# und Verwaltungsraete staedtischer Gesellschaften und Zweckverbaende.
 # Ihre Tagesordnungen sind formal oeffentlich, aber inhaltlich Unternehmens-
 # steuerung — Jahresabschluesse, Beteiligungsberichte, Gremienbesetzungen.
+#
+# Beiraete und Kommissionen gehoeren NICHT dazu. Bis November 2026 standen
+# "Beirat" und "Kommission" mit im Muster; dadurch fielen ueber 600 Punkte
+# aus Fahrradbeirat, Kulturbeirat, Klimabeirat, Seniorenkommission und den
+# Quartiersentwicklungen heraus — genau die Themen, die Leute im Alltag
+# betreffen. Sie laufen jetzt wie jeder Ausschuss.
 #
 # Lebt hier statt in entwuerfe_bauen.py, weil auch ris_ingolstadt.py sie
 # braucht (Filter fuer kommende Termine ohne Tagesordnung) — und die unterste
 # Schicht darf nicht von einem hoeheren Skript importieren.
 BETEILIGUNG_MUSTER = re.compile(
     r"Aufsichtsrat|Verwaltungsrat|\bAöR\b|GmbH|Zweckverband|Verbandsversammlung|"
-    r"Beirat|Kommission|Gesellschafterversammlung",
+    r"Gesellschafterversammlung",
     re.I,
 )
 

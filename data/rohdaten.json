@@ -1,7 +1,7 @@
 {
   "quellen": {
     "stadt": {
-      "name": "Ratsinfoportal der Stadt Ingolstadt — Stadtrat und Ausschuesse",
+      "name": "Ratsinfoportal der Stadt Ingolstadt — Stadtrat und Ausschüsse",
       "software": "Session (Somacos GmbH & Co. KG)",
       "basis_url": "https://www.ingolstadt.de/sessionnet",
       "endung": "php",
@@ -9,7 +9,7 @@
       "anzahl_tops": 3337
     },
     "bza": {
-      "name": "Ratsinfoportal der Bezirksausschuesse der Stadt Ingolstadt",
+      "name": "Ratsinfoportal der Bezirksausschüsse der Stadt Ingolstadt",
       "software": "Session (Somacos GmbH & Co. KG)",
       "basis_url": "https://www.ingolstadt.de/sessionnetbza",
       "endung": "php",
@@ -17,7 +17,7 @@
       "anzahl_tops": 2370
     },
     "bezirk_obb": {
-      "name": "Buergerinfoportal des Bezirks Oberbayern",
+      "name": "Bürgerinfoportal des Bezirks Oberbayern",
       "software": "Session (Somacos GmbH & Co. KG)",
       "basis_url": "https://buergerinfo-bezirk-obb.digitalfabrix.de",
       "endung": "asp",

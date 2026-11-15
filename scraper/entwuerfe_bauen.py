@@ -299,6 +299,8 @@ def main():
         eintrag["ort"] = []
         eintrag["anlass"] = schlagworte(suchtext, ANLASS_STICHWORTE)
         eintrag["entwurf"] = True
+        # Titel, zu dem der Entwurf gehoert — siehe anker_setzen.py
+        eintrag["titel_anker"] = top["titel"]
         neu[ref] = eintrag
 
     ohne_schlagwort = [r for r, e in neu.items()
@@ -320,8 +322,10 @@ def main():
         return
 
     vorhanden.update(neu)
+    # Gleiche Einrueckung wie anker_setzen.py, sonst schreibt jedes der beiden
+    # Skripte die ganze Datei um und der Git-Diff wird unlesbar.
     with open(kur_pfad, "w", encoding="utf-8") as f:
-        json.dump(kuration, f, ensure_ascii=False, indent=2)
+        json.dump(kuration, f, ensure_ascii=False, indent=1)
         f.write("\n")
     print(f"\nGeschrieben: {kur_pfad} ({len(vorhanden)} Eintraege insgesamt)")
 

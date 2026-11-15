@@ -25,6 +25,7 @@ DATEN_VZ = os.path.join(os.path.dirname(HIER), "data")
 
 sys.path.insert(0, HIER)
 from entwuerfe_bauen import ist_sammelueberschrift  # noqa: E402
+import anker_setzen  # noqa: E402
 from referenzen import bare_positionen, ist_beteiligung, top_ref  # noqa: E402
 
 # Frueher "Ohne Vorlage" — ein Verwaltungsbegriff, der nichts ueber das
@@ -33,6 +34,20 @@ from referenzen import bare_positionen, ist_beteiligung, top_ref  # noqa: E402
 # sehen (Nutzertest 2026-09-30). Oberflaeche und antraege.html zeigen genau
 # diesen Wortlaut, deshalb nur hier aendern.
 STAND_OHNE_ENTSCHEIDUNG = "Nur besprochen, nichts entschieden"
+
+# Drei Faelle, die frueher alle unter STAND_OHNE_ENTSCHEIDUNG liefen und dort
+# falsch standen:
+#  - Die Sitzung liegt noch in der Zukunft. "Nur besprochen" stimmt dann
+#    schon in der Zeitform nicht.
+#  - Bezirksausschuss, Sitzung steht noch bevor: Die Sitzung ist oeffentlich,
+#    hier kann man hingehen — also "Noch offen" statt "Nur zur Information".
+#  - Bezirksausschuss, Sitzung vorbei: BZA-Punkte haben keine Vorlage, aber
+#    die Ausschuesse beschliessen durchaus (Buergerhaushalt, Antraege an die
+#    Stadt). Ob etwas beschlossen wurde, wissen wir nicht — "nichts
+#    entschieden" war eine Behauptung ohne Beleg.
+STAND_ANGEKUENDIGT = "Steht auf der Tagesordnung"
+STAND_BZA_KOMMT = "Kommt im Bezirksausschuss"
+STAND_BZA_BEHANDELT = "Im Bezirksausschuss behandelt"
 
 # Reihenfolge bestimmt die Sortierung der Filterachse "Stand"
 STAND_REIHENFOLGE = [
@@ -44,6 +59,9 @@ STAND_REIHENFOLGE = [
     "Teilweise beschlossen",  # einzelne Ziffern abgelehnt, andere genehmigt
     "Abgelehnt",     # — der Nachfolgezustand von "Entscheidung angesetzt"
     "Bekanntgabe",
+    STAND_BZA_KOMMT,
+    STAND_ANGEKUENDIGT,
+    STAND_BZA_BEHANDELT,
     STAND_OHNE_ENTSCHEIDUNG,
 ]
 
@@ -62,7 +80,8 @@ STATUS_ALLE = [STATUS_OFFEN, STATUS_ENTSCHIEDEN, STATUS_PROTOKOLL, STATUS_INFO]
 
 
 def status_aus_stand(stand):
-    if stand in ("Noch nicht terminiert", "Wird noch beraten", "Entscheidung geplant"):
+    if stand in ("Noch nicht terminiert", "Wird noch beraten", "Entscheidung geplant",
+                 STAND_BZA_KOMMT):
         return STATUS_OFFEN
     if stand in ("Beschlossen", "Teilweise beschlossen", "Abgelehnt"):
         return STATUS_ENTSCHIEDEN
@@ -174,13 +193,22 @@ def leitstation(auftritte):
     return max(kandidaten, key=lambda st: st[0]["datum"] or "")
 
 
-def stand_ableiten(top, heute_iso):
+def stand_ohne_vorlage(sitzung, heute_iso):
+    """Stand fuer Punkte ohne Vorlage: muendliche Berichte und alle BZA-Punkte.
+    Haengt an Quelle und Sitzungsdatum, siehe Kommentar bei STAND_ANGEKUENDIGT."""
+    bza = sitzung.get("quelle", "stadt") == "bza"
+    kommt_noch = (sitzung.get("datum") or "") > heute_iso
+    if bza:
+        return STAND_BZA_KOMMT if kommt_noch else STAND_BZA_BEHANDELT
+    return STAND_ANGEKUENDIGT if kommt_noch else STAND_OHNE_ENTSCHEIDUNG
+
+
+def stand_ableiten(top, heute_iso, sitzung=None):
     """Liefert (stand, datum_der_station) aus dem Beratungsweg."""
     beratungen = top.get("beratungen") or []
 
     if not top.get("vorlage"):
-        # Muendliche Berichte und alle BZA-Punkte haben keine Vorlage.
-        return STAND_OHNE_ENTSCHEIDUNG, ""
+        return stand_ohne_vorlage(sitzung or {}, heute_iso), ""
 
     entscheidungen = [s for s in beratungen if rolle_art(s["rolle"]) == "entscheidung"]
     if entscheidungen:
@@ -214,9 +242,31 @@ def stand_ableiten(top, heute_iso):
     return STAND_OHNE_ENTSCHEIDUNG, ""
 
 
+def anker_nachziehen(roh, kuration):
+    """Neue Kurationseintraege bekommen hier ihren Titel-Anker (siehe
+    anker_setzen.py). Laeuft bei jedem Feed-Bau mit, damit niemand daran
+    denken muss; geschrieben wird nur, wenn sich etwas geaendert hat."""
+    index = anker_setzen.top_index(roh)
+    eintraege = kuration["eintraege"]
+    gesetzt = anker_setzen.fehlende_setzen(eintraege, index)
+    if gesetzt:
+        anker_setzen.speichere(kuration, os.path.join(DATEN_VZ, "kuration.json"))
+        print(f"  {gesetzt} neue Titel-Anker in kuration.json gesetzt")
+    verrutscht = anker_setzen.abweichungen(eintraege, index)
+    if verrutscht:
+        print(
+            f"\n  ACHTUNG: {len(verrutscht)} Zusammenfassungen passen nicht mehr zum "
+            "amtlichen Titel unter ihrem Schluessel (Tagesordnung umnummeriert?).\n"
+            "  Ansehen:   python3 scraper/anker_setzen.py --zeigen\n"
+            "  Reparieren: python3 scraper/anker_setzen.py --umhaengen\n",
+            file=sys.stderr,
+        )
+
+
 def main():
     roh = lade("rohdaten.json")
     kuration = lade("kuration.json")
+    anker_nachziehen(roh, kuration)
     eintraege_kuration = kuration["eintraege"]
     heute_iso = date.today().isoformat()
 
@@ -315,7 +365,7 @@ def main():
         # Die Karte haengt an der Leitstation, nicht an der kuratierten Sitzung
         alle = auftritte_je_thema.get(schluessel) or [(sitzung, top)]
         sitzung, top = leitstation(alle)
-        stand, stand_datum = stand_ableiten(top, heute_iso)
+        stand, stand_datum = stand_ableiten(top, heute_iso, sitzung)
 
         # Liegt ein aus der Niederschrift extrahierter Beschluss zu genau
         # dieser Station vor, ersetzt er den abgeleiteten Stand — er ist die

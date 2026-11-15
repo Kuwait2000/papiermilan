@@ -20,7 +20,11 @@ Verwendung:
     python3 ris_ingolstadt.py --quelle bza           # nur Bezirksausschuesse Ingolstadt
     python3 ris_ingolstadt.py --quelle bezirk_obb    # nur Bezirk Oberbayern
     python3 ris_ingolstadt.py --ohne-beratungen      # Beratungsweg nicht laden
-    python3 ris_ingolstadt.py --no-cache             # Cache ignorieren
+    python3 ris_ingolstadt.py --no-cache             # Cache ignorieren (alles neu)
+
+Ohne --no-cache veralten nur die Seiten, die sich noch aendern koennen:
+Kalender ab dem Vormonat, Sitzungen der letzten 70 Tage und alle kommenden,
+Beratungswege laufender Vorlagen. Siehe FRISCH_STUNDEN.
 
 Ergebnis: ../data/rohdaten.json
 """
@@ -56,19 +60,19 @@ socket.getaddrinfo = _ipv4_zuerst
 
 QUELLEN = {
     "stadt": {
-        "name": "Ratsinfoportal der Stadt Ingolstadt — Stadtrat und Ausschuesse",
+        "name": "Ratsinfoportal der Stadt Ingolstadt — Stadtrat und Ausschüsse",
         "software": "Session (Somacos GmbH & Co. KG)",
         "basis_url": "https://www.ingolstadt.de/sessionnet",
         "endung": "php",
     },
     "bza": {
-        "name": "Ratsinfoportal der Bezirksausschuesse der Stadt Ingolstadt",
+        "name": "Ratsinfoportal der Bezirksausschüsse der Stadt Ingolstadt",
         "software": "Session (Somacos GmbH & Co. KG)",
         "basis_url": "https://www.ingolstadt.de/sessionnetbza",
         "endung": "php",
     },
     "bezirk_obb": {
-        "name": "Buergerinfoportal des Bezirks Oberbayern",
+        "name": "Bürgerinfoportal des Bezirks Oberbayern",
         "software": "Session (Somacos GmbH & Co. KG)",
         "basis_url": "https://buergerinfo-bezirk-obb.digitalfabrix.de",
         # Aeltere Session-Auslieferung: dieselben Seiten, .asp statt .php.
@@ -76,7 +80,10 @@ QUELLEN = {
     },
 }
 
-USER_AGENT = "MeinBezirk-Ingolstadt-Prototyp/0.1 (Buergerinformation; Kontakt via Repo)"
+USER_AGENT = (
+    "PapierPanther-Ingolstadt/1.0 (Buergerinformation; "
+    "+https://schanzer-papierpanther.de/impressum.html)"
+)
 PAUSE_SEKUNDEN = 1.2  # hoeflich bleiben
 
 HIER = os.path.dirname(os.path.abspath(__file__))
@@ -161,18 +168,61 @@ VERFAHREN_MUSTER = [
 
 # ---------------------------------------------------------------- HTTP + Cache
 
-def hole(pfad, basis, cache=True):
-    """Laedt eine Seite relativ zu `basis`, mit Dateicache und Pause."""
-    os.makedirs(CACHE_VZ, exist_ok=True)
+# Wie lange eine Cache-Seite gilt, wenn sich ihr Inhalt noch aendern kann.
+# Bis November 2026 galt jede Seite fuer immer: der Kalender des laufenden
+# Monats zeigte dann nie neue Sitzungen, eine Tagesordnung nie ihren Nachtrag
+# und eine Sitzung nie ihre Niederschrift — ausser mit --no-cache, das alles
+# (ueber 2000 Seiten) neu laedt. Jetzt veralten genau die Seiten, die sich
+# noch bewegen; alles Aeltere bleibt im Cache.
+FRISCH_STUNDEN = 20          # aelter als das wird neu geladen ...
+SITZUNG_FRISCH_TAGE = 70     # ... bei Sitzungen bis so viele Tage zurueck
+                             #     (Niederschriften kommen 4 bis 8 Wochen spaeter)
+VORLAGE_FRISCH_TAGE = 21     # ... bei Beratungswegen bis so viele Tage zurueck
+
+
+def cache_pfad(pfad, basis):
     # Die Quelle muss in den Cache-Schluessel, sonst ueberschreiben sich
     # gleichnamige Seiten der beiden Instanzen gegenseitig.
     kennung = basis.rstrip("/").rsplit("/", 1)[-1]
     schluessel = kennung + "_" + re.sub(r"[^A-Za-z0-9_.-]", "_", pfad)[:140] + ".html"
-    cache_datei = os.path.join(CACHE_VZ, schluessel)
+    return os.path.join(CACHE_VZ, schluessel)
 
-    if cache and os.path.exists(cache_datei):
+
+def cache_veraltet(pfad, basis, stunden=FRISCH_STUNDEN):
+    """True, wenn die Cache-Datei fehlt oder aelter als `stunden` ist."""
+    datei = cache_pfad(pfad, basis)
+    if not os.path.exists(datei):
+        return True
+    return time.time() - os.path.getmtime(datei) > stunden * 3600
+
+
+def tage_her(iso_datum):
+    """Tage seit `iso_datum` (negativ = liegt in der Zukunft). Unlesbares
+    Datum gilt als weit zurueck, also als abgeschlossen."""
+    try:
+        return (date.today() - date.fromisoformat(iso_datum)).days
+    except (TypeError, ValueError):
+        return 10 ** 6
+
+
+def hole(pfad, basis, cache=True, frisch=False):
+    """
+    Laedt eine Seite relativ zu `basis`, mit Dateicache und Pause.
+
+    frisch=True: Die Seite kann sich noch aendern. Ist die Cache-Datei aelter
+    als FRISCH_STUNDEN, wird neu geladen. Scheitert das, gilt die alte Fassung
+    weiter — lieber ein Tag alt als eine Sitzung, die aus den Daten faellt.
+    """
+    os.makedirs(CACHE_VZ, exist_ok=True)
+    cache_datei = cache_pfad(pfad, basis)
+    vorhanden = os.path.exists(cache_datei)
+
+    def aus_cache():
         with open(cache_datei, encoding="utf-8") as f:
             return f.read()
+
+    if cache and vorhanden and not (frisch and cache_veraltet(pfad, basis)):
+        return aus_cache()
 
     url = f"{basis}/{pfad}"
     anfrage = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
@@ -181,7 +231,7 @@ def hole(pfad, basis, cache=True):
             rohdaten = antwort.read()
     except urllib.error.URLError as fehler:
         print(f"  ! Fehler bei {url}: {fehler}", file=sys.stderr)
-        return ""
+        return aus_cache() if vorhanden else ""
 
     text = rohdaten.decode("utf-8", errors="replace")
     # Voruebergehende Fehlerseite des Portals (HTTP 200, aber "SessionNet
@@ -191,7 +241,7 @@ def hole(pfad, basis, cache=True):
     if "SessionNet Fehlermeldung" in text:
         print(f"  ! Fehlerseite statt Inhalt bei {url} (nicht gecacht)", file=sys.stderr)
         time.sleep(PAUSE_SEKUNDEN)
-        return ""
+        return aus_cache() if vorhanden else ""
     with open(cache_datei, "w", encoding="utf-8") as f:
         f.write(text)
     time.sleep(PAUSE_SEKUNDEN)
@@ -505,7 +555,12 @@ def quelle_auslesen(kuerzel, zeitraum, cache, mit_beratungen):
     for jahr, monat in zeitraum:
         pfad = f"si0040.{endung}?__cjahr={jahr}&__cmonat={monat}&__canz=1&__cselect=0"
         print(f"  Kalender {MONATSNAMEN[monat]} {jahr} ...", end=" ", flush=True)
-        seite = hole(pfad, basis, cache=cache)
+        # Vormonat, laufender Monat und alles danach: dort kommen noch
+        # Sitzungen dazu oder werden verlegt.
+        heute = date.today()
+        bewegt_sich = (jahr, monat) >= ((heute.year, heute.month - 1) if heute.month > 1
+                                        else (heute.year - 1, 12))
+        seite = hole(pfad, basis, cache=cache, frisch=bewegt_sich)
         neu = [i for i in parse_kalender(seite, endung) if i not in sitzungs_ids]
         sitzungs_ids.extend(neu)
         print(f"{len(neu)} Sitzungen")
@@ -513,8 +568,17 @@ def quelle_auslesen(kuerzel, zeitraum, cache, mit_beratungen):
     print(f"  {len(sitzungs_ids)} Sitzungen, lade Tagesordnungen ...")
     sitzungen = []
     for nummer, sitzungs_id in enumerate(sitzungs_ids, 1):
-        seite = hole(f"si0056.{endung}?__ksinr={sitzungs_id}", basis, cache=cache)
+        sitzungs_pfad = f"si0056.{endung}?__ksinr={sitzungs_id}"
+        seite = hole(sitzungs_pfad, basis, cache=cache)
         sitzung = parse_sitzung(sitzungs_id, seite, basis, endung)
+        # Kommende und juengere Sitzungen aendern sich noch (Nachtraege,
+        # Umnummerierung, spaeter die Niederschrift). Ob eine Sitzung dazu
+        # gehoert, steht erst in der Seite selbst — deshalb erst lesen, dann
+        # bei Bedarf frisch holen.
+        if (cache and sitzung and tage_her(sitzung["datum"]) <= SITZUNG_FRISCH_TAGE
+                and cache_veraltet(sitzungs_pfad, basis)):
+            seite = hole(sitzungs_pfad, basis, cache=cache, frisch=True)
+            sitzung = parse_sitzung(sitzungs_id, seite, basis, endung) or sitzung
         if not sitzung:
             continue
         sitzung["quelle"] = kuerzel
@@ -527,19 +591,22 @@ def quelle_auslesen(kuerzel, zeitraum, cache, mit_beratungen):
 
     if mit_beratungen:
         vorlagen = [
-            t
+            (t, tage_her(s["datum"]) <= VORLAGE_FRISCH_TAGE)
             for s in sitzungen
             for t in s["tops"]
             if t["vorlage_url"] and not t["verfahren"]
         ]
         print(f"  Beratungswege zu {len(vorlagen)} Vorlagen ...", end=" ", flush=True)
-        for top in vorlagen:
+        for top, bewegt_sich in vorlagen:
             kvonr = re.search(r"__kvonr=(\d+)", top["vorlage_url"])
             if not kvonr:
                 continue
-            seite = hole(f"vo0053.{endung}?__kvonr={kvonr.group(1)}", basis, cache=cache)
+            # Der Beratungsweg einer Vorlage, die gerade beraten wird, bekommt
+            # noch Stationen dazu.
+            seite = hole(f"vo0053.{endung}?__kvonr={kvonr.group(1)}", basis, cache=cache,
+                         frisch=bewegt_sich)
             top["beratungen"] = parse_beratungen(seite, basis, endung)
-        stationen = sum(len(t["beratungen"]) for t in vorlagen)
+        stationen = sum(len(t["beratungen"]) for t, _ in vorlagen)
         print(f"{stationen} Stationen")
 
     return sitzungen
@@ -570,7 +637,7 @@ def kommende_termine_auslesen(kuerzel, cache):
     ergebnis = []
     for jahr, monat in monate_liste:
         pfad = f"si0040.{endung}?__cjahr={jahr}&__cmonat={monat}&__canz=1&__cselect=0"
-        seite = hole(pfad, basis, cache=cache)
+        seite = hole(pfad, basis, cache=cache, frisch=True)
         for termin in parse_kalender_ohne_tagesordnung(seite, jahr, monat, endung):
             if termin["datum"] < heute.isoformat():
                 continue

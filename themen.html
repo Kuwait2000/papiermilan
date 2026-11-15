@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://mnkeller.goatcounter.com; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://mnkeller.goatcounter.com; object-src 'none'; base-uri 'self'; form-action 'self'">
 <title>Themen im Überblick — PapierPanther</title>
 <meta name="description" content="Haushalt, Sparplan, Unternehmen der Stadt, Klima, Miete, Anträge und Beteiligung in Ingolstadt – je eine Kernzahl und der Weg zur ausführlichen Seite.">
 <meta name="robots" content="index, follow">
@@ -199,30 +199,7 @@
 </main>
 <footer class="fuss"><div class="container"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></div></footer>
 
-<script>
-(function () {
-  var KEY = 'papierpanther-leichte-sprache';
-  var T = {
-    h1: ['Themen im Überblick', 'Themen'],
-    intro: ['Zu einigen Themen gibt es mehr als einzelne Tagesordnungspunkte: Zahlen, Rechner und Hintergründe. Hier finden Sie alle auf einen Blick.',
-            'Zu diesen Themen gibt es mehr Infos. Zum Beispiel Zahlen und Rechner.']
-  };
-  var btn = document.getElementById('btn-leicht');
-  var leicht = false;
-  try { leicht = localStorage.getItem(KEY) === '1'; } catch (e) {}
-  function anwenden() {
-    btn.setAttribute('aria-pressed', leicht ? 'true' : 'false');
-    document.getElementById('t-h1').textContent = T.h1[leicht ? 1 : 0];
-    document.getElementById('t-intro').textContent = T.intro[leicht ? 1 : 0];
-  }
-  btn.addEventListener('click', function () {
-    leicht = !leicht;
-    try { localStorage.setItem(KEY, leicht ? '1' : '0'); } catch (e) {}
-    anwenden();
-  });
-  anwenden();
-})();
-</script>
+<script src="seiten/themen.js"></script>
 <script src="data/themen.js"></script>
 <script src="themen-kacheln.js" defer></script>
 <script src="kopf.js" defer></script>

@@ -60,6 +60,27 @@ def p_referenzen(kur, index):
         fehlt(f"{len(tot)} Kurationseintraege zeigen ins Leere: {tot[:5]}")
 
 
+def p_titel_anker(kur, index):
+    """
+    Jede Zusammenfassung haengt am Tagesordnungspunkt, zu dem sie geschrieben
+    wurde.
+
+    Der Schluessel ist Sitzung plus TOP-Nummer, bei unnummerierten Punkten die
+    Position. Nummeriert die Stadt per Nachtrag um, zeigt er auf einen anderen
+    Punkt — und der Text stuende unter dem falschen amtlichen Titel. Der
+    gemerkte Titel ("titel_anker", siehe anker_setzen.py) macht das sichtbar.
+    """
+    import anker_setzen
+    for ref, anker, aktuell in anker_setzen.abweichungen(kur, index):
+        fehlt(
+            f"{ref}: Zusammenfassung wurde zu {anker[:60]!r} geschrieben, unter dem "
+            f"Schluessel steht jetzt {aktuell[:60]!r} — anker_setzen.py --umhaengen"
+        )
+    ohne = [r for r, k in kur.items() if r in index and not k.get("titel_anker")]
+    if ohne:
+        warnt(f"{len(ohne)} Eintraege ohne Titel-Anker (feed_bauen.py setzt ihn), z. B. {ohne[0]}")
+
+
 def p_kein_verlust(kur, feed):
     """
     Kein ausgearbeiteter Text darf aus dem Feed verschwinden.
@@ -741,6 +762,7 @@ def main():
             index[top_ref(q, s, t, bare_pos)] = (s, t)
 
     p_referenzen(kur, index)
+    p_titel_anker(kur, index)
     p_kein_verlust(kur, feed["eintraege"])
     p_keine_doppelten_themen(feed["eintraege"])
     p_achsenwerte(kur, kuration["_achsen"])
