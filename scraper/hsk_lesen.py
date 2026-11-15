@@ -19,7 +19,7 @@ Quelle ist die Beschlussvorlage V0652/26 "Haushaltssicherungskonzept (HSK)"
   und prueft jede Tabelle gegen die gedruckte Summenzeile. Weicht etwas ab,
   bricht das Skript ab, statt eine falsche Datei zu schreiben.
 
-Die Klartexte zu den Massnahmen (normal + Leichte Sprache) stehen ebenfalls
+Die Klartexte zu den Massnahmen (normal + Einfache Sprache) stehen ebenfalls
 in data/hsk_bericht.json. Neue Massnahmen in einer Fortschreibung des HSK
 fallen hier als Warnung auf und brauchen dort einen Eintrag.
 

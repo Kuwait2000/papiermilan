@@ -1,5 +1,5 @@
 {
- "_hinweis": "Aufbereitete Klartext-Fassungen zu Tagesordnungspunkten aus rohdaten.json. Referenz-Schluessel ist '<quelle>:<sitzungs-id>#<top-nr>', quelle ist 'stadt' oder 'bza'. Jeder Eintrag hat zwei Textfassungen: 'klartext_titel'/'klartext' in normaler Sprache und 'klartext_titel_leicht'/'klartext_leicht' in Leichter Sprache. Beide entstehen im selben Arbeitsgang - die Regeln dafuer stehen in KURATION.md. Leere Leicht-Felder sind erlaubt; die Oberflaeche faellt dann sichtbar auf die normale Fassung zurueck. 'bezirk' ist der amtliche Stadtbezirk (Filter), 'ort' ein freier Ortsvermerk (nur Anzeige). 'entwurf': true heisst maschinell vorgeschlagen und noch nicht durchgesehen. Die Aufbereitung kann Fehler enthalten; die Oberflaeche weist darauf hin und verlinkt bei jedem Eintrag die Originalquelle.",
+ "_hinweis": "Aufbereitete Klartext-Fassungen zu Tagesordnungspunkten aus rohdaten.json. Referenz-Schluessel ist '<quelle>:<sitzungs-id>#<top-nr>', quelle ist 'stadt' oder 'bza'. Jeder Eintrag hat zwei Textfassungen: 'klartext_titel'/'klartext' in normaler Sprache und 'klartext_titel_leicht'/'klartext_leicht' in Einfacher Sprache. Beide entstehen im selben Arbeitsgang - die Regeln dafuer stehen in KURATION.md. Leere Leicht-Felder sind erlaubt; die Oberflaeche faellt dann sichtbar auf die normale Fassung zurueck. 'bezirk' ist der amtliche Stadtbezirk (Filter), 'ort' ein freier Ortsvermerk (nur Anzeige). 'entwurf': true heisst maschinell vorgeschlagen und noch nicht durchgesehen. Die Aufbereitung kann Fehler enthalten; die Oberflaeche weist darauf hin und verlinkt bei jedem Eintrag die Originalquelle.",
  "_achsen": {
   "lebenslage": [
    "Eltern & Kinder",
@@ -71286,6 +71286,4656 @@
    ],
    "entwurf": true,
    "titel_anker": "Bericht BZA im Viertel"
+  },
+  "stadt:13771#Ö 1": {
+   "klartext_titel": "Vorstellungsrunde/Statement des neuen Gremiums",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Vorstellungsrunde/Statement des neuen Gremiums"
+  },
+  "stadt:13771#Ö 2": {
+   "klartext_titel": "Wahl eines/einer stellvertretenden Vorsitzenden",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Wahl eines/einer stellvertretenden Vorsitzenden"
+  },
+  "stadt:13771#Ö 3": {
+   "klartext_titel": "Abstimmung über die Vorschläge weiterer/kooptierter Mitglieder in den Kulturbeirat",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Abstimmung über die Vorschläge weiterer/kooptierter Mitglieder in den Kulturbeirat"
+  },
+  "stadt:13771#Ö 4.3": {
+   "klartext_titel": "Stand Vorbereitung Fleißer-Festival",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Stand Vorbereitung Fleißer-Festival"
+  },
+  "stadt:13771#Ö 4.4": {
+   "klartext_titel": "Kontakt mit den Freundeskreisen einzelner Kulturinstitutionen",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Kontakt mit den Freundeskreisen einzelner Kulturinstitutionen"
+  },
+  "stadt:13771#Ö 4.5": {
+   "klartext_titel": "Preisjury Zusammensetzung AG Klassikförderpreis",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise",
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Preisjury Zusammensetzung AG Klassikförderpreis"
+  },
+  "stadt:13769#Ö 1": {
+   "klartext_titel": "Kennenlernen der neuen Kommissionsmitglieder",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Kennenlernen der neuen Kommissionsmitglieder — Vorstellung der neuen Kommissionsmitglieder durch Wiltrud Nosse"
+  },
+  "stadt:13769#Ö 2": {
+   "klartext_titel": "Regelung der Protokollführung",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Regelung der Protokollführung — Beratung und Festlegung der Protokollführung"
+  },
+  "stadt:13769#Ö 3": {
+   "klartext_titel": "Projekt Wohnungstausch in Ingolstadt",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen",
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Projekt Wohnungstausch in Ingolstadt — Mündlicher Vortrag von Frau Carina Milla"
+  },
+  "stadt:13769#Ö 4": {
+   "klartext_titel": "Seniorenpolitisches Gesamtkonzept",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Seniorenpolitisches Gesamtkonzept — Mündlicher Vortrag von Herrn Karl Hofmann"
+  },
+  "stadt:13769#Ö 5": {
+   "klartext_titel": "Auswirkungen der Stadtratsentscheidungen vom 29.07. im Seniorenbereich des Bürgerhauses",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Auswirkungen der Stadtratsentscheidungen vom 29.07. im Seniorenbereich des Bürgerhauses — Mündlicher Vortrag von Frau Wiltrud Nosse"
+  },
+  "stadt:13769#Ö 6": {
+   "klartext_titel": "Bericht über den Landesseniorenrat",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht über den Landesseniorenrat — Mündlicher Vortrag von Herrn Siegfried Bauer"
+  },
+  "stadt:13768#Ö 2": {
+   "klartext_titel": "Kommission Quartiersentwicklung Konradviertel mit Vorstellungsrunde",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Kommission Quartiersentwicklung Konradviertel mit Vorstellungsrunde"
+  },
+  "stadt:13768#Ö 3": {
+   "klartext_titel": "Informationen aus dem Fachbereich Sozialplanung und Quartiersentwicklung",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Informationen aus dem Fachbereich Sozialplanung und Quartiersentwicklung"
+  },
+  "stadt:13768#Ö 4": {
+   "klartext_titel": "Bericht aus dem Stadtteiltreff",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht aus dem Stadtteiltreff"
+  },
+  "stadt:13768#Ö 5": {
+   "klartext_titel": "Rahmenplan Regensburger Straße",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Rahmenplan Regensburger Straße"
+  },
+  "stadt:13768#Ö 7": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:13767#Ö 2": {
+   "klartext_titel": "Kommission Quartiersentwicklung Augustinviertel mit Vorstellungsrunde",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Kommission Quartiersentwicklung Augustinviertel mit Vorstellungsrunde"
+  },
+  "stadt:13767#Ö 3": {
+   "klartext_titel": "Informationen aus dem Fachbereich Sozialplanung und Quartiersentwicklung",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Informationen aus dem Fachbereich Sozialplanung und Quartiersentwicklung"
+  },
+  "stadt:13767#Ö 4": {
+   "klartext_titel": "Bericht aus dem Stadtteiltreff",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht aus dem Stadtteiltreff"
+  },
+  "stadt:13767#Ö 5": {
+   "klartext_titel": "Vorstellung Marieluise-Fleißer-Mittelschule",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Vorstellung Marieluise-Fleißer-Mittelschule"
+  },
+  "stadt:13767#Ö 6": {
+   "klartext_titel": "Vorstellung Jugendtreff Underground",
+   "klartext": "",
+   "lebenslage": [
+    "Jugend"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Vorstellung Jugendtreff Underground"
+  },
+  "stadt:13767#Ö 7": {
+   "klartext_titel": "Donauquerung Autobahnbrücke BAB 9",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Donauquerung Autobahnbrücke BAB 9"
+  },
+  "stadt:13767#Ö 8": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:13765#Ö 2": {
+   "klartext_titel": "Kommission Quartiersentwicklung Piusviertel mit Vorstellungsrunde",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Kommission Quartiersentwicklung Piusviertel mit Vorstellungsrunde"
+  },
+  "stadt:13765#Ö 3": {
+   "klartext_titel": "Informationen aus dem Fachbereich Sozialplanung und Quartiersentwicklung",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Informationen aus dem Fachbereich Sozialplanung und Quartiersentwicklung"
+  },
+  "stadt:13765#Ö 4": {
+   "klartext_titel": "Bericht aus dem Stadtteiltreff",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht aus dem Stadtteiltreff"
+  },
+  "stadt:13765#Ö 6": {
+   "klartext_titel": "Quartier Stinnesstraße",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Quartier Stinnesstraße"
+  },
+  "stadt:13765#Ö 7": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:13764#Ö 1": {
+   "klartext_titel": "Bestätigung des Kommandanten der Freiwilligen Feuerwehr Ingolstadt-Stadtmitte",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des Kommandanten der Freiwilligen Feuerwehr Ingolstadt-Stadtmitte"
+  },
+  "stadt:13764#Ö 2": {
+   "klartext_titel": "Bestätigung des Kommandanten der Freiwilligen Feuerwehr Ingolstadt-Mailing/Feldkirchen",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des Kommandanten der Freiwilligen Feuerwehr Ingolstadt-Mailing/Feldkirchen"
+  },
+  "stadt:13764#Ö 3": {
+   "klartext_titel": "Änderung der Satzung über Aufwendungs- und Kostenersatz für Einsätze und andere Leistungen der Feuerwehren …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise",
+    "Sicherheit",
+    "Satzung & Regeln"
+   ],
+   "entwurf": true,
+   "titel_anker": "Änderung der Satzung über Aufwendungs- und Kostenersatz für Einsätze und andere Leistungen der Feuerwehren der Stadt Ingolstadt (Feuerwehraufwendungs- und Kostenersatzsatzung - FwKS) — hier: Anpassung an das neue Umsatzsteuerrecht für Kommunen ab 2027(§2b UStG)"
+  },
+  "stadt:13764#Ö 4": {
+   "klartext_titel": "Gebührenbericht für kostenrechnende Einrichtungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise",
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Gebührenbericht für kostenrechnende Einrichtungen"
+  },
+  "stadt:13764#Ö 5": {
+   "klartext_titel": "Jahresbericht Feuerwehr Ingolstadt 2025",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Jahresbericht Feuerwehr Ingolstadt 2025"
+  },
+  "stadt:13764#Ö 6": {
+   "klartext_titel": "Feuerwehrbedarfsplan der Stadt Ingolstadt",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Feuerwehrbedarfsplan der Stadt Ingolstadt — hier: Umsetzungsbeschluss zur notwendigen Weiterentwicklung der Feuerwehr Ingolstadt"
+  },
+  "stadt:13764#Ö 7": {
+   "klartext_titel": "Bericht zu besonderen Einsätzen (Starkregenereignisse Juni/August)",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht zu besonderen Einsätzen (Starkregenereignisse Juni/August)"
+  },
+  "stadt:13764#Ö 8": {
+   "klartext_titel": "Berichte, Themen, Anfragen der Hilfsorganisationen und Fachdienste",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Berichte, Themen, Anfragen der Hilfsorganisationen und Fachdienste — (Referent: Herr Müller) — -von den Hilfsorganisationen und Fachdiensten wurden keine Themen angemeldet-"
+  },
+  "stadt:13814#Ö 1.1": {
+   "klartext_titel": "Ausblick - Bericht der Kulturakteure",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Ausblick - Bericht der Kulturakteure"
+  },
+  "stadt:13814#Ö 1.2": {
+   "klartext_titel": "Bericht Homepage www.ingolstadt.live",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht Homepage www.ingolstadt.live"
+  },
+  "stadt:13814#Ö 1.3": {
+   "klartext_titel": "Finanzen, Kulturförderung",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Finanzen, Kulturförderung"
+  },
+  "stadt:13814#Ö 1.5": {
+   "klartext_titel": "Arbeitsgruppe zum Festungsjubiläum 2028 im Kulturbeirat \"Festung und Kultur\"",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Arbeitsgruppe zum Festungsjubiläum 2028 im Kulturbeirat \"Festung und Kultur\""
+  },
+  "stadt:13814#Ö 1.6": {
+   "klartext_titel": "Arbeitsgruppe Klassikförderpreis",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise",
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Arbeitsgruppe Klassikförderpreis"
+  },
+  "stadt:13814#Ö 1.7": {
+   "klartext_titel": "Aktueller Sachstand Theater/Hämer-Buro-Bau",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Aktueller Sachstand Theater/Hämer-Buro-Bau"
+  },
+  "stadt:13814#Ö 1.8": {
+   "klartext_titel": "Altstadtkinos / Kino-Landschaft",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Altstadtkinos / Kino-Landschaft"
+  },
+  "stadt:13814#Ö 2": {
+   "klartext_titel": "Rückblick Kulturbeirat",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Rückblick Kulturbeirat"
+  },
+  "stadt:13814#Ö 4": {
+   "klartext_titel": "Organisatorisches und Informationen",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Organisatorisches und Informationen"
+  },
+  "stadt:13814#Ö 4.1": {
+   "klartext_titel": "Nächster Termin des neuen Beirats 2026",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Nächster Termin des neuen Beirats 2026 — 16. November 2026"
+  },
+  "stadt:13688#Ö 1": {
+   "klartext_titel": "Projekt \"ePA? Na sicher!\"",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Projekt \"ePA? Na sicher!\" — Mündlicher Vortrag zur elektronischen Patientenakte von Herrn Elmar Storath"
+  },
+  "stadt:13688#Ö 2": {
+   "klartext_titel": "Pflegestrukturplanung — Mündlicher Vortrag von Herrn Karl Hofmann",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Pflegestrukturplanung — Mündlicher Vortrag von Herrn Karl Hofmann"
+  },
+  "stadt:13685#Ö 1": {
+   "klartext_titel": "Spontanhilfe-Konzept und moderne Frühwarnsysteme",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Spontanhilfe-Konzept und moderne Frühwarnsysteme"
+  },
+  "stadt:13685#Ö1": {
+   "klartext_titel": "Antrag der SPD-Stadtratsfraktion vom 04.09.2025",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "-Antrag der SPD-Stadtratsfraktion vom 04.09.2025-"
+  },
+  "stadt:13685#Ö2": {
+   "klartext_titel": "Stellungnahme der Verwaltung",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Stellungnahme der Verwaltung"
+  },
+  "stadt:13685#Ö3": {
+   "klartext_titel": "Antrag der ödp-Stadtratsgruppe vom 09.10.2025",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "-Antrag der ödp-Stadtratsgruppe vom 09.10.2025-"
+  },
+  "stadt:13685#Ö4": {
+   "klartext_titel": "Ergänzungsantrag der ödp-Stadtratsgruppe vom 03.01.2026",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "-Ergänzungsantrag der ödp-Stadtratsgruppe vom 03.01.2026-"
+  },
+  "stadt:13685#Ö5": {
+   "klartext_titel": "Stellungnahme der Verwaltung",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Stellungnahme der Verwaltung"
+  },
+  "stadt:13685#Ö 3": {
+   "klartext_titel": "Einrichtung einer interdisziplinären Arbeitsgruppe \"Zivilschutz und zivile Verteidigung\"",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Einrichtung einer interdisziplinären Arbeitsgruppe \"Zivilschutz und zivile Verteidigung\""
+  },
+  "stadt:13685#Ö6": {
+   "klartext_titel": "Antrag der CSU-Stadtratsfraktion vom 07.11.2025",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "-Antrag der CSU-Stadtratsfraktion vom 07.11.2025-"
+  },
+  "stadt:13685#Ö7": {
+   "klartext_titel": "Stellungnahme der Verwaltung",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Stellungnahme der Verwaltung"
+  },
+  "stadt:13685#Ö 4": {
+   "klartext_titel": "Bericht zu Einsätzen — (Referent: Herr Müller) — -Im Berichtszeitraum kam es zu keinen berichtswürdigen …",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht zu Einsätzen — (Referent: Herr Müller) — -Im Berichtszeitraum kam es zu keinen berichtswürdigen Ereignissen-"
+  },
+  "stadt:13685#Ö 5": {
+   "klartext_titel": "Berichte, Themen, Anfragen der Hilfsorganisationen und Fachdienste",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Berichte, Themen, Anfragen der Hilfsorganisationen und Fachdienste — (Referent: Herr Müller) — -Von den Hilfsorganisationen und Fachdiensten wurden keine Themen angemeldet-"
+  },
+  "stadt:13957#Ö 1": {
+   "klartext_titel": "Änderung der Richtlinien über die Verleihung des Sportförderpreises",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise",
+    "Satzung & Regeln"
+   ],
+   "entwurf": true,
+   "titel_anker": "Änderung der Richtlinien über die Verleihung des Sportförderpreises"
+  },
+  "stadt:13666#Ö 2": {
+   "klartext_titel": "Vorstellung ÖPNV-Mobilitätsthemen - Hr. Dr. Frank",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Vorstellung ÖPNV-Mobilitätsthemen - Hr. Dr. Frank"
+  },
+  "stadt:13666#Ö 3": {
+   "klartext_titel": "Änderungen der Satzung für die nächste Periode des Klimabeirats",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Satzung & Regeln",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Änderungen der Satzung für die nächste Periode des Klimabeirats"
+  },
+  "stadt:13666#Ö 4": {
+   "klartext_titel": "Zukunft Klimabeirat - Wahl der 4 Mitglieder aus der Zivilgesellschaft aus dem bestehenden Klimabeirat",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Zukunft Klimabeirat - Wahl der 4 Mitglieder aus der Zivilgesellschaft aus dem bestehenden Klimabeirat"
+  },
+  "stadt:13666#Ö 5": {
+   "klartext_titel": "3 Stadtratsanträge zur Abschaffung bzw. Verschiebung des Klimaziels 2035 (AfD, JU/FDP und FW)",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "3 Stadtratsanträge zur Abschaffung bzw. Verschiebung des Klimaziels 2035 (AfD, JU/FDP und FW)"
+  },
+  "stadt:13666#Ö 6": {
+   "klartext_titel": "Vorstellung \"Moritz 6\" - Klimaschutz Zuhause",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Vorstellung \"Moritz 6\" - Klimaschutz Zuhause"
+  },
+  "stadt:13662#Ö 1": {
+   "klartext_titel": "Bericht aus dem Arbeitskreis „Häusliche Gewalt“ – Aktuelle Themen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht aus dem Arbeitskreis „Häusliche Gewalt“ – Aktuelle Themen; — Vortrag von Kriminalhauptkommissarin Melanie Kau zur polizeilich erfassten Gewalt gegen Frauen im Stadtgebiet Ingolstadt; — Vortrag von Andrea Schlicht, Leiterin des Frauenhauses Ingo lstadt, zur Gefährdungssituation von gewaltbetroffenen Frauen"
+  },
+  "stadt:13662#Ö 2": {
+   "klartext_titel": "Rückblick 2025 und Ausblick 2026 über die Tätigkeiten der Gleichstellungsstelle",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Grün & Sauberkeit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Rückblick 2025 und Ausblick 2026 über die Tätigkeiten der Gleichstellungsstelle — Mündlicher Bericht der Gleichstellungsbeauftragten Barbara Deimel und Anja Assenbaum"
+  },
+  "stadt:13662#Ö 3": {
+   "klartext_titel": "Fortführung des Familienplanungsfonds",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Fortführung des Familienplanungsfonds"
+  },
+  "stadt:13831#Ö 1": {
+   "klartext_titel": "Vollzug der Sportförderungsrichtlinien in der haushaltslosen Zeit",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise",
+    "Satzung & Regeln",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Vollzug der Sportförderungsrichtlinien in der haushaltslosen Zeit"
+  },
+  "stadt:12093#Ö 2": {
+   "klartext_titel": "Vorstellung neue Klimaanpassungsmanagerin",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Vorstellung neue Klimaanpassungsmanagerin"
+  },
+  "stadt:12093#Ö 3": {
+   "klartext_titel": "Vorstellung des Lichtmasterplans - Hr. Lebens, TBA, Fr. Puckelwaldt, TBA und Herr Vetter",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Vorstellung des Lichtmasterplans - Hr. Lebens, TBA, Fr. Puckelwaldt, TBA und Herr Vetter, — DAY & LIGHT Lichtplanung"
+  },
+  "stadt:12093#Ö 4": {
+   "klartext_titel": "Vorstellung ÖPNV-Mobilitätsthemen - Hr. Dr. Frank",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Vorstellung ÖPNV-Mobilitätsthemen - Hr. Dr. Frank"
+  },
+  "stadt:12093#Ö 5": {
+   "klartext_titel": "Vorstellung des Carsharing Projekts - AG Mobilität Hr. Katiofsky",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Vorstellung des Carsharing Projekts - AG Mobilität Hr. Katiofsky"
+  },
+  "stadt:12093#Ö 6": {
+   "klartext_titel": "Antrag auf Verabschiedung des weiteren Vorgehens zur Besetzung des nächsten",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Antrag auf Verabschiedung des weiteren Vorgehens zur Besetzung des nächsten — Klimabeirates – AG weiteres Vorgehen Fr. Heyer, Hr. Keller"
+  },
+  "stadt:12093#Ö 7": {
+   "klartext_titel": "Berichte aus den weiteren Arbeitsgruppen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Berichte aus den weiteren Arbeitsgruppen"
+  },
+  "stadt:12081#Ö 2": {
+   "klartext_titel": "Aktuelle Entwicklungen in der Stabstelle Integrierte Sozialplanung und Quartiersentwicklung - Hr. Hofmann, …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Aktuelle Entwicklungen in der Stabstelle Integrierte Sozialplanung und Quartiersentwicklung - Hr. Hofmann, Referat V"
+  },
+  "stadt:12081#Ö 3": {
+   "klartext_titel": "Aktuelles aus dem Stadtteiltreff - Frau Turinsky und Frau Haußmann, Stadtteiltreff Konradviertel",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Aktuelles aus dem Stadtteiltreff - Frau Turinsky und Frau Haußmann, Stadtteiltreff Konradviertel"
+  },
+  "stadt:12081#Ö 4": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:12071#Ö 1": {
+   "klartext_titel": "Aktueller Stand Landesseniorenrat",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Aktueller Stand Landesseniorenrat — Mündlicher Vortrag von Herrn Siegfried Bauer"
+  },
+  "stadt:12071#Ö 2": {
+   "klartext_titel": "Haushaltskonsolidierung der Stadt Ingolstadt , Auswirkungen auf die Seniorenarbeit der Stadt",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise"
+   ],
+   "entwurf": true,
+   "titel_anker": "Haushaltskonsolidierung der Stadt Ingolstadt , Auswirkungen auf die Seniorenarbeit der Stadt — Mündlicher Vortrag von Frau Silvia Leithner"
+  },
+  "stadt:12071#Ö 3": {
+   "klartext_titel": "Aktueller Stand Seniorenpolitisches Gesamtkonzept",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Aktueller Stand Seniorenpolitisches Gesamtkonzept — Mündlicher Vortrag von Herrn Karl Hofmann"
+  },
+  "stadt:12059#Ö 1": {
+   "klartext_titel": "Gleichstellungsarbeit in der Landeshauptstadt München - Erfolge, Misserfolge und ein Ausblick für die Zukunft",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Gleichstellungsarbeit in der Landeshauptstadt München - Erfolge, Misserfolge und ein Ausblick für die Zukunft — - Vortrag von Nicole Lassal, Städtische Gleichstellungsbeauftragte und Leiterin der Gleichstellungsstelle für Frauen der Landeshauptstadt München"
+  },
+  "stadt:13213#Ö 1": {
+   "klartext_titel": "Evaluationsbericht zum Sportentwicklungsplan der Stadt Ingolstadt",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Evaluationsbericht zum Sportentwicklungsplan der Stadt Ingolstadt"
+  },
+  "stadt:12068#Ö 1.1": {
+   "klartext_titel": "Festungsjubiläum 2028 - eigene Arbeitsgruppe im Kulturbeirat",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Festungsjubiläum 2028 - eigene Arbeitsgruppe im Kulturbeirat"
+  },
+  "stadt:12068#Ö 1.2": {
+   "klartext_titel": "Musikstammtisch / Musikentwicklung",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Musikstammtisch / Musikentwicklung"
+  },
+  "stadt:12068#Ö 1.3": {
+   "klartext_titel": "Neue Arbeitsgruppe Klassikförderpreis",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise",
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Neue Arbeitsgruppe Klassikförderpreis"
+  },
+  "stadt:12068#Ö 1.4": {
+   "klartext_titel": "Internationale Bauausstellung Metropolregion München",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Internationale Bauausstellung Metropolregion München"
+  },
+  "stadt:12068#Ö 1.5": {
+   "klartext_titel": "Finanzen, Kulturförderung",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Finanzen, Kulturförderung — - Kommunikation der Kürzungen in Öffentlichkeit — - Perspektiven für die Freie Szene"
+  },
+  "stadt:12068#Ö 2.1": {
+   "klartext_titel": "Organisatorisches und Informationen",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Organisatorisches und Informationen"
+  },
+  "stadt:12066#Ö 2": {
+   "klartext_titel": "Vorstellung des Kontaktbeamten Herr Zeeb, Ingolstadt-Süd",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Vorstellung des Kontaktbeamten Herr Zeeb, Ingolstadt-Süd"
+  },
+  "stadt:12066#Ö 3": {
+   "klartext_titel": "Aktuelle Entwicklungen in der Stabstelle Integrierte Sozialplanung und Quartiersentwicklung - Hr. Hofmann, …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Aktuelle Entwicklungen in der Stabstelle Integrierte Sozialplanung und Quartiersentwicklung - Hr. Hofmann, Referat V"
+  },
+  "stadt:12066#Ö 4": {
+   "klartext_titel": "Aktuelles aus dem Stadtteiltreff - Frau Kuczora, Frau Schmachtl Stadtteiltreff Augustin",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Aktuelles aus dem Stadtteiltreff - Frau Kuczora, Frau Schmachtl Stadtteiltreff Augustin"
+  },
+  "stadt:12066#Ö 5": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:12060#Ö 1": {
+   "klartext_titel": "Genehmigung des letzten Protokolls",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Genehmigung des letzten Protokolls"
+  },
+  "stadt:12060#Ö 2": {
+   "klartext_titel": "Auswirkungen der Haushaltskonsolidierung und unabweisbare Maßnahmen im Radverkehr",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise",
+    "Verkehrsplanung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Auswirkungen der Haushaltskonsolidierung und unabweisbare Maßnahmen im Radverkehr"
+  },
+  "stadt:12060#Ö 3": {
+   "klartext_titel": "Geplante Maßnahmen unter Haushaltsvorbehalt",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise"
+   ],
+   "entwurf": true,
+   "titel_anker": "Geplante Maßnahmen unter Haushaltsvorbehalt"
+  },
+  "stadt:12060#Ö 3.1": {
+   "klartext_titel": "Hauptroute 09: Querung Gerolfinger Straße",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Hauptroute 09: Querung Gerolfinger Straße"
+  },
+  "stadt:12060#Ö 3.2": {
+   "klartext_titel": "Hauptroute 06: Vorstellung des Konzeptes",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Hauptroute 06: Vorstellung des Konzeptes"
+  },
+  "stadt:12060#Ö 3.3": {
+   "klartext_titel": "Hauptroute 10: Sanierung Radwege an der Ettinger Straße",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung",
+    "Baustelle"
+   ],
+   "entwurf": true,
+   "titel_anker": "Hauptroute 10: Sanierung Radwege an der Ettinger Straße"
+  },
+  "stadt:12060#Ö 3.4": {
+   "klartext_titel": "Hauptroute 01 aus Eichstätt",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Hauptroute 01 aus Eichstätt"
+  },
+  "stadt:12060#Ö 4.1": {
+   "klartext_titel": "Radweg zum Gymnasium Gaimersheim (V0165/25)",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Radweg zum Gymnasium Gaimersheim (V0165/25)"
+  },
+  "stadt:12060#Ö 4.2": {
+   "klartext_titel": "Bewerbung bei Radplus der Deutschen Bahn AG (V0277/25)",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Bewerbung bei Radplus der Deutschen Bahn AG (V0277/25)"
+  },
+  "stadt:12060#Ö 5": {
+   "klartext_titel": "Ausblick und Themenspeicher",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Ausblick und Themenspeicher"
+  },
+  "stadt:12056#Ö 2": {
+   "klartext_titel": "Aktuelle Entwicklungen in der Stabstelle Integrierte Sozialplanung und Quartiersentwicklung - Hr. Hofmann, …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Aktuelle Entwicklungen in der Stabstelle Integrierte Sozialplanung und Quartiersentwicklung - Hr. Hofmann, Referat V"
+  },
+  "stadt:12056#Ö 3": {
+   "klartext_titel": "Fassadengestaltung Richard-Wagner-Straße - Hr. Bendzko, GWG",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Fassadengestaltung Richard-Wagner-Straße - Hr. Bendzko, GWG"
+  },
+  "stadt:12056#Ö 4": {
+   "klartext_titel": "Aktuelles aus dem Stadtteiltreff - Fr. Engert/Fr. Dr. Jaciuk, Stadtteiltreff",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Aktuelles aus dem Stadtteiltreff - Fr. Engert/Fr. Dr. Jaciuk, Stadtteiltreff"
+  },
+  "stadt:12056#Ö 5": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:12055#Ö 1": {
+   "klartext_titel": "Neufassung der Satzung über Aufwendungs- und Kostenersatz für Einsätze und andere",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise",
+    "Sicherheit",
+    "Satzung & Regeln"
+   ],
+   "entwurf": true,
+   "titel_anker": "Neufassung der Satzung über Aufwendungs- und Kostenersatz für Einsätze und andere — Leistungen der Feuerwehren der Stadt Ingolstadt (Feuerwehraufwendungs- und Kostenersatzsatzung FwKS) — — hier: Anpassung an die aktuelle Mustersatzung des Bayerischen Gemeindetags und Neukalkulation der Gebührensätze"
+  },
+  "stadt:12055#Ö 2": {
+   "klartext_titel": "Beschaffungsantrag der Hilfsorganisationen gemäß der Richtlinie über die Gewährung von",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Satzung & Regeln"
+   ],
+   "entwurf": true,
+   "titel_anker": "Beschaffungsantrag der Hilfsorganisationen gemäß der Richtlinie über die Gewährung von — Zuwendungen der Stadt Ingolstadt für die Mitwirkung im Katastrophenschutz"
+  },
+  "stadt:12055#Ö 3": {
+   "klartext_titel": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen — Feuerwehr Ingolstadt-Haunstadt"
+  },
+  "stadt:12055#Ö 5": {
+   "klartext_titel": "Berichte, Themen, Anfragen der Hilfsorganisationen und Fachdienste",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Berichte, Themen, Anfragen der Hilfsorganisationen und Fachdienste — (Referent: Herr Müller) — „von den Hilfsorganisationen und Fachdiensten wurden keine Themen angemeldet“"
+  },
+  "stadt:12046#Ö 2": {
+   "klartext_titel": "Vorstellung Zukunftscampus der KU, Thomas Metten",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Vorstellung Zukunftscampus der KU, Thomas Metten"
+  },
+  "stadt:12046#Ö 3": {
+   "klartext_titel": "Berichte aus den Arbeitsgruppen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Berichte aus den Arbeitsgruppen"
+  },
+  "stadt:12046#Ö 4": {
+   "klartext_titel": "Klima-Fortschrittsbericht",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Klima-Fortschrittsbericht — Stellungnahme des Klimabeirats"
+  },
+  "stadt:12025#Ö 2": {
+   "klartext_titel": "Berichte aus den Arbeitsgruppen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Berichte aus den Arbeitsgruppen"
+  },
+  "stadt:12025#Ö 3": {
+   "klartext_titel": "Zwischenstand Fortschrittsbericht Klimaschutzkonzept, Stefan Schratzenstaller",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Zwischenstand Fortschrittsbericht Klimaschutzkonzept, Stefan Schratzenstaller"
+  },
+  "stadt:13423#Ö 1": {
+   "klartext_titel": "Bavaria ruft, Vorstellung der bayernweiten, überparteilichen Initiative zur Förderung von Frauen in der …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Bavaria ruft, Vorstellung der bayernweiten, überparteilichen Initiative zur Förderung von Frauen in der Kommunalpolitik — - Vortrag von 1. Bürgermeisterin Kathrin Alte, Gemeinde Anzing/Team Bavaria"
+  },
+  "stadt:12015#Ö 1": {
+   "klartext_titel": "Kommandantentagung der Feuerwehr Ingolstadt",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Kommandantentagung der Feuerwehr Ingolstadt — hier: Grundsatzbeschluss"
+  },
+  "stadt:12015#Ö 2": {
+   "klartext_titel": "Beantragung von Fördermitteln aus den neuen Feuerwehr-Zuwendungsrichtlinien",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Satzung & Regeln"
+   ],
+   "entwurf": true,
+   "titel_anker": "Beantragung von Fördermitteln aus den neuen Feuerwehr-Zuwendungsrichtlinien"
+  },
+  "stadt:12015#Ö1": {
+   "klartext_titel": "Antrag der CSU-Stadtratsfraktion vom 23.01.2025",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Antrag der CSU-Stadtratsfraktion vom 23.01.2025"
+  },
+  "stadt:12015#Ö2": {
+   "klartext_titel": "Stellungnahme der Verwaltung",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Stellungnahme der Verwaltung"
+  },
+  "stadt:12015#Ö 3": {
+   "klartext_titel": "Gebührenbericht für kostenrechnende Einrichtungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise",
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Gebührenbericht für kostenrechnende Einrichtungen"
+  },
+  "stadt:12015#Ö 4": {
+   "klartext_titel": "Sachstandsbericht zu laufenden Infrastrukturmaßnahmen",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Sachstandsbericht zu laufenden Infrastrukturmaßnahmen — -Mündlicher Bericht von Herrn Müller-"
+  },
+  "stadt:12015#Ö 5": {
+   "klartext_titel": "Jahresbericht 2024 — -Mündlicher Sachstandsbericht durch Herrn Leitenden Branddirektor Josef Huber",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Jahresbericht 2024 — -Mündlicher Sachstandsbericht durch Herrn Leitenden Branddirektor Josef Huber-"
+  },
+  "stadt:12015#Ö 6": {
+   "klartext_titel": "Bericht zum Einsatz am 13.05.2025 (Oberleitungsschaden ICE)",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht zum Einsatz am 13.05.2025 (Oberleitungsschaden ICE) — -Mündlicher Bericht durch Herrn Gerhard Krycha-"
+  },
+  "stadt:12015#Ö 7": {
+   "klartext_titel": "Berichte, Themen, Anfragen der Hilfsorganisationen und Fachdienste",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Berichte, Themen, Anfragen der Hilfsorganisationen und Fachdienste — (Referent: Herr Müller) — - von den Hilfsorganisationen und Fachdiensten wurden keine Themen angemeldet -"
+  },
+  "stadt:12015#Ö 8": {
+   "klartext_titel": "\"Personalsituation Berufsfeuerwehr\"",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "\"Personalsituation Berufsfeuerwehr\" — Antrag von Stadtrat Stachel in der Stadtratssitzung vom 26.02.2025 — Stellungnahme der Verwaltung"
+  },
+  "stadt:13211#Ö 1": {
+   "klartext_titel": "Anpassung der Sportförderungsrichtlinien",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine",
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise",
+    "Satzung & Regeln",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Anpassung der Sportförderungsrichtlinien — Punkt 2.4 Energie- und Wasserkostenzuschuss, — Punkt 4 Vereinspauschale und — Punkt 6 Benutzung städtischer Sportanlagen"
+  },
+  "stadt:12004#Ö 1": {
+   "klartext_titel": "Bavaria ruft, Vorstellung der bayernweiten, überparteilichen Initiative zur Förderung von Frauen in der …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Bavaria ruft, Vorstellung der bayernweiten, überparteilichen Initiative zur Förderung von Frauen in der Kommunalpolitik — - Vortrag von 1. Bürgermeisterin Kathrin Alte, Gemeinde Anzing/Team Bavaria"
+  },
+  "stadt:12004#Ö 2": {
+   "klartext_titel": "Hexen damals und heute — - Vortrag von Dr. Beatrix Schönewald, Leiterin Zentrum Stadtgeschichte und Kathrin …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Hexen damals und heute — - Vortrag von Dr. Beatrix Schönewald, Leiterin Zentrum Stadtgeschichte und Kathrin Koch, wissenschaftliche Volontärin"
+  },
+  "stadt:12005#Ö 1": {
+   "klartext_titel": "Genehmigung des letzten Protokolls",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Genehmigung des letzten Protokolls"
+  },
+  "stadt:12005#Ö 2": {
+   "klartext_titel": "Workshop zum Integrierten Radkozept für die Altstadt von Ingolstadt",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Workshop zum Integrierten Radkozept für die Altstadt von Ingolstadt"
+  },
+  "stadt:12003#Ö 2": {
+   "klartext_titel": "Neue Leitung Quartiersentwicklung - Karl Hofmann",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Neue Leitung Quartiersentwicklung - Karl Hofmann"
+  },
+  "stadt:12003#Ö 3": {
+   "klartext_titel": "Monitoring Quartier Piusviertel 2024 - Herr Kraus (Hauptamt)",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Monitoring Quartier Piusviertel 2024 - Herr Kraus (Hauptamt)"
+  },
+  "stadt:12003#Ö 4": {
+   "klartext_titel": "Integriertes Städtebauliches Entwicklungskonzept ISEK 2040+ „Zukunft Ingolstadt“- Frau Hölzl …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Integriertes Städtebauliches Entwicklungskonzept ISEK 2040+ „Zukunft Ingolstadt“- Frau Hölzl (Stadtplanungsamt)"
+  },
+  "stadt:12003#Ö 5": {
+   "klartext_titel": "Neubau Wohngebäude Ungernederstraße 10",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete",
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Neubau Wohngebäude Ungernederstraße 10 – Südhausbau - Herr Edelmann (Südhausbau)"
+  },
+  "stadt:12003#Ö 6": {
+   "klartext_titel": "Bericht des Quartiersmanagements mit Monitoring Stadtteiltreff 2024 - Frau Engert/Frau Dr. Jaciuk …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht des Quartiersmanagements mit Monitoring Stadtteiltreff 2024 - Frau Engert/Frau Dr. Jaciuk (Quartiersmanagerinnen)"
+  },
+  "stadt:12003#Ö 7": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:12002#Ö 2": {
+   "klartext_titel": "Neue Leitung Quartiersentwicklung - Herr Hofmann",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Neue Leitung Quartiersentwicklung - Herr Hofmann"
+  },
+  "stadt:12002#Ö 3": {
+   "klartext_titel": "Monitoring 2024 Quartier Augustin - Frau Giebel (Hauptamt)",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Monitoring 2024 Quartier Augustin - Frau Giebel (Hauptamt)"
+  },
+  "stadt:12002#Ö 4": {
+   "klartext_titel": "Integriertes Städtebauliches Entwicklungskonzept ISEK 2040+ „Zukunft Ingolstadt“ - Frau Hölzl …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Integriertes Städtebauliches Entwicklungskonzept ISEK 2040+ „Zukunft Ingolstadt“ - Frau Hölzl (Stadtplanungsamt)"
+  },
+  "stadt:12002#Ö 5": {
+   "klartext_titel": "Bericht des Quartiersmanagements mit Monitoring Stadtteiltreff 2024",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht des Quartiersmanagements mit Monitoring Stadtteiltreff 2024"
+  },
+  "stadt:12002#Ö 6": {
+   "klartext_titel": "Projektstand SeLA - Selbstbestimmtes Leben im Alter - Frau Kuczora (Quartiersmanagerin)",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Projektstand SeLA - Selbstbestimmtes Leben im Alter - Frau Kuczora (Quartiersmanagerin)"
+  },
+  "stadt:12002#Ö 7": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:11994#Ö 2": {
+   "klartext_titel": "Monitoring im Quartier Konradviertel - Frau Reimer (Statistikamt)",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Monitoring im Quartier Konradviertel - Frau Reimer (Statistikamt)"
+  },
+  "stadt:11994#Ö 3": {
+   "klartext_titel": "Integriertes Städtebauliches Entwicklungskonzept ISEK 2040+ „Zukunft Ingolstadt“ - Frau Hölzl …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Integriertes Städtebauliches Entwicklungskonzept ISEK 2040+ „Zukunft Ingolstadt“ - Frau Hölzl (Stadtplanungsamt)"
+  },
+  "stadt:11994#Ö 4": {
+   "klartext_titel": "Bericht des Quartiersmanagements mit Monitoring Stadtteiltreff 2024 - Frau Turinsky/Frau Haußmann …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht des Quartiersmanagements mit Monitoring Stadtteiltreff 2024 - Frau Turinsky/Frau Haußmann (Quartiersmanagerinnen)"
+  },
+  "stadt:11994#Ö 5": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:11994#Ö 6": {
+   "klartext_titel": "Besichtigung der neuen Räume des Gemeindezentrums",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Besichtigung der neuen Räume des Gemeindezentrums"
+  },
+  "stadt:11983#Ö 2": {
+   "klartext_titel": "Berichte aus den Arbeitsgruppen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Berichte aus den Arbeitsgruppen"
+  },
+  "stadt:11983#Ö 3": {
+   "klartext_titel": "Klimaschutz und Klimaanpassung: Relevanz und Reichweite von Kommunen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Klimaschutz und Klimaanpassung: Relevanz und Reichweite von Kommunen — - Prof. Dr. Susanne Jochner-Oette"
+  },
+  "stadt:11983#Ö 4": {
+   "klartext_titel": "Klimaanpassungskonzept und Hitzeaktionsplan",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Klimaanpassungskonzept und Hitzeaktionsplan — – Evi Scheder"
+  },
+  "stadt:11981#Ö 1.1": {
+   "klartext_titel": "Aktuelles aus der Kulturszene - Kurzstatements",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Aktuelles aus der Kulturszene - Kurzstatements"
+  },
+  "stadt:11981#Ö 1.2": {
+   "klartext_titel": "Mündlicher Bericht zu Überlegungen bzgl. Festungsjubiläum 2028",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Mündlicher Bericht zu Überlegungen bzgl. Festungsjubiläum 2028"
+  },
+  "stadt:11981#Ö 1.3": {
+   "klartext_titel": "Mündlicher Bericht zum aktuellen Stand Musikentwicklung",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Mündlicher Bericht zum aktuellen Stand Musikentwicklung"
+  },
+  "stadt:11981#Ö 1.4": {
+   "klartext_titel": "Kulturelle Bildungsprojekte von STADTKULTUR - Netzwerk Bayerischer Städte e.V.",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Kulturelle Bildungsprojekte von STADTKULTUR - Netzwerk Bayerischer Städte e.V."
+  },
+  "stadt:11981#Ö 1.5": {
+   "klartext_titel": "Mündlicher Bericht aus der Kultur- und Kreativwirtschaft",
+   "klartext": "",
+   "lebenslage": [
+    "Gewerbe & Gastro",
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Mündlicher Bericht aus der Kultur- und Kreativwirtschaft"
+  },
+  "stadt:11981#Ö 1.6": {
+   "klartext_titel": "Bedarfsanalyse zur Kulturellen Bildung",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bedarfsanalyse zur Kulturellen Bildung"
+  },
+  "stadt:11981#Ö 1.7": {
+   "klartext_titel": "Mündlicher Bericht zum Migrationsrat der Stadt Ingolstadt",
+   "klartext": "",
+   "lebenslage": [
+    "Zuwanderung & Integration",
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Mündlicher Bericht zum Migrationsrat der Stadt Ingolstadt"
+  },
+  "stadt:11981#Ö 1.8": {
+   "klartext_titel": "Mündlicher Bericht zur Namensänderung des Georgischen Kammerorchesters Ingolstadt (GKO)",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Mündlicher Bericht zur Namensänderung des Georgischen Kammerorchesters Ingolstadt (GKO)"
+  },
+  "stadt:11981#Ö 2.1": {
+   "klartext_titel": "Nächster Sitzungstermin des Beirats 2025",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Nächster Sitzungstermin des Beirats 2025 — 13. November 2025"
+  },
+  "stadt:11978#Ö 1": {
+   "klartext_titel": "Genehmigung der Protokolle vom 17.09.2024 und 13.11.2024",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Genehmigung der Protokolle vom 17.09.2024 und 13.11.2024"
+  },
+  "stadt:11978#Ö 2.1": {
+   "klartext_titel": "Unfälle mit Radfahrer/-innen 2024",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Unfälle mit Radfahrer/-innen 2024"
+  },
+  "stadt:11978#Ö 2.2": {
+   "klartext_titel": "Ausgaben für den Radverkehr 2024",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Ausgaben für den Radverkehr 2024"
+  },
+  "stadt:11978#Ö 2.3": {
+   "klartext_titel": "Umsetzungsstand der Maßnahmen aus der Rezertifizierung als fahrradfreundliche Kommune",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Umsetzungsstand der Maßnahmen aus der Rezertifizierung als fahrradfreundliche Kommune"
+  },
+  "stadt:11978#Ö 2.4": {
+   "klartext_titel": "Termine und Veranstaltungen 2025",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Termine und Veranstaltungen 2025"
+  },
+  "stadt:11978#Ö 2.5": {
+   "klartext_titel": "Positiv-Negativ-Beschilderung am Beispiel Zucheringer Wald",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Positiv-Negativ-Beschilderung am Beispiel Zucheringer Wald"
+  },
+  "stadt:11978#Ö 3": {
+   "klartext_titel": "Ausblick und Themenspeicher",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Ausblick und Themenspeicher"
+  },
+  "stadt:11970#Ö 1": {
+   "klartext_titel": "Stand SeLA Projekt — Mündlicher Vortrag von Frau Dagmar Kuczora",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Stand SeLA Projekt — Mündlicher Vortrag von Frau Dagmar Kuczora"
+  },
+  "stadt:11970#Ö 2": {
+   "klartext_titel": "Vortragsreihe Pflegestützpunkt 2025",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Vortragsreihe Pflegestützpunkt 2025 — Mündlicher Vortrag von Frau Anita Schmaus"
+  },
+  "stadt:11970#Ö 3": {
+   "klartext_titel": "Sachstand Seniorenpolitisches Gesamtkonzept",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Sachstand Seniorenpolitisches Gesamtkonzept — Mündlicher Vortrag von Herrn Karl Hofmann"
+  },
+  "stadt:11970#Ö 4": {
+   "klartext_titel": "Bundesprogramm Mehrgenerationenhaus, Bericht über das Förderjahr 2024",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bundesprogramm Mehrgenerationenhaus, Bericht über das Förderjahr 2024 — Mündlicher Vortrag von Frau Silvia Leithner"
+  },
+  "stadt:11967#Ö 1": {
+   "klartext_titel": "Tätigkeiten der Gleichstellungsbeauftragten: Rückblick 2024 und Ausblick 2025 - mündlicher Bericht der …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Grün & Sauberkeit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Tätigkeiten der Gleichstellungsbeauftragten: Rückblick 2024 und Ausblick 2025 - mündlicher Bericht der Beiratsvorsitzenden Veronika Peters und den Gleichstellungsbeauftragten Anja Assenbaum und Barbara Deimel"
+  },
+  "stadt:11967#Ö 2": {
+   "klartext_titel": "Café NeuHaus - Aktueller Stand des niedrigschwelligen Angebotes - mündlicher Bericht von Judit Bauer, …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Café NeuHaus - Aktueller Stand des niedrigschwelligen Angebotes - mündlicher Bericht von Judit Bauer, Sozialdienst katholischer Frauen Ingolstadt e.V."
+  },
+  "stadt:11962#Ö 1": {
+   "klartext_titel": "Feuerwehrbedarfsplan der Stadt Ingolstadt",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Feuerwehrbedarfsplan der Stadt Ingolstadt — hier: Grundsatzbeschluss zur notwendigen Weiterentwicklung der Feuerwehr Ingolstadt"
+  },
+  "stadt:11962#Ö 2": {
+   "klartext_titel": "Finanzierung des Masterplan der Investitionen für die Feuerwehrgerätehäuser in Ingolstadt",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Finanzierung des Masterplan der Investitionen für die Feuerwehrgerätehäuser in Ingolstadt"
+  },
+  "stadt:11962#Ö 3": {
+   "klartext_titel": "Bericht zu Einsätzen — (Referent: Herr Müller) — — -Im Berichtszeitraum kam es zu keinen berichtswürdigen …",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht zu Einsätzen — (Referent: Herr Müller) — — -Im Berichtszeitraum kam es zu keinen berichtswürdigen Ereignissen-"
+  },
+  "stadt:11962#Ö 4": {
+   "klartext_titel": "Mündlicher Bericht zu Anfragen aus der Kommission für Brand- und Katastrophenschutz sowie Rettungswesen vom …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Mündlicher Bericht zu Anfragen aus der Kommission für Brand- und Katastrophenschutz sowie Rettungswesen vom 05.11.2024 durch Herrn Huber"
+  },
+  "stadt:11962#Ö 5": {
+   "klartext_titel": "Berichte, Themen, Anfragen der Hilfsorganisationen und Fachdienste",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Berichte, Themen, Anfragen der Hilfsorganisationen und Fachdienste — (Referent: Herr Müller) — — -Von den Hilfsorganisationen und Fachdiensten wurden keine Themen angemeldet-"
+  },
+  "stadt:11953#Ö 2": {
+   "klartext_titel": "Berichte aus den Arbeitsgruppen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Berichte aus den Arbeitsgruppen"
+  },
+  "stadt:11953#Ö 3": {
+   "klartext_titel": "Mitwirkung des Klimabeirats beim Fortschrittsbericht 2025 (Zeitplan, Messbarkeit), Antrag Elias Hammer",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Mitwirkung des Klimabeirats beim Fortschrittsbericht 2025 (Zeitplan, Messbarkeit), Antrag Elias Hammer"
+  },
+  "stadt:11953#Ö 4": {
+   "klartext_titel": "Stellungnahme des Klimabeirats zu dem Stadtratsantrag \"Aufhebung und Korrektur Klimaneutralität 2035\" vom …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Stellungnahme des Klimabeirats zu dem Stadtratsantrag \"Aufhebung und Korrektur Klimaneutralität 2035\" vom 16.10.2024"
+  },
+  "stadt:10340#Ö 2": {
+   "klartext_titel": "Erfahrungen aus dem Bürgerrat des Deutschen Bundestages \"Ernährung im Wandel\" - Henrik Rump",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Erfahrungen aus dem Bürgerrat des Deutschen Bundestages \"Ernährung im Wandel\" - Henrik Rump"
+  },
+  "stadt:10340#Ö 3": {
+   "klartext_titel": "Omas for Future – 21.02.2025 - Klimastreik",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Omas for Future – 21.02.2025 - Klimastreik"
+  },
+  "stadt:10340#Ö 4": {
+   "klartext_titel": "World Café – Dr. Stefan Schweiger -siehe Anlage „2024_12_19_World Cafe_Klimabeirat.pdf“",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "World Café – Dr. Stefan Schweiger -siehe Anlage „2024_12_19_World Cafe_Klimabeirat.pdf“"
+  },
+  "stadt:10336#Ö 2": {
+   "klartext_titel": "Vorstellung des neuen Gemeindezentrums St. Lukas",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Vorstellung des neuen Gemeindezentrums St. Lukas – Herr Pfarrer Erstling"
+  },
+  "stadt:10336#Ö 3": {
+   "klartext_titel": "Aktuelles aus den Jugendtreffs",
+   "klartext": "",
+   "lebenslage": [
+    "Jugend"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Aktuelles aus den Jugendtreffs – Herr Kestel (Diakonisches Werk)"
+  },
+  "stadt:10336#Ö 4": {
+   "klartext_titel": "Bericht der MOJA_mobile Jugendarbeit Ingolstadt und im Konradviertel",
+   "klartext": "",
+   "lebenslage": [
+    "Jugend"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht der MOJA_mobile Jugendarbeit Ingolstadt und im Konradviertel – SJR"
+  },
+  "stadt:10336#Ö 5": {
+   "klartext_titel": "Kunstprojekt Geibelstraße \"Insekten auf Totholz\" und neues Projekt Landmarks in der Goethestraße",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Kunstprojekt Geibelstraße \"Insekten auf Totholz\" und neues Projekt Landmarks in der Goethestraße – Hr. Bendzko (GWG)"
+  },
+  "stadt:10336#Ö 6": {
+   "klartext_titel": "Sanierung des Spielplatzes Hebbelstraße mit Erweiterung Inklusiver Spielplatz",
+   "klartext": "",
+   "lebenslage": [
+    "Eltern & Kinder",
+    "Unterwegs",
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Baustelle"
+   ],
+   "entwurf": true,
+   "titel_anker": "Sanierung des Spielplatzes Hebbelstraße mit Erweiterung Inklusiver Spielplatz – Stadtplanungsamt"
+  },
+  "stadt:10336#Ö 7": {
+   "klartext_titel": "Bericht Quartiersmanagement",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht Quartiersmanagement – Frau Turinsky, Frau Haußmann"
+  },
+  "stadt:10336#Ö 8": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:10318#Ö 1": {
+   "klartext_titel": "Vorstellung Gruppe Senioren ins Netz",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Vorstellung Gruppe Senioren ins Netz — -Mündlicher Vortrag von Frau Daniela Dütting und Herrn Siegfried Bauer-"
+  },
+  "stadt:10318#Ö 2": {
+   "klartext_titel": "Bericht des Freiwilligenzentrums über Angebote und Aktionen in 2024",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen",
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht des Freiwilligenzentrums über Angebote und Aktionen in 2024 — -Mündlicher Vortrag von Frau Wiltrud Nosse-"
+  },
+  "stadt:10318#Ö 3": {
+   "klartext_titel": "Fahrradfahren für Seniorinnen und Senioren erleichtern",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen",
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Fahrradfahren für Seniorinnen und Senioren erleichtern"
+  },
+  "stadt:10316#Ö 1.1": {
+   "klartext_titel": "Sitzungstermine des Beirats 2025",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Sitzungstermine des Beirats 2025 — voraussichtlich April / Mai und September 2025"
+  },
+  "stadt:10316#Ö 2.1": {
+   "klartext_titel": "Bericht zur finanziellen Situation der Stadt",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht zur finanziellen Situation der Stadt"
+  },
+  "stadt:10316#Ö 2.2": {
+   "klartext_titel": "Nutzung des Holztheaters für kulturelle Organisationen",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Nutzung des Holztheaters für kulturelle Organisationen"
+  },
+  "stadt:10316#Ö 2.3": {
+   "klartext_titel": "Veranstaltungskalender - Sachstand",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Veranstaltungskalender - Sachstand"
+  },
+  "stadt:10316#Ö 2.4": {
+   "klartext_titel": "Kurzberichte aus der freien Kulturszene mit 3-minütigen Statements",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Kurzberichte aus der freien Kulturszene mit 3-minütigen Statements"
+  },
+  "stadt:10316#Ö 2.5": {
+   "klartext_titel": "Kurzbericht über den Workshop mit den Kulturakteuren des Kulturbeirates mit Vorstellung des Leitbildes",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Kurzbericht über den Workshop mit den Kulturakteuren des Kulturbeirates mit Vorstellung des Leitbildes"
+  },
+  "stadt:10317#Ö 1": {
+   "klartext_titel": "Genehmigung des letzten Protokolls",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Genehmigung des letzten Protokolls"
+  },
+  "stadt:10317#Ö 2.1": {
+   "klartext_titel": "Ausblick Haushalt 2025",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise"
+   ],
+   "entwurf": true,
+   "titel_anker": "Ausblick Haushalt 2025"
+  },
+  "stadt:10317#Ö 2.2": {
+   "klartext_titel": "Gemeinsames Ampelsignal für Fuß- und Radverkehr",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Gemeinsames Ampelsignal für Fuß- und Radverkehr"
+  },
+  "stadt:10317#Ö 2.3": {
+   "klartext_titel": "Prozess bei Rückschnitt von privaten Hecken",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Grün & Sauberkeit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Prozess bei Rückschnitt von privaten Hecken"
+  },
+  "stadt:10317#Ö 2.4": {
+   "klartext_titel": "Öffentlichkeitsarbeit und Digitalisierung",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Öffentlichkeitsarbeit und Digitalisierung"
+  },
+  "stadt:10317#Ö 3": {
+   "klartext_titel": "Ausblick und Themenspeicher",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Ausblick und Themenspeicher"
+  },
+  "stadt:10315#Ö 2": {
+   "klartext_titel": "Bericht aus dem Jugendtreff AUT - Frau Rudolph (Diakonie)",
+   "klartext": "",
+   "lebenslage": [
+    "Jugend"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht aus dem Jugendtreff AUT - Frau Rudolph (Diakonie)"
+  },
+  "stadt:10315#Ö 3": {
+   "klartext_titel": "Bericht der Moja_Mobile Jugendarbeit in Ingolstadt und im Augustinviertel - SJR",
+   "klartext": "",
+   "lebenslage": [
+    "Jugend"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht der Moja_Mobile Jugendarbeit in Ingolstadt und im Augustinviertel - SJR"
+  },
+  "stadt:10315#Ö 4": {
+   "klartext_titel": "\"Clusterwohnen\" - familienfreundliches Wohnen und Sonderwohnformen in der Weningstraße - Hr. Bendzko (GWG)",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete",
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "\"Clusterwohnen\" - familienfreundliches Wohnen und Sonderwohnformen in der Weningstraße - Hr. Bendzko (GWG)"
+  },
+  "stadt:10315#Ö 5": {
+   "klartext_titel": "Rückmeldungen aus dem Hochbauamt zu den beiden Anträgen: Prüfung Schallschutz und Vordach vom 18.04.2024 - …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Rückmeldungen aus dem Hochbauamt zu den beiden Anträgen: Prüfung Schallschutz und Vordach vom 18.04.2024 - Frau Weingärtner"
+  },
+  "stadt:10315#Ö 6": {
+   "klartext_titel": "Neue Richtlinien der Kommission Quartiersentwicklung Augustinviertel - Frau Weingärtner",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Satzung & Regeln"
+   ],
+   "entwurf": true,
+   "titel_anker": "Neue Richtlinien der Kommission Quartiersentwicklung Augustinviertel - Frau Weingärtner"
+  },
+  "stadt:10315#Ö 7": {
+   "klartext_titel": "Projekt SeLA - selbstbestimmtes Leben im Alter - Frau Kuczora (Quartiersmanagerin)",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Projekt SeLA - selbstbestimmtes Leben im Alter - Frau Kuczora (Quartiersmanagerin)"
+  },
+  "stadt:10315#Ö 8": {
+   "klartext_titel": "Bericht aus dem Stadtteiltreff - Frau Schmachtl, Frau Kuczora (Quartiersmanagerinnen)",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht aus dem Stadtteiltreff - Frau Schmachtl, Frau Kuczora (Quartiersmanagerinnen)"
+  },
+  "stadt:10315#Ö 9": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:10312#Ö 1": {
+   "klartext_titel": "Abschlussbericht zum Hochwasser im Mai/Juni 2024 in der Stadt Ingolstadt",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Abschlussbericht zum Hochwasser im Mai/Juni 2024 in der Stadt Ingolstadt"
+  },
+  "stadt:10312#Ö 2": {
+   "klartext_titel": "Jahresbericht der Hilfsorganisationen und Fachdienste",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Jahresbericht der Hilfsorganisationen und Fachdienste — (Referent: Herr Müller) — — - mündlicher Bericht des BRK — - mündlicher Bericht des SanEL"
+  },
+  "stadt:10312#Ö 3": {
+   "klartext_titel": "Masterplan zu Sanierung und Neubau der Feuerwehrgerätehäuser",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Baustelle"
+   ],
+   "entwurf": true,
+   "titel_anker": "Masterplan zu Sanierung und Neubau der Feuerwehrgerätehäuser"
+  },
+  "stadt:10312#Ö 4": {
+   "klartext_titel": "Hauptfeuerwache Ingolstadt, Sanierung Innenbereich; Dreizehnerstraße1, 85049 Ingolstadt",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Baustelle"
+   ],
+   "entwurf": true,
+   "titel_anker": "Hauptfeuerwache Ingolstadt, Sanierung Innenbereich; Dreizehnerstraße1, 85049 Ingolstadt — - Projektgenehmigung"
+  },
+  "stadt:10312#Ö 5": {
+   "klartext_titel": "Feuerwehrbedarfsplan der Stadt Ingolstadt",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Feuerwehrbedarfsplan der Stadt Ingolstadt"
+  },
+  "stadt:10312#Ö 7": {
+   "klartext_titel": "Änderung der Satzung für die Feuerwehr Ingolstadt",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Satzung & Regeln"
+   ],
+   "entwurf": true,
+   "titel_anker": "Änderung der Satzung für die Feuerwehr Ingolstadt — hier: Namensänderung eines Feuerwehrvereins und redaktionelle Ergänzung / Anpassungen"
+  },
+  "stadt:10312#Ö 8": {
+   "klartext_titel": "Bericht, Themen, Anfragen der Hilfsorganisationen und Fachdienste",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht, Themen, Anfragen der Hilfsorganisationen und Fachdienste — (Referent: Herr Müller) — — -von den Hilfsorganisationen und Fachdiensten wurden keine Themen angemeldet-"
+  },
+  "stadt:10309#Ö 2": {
+   "klartext_titel": "Bauprojekt Stinnesstraße - Bayernheim Herr Rzezacz",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Bauprojekt Stinnesstraße - Bayernheim Herr Rzezacz"
+  },
+  "stadt:10309#Ö 3": {
+   "klartext_titel": "Bauprojekt Stinnesstraße - GWG Herr Bendzko",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Bauprojekt Stinnesstraße - GWG Herr Bendzko"
+  },
+  "stadt:10309#Ö 4": {
+   "klartext_titel": "Vorstellung Familienstützpunkt Elisa - Frau Lindau",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Vorstellung Familienstützpunkt Elisa - Frau Lindau"
+  },
+  "stadt:10309#Ö 5": {
+   "klartext_titel": "Moja - Mobile Jugendarbeit in Ingolstadt und im Piusviertel - SJR Herr Mastroianni",
+   "klartext": "",
+   "lebenslage": [
+    "Jugend"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Moja - Mobile Jugendarbeit in Ingolstadt und im Piusviertel - SJR Herr Mastroianni"
+  },
+  "stadt:10309#Ö 6": {
+   "klartext_titel": "Wegeleitsystem Weiterführung Orangener Weg - Stadtplanungsamt Frau Wecker",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Wegeleitsystem Weiterführung Orangener Weg - Stadtplanungsamt Frau Wecker"
+  },
+  "stadt:10309#Ö 7": {
+   "klartext_titel": "Bericht Quartiersmanagement - Frau Engert, Frau Dr. Jaciuk",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht Quartiersmanagement - Frau Engert, Frau Dr. Jaciuk"
+  },
+  "stadt:10309#Ö 8": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:10302#Ö 1": {
+   "klartext_titel": "Rechtliche und tatsächliche Gleichstellung",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Rechtliche und tatsächliche Gleichstellung — - Vortrag von Rechtsanwältin Renate Maltry"
+  },
+  "stadt:10302#Ö 2": {
+   "klartext_titel": "Prävention und Sicherheit auf Volksfesten und Veranstaltungen; Plakataktionen, Hilfsangebote, Anlaufstellen …",
+   "klartext": "",
+   "lebenslage": [
+    "Gewerbe & Gastro"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Prävention und Sicherheit auf Volksfesten und Veranstaltungen; Plakataktionen, Hilfsangebote, Anlaufstellen für Frauen und queere Menschen bei Großveranstaltungen; — - mündlicher Bericht von der Gleichstellungsbeauftragten Barbara Deimel"
+  },
+  "stadt:11347#Ö 1": {
+   "klartext_titel": "Anpassung der Benutzungs- und Entgeltregelung der Stadt Ingolstadt für die Benutzung städtischer Sportanlagen …",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine",
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise"
+   ],
+   "entwurf": true,
+   "titel_anker": "Anpassung der Benutzungs- und Entgeltregelung der Stadt Ingolstadt für die Benutzung städtischer Sportanlagen (Sporthallen; Lehrschwimmbecken; Sportplätze einschließlich Nebenräume; Leichtathletikanlagen; sonstige Räume, die für Vereins- und Sportzwecke verwendet werden)"
+  },
+  "stadt:10291#Ö 1": {
+   "klartext_titel": "Genehmigung des letzten Protokolls",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Genehmigung des letzten Protokolls"
+  },
+  "stadt:10291#Ö 2.1": {
+   "klartext_titel": "Stadtratsantrag Fahrradfahren für Seniorinnen und Senioren erleichtern (V0408/24)",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen",
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Stadtratsantrag Fahrradfahren für Seniorinnen und Senioren erleichtern (V0408/24)"
+  },
+  "stadt:10291#Ö 2.2": {
+   "klartext_titel": "Zukünftiger Umgang mit freigegebenen Gehwegen für den Radverkehr",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Zukünftiger Umgang mit freigegebenen Gehwegen für den Radverkehr"
+  },
+  "stadt:10291#Ö 2.3": {
+   "klartext_titel": "Sachstand Radverkehrsnetz Bayern",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Sachstand Radverkehrsnetz Bayern"
+  },
+  "stadt:10291#Ö 3": {
+   "klartext_titel": "Ausblick und Themenspeicher",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Ausblick und Themenspeicher"
+  },
+  "stadt:10289#Ö 2": {
+   "klartext_titel": "Anträge für den Klimaaktionsfonds",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Anträge für den Klimaaktionsfonds"
+  },
+  "stadt:10289#Ö 3": {
+   "klartext_titel": "Arbeitsgruppen: — Vorschlag einer neuen AG zu Mobilität durch Hr. Katiofsky — Vorschlag zur Weiterarbeit mit …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Arbeitsgruppen: — Vorschlag einer neuen AG zu Mobilität durch Hr. Katiofsky — Vorschlag zur Weiterarbeit mit AG Kommunikation durch Fr. Heyer"
+  },
+  "stadt:10289#Ö 4": {
+   "klartext_titel": "Energiewendeplan mit Wärmeplanung- Stellungnahme des Klimabeirates",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Energiewendeplan mit Wärmeplanung- Stellungnahme des Klimabeirates"
+  },
+  "stadt:10270#Ö 1": {
+   "klartext_titel": "Pflegebedarfsanalyse und Pflegebedarfsprognose",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Pflegebedarfsanalyse und Pflegebedarfsprognose"
+  },
+  "stadt:10270#Ö 2": {
+   "klartext_titel": "Aufbau von Pflegekonferenzen nach § 8a Abs. 3 SGB XI i.V.m. Art. 77 a Abs. 2 AGSG und Einrichtung …",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen",
+    "Gesundheit & Pflege"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Satzung & Regeln",
+    "Grün & Sauberkeit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Aufbau von Pflegekonferenzen nach § 8a Abs. 3 SGB XI i.V.m. Art. 77 a Abs. 2 AGSG und Einrichtung aufsuchender Seniorenarbeit mit Fördermöglichkeit über die Richtlinie zur Stärkung der Pflege im sozialen Nahraum (GutePflegeFöR) vom 22.09.2023"
+  },
+  "stadt:10270#Ö1": {
+   "klartext_titel": "hierzu: Gründung einer Ingolstädter Pflegekonferenz",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Grün & Sauberkeit"
+   ],
+   "entwurf": true,
+   "titel_anker": "hierzu: Gründung einer Ingolstädter Pflegekonferenz"
+  },
+  "stadt:10262#Ö 1": {
+   "klartext_titel": "Häusliche Gewalt - Auswirkungen auf das Umgangsrecht",
+   "klartext": "",
+   "lebenslage": [
+    "Eltern & Kinder"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Häusliche Gewalt - Auswirkungen auf das Umgangsrecht; Gewaltschutz, Recht auf Sicherheit und körperliche wie seelische Unversehrtheit für die von Gewalt betroffenen Elternteile und die Kinder"
+  },
+  "stadt:10262#Ö 2": {
+   "klartext_titel": "Alleinerziehende in Ingolstadt",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Alleinerziehende in Ingolstadt; Situationsanalyse und Unterstützungsmöglichkeiten"
+  },
+  "stadt:10262#Ö 3": {
+   "klartext_titel": "Antidiskriminierungsstelle der Stadt; Bericht nach der Pilotphase und Fortführung",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Antidiskriminierungsstelle der Stadt; Bericht nach der Pilotphase und Fortführung — - mündlicher Bericht von der Gleichstellungsbeauftragten Barbara Deimel"
+  },
+  "stadt:10262#Ö1": {
+   "klartext_titel": "hierzu liegt eine Stellungnahme des Migrationsrates vor.",
+   "klartext": "",
+   "lebenslage": [
+    "Zuwanderung & Integration"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "hierzu liegt eine Stellungnahme des Migrationsrates vor."
+  },
+  "stadt:11346#Ö 1": {
+   "klartext_titel": "Vereinsauflösung Sportkeglerverein Ingolstadt e.V.",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine",
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Vereinsauflösung Sportkeglerverein Ingolstadt e.V."
+  },
+  "stadt:10259#Ö 1": {
+   "klartext_titel": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen — Feuerwehr Ingolstadt-Haunwöhr"
+  },
+  "stadt:10259#Ö 2": {
+   "klartext_titel": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen — Feuerwehr Ingolstadt-Etting"
+  },
+  "stadt:10259#Ö 3": {
+   "klartext_titel": "Bestätigung des Kommandanten der Freiwilligen Feuerwehr Ingolstadt-Dünzlau",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des Kommandanten der Freiwilligen Feuerwehr Ingolstadt-Dünzlau"
+  },
+  "stadt:10259#Ö 4": {
+   "klartext_titel": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen — Feuerwehr Ingolstadt-Gerolfing"
+  },
+  "stadt:10259#Ö 5": {
+   "klartext_titel": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen — Feuerwehr Ingolstadt-Unsernherrn"
+  },
+  "stadt:10259#Ö 6": {
+   "klartext_titel": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen — Feuerwehr Ingolstadt-Hundszell"
+  },
+  "stadt:10259#Ö 7": {
+   "klartext_titel": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen — Feuerwehr Ingolstadt-Rothenturm/Niederfeld"
+  },
+  "stadt:10259#Ö 8": {
+   "klartext_titel": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen — Feuerwehr Ingolstadt-Zuchering"
+  },
+  "stadt:10259#Ö 9": {
+   "klartext_titel": "Bestätigung des stellvertretenden Kommandanten der Freiwilligen Feuerwehr Ingolstadt-Mailing",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des stellvertretenden Kommandanten der Freiwilligen Feuerwehr Ingolstadt-Mailing"
+  },
+  "stadt:10259#Ö 10": {
+   "klartext_titel": "Sachstandsbericht zum Gemeinschaftsantrag V0721/23 (Änderungsantrag zum Feuerwehrbedarfsplan)",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Sachstandsbericht zum Gemeinschaftsantrag V0721/23 (Änderungsantrag zum Feuerwehrbedarfsplan) — mündlicher Bericht Herr Müller"
+  },
+  "stadt:10259#Ö 11": {
+   "klartext_titel": "Sachstandsbericht zur \"stillen Alarmierung\" und Sirenenabschaltung zur Feuerwehralarmierung im Stadtgebiet …",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Sachstandsbericht zur \"stillen Alarmierung\" und Sirenenabschaltung zur Feuerwehralarmierung im Stadtgebiet durch das Amt für Brand- und Katastrophenschutz — mündlicher Bericht Herr Müller"
+  },
+  "stadt:10259#Ö 12": {
+   "klartext_titel": "Bericht zu Einsätzen — - mündlicher Bericht Herr Huber zum Hochwasser",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht zu Einsätzen — - mündlicher Bericht Herr Huber zum Hochwasser -"
+  },
+  "stadt:10259#Ö 13": {
+   "klartext_titel": "Berichte, Themen und Anfragen der Hilfsorganisationen und Fachdienste",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Berichte, Themen und Anfragen der Hilfsorganisationen und Fachdienste"
+  },
+  "stadt:10257#Ö 2": {
+   "klartext_titel": "Kunstprojekt Geibelstraße \"Insekten auf Totholz\" - GWG Hr. Bendzko",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Kunstprojekt Geibelstraße \"Insekten auf Totholz\" - GWG Hr. Bendzko"
+  },
+  "stadt:10257#Ö 3": {
+   "klartext_titel": "Monitoring Quartier Konradviertel 2023 - Statistikamt Hr. Schels",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Monitoring Quartier Konradviertel 2023 - Statistikamt Hr. Schels"
+  },
+  "stadt:10257#Ö 4": {
+   "klartext_titel": "Bericht des Quartiersmanagements mit Monitoring 2023",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht des Quartiersmanagements mit Monitoring 2023"
+  },
+  "stadt:10257#Ö 5": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:10253#Ö 1": {
+   "klartext_titel": "Genehmigung des letzten Protokolls",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Genehmigung des letzten Protokolls"
+  },
+  "stadt:10253#Ö 2.1": {
+   "klartext_titel": "Radverkehr im Projekt Schneller Weg",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Radverkehr im Projekt Schneller Weg"
+  },
+  "stadt:10253#Ö 2.2": {
+   "klartext_titel": "Anschluss des neuen Baugebiets \"Am Samhof\"",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anschluss des neuen Baugebiets \"Am Samhof\""
+  },
+  "stadt:10253#Ö 2.3": {
+   "klartext_titel": "Radfahrstreifen in Mittellage in Ingolstadt",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Radfahrstreifen in Mittellage in Ingolstadt"
+  },
+  "stadt:10253#Ö 2.4": {
+   "klartext_titel": "Fahrradreparaturstationen",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Fahrradreparaturstationen"
+  },
+  "stadt:10253#Ö 2.5": {
+   "klartext_titel": "Information zum Integrierten Radkonzept Altstadt",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Information zum Integrierten Radkonzept Altstadt"
+  },
+  "stadt:10253#Ö 2.6": {
+   "klartext_titel": "Aktueller Sachstand Donauquerung Staustufe",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Aktueller Sachstand Donauquerung Staustufe"
+  },
+  "stadt:10253#Ö 2.7": {
+   "klartext_titel": "Information zur Beschilderung des Jakobus Radpilgerwegs",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Information zur Beschilderung des Jakobus Radpilgerwegs"
+  },
+  "stadt:10253#Ö 2.8": {
+   "klartext_titel": "Information zum aktuellen Sachstand Asam- und Schillerstraße",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Information zum aktuellen Sachstand Asam- und Schillerstraße"
+  },
+  "stadt:10253#Ö 3": {
+   "klartext_titel": "Ausblick und Themenspeicher",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Ausblick und Themenspeicher"
+  },
+  "stadt:10244#Ö 1.1": {
+   "klartext_titel": "Nächster Sitzungstermin des Beirats 2024",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Nächster Sitzungstermin des Beirats 2024 — 13. November 2024"
+  },
+  "stadt:10244#Ö 1.2": {
+   "klartext_titel": "Vorstellung von Herrn Marc Grandmontagne, designierter Kulturreferent",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Vorstellung von Herrn Marc Grandmontagne, designierter Kulturreferent"
+  },
+  "stadt:10244#Ö 2.1": {
+   "klartext_titel": "Austausch mit Donaukurier für Beilage \"trotzdemjetzt\"",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Austausch mit Donaukurier für Beilage \"trotzdemjetzt\""
+  },
+  "stadt:10244#Ö 2.3": {
+   "klartext_titel": "Aktueller Sachstand MKKD",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Aktueller Sachstand MKKD"
+  },
+  "stadt:10244#Ö 2.4": {
+   "klartext_titel": "Aktueller Sachstand Interim, Proben- und Werkstattgebäude",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Aktueller Sachstand Interim, Proben- und Werkstattgebäude"
+  },
+  "stadt:10237#Ö 1": {
+   "klartext_titel": "Genehmigung des letzten Protokolls",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Genehmigung des letzten Protokolls"
+  },
+  "stadt:10237#Ö 2.1": {
+   "klartext_titel": "Termine und Veranstaltungen 2024",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Termine und Veranstaltungen 2024"
+  },
+  "stadt:10237#Ö 2.2": {
+   "klartext_titel": "Vorstellung Ingolstädter Radverkehrslogo",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Vorstellung Ingolstädter Radverkehrslogo"
+  },
+  "stadt:10237#Ö 3.1": {
+   "klartext_titel": "Fahrradabstellanlagen an Bushaltestellen",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Fahrradabstellanlagen an Bushaltestellen"
+  },
+  "stadt:10237#Ö 3.2": {
+   "klartext_titel": "Investitionen in den Radverkehr 2023",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Investitionen in den Radverkehr 2023"
+  },
+  "stadt:10237#Ö 3.3": {
+   "klartext_titel": "Änderung Begrifflichkeit Vorrangroute",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Änderung Begrifflichkeit Vorrangroute"
+  },
+  "stadt:10237#Ö 3.4": {
+   "klartext_titel": "Geplante Verbesserungen an den Hauptrouten 07 und 09",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Geplante Verbesserungen an den Hauptrouten 07 und 09"
+  },
+  "stadt:10237#Ö 3.5": {
+   "klartext_titel": "Standardbreite für gemeinsame Geh- und Radwege mit Beidrichtungsverkehr",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Standardbreite für gemeinsame Geh- und Radwege mit Beidrichtungsverkehr"
+  },
+  "stadt:10237#Ö 3.6": {
+   "klartext_titel": "Kreuzung Ringlerstraße und Hindenburgstraße",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Kreuzung Ringlerstraße und Hindenburgstraße"
+  },
+  "stadt:10237#Ö 3.7": {
+   "klartext_titel": "Radtouristische Projekte aus 2023 und 2024",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Radtouristische Projekte aus 2023 und 2024"
+  },
+  "stadt:10237#Ö 3.8": {
+   "klartext_titel": "Unfälle mit Radfahrer/-innen 2023",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Unfälle mit Radfahrer/-innen 2023"
+  },
+  "stadt:10237#Ö 4": {
+   "klartext_titel": "Ausblick und Themenspeicher",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Ausblick und Themenspeicher"
+  },
+  "stadt:10233#Ö 2": {
+   "klartext_titel": "Monitoring 2023 Quartier Augustinviertel - Statistikamt Hr. Schels",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Monitoring 2023 Quartier Augustinviertel - Statistikamt Hr. Schels"
+  },
+  "stadt:10233#Ö 3": {
+   "klartext_titel": "Inklusiver Spielplatz am Schwarzen Weg - Stadtplanungsamt Frau Hölzl, Frau Wecker",
+   "klartext": "",
+   "lebenslage": [
+    "Eltern & Kinder",
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Inklusiver Spielplatz am Schwarzen Weg - Stadtplanungsamt Frau Hölzl, Frau Wecker"
+  },
+  "stadt:10233#Ö 4": {
+   "klartext_titel": "Familienstützpunkt Süd - Bericht und Vorstellung neue Leiterin Frau Kindermann",
+   "klartext": "",
+   "lebenslage": [
+    "Eltern & Kinder"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Familienstützpunkt Süd - Bericht und Vorstellung neue Leiterin Frau Kindermann"
+  },
+  "stadt:10233#Ö 5": {
+   "klartext_titel": "Bericht des Quartiersmanagements mit Monitoring Stadtteiltreff 2023 - Frau Schmachtl, Frau Kuczora",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht des Quartiersmanagements mit Monitoring Stadtteiltreff 2023 - Frau Schmachtl, Frau Kuczora"
+  },
+  "stadt:10233#Ö 6": {
+   "klartext_titel": "Projektstart SeLA /Themenschwerpunkte - Frau Kuczora",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Projektstart SeLA /Themenschwerpunkte - Frau Kuczora"
+  },
+  "stadt:10233#Ö 7": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:10231#Ö 2": {
+   "klartext_titel": "Neubauten an der Ungernederstraße - Südhausbau Hr. Schmidt",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Neubauten an der Ungernederstraße - Südhausbau Hr. Schmidt"
+  },
+  "stadt:10231#Ö 3": {
+   "klartext_titel": "Verkehrsführung um die Grundschule - Frau Weingärtner (schriftliche Stellungnahme Amt für Verkehrsmanagement …",
+   "klartext": "",
+   "lebenslage": [
+    "Eltern & Kinder",
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Verkehrsführung um die Grundschule - Frau Weingärtner (schriftliche Stellungnahme Amt für Verkehrsmanagement liegt vor)"
+  },
+  "stadt:10231#Ö 4": {
+   "klartext_titel": "Planungen Quartiersmanagement im Nordwesten - Referent Hr. Fischer",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Planungen Quartiersmanagement im Nordwesten - Referent Hr. Fischer"
+  },
+  "stadt:10231#Ö 5": {
+   "klartext_titel": "Monitoring 2023 Quartier Piusviertel - Statistikamt Hr. Schels",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Monitoring 2023 Quartier Piusviertel - Statistikamt Hr. Schels"
+  },
+  "stadt:10231#Ö 6": {
+   "klartext_titel": "Bericht Quartiersmanagement mit Monitoring Stadtteiltreff 2023 - Frau Engert, Frau Dr. Jaciuk",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht Quartiersmanagement mit Monitoring Stadtteiltreff 2023 - Frau Engert, Frau Dr. Jaciuk"
+  },
+  "stadt:10231#Ö 7": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:10226#Ö 1": {
+   "klartext_titel": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen Feuerwehr …",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen Feuerwehr Ingolstadt-Hagau"
+  },
+  "stadt:10226#Ö 2": {
+   "klartext_titel": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen Feuerwehr …",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bestätigung des Kommandanten und des stellvertretenden Kommandanten der Freiwilligen Feuerwehr Ingolstadt-Stützpunkt West"
+  },
+  "stadt:10226#Ö 3": {
+   "klartext_titel": "Sachstandsbericht zum Gemeinschaftsantrag V0721/23 (Änderungsantrag zum Feuerwehrbedarfsplan)",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Sachstandsbericht zum Gemeinschaftsantrag V0721/23 (Änderungsantrag zum Feuerwehrbedarfsplan)"
+  },
+  "stadt:10226#Ö 4": {
+   "klartext_titel": "Sachstandsbericht zur Entwicklung einer Evakuierungsplanung für Ingolstadt durch die Hochschule München in …",
+   "klartext": "",
+   "lebenslage": [
+    "Studierende"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Sachstandsbericht zur Entwicklung einer Evakuierungsplanung für Ingolstadt durch die Hochschule München in Zusammenarbeit mit der Berufsfeuerwehr Ingolstadt"
+  },
+  "stadt:10226#Ö 5": {
+   "klartext_titel": "Sachstandsbericht zur Erstellung eines externen Notfallplans für die Audi AG, Betriebsbereich Ingolstadt, …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Sachstandsbericht zur Erstellung eines externen Notfallplans für die Audi AG, Betriebsbereich Ingolstadt, nach Art. 3a BayKSG"
+  },
+  "stadt:10226#Ö 7": {
+   "klartext_titel": "Neubau eines gemeinsamen Feuerwehrgerätehauses für die Freiwilligen Feuerwehren Ringsee",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Neubau eines gemeinsamen Feuerwehrgerätehauses für die Freiwilligen Feuerwehren Ringsee, — Rothenturm und Unsernherrn mit integriertem Ausbildungsstützpunkt für alle Ingolstädter Feuerwehren — - Programmgenehmigung -"
+  },
+  "stadt:10226#Ö1": {
+   "klartext_titel": "hierzu liegt vor: — Änderungsantrag der Stadtratsfraktionen CSU, SPD, B90/DIEGRÜNEN, FW und der …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Grün & Sauberkeit"
+   ],
+   "entwurf": true,
+   "titel_anker": "hierzu liegt vor: — Änderungsantrag der Stadtratsfraktionen CSU, SPD, B90/DIEGRÜNEN, FW und der Ausschussgemeinschaft FDP/JU vom 14.03.2024 zur V0173/24"
+  },
+  "stadt:10226#Ö 9": {
+   "klartext_titel": "Berichte, Themen und Anfragen der Hilfsorganisationen und Fachdienste",
+   "klartext": "",
+   "lebenslage": [
+    "Wohnen & Miete"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Sicherheit",
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Berichte, Themen und Anfragen der Hilfsorganisationen und Fachdienste — (Referent: Herr Müller) — - es liegen von Seiten der Hilfsorganisationen keine Themenmeldungen vor -"
+  },
+  "stadt:10220#Ö 1": {
+   "klartext_titel": "Bericht SeLA Projekt mit Förderantrag",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht SeLA Projekt mit Förderantrag — -Mündlicher Vortrag von Frau Angela Weingärtner-"
+  },
+  "stadt:10220#Ö 2": {
+   "klartext_titel": "Landesseniorenrat -aktueller Sachstand",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Landesseniorenrat -aktueller Sachstand- — -Mündlicher Vortrag von Herrn Siegfried Bauer und Frau Ingeborg Joppien-"
+  },
+  "stadt:10220#Ö 3": {
+   "klartext_titel": "Tätigkeitsbericht des Pflegestützpunktes zum 3-jährigen Bestehen",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Tätigkeitsbericht des Pflegestützpunktes zum 3-jährigen Bestehen — -Mündlicher Vortrag von Frau Anita Schmaus-"
+  },
+  "stadt:10220#Ö 4": {
+   "klartext_titel": "Zwischenauswertung des Projekts \"Wohlbefinden älterer Menschen mit besonderen Bedarfen fördern\" zwischen der …",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Zwischenauswertung des Projekts \"Wohlbefinden älterer Menschen mit besonderen Bedarfen fördern\" zwischen der Bundesarbeitsgemeinschaft der Seniorenorganisationen e.V. (BAGSO) und dem Seniorenbüro Ingolstadt — -Mündlicher Vortrag von Frau Julia Hofweber-"
+  },
+  "stadt:10220#Ö 5": {
+   "klartext_titel": "Altersdiskriminierung in Ingolstadt",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Altersdiskriminierung in Ingolstadt — -Mündlicher Vortag von Frau Silvia Leithner mit anschließender Diskussion der Kommissionsmitglieder und Entscheidung über weitere Vorgehensweise-"
+  },
+  "stadt:10199#Ö 1": {
+   "klartext_titel": "Diversity und Inklusion bei der Audi AG",
+   "klartext": "",
+   "lebenslage": [
+    "Gesundheit & Pflege"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Diversity und Inklusion bei der Audi AG; Vorstellung durch Denise Mathieu, Leiterin Diversity & Inclusion Audi AG"
+  },
+  "stadt:10199#Ö 2": {
+   "klartext_titel": "Fachberatung bei sexualisierter Gewalt",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Fachberatung bei sexualisierter Gewalt; Vorstellung der Fachberatungsstelle Wirbelwind e.V. durch Julia Gänsheimer und Bettina Pfahler"
+  },
+  "stadt:10199#Ö 3": {
+   "klartext_titel": "Rückblick 2023 Tätigkeiten der Gleichstellungsbeauftragten und Ausblick 2024",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Grün & Sauberkeit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Rückblick 2023 Tätigkeiten der Gleichstellungsbeauftragten und Ausblick 2024 — - mündlicher Bericht der Beiratsvorsitzenden Veronika Peters und den Gleichstellungsbeauftragten Anja Assenbaum und Barbara Deimel"
+  },
+  "stadt:11343#Ö 1": {
+   "klartext_titel": "Änderung der Richtlinien über die Verleihung des Sportförderpreises",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise",
+    "Satzung & Regeln"
+   ],
+   "entwurf": true,
+   "titel_anker": "Änderung der Richtlinien über die Verleihung des Sportförderpreises"
+  },
+  "stadt:11343#Ö 2": {
+   "klartext_titel": "Schwimmer*innen-Bereich in Ingolstädter Seen",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Schwimmer*innen-Bereich in Ingolstädter Seen"
+  },
+  "stadt:11343#Ö1": {
+   "klartext_titel": "Antrag der Stadtratsfraktion BÜNDNIS 90/DIE GRÜNEN vom 19.09.2023",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Grün & Sauberkeit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Antrag der Stadtratsfraktion BÜNDNIS 90/DIE GRÜNEN vom 19.09.2023"
+  },
+  "stadt:11343#Ö2": {
+   "klartext_titel": "Stellungnahme der Verwaltung",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Stellungnahme der Verwaltung"
+  },
+  "stadt:11343#Ö 3": {
+   "klartext_titel": "Evaluation Discgolf-Anlage im Glacis",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Evaluation Discgolf-Anlage im Glacis"
+  },
+  "stadt:10195#Ö 2": {
+   "klartext_titel": "Beschlussfassung über die Tagesordnung",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Beschlussfassung über die Tagesordnung"
+  },
+  "stadt:10195#Ö 4": {
+   "klartext_titel": "Berichte aus den Arbeitskreisen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Berichte aus den Arbeitskreisen"
+  },
+  "stadt:10195#Ö1": {
+   "klartext_titel": "Snack-Pause: 15 Minuten",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Snack-Pause: 15 Minuten"
+  },
+  "stadt:10195#Ö 6": {
+   "klartext_titel": "Klimaneutralität 2035 – Was bedeutet das?",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Klima & Umwelt"
+   ],
+   "entwurf": true,
+   "titel_anker": "Klimaneutralität 2035 – Was bedeutet das?"
+  },
+  "stadt:9670#Ö 2": {
+   "klartext_titel": "Neues aus dem Familienstützpunkt \"Familienschwinge\" der bürgerhilfe ingolstadt KiTa Gmbh - Frau Werner",
+   "klartext": "",
+   "lebenslage": [
+    "Eltern & Kinder"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kinderbetreuung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Neues aus dem Familienstützpunkt \"Familienschwinge\" der bürgerhilfe ingolstadt KiTa Gmbh - Frau Werner"
+  },
+  "stadt:9670#Ö 3": {
+   "klartext_titel": "2 Kunstobjekte \"Oberer Taubentalweg\" und \"Geibelstraße\" der GWG - Herr Bendzko",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "2 Kunstobjekte \"Oberer Taubentalweg\" und \"Geibelstraße\" der GWG - Herr Bendzko"
+  },
+  "stadt:9670#Ö 4": {
+   "klartext_titel": "Informationen aus dem Tiefbauamt - Frau Weingärtner",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Informationen aus dem Tiefbauamt - Frau Weingärtner"
+  },
+  "stadt:9670#Ö 5": {
+   "klartext_titel": "Neue Richtlinien Quartiersentwicklung Konradviertel - Frau Weingärtner",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Satzung & Regeln"
+   ],
+   "entwurf": true,
+   "titel_anker": "Neue Richtlinien Quartiersentwicklung Konradviertel - Frau Weingärtner"
+  },
+  "stadt:9670#Ö 6": {
+   "klartext_titel": "Vorstellung neue Quartiersmanagerin - Frau Haußmann",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Vorstellung neue Quartiersmanagerin - Frau Haußmann"
+  },
+  "stadt:9670#Ö 7": {
+   "klartext_titel": "Bericht des Quartiersmanagements - Frau Turinsky/Frau Haußmann",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht des Quartiersmanagements - Frau Turinsky/Frau Haußmann"
+  },
+  "stadt:9670#Ö 8": {
+   "klartext_titel": "Anträge und Anregungen",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Anträge und Anregungen"
+  },
+  "stadt:9655#Ö 1": {
+   "klartext_titel": "Genehmigung des letzten Protokolls",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Genehmigung des letzten Protokolls"
+  },
+  "stadt:9655#Ö 2.1": {
+   "klartext_titel": "Straßenplanung Unterhaunstädter Weg",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Straßenplanung Unterhaunstädter Weg"
+  },
+  "stadt:9655#Ö 2.2": {
+   "klartext_titel": "Aktuelle Radwegsführung Esplanade und Roßmühlstraße",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Verkehrsplanung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Aktuelle Radwegsführung Esplanade und Roßmühlstraße"
+  },
+  "stadt:9655#Ö 2.3": {
+   "klartext_titel": "Rückblick Rezertifizierung",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Rückblick Rezertifizierung"
+  },
+  "stadt:9655#Ö 2.4": {
+   "klartext_titel": "Aktuelle Planungen zu Fahrradzählstationen",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Aktuelle Planungen zu Fahrradzählstationen"
+  },
+  "stadt:9655#Ö 2.5": {
+   "klartext_titel": "Aktuelle Vorhaben in der interkommunalen Zusammenarbeit",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Aktuelle Vorhaben in der interkommunalen Zusammenarbeit"
+  },
+  "stadt:9655#Ö 3": {
+   "klartext_titel": "Ausblick und Themenspeicher",
+   "klartext": "",
+   "lebenslage": [
+    "Unterwegs"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Ausblick und Themenspeicher"
+  },
+  "stadt:9647#Ö 1": {
+   "klartext_titel": "Seniorenpartizipation für Ingolstadt",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Seniorenpartizipation für Ingolstadt"
+  },
+  "stadt:9647#Ö 2": {
+   "klartext_titel": "Seniorenpartizipation in Ingolstadt",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Seniorenpartizipation in Ingolstadt — Stellungnahme der Verwaltung"
+  },
+  "stadt:9647#Ö 3": {
+   "klartext_titel": "Vorstellung der neuen Hörunterstützungsanlage im Bürgerhaus.",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [],
+   "entwurf": true,
+   "titel_anker": "Vorstellung der neuen Hörunterstützungsanlage im Bürgerhaus. — -Mündlicher Vortrag von Frau Silvia Leithner-"
+  },
+  "stadt:9647#Ö 4": {
+   "klartext_titel": "Richtlinie zur Stärkung der Pflege im sozialen Nahraum",
+   "klartext": "",
+   "lebenslage": [
+    "Senior:innen",
+    "Gesundheit & Pflege"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Satzung & Regeln",
+    "Grün & Sauberkeit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Richtlinie zur Stärkung der Pflege im sozialen Nahraum — -Mündlicher Vortrag von Karl Hofmann-"
+  },
+  "stadt:9639#Ö 1": {
+   "klartext_titel": "Vorstellung der Fachstelle für Täter*arbeit in Ingolstadt von der Aussenstelle MIM (Münchner …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Vorstellung der Fachstelle für Täter*arbeit in Ingolstadt von der Aussenstelle MIM (Münchner Informationszentrum für Männer) — - mündlicher Bericht von Herrn Jan Thomas van Calker"
+  },
+  "stadt:9639#Ö 2": {
+   "klartext_titel": "Schaffung und Aufbau einer Antidiskriminierungsstelle der Stadt Ingolstadt (Zwischenbericht)",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Schaffung und Aufbau einer Antidiskriminierungsstelle der Stadt Ingolstadt (Zwischenbericht) — - mündlicher Bericht von Frau Barbara Deimel"
+  },
+  "stadt:9639#Ö 3": {
+   "klartext_titel": "Bericht Familienplanungsfonds 01.11.2020 bis 30.06.2023",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Grün & Sauberkeit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Bericht Familienplanungsfonds 01.11.2020 bis 30.06.2023 — - mündlicher Bericht von Frau Anja Assenbaum"
+  },
+  "stadt:9639#Ö 4": {
+   "klartext_titel": "Tätigkeitsbericht zur Förderung der Gleichstellung aller Bürgerinnen und Bürger der Stadt Ingolstadt und …",
+   "klartext": "",
+   "lebenslage": [],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Konzept & Planung",
+    "Grün & Sauberkeit"
+   ],
+   "entwurf": true,
+   "titel_anker": "Tätigkeitsbericht zur Förderung der Gleichstellung aller Bürgerinnen und Bürger der Stadt Ingolstadt und Gleichstellungskonzept zur Förderung der beruflichen Gleichstellung von Frauen und Männern bei der Stadt Ingolstadt — - mündlicher Bericht von Frau Veronika Peters, Frau Anja Assenbaum und Frau Barbara Deimel"
+  },
+  "stadt:9646#Ö 1.1": {
+   "klartext_titel": "Nächste Sitzungstermine des Beirates 2024",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Nächste Sitzungstermine des Beirates 2024 — 15. Mai 2024/13. November 2024"
+  },
+  "stadt:9646#Ö 2.1": {
+   "klartext_titel": "Vorstellung Herr Jan Lohrmann, Geschäftsführer Maritim Hotel Ingolstadt",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Vorstellung Herr Jan Lohrmann, Geschäftsführer Maritim Hotel Ingolstadt"
+  },
+  "stadt:9646#Ö 2.2": {
+   "klartext_titel": "Austausch mit Donaukurier für Beilage \"trotzdemjetzt\"",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Austausch mit Donaukurier für Beilage \"trotzdemjetzt\""
+  },
+  "stadt:9646#Ö 2.4": {
+   "klartext_titel": "Änderungsvorschlag zur Vergabe des Jazzförderpreises",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Gebühren & Preise",
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Änderungsvorschlag zur Vergabe des Jazzförderpreises"
+  },
+  "stadt:9646#Ö 2.5": {
+   "klartext_titel": "Gemeinsamer Veranstaltungskalender",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Gemeinsamer Veranstaltungskalender"
+  },
+  "stadt:9646#Ö 2.6": {
+   "klartext_titel": "Aktueller Sachstand Kleines Haus",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Aktueller Sachstand Kleines Haus"
+  },
+  "stadt:9646#Ö 2.7": {
+   "klartext_titel": "Aktueller Sachstand MKKD",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Aktueller Sachstand MKKD"
+  },
+  "stadt:9646#Ö 3": {
+   "klartext_titel": "Weitere Themenvorschläge aus dem Mitgliederkreis",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Weitere Themenvorschläge aus dem Mitgliederkreis"
+  },
+  "stadt:9646#Ö 3.1": {
+   "klartext_titel": "Günstige Versammlungsorte mit und ohne Gastronomie für Vereine und Chöre",
+   "klartext": "",
+   "lebenslage": [
+    "Ehrenamt & Vereine",
+    "Gewerbe & Gastro",
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Günstige Versammlungsorte mit und ohne Gastronomie für Vereine und Chöre"
+  },
+  "stadt:9646#Ö 3.3": {
+   "klartext_titel": "Erschwerte Zugänglichkeit (z.B. VHS Rudolf-Koller-Saal, Hausmeister hat um 21.30 Uhr Dienstschluss)",
+   "klartext": "",
+   "lebenslage": [
+    "Freizeit & Sport"
+   ],
+   "bezirk": [],
+   "ort": [],
+   "anlass": [
+    "Kultur & Bildung"
+   ],
+   "entwurf": true,
+   "titel_anker": "Erschwerte Zugänglichkeit (z.B. VHS Rudolf-Koller-Saal, Hausmeister hat um 21.30 Uhr Dienstschluss)"
   }
  }
 }

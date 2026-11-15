@@ -45,7 +45,7 @@
   var aktiv = { status: [], lebenslage: [], bezirk: [], anlass: [], ebene: [] };
   var suchbegriff = '';
 
-  /* ---------------- Leichte Sprache ----------------
+  /* ---------------- Einfache Sprache ----------------
      Ein Schalter stellt die ganze Seite um, nicht nur die Kartentexte —
      siehe KURATION.md, Abschnitt "Der Umschalter fuer die ganze Seite".
      Texte liegen paarweise (normal/leicht) in TEXTE, damit sie nicht ueber
@@ -152,7 +152,7 @@
     herkunftEntwurf: { n: 'automatisch verschlagwortet', l: 'automatisch sortiert' },
     ort: { n: 'Ort: ', l: 'Ort: ' },
     keineLeichteFassung: {
-      n: '', l: 'Für dieses Thema gibt es noch keine Leichte-Sprache-Fassung. Hier steht der normale Text.'
+      n: '', l: 'Für dieses Thema gibt es noch keine Einfache-Sprache-Fassung. Hier steht der normale Text.'
     },
     footerH2: { n: 'Wie das hier funktioniert', l: 'So funktioniert diese Seite' },
     footerP1: {
@@ -179,7 +179,7 @@
     footerQuellcode:   { n: 'Quellcode', l: 'Programm-Code' },
     statSitzungen: { n: 'Sitzungen ausgelesen', l: 'Sitzungen gelesen' },
     statTops:      { n: 'Tagesordnungspunkte', l: 'Themen' },
-    statKuratiert: { n: 'davon aufbereitet', l: 'davon erklärt' },
+    statKuratiert: { n: 'mit Zusammenfassung', l: 'mit Erklärung' },
     statBezirke:   { n: 'Stadtbezirke', l: 'Stadt-Bezirke' },
     achseLebenslage: { n: 'Lebenslage', l: 'Ihr Leben' },
     achseBezirk:     { n: 'Stadtbezirk', l: 'Ihr Stadt-Bezirk' },
@@ -188,7 +188,7 @@
     achseStatus:     { n: 'Stand', l: 'Wie weit ist es?' }
   };
 
-  /* Schlagwortlisten in Leichter Sprache. Die Werte selbst (aus daten.achsen)
+  /* Schlagwortlisten in Einfacher Sprache. Die Werte selbst (aus daten.achsen)
      bleiben die massgeblichen Filterschluessel — nur die Anzeige wechselt. */
   var LEBENSLAGE_LEICHT = {
     'Eltern & Kinder': 'Eltern und Kinder',
@@ -251,7 +251,14 @@
   function statusHinweis(e) {
     var d = e.stand_datum;
     var klasse = 'stand status-', text;
-    if (e.status === 'Noch offen') {
+    if (e.status === 'Noch offen' && e.stand === 'Kommt im Bezirksausschuss') {
+      /* Bezirksausschuss, Sitzung steht bevor: oeffentlich, man kann hingehen.
+         "Noch nicht entschieden" waere hier zu viel gesagt — die meisten
+         BZA-Punkte sind Berichte und Anliegen, kein Beschluss. */
+      klasse += 'offen';
+      text = leicht ? 'Der Bezirks-Ausschuss spricht darüber' + (d ? ' am ' + d : '') + '. Sie können hingehen.'
+                    : 'Kommt im Bezirksausschuss' + (d ? ' am ' + d : '') + ' – die Sitzung ist öffentlich';
+    } else if (e.status === 'Noch offen') {
       klasse += 'offen';
       text = leicht ? 'Noch nicht entschieden. Sie können mitreden.'
                     : 'Noch offen – Sie können mitreden';
@@ -271,6 +278,17 @@
         text = leicht ? 'Das Ergebnis steht bald im Protokoll.' + (d ? ' (Sitzung: ' + d + ')' : '')
                       : 'Ergebnis kommt mit dem Protokoll' + (d ? ' (Sitzung am ' + d + ')' : '');
       }
+    } else if (e.stand === 'Im Bezirksausschuss behandelt') {
+      /* Zu BZA-Punkten gibt es keine Vorlage und kein ausgelesenes Protokoll.
+         Ob der Ausschuss etwas beschlossen hat (Buergerhaushalt, Antrag an
+         die Stadt), wissen wir nicht — also behaupten wir es auch nicht. */
+      klasse += 'info';
+      text = leicht ? 'Der Bezirks-Ausschuss hat darüber gesprochen. Das Ergebnis kennen wir nicht.'
+                    : 'Im Bezirksausschuss behandelt – ein Ergebnis ist hier nicht erfasst';
+    } else if (e.stand === 'Steht auf der Tagesordnung') {
+      klasse += 'info';
+      text = leicht ? 'Darüber wird gesprochen' + (d ? ' am ' + d : '') + '. Eine Entscheidung ist nicht geplant.'
+                    : 'Steht auf der Tagesordnung' + (d ? ' am ' + d : '') + ', keine Entscheidung vorgesehen';
     } else {
       klasse += 'info';
       text = leicht ? 'Nur eine Information. Es gibt keine Entscheidung.'
@@ -326,7 +344,7 @@
      nicht bricht, bis feed_bauen.py wieder gelaufen ist. */
   if (!daten.achsen.status) {
     daten.eintraege.forEach(function (e) {
-      e.status = /^(Noch nicht terminiert|Wird noch beraten|Entscheidung geplant)$/.test(e.stand) ? 'Noch offen'
+      e.status = /^(Noch nicht terminiert|Wird noch beraten|Entscheidung geplant|Kommt im Bezirksausschuss)$/.test(e.stand) ? 'Noch offen'
         : /^(Beschlossen|Teilweise beschlossen|Abgelehnt)$/.test(e.stand) ? 'Entschieden'
         : e.stand === 'Entscheidung angesetzt' ? 'Ergebnis steht im Protokoll' : 'Nur zur Information';
     });
@@ -401,7 +419,10 @@
     [
       [st.sitzungen_ausgelesen, txt('statSitzungen')],
       [st.tops_ausgelesen, txt('statTops')],
-      [st.tops_kuratiert, txt('statKuratiert')],
+      /* Nur Eintraege mit echtem Text. Bis November 2026 stand hier
+         tops_kuratiert als "davon aufbereitet" — darin steckten aber auch
+         alle Eintraege, die nur den amtlichen Titel wiederholen. */
+      [st.tops_kuratiert - (st.duenn || 0), txt('statKuratiert')],
       [st.stadtbezirke || stadtbezirke().length, txt('statBezirke')]
     ].forEach(function (paar) {
       var box2 = el('div', 'stat');
@@ -409,6 +430,14 @@
       box2.appendChild(el('div', 'stat-label', paar[1]));
       box.appendChild(box2);
     });
+  }
+
+  /* "2023-11" -> "November 2023" */
+  function monatText(jm) {
+    var m = /^(\d{4})-(\d{2})$/.exec(String(jm));
+    var namen = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August',
+                 'September', 'Oktober', 'November', 'Dezember'];
+    return m && namen[+m[2] - 1] ? namen[+m[2] - 1] + ' ' + m[1] : jm;
   }
 
   function datumDe(iso) {
@@ -439,6 +468,12 @@
        fuer die Luecke, nicht nur "Sitzungsroutine" (siehe scraper/pruefen.py). */
     var pct = Math.round((st.tops_abgedeckt / st.tops_ausgelesen) * 100);
     var sonstige = st.tops_sonstige + st.tops_nicht_oeffentlich;
+    /* "Erfasst" heisst: steht als Eintrag auf der Seite. Eine echte
+       Zusammenfassung hat nur ein Teil davon; der Rest wiederholt den
+       amtlichen Titel. Bis November 2026 hiess beides zusammen
+       "aufbereitet" — das klang nach mehr, als es war. */
+    var nurTitel = st.duenn || 0;
+    var mitText = st.tops_kuratiert - nurTitel;
     /* "Aufbereitet: 84 %" klingt gleichmaessig ueber den ganzen Zeitraum —
        ist es nicht: der Rueckstand steckt fast vollstaendig in den aeltesten
        Jahren (siehe scraper/feed_bauen.py::jahre_vollstaendig/jahre_rueckstand).
@@ -447,7 +482,7 @@
        Rohdaten bis November 2023. */
     var jahreHinweis = '';
     if (st.jahre_vollstaendig && st.jahre_vollstaendig.length) {
-      jahreHinweis = ' (' + jahreText(st.jahre_vollstaendig) + ' vollständig kuratiert';
+      jahreHinweis = ' (' + jahreText(st.jahre_vollstaendig) + ' vollständig erfasst';
       if (st.jahre_rueckstand && st.jahre_rueckstand.length) {
         jahreHinweis += ', Rückstand noch bei ' + jahreText(st.jahre_rueckstand);
       }
@@ -458,26 +493,29 @@
       txt2 = 'Quellen: ' + quellnamen.join(' · ') +
         ' · Software: Session (Somacos GmbH & Co. KG)' +
         ' · Daten abgerufen am ' + datumDe(daten.daten_abgerufen_am) +
-        ' · Zeitraum ' + daten.zeitraum.von + ' bis ' + daten.zeitraum.bis + jahreHinweis +
-        ' · Aufbereitet: ' + st.tops_abgedeckt + ' von ' + st.tops_ausgelesen +
+        ' · Zeitraum ' + monatText(daten.zeitraum.von) + ' bis ' + monatText(daten.zeitraum.bis) + jahreHinweis +
+        ' · Erfasst: ' + st.tops_abgedeckt + ' von ' + st.tops_ausgelesen +
         ' Tagesordnungspunkten (' + pct + ' %), zusammengefasst zu ' +
-        st.tops_kuratiert + ' Themen' +
-        ' · nicht aufbereitet: ' + st.tops_sitzungsroutine_offen + ' Sitzungsroutine, ' +
-        st.tops_beteiligung + ' Aufsichtsrat/Zweckverband/Beirat, ' +
-        st.tops_offen + ' noch nicht kuratiert, ' + sonstige + ' sonstige.';
+        st.tops_kuratiert + ' Themen. Davon haben ' + mitText +
+        ' eine Zusammenfassung, ' + nurTitel + ' zeigen nur den amtlichen Titel' +
+        ' · Nicht erfasst: ' + st.tops_sitzungsroutine_offen + ' Sitzungsroutine, ' +
+        st.tops_beteiligung + ' Aufsichtsrat/Zweckverband, ' +
+        st.tops_offen + ' noch offen, ' + sonstige + ' sonstige.';
     } else {
       txt2 = 'Diese Infos kommen von: ' + quellnamen.join(' und ') + '. ' +
         'Die Technik heißt Session (Somacos GmbH & Co. KG). ' +
         'Die Daten sind vom ' + datumDe(daten.daten_abgerufen_am) + '. ' +
-        'Der Zeitraum ist ' + daten.zeitraum.von + ' bis ' + daten.zeitraum.bis + '. ' +
-        'Von ' + st.tops_ausgelesen + ' Themen im Rats-Info-Portal sind ' +
-        st.tops_abgedeckt + ' erklärt (' + pct + ' Prozent), als ' +
+        'Der Zeitraum ist ' + monatText(daten.zeitraum.von) + ' bis ' + monatText(daten.zeitraum.bis) + '. ' +
+        'Von ' + st.tops_ausgelesen + ' Themen im Rats-Info-Portal stehen ' +
+        st.tops_abgedeckt + ' auf dieser Seite (' + pct + ' Prozent), als ' +
         st.tops_kuratiert + ' Karten. ' +
+        mitText + ' Karten haben eine Erklärung. ' +
+        nurTitel + ' Karten zeigen nur den Titel vom Amt. ' +
         st.tops_sitzungsroutine_offen + ' Themen waren nur Formalie. ' +
-        st.tops_beteiligung + ' Themen gehören zu Aufsichtsräten, Zweckverbänden oder Beiräten. ' +
+        st.tops_beteiligung + ' Themen gehören zu Aufsichtsräten oder Zweckverbänden. ' +
         st.tops_offen + ' Themen sind noch nicht bearbeitet. ' +
         (st.jahre_vollstaendig && st.jahre_vollstaendig.length
-          ? 'Für ' + jahreText(st.jahre_vollstaendig) + ' ist schon alles bearbeitet. '
+          ? 'Für ' + jahreText(st.jahre_vollstaendig) + ' ist schon alles erfasst. '
           : '') +
         (st.jahre_rueckstand && st.jahre_rueckstand.length
           ? 'Bei ' + jahreText(st.jahre_rueckstand) + ' fehlt noch etwas.'
@@ -849,7 +887,7 @@
     c.appendChild(el('h3', null, titelLeicht ? e.klartext_titel_leicht : e.klartext_titel));
 
     /* Bei Entwuerfen ist der Klartext leer — dann nichts erfinden. Fehlt in
-       der Leichten Sprache nur die Uebersetzung, faellt die Karte sichtbar
+       der Einfachen Sprache nur die Uebersetzung, faellt die Karte sichtbar
        auf die normale Fassung zurueck (KURATION.md). */
     if (leicht && e.klartext_leicht) {
       c.appendChild(el('p', 'card-text', e.klartext_leicht));

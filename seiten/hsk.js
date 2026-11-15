@@ -117,7 +117,7 @@
           "Bezahlen muss die Stadt das Geld trotzdem.</p>"));
   }
 
-  /* ---------------- Leichte Sprache ---------------- */
+  /* ---------------- Einfache Sprache ---------------- */
   var LS_KEY_LEICHT = "papierpanther-leichte-sprache";
   var leicht = false;
   try { leicht = localStorage.getItem(LS_KEY_LEICHT) === "1"; } catch (err) { /* Storage kann gesperrt sein */ }
@@ -1228,7 +1228,7 @@
     });
   });
 
-  /* ---------------- Leichte-Sprache-Umschalter ---------------- */
+  /* ---------------- Einfache-Sprache-Umschalter ---------------- */
   texteAnwenden();
   var btnLeicht = document.getElementById("btn-leicht");
   btnLeicht.setAttribute("aria-pressed", leicht ? "true" : "false");

@@ -11,7 +11,7 @@
   var fmt = function (n) { return Math.round(n).toLocaleString('de-DE'); };
   var REPO = 'https://github.com/mnkeller/papierpanther/blob/main/';
 
-  /* Texte: [normal, Leichte Sprache] */
+  /* Texte: [normal, Einfache Sprache] */
   var T = {
     'kicker': ['So funktioniert’s', 'So geht diese Seite'],
     'h1': ['Wie aus einem Tagesordnungspunkt ein Eintrag wird', 'So kommt ein Thema auf diese Seite'],
@@ -71,13 +71,13 @@
       code: 'scraper/vorlagen_holen.py', lab: ['Themen mit verlinktem Dokument', 'Themen mit Dokument'], wert: Z.mit_dokument },
     { nr: '04', name: ['Sprachmodell', 'KI'],
       titel: ['Die KI schreibt, <span>mit dem Dokument auf dem Tisch</span>', 'Die KI schreibt einen kurzen Text'],
-      text: ['Das Sprachmodell bekommt den Text der Vorlage und ein Regelwerk. Daraus schreibt es eine Überschrift, vier bis sieben Sätze in normaler Sprache, fünf bis neun in Leichter Sprache und Schlagworte aus einer festen Liste. Es soll nur zusammenfassen, was im Dokument steht.',
-             'Die KI bekommt den Text vom Dokument. Und sie bekommt Regeln. Dann schreibt sie eine Überschrift und einen kurzen Text. Auch in Leichter Sprache. Sie soll nur schreiben, was im Dokument steht.'],
-      stueck: ['„Grüne beantragen mehr Tempo-30-Strecken in Ingolstadt“ · Leichte Sprache: „Grüne wollen mehr Tempo 30 in der Stadt“', '„Grüne wollen mehr Tempo 30 in der Stadt“'],
-      code: 'KURATION.md', lab: ['Themen auch in Leichter Sprache', 'Themen in Leichter Sprache'], wert: Z.leichte_sprache },
+      text: ['Das Sprachmodell bekommt den Text der Vorlage und ein Regelwerk. Daraus schreibt es eine Überschrift, eine Zusammenfassung von wenigen Sätzen in normaler Sprache, eine zweite in Einfacher Sprache und Schlagworte aus einer festen Liste. Es soll nur zusammenfassen, was im Dokument steht.',
+             'Die KI bekommt den Text vom Dokument. Und sie bekommt Regeln. Dann schreibt sie eine Überschrift und einen kurzen Text. Auch in Einfacher Sprache. Sie soll nur schreiben, was im Dokument steht.'],
+      stueck: ['„Grüne beantragen mehr Tempo-30-Strecken in Ingolstadt“ · Einfache Sprache: „Grüne wollen mehr Tempo 30 in der Stadt“', '„Grüne wollen mehr Tempo 30 in der Stadt“'],
+      code: 'KURATION.md', lab: ['Themen auch in Einfacher Sprache', 'Themen in Einfacher Sprache'], wert: Z.leichte_sprache },
     { nr: '05', name: ['Prüfstand', 'Prüfen'],
       titel: ['Regeln, <span>die ein Programm nachrechnet</span>', 'Ein Programm prüft die Texte'],
-      text: ['Vor jeder Veröffentlichung prüft ein Programm die Regeln. Kein Text darf einen Beschluss behaupten. Schlagworte nur aus der Liste. Jeder Link zeigt auf das Portal der Stadt. Sätze in Leichter Sprache mit mehr als 14 Wörtern werden gemeldet. Was durchfällt, geht zurück.',
+      text: ['Vor jeder Veröffentlichung prüft ein Programm die Regeln. Kein Text darf einen Beschluss behaupten. Schlagworte nur aus der Liste. Jeder Link zeigt auf das Portal der Stadt. Sätze in Einfacher Sprache mit mehr als 14 Wörtern werden gemeldet. Was durchfällt, geht zurück.',
              'Vor dem Veröffentlichen prüft ein Programm jeden Text. Zum Beispiel: Steht da ein Ergebnis, das die KI nicht wissen kann? Ist ein Satz zu lang? Dann geht der Text zurück.'],
       stueck: ['Bestanden: kein behaupteter Beschluss, alle Schlagworte erlaubt', 'Geprüft: alles in Ordnung'],
       code: 'scraper/pruefen.py', lab: ['automatische Prüfungen', 'Prüfungen'], wert: 16 },

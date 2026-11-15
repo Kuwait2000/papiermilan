@@ -40,7 +40,7 @@ der OSM-Adressliste. Dann:
 **Blick 2 — Mein Bezirk (der politische Blick).**
 Für jeden der zwölf Bezirksausschuss-Bezirke: Welcher Anteil der Menschen, die
 dort wohnen, erreicht die Grundversorgung in 15 Minuten, je Person. Ranking,
-Kachel-Zahl für die Startseite, Leichte Sprache. Dazu die Lücken-Karte: Wo
+Kachel-Zahl für die Startseite, Einfache Sprache. Dazu die Lücken-Karte: Wo
 wohnen viele Ältere, und fehlt dort die Apotheke in Senioren-Reichweite? Wo
 wohnen viele Kinder ohne sicheren Weg zum Spielplatz?
 
@@ -177,7 +177,7 @@ mit `curl -r 0-1023` gegen die Live-Seite prüfen. Datei bleibt unter 50 MB.
 Konventionen des Projekts, die gelten: Python nur Standardbibliothek; Skripte
 schreiben `data/*.json` + `data/*.js`; `pruefen.py` bekommt Kontrollzahlen;
 `kopf.js` bekommt den Eintrag in `THEMEN`; `scraper/themen_bauen.py` die
-Kachel-Zahl; jede Seite in normaler und Leichter Sprache; Datenschutz-Seite um
+Kachel-Zahl; jede Seite in normaler und Einfacher Sprache; Datenschutz-Seite um
 Geolocation ergänzen (nur im Browser, nichts verlässt das Gerät). Vorschau nur
 über die Scratchpad-Kopie (siehe Memory „Vorschau über Scratchpad-Kopie“).
 

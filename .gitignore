@@ -9,3 +9,6 @@ scraper/.cache/
 
 # Zwischenablage der Kurationsportionen — regenerierbar
 data/vorlagen_charge.json
+
+# Python-Zwischendateien
+__pycache__/

@@ -41,7 +41,7 @@ kopf.js               gemeinsame Kopfzeile aller Seiten (Start · Themen · So f
 themen-kacheln.js     zeichnet die Themen-Kacheln aus data/themen.js
 impressum.html        Impressum (§ 5 DDG)
 datenschutz.html      Datenschutzerklärung
-KURATION.md           wie die Kurztexte entstehen (inkl. Leichte Sprache)
+KURATION.md           wie die Kurztexte entstehen (inkl. Einfache Sprache)
 scraper/
   ris_ingolstadt.py   liest beide Portale aus       -> data/rohdaten.json
   entwuerfe_bauen.py  erzeugt Kurations-Vorschläge  -> data/kuration.json
@@ -74,7 +74,7 @@ Die Trennung von `rohdaten.json` und `kuration.json` ist bewusst: Neu-Scrapen
 überschreibt niemals die aufbereiteten Texte.
 
 Jeder kuratierte Eintrag trägt seine Texte in zwei Fassungen — normale Sprache
-und **Leichte Sprache**. Beide entstehen im selben Arbeitsgang; die Regeln dafür
+und **Einfache Sprache**. Beide entstehen im selben Arbeitsgang; die Regeln dafür
 stehen in [KURATION.md](KURATION.md).
 
 Hintergrund zur Datenlage, zum Beratungsstand und zu den offenen Fragen:
@@ -93,7 +93,7 @@ cd scraper && python3 themen_bauen.py   # nach jedem Daten-Update
 
 ### Grafische Fassung (`grafik/`)
 
-Neben „Leichte Sprache“ hat jede Themenseite und die Startseite einen Knopf
+Neben „Einfache Sprache“ hat jede Themenseite und die Startseite einen Knopf
 „Grafisch“. `grafik/kern.js` blendet dann den Inhalt aus und lädt erst jetzt die
 Szenen aus `grafik/<name>.js`, dazu `vendor/d3/` und `data/grafik.js`. Welche
 Seite welche Szenen zeigt, steht oben in `grafik/kern.js` (`SEITEN`). Die Wahl
@@ -137,7 +137,7 @@ Kein Skript: `data/miete.js` (window.MIETE_DATEN) ist von Hand gepflegt.
   (Ingolstadt: Anlage Nr. 1.1.1).
 - Ablauf, Ausnahmen, Zeitleiste, „Wer profitiert?“ und die Stadtratsvorgänge
   zum Wohnen stehen ebenfalls in `data/miete.js`, jeweils in normaler und
-  Leichter Sprache.
+  Einfacher Sprache.
 
 Beim neuen Mietspiegel (Befragung voraussichtlich 2. Quartal 2027) die Tabellen
 komplett ersetzen. Angebotsmieten fehlen bewusst: Dafür gibt es keine offenen Daten.

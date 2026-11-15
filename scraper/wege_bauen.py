@@ -185,6 +185,19 @@ E2 = F * (2 - F)
 E = math.sqrt(E2)
 
 
+def sauberer_name(name):
+    """
+    Ortsname aus fremder Quelle (OpenStreetMap, Stadt) fuer die Ausgabe.
+
+    In OpenStreetMap kann jede und jeder einen Namen eintragen. Ein Name mit
+    HTML darin wuerde ohne Gegenwehr auf der Karte ausgefuehrt. Deshalb hier
+    spitze Klammern und Steuerzeichen entfernen und die Laenge begrenzen;
+    wege.js maskiert zusaetzlich bei der Ausgabe, pruefen.py zaehlt nach.
+    """
+    name = re.sub(r'[\x00-\x1f\x7f<>]', '', name or '')
+    return re.sub(r'\s+', ' ', name).strip()[:90]
+
+
 def utm32_nach_wgs84(x, y):
     """Inverse Transversale Mercator (Snyder 1987, Gl. 8-12 ff.), Zone 32, Mittelmeridian 9 Grad."""
     k0, lon0 = 0.9996, math.radians(9)
@@ -967,7 +980,7 @@ def orte_bauen(raster):
         for kat in kats:
             if kat == 'drogerie' and doppelt(orte, KAT_NR[kat], t.get('name', ''), mx, my):
                 continue
-            orte.append({'kat': KAT_NR[kat], 'name': t.get('name', ''), 'lat': round(LAT0 + my / MY, 5),
+            orte.append({'kat': KAT_NR[kat], 'name': sauberer_name(t.get('name', '')), 'lat': round(LAT0 + my / MY, 5),
                          'lon': round(LON0 + mx / MX, 5), 'merkmale': merkmale,
                          'knoten': [kn for kn, _ in knoten], 'abstand': [round(d) for _, d in knoten],
                          'oeffnungszeiten': t.get('opening_hours', ''), 'osm': e['type'][0] + str(e['id'])})
@@ -1008,7 +1021,7 @@ def brunnen_der_stadt(raster, orte):
         einstieg = raster.einstieg(x, y, 300)
         if not einstieg:
             continue
-        neu.append({'kat': KAT_NR['trinkwasser'], 'name': (f.get('properties') or {}).get('name', ''),
+        neu.append({'kat': KAT_NR['trinkwasser'], 'name': sauberer_name((f.get('properties') or {}).get('name', '')),
                     'lat': round(lat, 5), 'lon': round(lon, 5), 'merkmale': 0,
                     'knoten': list(einstieg), 'abstand': [round(d) for d in einstieg.values()],
                     'oeffnungszeiten': '', 'osm': 'stadt:' + str(f.get('id', ''))})

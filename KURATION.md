@@ -4,7 +4,7 @@ Verbindliche Anleitung für jeden Durchlauf, der `data/kuration.json` füllt —
 egal ob von Hand, per Skript oder mit einem Sprachmodell.
 
 **Grundregel:** Jeder Eintrag bekommt seine Texte in **zwei Fassungen**, und
-beide entstehen **im selben Arbeitsgang**. Die Leichte Sprache nachträglich zu
+beide entstehen **im selben Arbeitsgang**. Die Einfache Sprache nachträglich zu
 ergänzen hieße, alle Vorlagen ein zweites Mal zu lesen — also den Aufwand
 verdoppeln, ohne dass etwas besser wird.
 
@@ -33,8 +33,8 @@ Schlüssel ist `<quelle>:<sitzungs-id>#<top-nr>`, z. B. `stadt:13534#Ö 2`.
 |---|---|---|
 | `klartext_titel` | ja | Überschrift in normaler Sprache |
 | `klartext` | ja¹ | 4–7 Sätze, was der Punkt bedeutet (siehe „Regeln für die normale Fassung“) |
-| `klartext_titel_leicht` | ja | Überschrift in Leichter Sprache |
-| `klartext_leicht` | ja¹ | dasselbe in Leichter Sprache, 5–9 Sätze |
+| `klartext_titel_leicht` | ja | Überschrift in Einfacher Sprache |
+| `klartext_leicht` | ja¹ | dasselbe in Einfacher Sprache, 5–9 Sätze |
 | `lebenslage`, `bezirk`, `anlass` | ja | Filterachsen, nur Werte aus `_achsen` |
 | `ort` | nein | freier Ortsvermerk, nur Anzeige, kein Filter |
 | `entwurf` | nein | `true` = maschinell vorgeschlagen, ungeprüft |
@@ -87,7 +87,15 @@ Weiter gilt:
 
 ---
 
-## Regeln für die Leichte Sprache
+## Regeln für die Einfache Sprache
+
+**Warum „Einfache Sprache“ und nicht „Leichte Sprache“:** Leichte Sprache ist
+ein Begriff mit festen Regeln; dazu gehört, dass Menschen aus der Zielgruppe
+jeden Text prüfen. Das passiert hier nicht. Die Fassung entsteht maschinell
+und wird nur stichprobenhaft durchgesehen. Sie hält sich an die Regeln unten,
+heißt auf der Seite aber „Einfache Sprache“, damit niemand eine Prüfung
+erwartet, die es nicht gab. Die Feldnamen (`klartext_leicht`) und der
+Speicherschlüssel im Browser bleiben aus technischen Gründen beim alten Wort.
 
 Orientierung: Netzwerk Leichte Sprache, Zielniveau etwa A1/A2. Die Fassung ist
 **keine Kurzform der normalen Fassung**, sondern eine eigenständige Übersetzung.
@@ -134,14 +142,14 @@ Orientierung: Netzwerk Leichte Sprache, Zielniveau etwa A1/A2. Die Fassung ist
 - Auch Zahlen gehören hinein. „Es geht um viel Geld" hilft niemandem;
   „Es geht um 500.000 Euro pro Jahr" schon.
 
-**Titel in Leichter Sprache**
+**Titel in Einfacher Sprache**
 
 - Höchstens etwa 8 Wörter, ein Aussagesatz ohne Nebensatz.
 - Nicht die normale Überschrift kopieren.
 
 ---
 
-## Was die Leichte Sprache nicht darf
+## Was die Einfache Sprache nicht darf
 
 - **Nicht mehr behaupten als die normale Fassung.** Vereinfachen heißt weglassen,
   nicht ergänzen. Wenn unklar ist, wer etwas entscheidet, dann steht das auch in
@@ -220,7 +228,7 @@ Termine unter „Nächste Termine" stehen.
 
 ## Offen: der Umschalter für die ganze Seite
 
-**Entschieden:** Ein Schalter stellt die **komplette Seite** auf Leichte Sprache
+**Entschieden:** Ein Schalter stellt die **komplette Seite** auf Einfache Sprache
 um — nicht nur die Kartentexte. Kein Filter, der Einträge ausblendet: wer Leichte
 Sprache braucht, will nicht weniger Einträge sehen, sondern dieselben in anderer
 Form. Für Einträge ohne leichte Fassung bleibt die normale stehen, mit Vermerk.
@@ -245,10 +253,10 @@ einzelne Stellen.
 
 Weitere Anforderungen an den Schalter:
 
-- **Oben und sofort sichtbar.** Wer Leichte Sprache braucht, darf nicht erst
+- **Oben und sofort sichtbar.** Wer Einfache Sprache braucht, darf nicht erst
   schwere Sprache lesen müssen, um den Schalter zu finden.
 - **Auswahl merken** (`localStorage`), damit sie beim nächsten Besuch steht.
-- **`lang`-Auszeichnung** bleibt `de`; Leichte Sprache ist keine eigene Sprache.
+- **`lang`-Auszeichnung** bleibt `de`; Einfache Sprache ist keine eigene Sprache.
   Der Schalter selbst braucht ein `aria-pressed`.
 - Die Texte der Seite werden ohnehin noch überarbeitet — die leichte Fassung
   entsteht sinnvollerweise erst danach, sonst zweimal.

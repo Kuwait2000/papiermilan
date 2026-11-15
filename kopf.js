@@ -1,7 +1,7 @@
 /* Gemeinsame Kopfzeile fuer alle Seiten.
    Ersetzt die bisherigen Einzel-Links bzw. "Zurueck"-Knoepfe durch eine
    einheitliche Navigation: Start · Themen ▾ · So funktioniert's, auf dem
-   Handy als ein einziges "Menue" (Nutzerfeedback 2026-10-22). Der Leichte-Sprache-Knopf der jeweiligen
+   Handy als ein einziges "Menue" (Nutzerfeedback 2026-10-22). Der Einfache-Sprache-Knopf der jeweiligen
    Seite bleibt, wo er ist; die Beschriftungen hier folgen seinem Zustand. */
 (function () {
   'use strict';

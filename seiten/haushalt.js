@@ -155,7 +155,7 @@
     return div;
   }
 
-  /* ---------------- Leichte Sprache ---------------- */
+  /* ---------------- Einfache Sprache ---------------- */
   var LS_KEY_LEICHT = "papierpanther-leichte-sprache";
   var leicht = false;
   try { leicht = localStorage.getItem(LS_KEY_LEICHT) === "1"; } catch (err) { /* Storage kann gesperrt sein */ }
@@ -835,7 +835,7 @@
   }
 
   // baueDiagrammHauptgruppen() wird von texteAnwenden() aufgerufen (unten),
-  // damit sie beim Umschalten auf Leichte Sprache mit neu gebaut wird.
+  // damit sie beim Umschalten auf Einfache Sprache mit neu gebaut wird.
 
   // ---------- Diagramm 2: Verwaltungshaushalt <-> Vermögenshaushalt ----------
   (function () {
@@ -1663,7 +1663,7 @@
   // Ohne Vorbericht-Daten (aelterer Datenstand) den Abschnitt ausblenden.
   if (!VB) document.getElementById("schulden").hidden = true;
 
-  /* ---------------- Leichte-Sprache-Umschalter ---------------- */
+  /* ---------------- Einfache-Sprache-Umschalter ---------------- */
   texteAnwenden();
 
   var btnLeicht = document.getElementById("btn-leicht");

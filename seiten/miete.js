@@ -82,7 +82,7 @@
     return a;
   }
 
-  /* ---------------- Leichte Sprache ---------------- */
+  /* ---------------- Einfache Sprache ---------------- */
   var LS_KEY_LEICHT = "papierpanther-leichte-sprache";
   var leicht = false;
   try { leicht = localStorage.getItem(LS_KEY_LEICHT) === "1"; } catch (err) { /* Storage kann gesperrt sein */ }

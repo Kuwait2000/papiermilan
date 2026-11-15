@@ -1,6 +1,6 @@
 /* Grafische Fassung der Seiten.
 
-   Neben „Leichte Sprache“ sitzt ein Knopf „Grafisch“. Er blendet den Inhalt der
+   Neben „Einfache Sprache“ sitzt ein Knopf „Grafisch“. Er blendet den Inhalt der
    Seite aus und zeigt stattdessen interaktive Grafiken mit denselben Daten. Die
    Grafiken und ihre Daten werden erst beim ersten Umschalten geladen, damit die
    normale Seite nicht langsamer wird. Die Wahl bleibt für alle Seiten gespeichert;
@@ -142,7 +142,7 @@
     '<circle cx="47" cy="41" r="2.6" fill="#003E59"/><circle cx="69" cy="41" r="2.6" fill="#003E59"/><path d="M55 51l3 4 3-4z" fill="#B00E2B"/></symbol></svg>';
   document.body.appendChild(sym.firstChild);
 
-  /* Knopf in der Kopfzeile, direkt vor „Leichte Sprache“ */
+  /* Knopf in der Kopfzeile, direkt vor „Einfache Sprache“ */
   var btn = document.createElement('button');
   btn.type = 'button'; btn.id = 'btn-grafisch'; btn.className = 'btn-leicht btn-grafisch';
   btn.setAttribute('aria-pressed', 'false'); btn.setAttribute('aria-label', 'Grafische Fassung');
@@ -271,7 +271,7 @@
     if (speichern) try { localStorage.setItem(KEY, '0'); } catch (e) { /* Storage kann gesperrt sein */ }
   }
   btn.addEventListener('click', function () { if (aktiv) aus(true); else { an(true); window.scrollTo(0, 0); } });
-  // Leichte Sprache gibt es nur als Text: Wer sie wählt, verlässt die grafische Fassung
+  // Einfache Sprache gibt es nur als Text: Wer sie wählt, verlässt die grafische Fassung
   btnLeicht.addEventListener('click', function () { if (aktiv) aus(true); });
 
   var gespeichert = false;

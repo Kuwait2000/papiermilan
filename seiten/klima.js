@@ -83,7 +83,7 @@
   var speicherJetzt = speicher[speicher.length - 1];
   var aktuellesJahr = solarJetzt.jahr;
 
-  /* ---------------- Leichte Sprache ---------------- */
+  /* ---------------- Einfache Sprache ---------------- */
   var LS_KEY_LEICHT = "papierpanther-leichte-sprache";
   var leicht = false;
   try { leicht = localStorage.getItem(LS_KEY_LEICHT) === "1"; } catch (err) { /* Storage kann gesperrt sein */ }
@@ -596,7 +596,7 @@
     });
   });
 
-  /* ---------------- Leichte-Sprache-Umschalter ---------------- */
+  /* ---------------- Einfache-Sprache-Umschalter ---------------- */
   texteAnwenden();
 
   var btnLeicht = document.getElementById("btn-leicht");

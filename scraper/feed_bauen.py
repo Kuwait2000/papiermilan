@@ -208,7 +208,11 @@ def stand_ableiten(top, heute_iso, sitzung=None):
     beratungen = top.get("beratungen") or []
 
     if not top.get("vorlage"):
-        return stand_ohne_vorlage(sitzung or {}, heute_iso), ""
+        stand = stand_ohne_vorlage(sitzung or {}, heute_iso)
+        # Bei kommenden Sitzungen das Datum mitgeben, damit die Oberflaeche
+        # "am 18.11.2026" sagen kann.
+        kommt = stand in (STAND_ANGEKUENDIGT, STAND_BZA_KOMMT)
+        return stand, (sitzung or {}).get("datum_anzeige", "") if kommt else ""
 
     entscheidungen = [s for s in beratungen if rolle_art(s["rolle"]) == "entscheidung"]
     if entscheidungen:
@@ -330,7 +334,7 @@ def main():
     # Kuratierte Eintraege nach Thema buendeln. Sind mehrere Auftritte
     # derselben Vorlage kuratiert, gewinnt die vollstaendigere Fassung —
     # nicht die zufaellig zuerst eingetragene. Sonst verschwindet stillschweigend
-    # eine Leichte-Sprache-Fassung, nur weil ein anderer Auftritt frueher
+    # eine Einfache-Sprache-Fassung, nur weil ein anderer Auftritt frueher
     # in der Datei steht.
     def guete(kur):
         return (
@@ -439,7 +443,7 @@ def main():
                 "auftritte": stationen,
                 "klartext_titel": kur["klartext_titel"],
                 "klartext": kur["klartext"],
-                # Leichte Sprache, optional. Leer heisst: fuer diesen Eintrag
+                # Einfache Sprache, optional. Leer heisst: fuer diesen Eintrag
                 # liegt noch keine Fassung vor — die Oberflaeche faellt dann
                 # sichtbar auf die normale Fassung zurueck, statt zu raten.
                 "klartext_titel_leicht": kur.get("klartext_titel_leicht", ""),
@@ -672,7 +676,8 @@ def main():
             "jahre_vollstaendig": jahre_vollstaendig,  # kein Rueckstand mehr
             "jahre_rueckstand": jahre_rueckstand,      # noch offene TOPs
             "entwuerfe": sum(1 for e in feed if e["entwurf"]),
-            "leichte_sprache": sum(1 for e in feed if e["klartext_leicht"]),
+            # nur echte Texte — die Titel-Schablone zaehlt nicht als Uebersetzung
+            "leichte_sprache": sum(1 for e in feed if e["klartext_leicht"] and not e["duenn"]),
             "je_quelle": {
                 k: sum(1 for e in feed if e["quelle"] == k) for k in roh["quellen"]
             },
@@ -792,7 +797,7 @@ def fabrik_js_schreiben(ausgabe):
         "sitzungen": st["sitzungen_ausgelesen"],
         "routine": st["tops_verfahren"],
         "mit_dokument": sum(1 for e in feed if e.get("dokumente")),
-        "leichte_sprache": sum(1 for e in feed if e.get("klartext_leicht")),
+        "leichte_sprache": sum(1 for e in feed if e.get("klartext_leicht") and not e["duenn"]),
         "entschieden": st["status"].get("Entschieden", 0),
         "stadtbezirke": st["stadtbezirke"],
         "themen": st["tops_kuratiert"],

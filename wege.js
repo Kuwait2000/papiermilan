@@ -43,7 +43,7 @@ const INSEL_KNOTEN_MIN = WP.allgemein.insel_knoten_min || 0;   // kleinere Netzs
 const RAD = (WP.verkehrsarten || {}).rad;   // Rad: schieben_kmh, treppe_s, nacht, hitze (gilt Bedingung auch auf dem Rad?)
 const RAD_FARBE = '#4f7a1f';
 
-/* ------------------------------------------------------- Leichte Sprache */
+/* ------------------------------------------------------- Einfache Sprache */
 const LS_KEY_LEICHT = 'papierpanther-leichte-sprache';
 let leicht = false;
 try { leicht = localStorage.getItem(LS_KEY_LEICHT) === '1'; } catch (err) { /* Storage kann gesperrt sein */ }
@@ -870,6 +870,13 @@ function rechne() {
 }
 
 const minText = (z) => Math.max(1, Math.ceil(z / 60 - 1e-9)) + ' Min';
+/* Alles, was aus fremden Daten stammt und per innerHTML auf die Seite kommt,
+   laeuft durch esc(). Ortsnamen kommen aus OpenStreetMap — dort kann jede und
+   jeder einen Namen eintragen, auch einen mit HTML darin. Ohne esc() wuerde
+   der Browser so einen Namen als Teil der Seite ausfuehren. Die zweite
+   Sicherung ist die Content-Security-Policy (keine Inline-Skripte), die
+   dritte der Filter beim Bauen (scraper/wege_bauen.py) samt pruefen.py. */
+const esc = (x) => String(x == null ? '' : x).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const katName = (kat) => (leicht ? NAMEN_LEICHT[kat] : KAT[kat].name);
 const personName = (p) => t(PERSONEN[p].name, PERSONEN[p].name_l);
 
@@ -989,7 +996,7 @@ function zeigeBus() {
     'Warten (halber Takt, höchstens ' + BUS_WARTEN_MAX_MIN + ' Min), Fahrt mit 5 Min je Umstieg, Weg vom Ziel-Halt. ' + bus.genutzt +
     ' Haltestellen liegen zu Fuß in Reichweite.',
     'Mit Bus: Sie gehen zur Halte-Stelle. Sie warten. Sie fahren. Dann gehen Sie weiter. Alles zusammen höchstens 30 Minuten.');
-  $('grosse').innerHTML = bus.grosse.map((g) => '<li><span class="ziel-kat">' + g.name + '</span><span class="ziel-min">' +
+  $('grosse').innerHTML = bus.grosse.map((g) => '<li><span class="ziel-kat">' + esc(g.name) + '</span><span class="ziel-min">' +
     (g.fuss <= BUS_STUFEN_MIN[2] * 60 ? minText(g.fuss) : t('über 30', 'weit')) + '</span><span class="ziel-min ziel-min-2">' +
     (g.bus <= BUS_STUFEN_MIN[2] * 60 ? minText(g.bus) : t('über 30', 'weit')) + '</span></li>').join('');
 }
@@ -1095,13 +1102,13 @@ function wennZeile(kat, a) {
   const box = document.createElement('div');
   box.className = 'wenn';
   const neu = naechsteOrte(letztes.g, letztes.zeit, [kat], a.oi)[kat];
-  const alt = ORTE.orte[a.oi][1] || katName(kat);
+  const alt = esc(ORTE.orte[a.oi][1] || katName(kat));
   const vorOrt = document.createElement('p');
   vorOrt.innerHTML = neu
     ? (minText(neu.z) === minText(a.z)
-      ? t('Ohne <strong>' + alt + '</strong>: ' + (ORTE.orte[neu.oi][1] || katName(kat)) + ', ebenfalls <strong>' + minText(neu.z) + '</strong>.',
-        'Ohne ' + alt + ': ' + (ORTE.orte[neu.oi][1] || katName(kat)) + '. Das ist genauso nah.')
-      : t('Ohne <strong>' + alt + '</strong>: ' + (ORTE.orte[neu.oi][1] || katName(kat)) + ', <strong>' + minText(neu.z) + '</strong> statt ' + minText(a.z) + '.',
+      ? t('Ohne <strong>' + alt + '</strong>: ' + esc(ORTE.orte[neu.oi][1] || katName(kat)) + ', ebenfalls <strong>' + minText(neu.z) + '</strong>.',
+        'Ohne ' + alt + ': ' + esc(ORTE.orte[neu.oi][1] || katName(kat)) + '. Das ist genauso nah.')
+      : t('Ohne <strong>' + alt + '</strong>: ' + esc(ORTE.orte[neu.oi][1] || katName(kat)) + ', <strong>' + minText(neu.z) + '</strong> statt ' + minText(a.z) + '.',
         'Ohne ' + alt + ': ' + minText(neu.z) + ' statt ' + minText(a.z) + '.'))
     : t('Ohne <strong>' + alt + '</strong> liegt kein solcher Ort mehr in 15 Minuten.', 'Ohne ' + alt + ' ist nichts mehr in der Nähe.');
   const stadt = document.createElement('p');
@@ -1305,7 +1312,7 @@ function zeigeBezirke() {
     const wert = b.luecken ? zahlRund(x.betroffen) : Math.round(x.anteil) + ' %';
     const breite = b.luecken ? 100 * x.betroffen / max : x.anteil;
     return '<li><button type="button" data-nr="' + nr + '" aria-pressed="' + (+nr === b.nr ? 'true' : 'false') + '">' +
-      '<span class="rang-name">' + x.name + '</span><span class="rang-balken"><i style="width:' + breite.toFixed(1) + '%"></i></span>' +
+      '<span class="rang-name">' + esc(x.name) + '</span><span class="rang-balken"><i style="width:' + breite.toFixed(1) + '%"></i></span>' +
       '<span class="rang-wert">' + wert + '</span></button></li>';
   }).join('');
   $('bz-rang').querySelectorAll('button').forEach((k) => k.addEventListener('click', () => waehleBezirk(+k.dataset.nr)));
@@ -1332,7 +1339,7 @@ function zeigeBezirkDetail() {
     return '<li' + (k === b.kat ? ' class="aktiv"' : '') + '><span class="rang-name">' + katName(k) + '</span><span class="rang-balken"><i style="width:' +
       anteil.toFixed(1) + '%"></i></span><span class="rang-wert">' + Math.round(anteil) + ' %</span></li>';
   }).join('');
-  box.innerHTML = '<h3>' + t('Bezirk ', 'Stadt-Bezirk ') + x.name + '</h3>' +
+  box.innerHTML = '<h3>' + t('Bezirk ', 'Stadt-Bezirk ') + esc(x.name) + '</h3>' +
     '<p class="klein">' + zahlRund(x.einwohner) + ' ' + t('Einwohner', 'Menschen') +
     (art !== 'einwohner' ? ', ' + t('davon etwa ', 'davon etwa ') + zahlRund(x.summe) + ' ' + gewichtWort(art) : '') + '. ' +
     (b.luecken ? t('Betroffen bei „' + katName(b.kat) + '“: ', 'Ohne ' + katName(b.kat) + ' in der Nähe: ') + '<strong>' + zahlRund(x.betroffen) + '</strong>.' : '') + '</p>' +
@@ -1349,7 +1356,6 @@ async function zeigeBeschluesse(nr) {
   const liste = ((window.FEED && window.FEED.eintraege) || [])
     .filter((e) => (e.bezirk || []).some((b) => b.startsWith(kennung)) && /^Bezirksausschuss/.test(e.gremium || ''))
     .sort((a, b) => (b.datum || '').localeCompare(a.datum || '')).slice(0, 5);
-  const esc = (x) => String(x).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   $('bz-feed').innerHTML = liste.length ? liste.map((e) => '<li><span class="feed-datum">' + esc(e.datum_anzeige || e.datum || '') + '</span> ' +
     esc((leicht && e.klartext_titel_leicht) || e.klartext_titel || e.amtlicher_titel || '') + '</li>').join('')
     : '<li class="klein">' + t('Keine Einträge gefunden.', 'Keine Einträge.') + '</li>';
@@ -1388,7 +1394,7 @@ function sparplan() {
   if (!M || !ul) return;
   ul.innerHTML = M.massnahmen.map((m) => {
     const z = m.zahlen, p = PERSONEN[m.person];
-    const orte = m.ort_index.map((i) => ORTE.orte[i] && ORTE.orte[i][1]).filter(Boolean).join(', ');
+    const orte = esc(m.ort_index.map((i) => ORTE.orte[i] && ORTE.orte[i][1]).filter(Boolean).join(', '));
     let zahl;
     if (m.wirkung === 'naechster') {
       zahl = t('<strong>' + zahlRund(z.in_15_min) + ' Menschen</strong> (davon ' + zahlRund(z.in_15_min_ab65) + ' ab 65 und ' +

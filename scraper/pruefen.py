@@ -86,7 +86,7 @@ def p_kein_verlust(kur, feed):
     Kein ausgearbeiteter Text darf aus dem Feed verschwinden.
 
     Genau das ist passiert, als die Themen-Buendelung die zuerst eingetragene
-    Fassung behielt: Die Leichte-Sprache-Fassung war weg, ohne Meldung.
+    Fassung behielt: Die Einfache-Sprache-Fassung war weg, ohne Meldung.
     """
     im_feed = {e["ref"] for e in feed}
     themen = {e["thema"] for e in feed}
@@ -94,11 +94,11 @@ def p_kein_verlust(kur, feed):
         if ref in im_feed or not k.get("klartext_leicht"):
             continue
         # Darf fehlen, wenn das Thema durch einen anderen Eintrag vertreten ist
-        # UND dieser ebenfalls Leichte Sprache hat.
+        # UND dieser ebenfalls Einfache Sprache hat.
         vertreter = [e for e in feed if e["ref"] != ref and e["thema"] in themen
                      and e.get("klartext_leicht")]
         if not vertreter:
-            fehlt(f"Leichte-Sprache-Fassung verschwunden: {ref}")
+            fehlt(f"Einfache-Sprache-Fassung verschwunden: {ref}")
 
 
 def p_keine_doppelten_themen(feed):
@@ -203,10 +203,10 @@ def p_hsk(hsk):
             fehlt(f"hsk.json {j}: Sparziel + Massnahmen ergibt nicht die gedruckte Differenz")
     for x in m["verwaltungshaushalt"]:
         if not x.get("titel") or not x.get("titel_leicht") or not x.get("bereich"):
-            warnt(f"hsk.json: Massnahme {x['nr']} ohne Klartext/Leichte Sprache/Bereich")
+            warnt(f"hsk.json: Massnahme {x['nr']} ohne Klartext/Einfache Sprache/Bereich")
         for satz in filter(None, (s.strip() for s in re.split(r"[.!?]", x.get("text_leicht") or ""))):
             if len(satz.split()) > 14:
-                warnt(f"hsk.json {x['nr']}: Satz mit {len(satz.split())} Woertern (Leichte Sprache)")
+                warnt(f"hsk.json {x['nr']}: Satz mit {len(satz.split())} Woertern (Einfache Sprache)")
     fw = hsk["freiwillige_leistungen"]
     summe = sum(p["euro"]["2026"] for p in fw["posten"])
     if abs(summe - fw["summe_euro"]["2026"]) > 0.5 * len(fw["posten"]):
@@ -299,6 +299,45 @@ def p_wege():
     p_wege_personen(zellen, orte)
     p_wege_phase5(netz, orte)
     p_wege_rad_inseln(netz, orte)
+
+
+def _texte(wert):
+    """Alle Zeichenketten in einer verschachtelten Struktur."""
+    if isinstance(wert, str):
+        yield wert
+    elif isinstance(wert, dict):
+        for v in wert.values():
+            yield from _texte(v)
+    elif isinstance(wert, (list, tuple)):
+        for v in wert:
+            yield from _texte(v)
+
+
+def p_kein_html_in_fremddaten():
+    """
+    Namen aus OpenStreetMap, dem Fahrplan und dem Adressbestand duerfen kein
+    HTML enthalten.
+
+    Diese Daten schreibt nicht die Stadt und nicht dieses Projekt — in
+    OpenStreetMap kann jede und jeder einen Ortsnamen aendern. Ein Name wie
+    <img src=x onerror=...> waere nach dem naechsten Datenlauf Teil der Seite.
+    wege.js maskiert bei der Ausgabe, wege_bauen.py filtert beim Bauen; das
+    hier ist die dritte Sicherung und die einzige, die laut wird.
+    """
+    for name in ("wege-orte", "wege-adressen", "wege-bus", "bezirke"):
+        pfad = os.path.join(DATEN_VZ, name + ".json")
+        if not os.path.exists(pfad):
+            continue
+        # "<" gefolgt von Buchstabe, "/" oder "!" ist der Anfang eines Tags.
+        # Ein blosses "<" (etwa "Abstand < 25 m" in einer Feldbeschreibung)
+        # ist harmlos und kommt in den eigenen Formatangaben vor.
+        # "format" ist die selbst geschriebene Feldbeschreibung der Datei
+        # ("stadt:<id>") — kein Fremdtext.
+        daten = {k: v for k, v in lade(name + ".json").items() if k != "format"}
+        verdaechtig = [t for t in _texte(daten) if re.search(r"<[A-Za-z/!]", t)]
+        if verdaechtig:
+            fehlt(f"{name}.json: {len(verdaechtig)} Texte mit HTML-Tag, "
+                  f"z. B. {verdaechtig[0][:60]!r}")
 
 
 def p_wege_phase5(netz, orte):
@@ -617,6 +656,24 @@ def p_kein_behaupteter_beschluss(kur):
                 fehlt(f"{ref}: {feld} behauptet ein Ergebnis ({treffer.group(0)!r})")
 
 
+def p_laenge(kur, mindestens=4):
+    """
+    KURATION.md verlangt 4 bis 7 Saetze in normaler Sprache. Eine Warnung in
+    der Summe statt je Eintrag — sonst ginge alles andere darin unter.
+    """
+    from feed_bauen import ist_duenn
+    texte = [k["klartext"] for k in kur.values() if not ist_duenn(k)]
+    kurz = sum(
+        1 for t in texte
+        if len([s for s in re.split(r"(?<=[.!?])\s+", t.strip()) if s]) < mindestens
+    )
+    if kurz:
+        warnt(
+            f"{kurz} von {len(texte)} Zusammenfassungen haben weniger als {mindestens} Saetze "
+            "(KURATION.md nennt 4 bis 7) — Regel anpassen oder Texte nachziehen"
+        )
+
+
 def p_leichte_sprache(kur, grenze=14):
     """Satzlaenge ist das eine Merkmal, das sich maschinell pruefen laesst."""
     for ref, k in kur.items():
@@ -624,7 +681,7 @@ def p_leichte_sprache(kur, grenze=14):
         for satz in filter(None, (s.strip() for s in re.split(r"[.!?]", text))):
             n = len(satz.split())
             if n > grenze:
-                warnt(f"{ref}: Satz mit {n} Woertern (Leichte Sprache) — {satz[:52]}…")
+                warnt(f"{ref}: Satz mit {n} Woertern (Einfache Sprache) — {satz[:52]}…")
 
 
 def p_haushalt_summen(haushalt):
@@ -768,6 +825,7 @@ def main():
     p_achsenwerte(kur, kuration["_achsen"])
     p_pflichtfelder(kur)
     p_kein_behaupteter_beschluss(kur)
+    p_laenge(kur)
     p_leichte_sprache(kur)
     p_nur_erlaubte_hosts(feed["eintraege"])
     p_nur_oeffentliche_tops(kur, index)
@@ -782,6 +840,7 @@ def main():
     if os.path.exists(os.path.join(DATEN_VZ, "antraege.json")):
         p_antraege_hosts(lade("antraege.json"))
     p_wege()
+    p_kein_html_in_fremddaten()
     p_plaene()
     p_waerme()
     p_oberflaeche(feed)
