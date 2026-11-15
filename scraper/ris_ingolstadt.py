@@ -273,7 +273,7 @@ def dokumente_aus(fragment, basis):
     """Extrahiert Dokumentlinks (getfile.php / externe Links) aus einem Block."""
     gefunden = []
     gesehen = set()
-    muster = r'<div class="smc-el-h[^"]*">\s*<a href="([^"]+)"[^>]*>(.*?)</a>'
+    muster = r'<div class="smc-el-h[^"]*">\s*<a\s+href="([^"]+)"[^>]*>(.*?)</a>'
     for url, titel in re.findall(muster, fragment, re.S):
         titel = sauber(titel)
         url = absolut(html.unescape(url), basis)

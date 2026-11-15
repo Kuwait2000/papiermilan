@@ -104,7 +104,7 @@ def parse_seite(seite):
     ergebnis = []
     for zeile in zeilen:
         link = re.search(
-            r'<a href="vo0050\.php\?__kvonr=(\d+)"[^>]*>(.*?)</a>', zeile, re.S
+            r'<a\s+href="vo0050\.php\?__kvonr=(\d+)"[^>]*>(.*?)</a>', zeile, re.S
         )
         if not link:
             continue
