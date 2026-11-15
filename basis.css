@@ -31,6 +31,9 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; }
+/* Die Kopfzeile klebt oben. Ohne diesen Abstand landet ein per Tab oder
+   Sprungmarke angesteuertes Element darunter und ist nicht zu sehen. */
+html { scroll-padding-top: 5rem; }
 body {
   font-family: var(--font-body); color: var(--text); background: var(--bg);
   line-height: 1.65; font-size: 16px; -webkit-font-smoothing: antialiased;
@@ -69,3 +72,21 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
+
+/* Sprunglink: erster Tab-Stopp jeder Seite, sichtbar erst mit Fokus.
+   Fuehrt an Kopfzeile und Menue vorbei direkt zum Inhalt (WCAG 2.4.1). */
+.skip-link {
+  position: absolute; top: -100%; left: 0; z-index: 100;
+  background: var(--primary); color: #fff; padding: .7rem 1.2rem;
+  text-decoration: none; font-size: .9rem; border-radius: 0 0 8px 0;
+}
+.skip-link:focus { top: 0; outline: 2px solid #fff; outline-offset: -4px; }
+/* Ziel des Sprunglinks: <main> bekommt den Fokus, soll aber keinen Rahmen zeigen */
+main:focus { outline: none; }
+
+/* Quellenangabe auf Karten (MapLibre): Links nicht nur an der Farbe erkennbar */
+.maplibregl-ctrl-attrib a { text-decoration: underline; }
+
+/* Bereiche, die seitlich scrollen (breite Diagramme am Handy), sind per
+   Tastatur erreichbar — kopf.js setzt tabindex, hier der sichtbare Fokus. */
+[data-scrollbar]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

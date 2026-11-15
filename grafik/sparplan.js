@@ -13,7 +13,7 @@ GRAFIK.szene({
   ],
   init: function (api) {
     var SP = SK.sparplan, L = SP.luecke_teur, EW = SP.einwohner;
-    var FARBE = { steuern: '#003e59', personal: '#5b4b8a', bildung: '#2e7d4f', soziales: '#96551f', verwaltung: '#3d6f86', strasse: '#6b6b6b', einmalig: '#a86b00', sonstiges: '#8f8779', freiwillig: '#b00e2b', hebesatz: '#00263a' };
+    var FARBE = { steuern: '#003e59', personal: '#5b4b8a', bildung: '#2e7d4f', soziales: '#96551f', verwaltung: '#3d6f86', strasse: '#6b6b6b', einmalig: '#9a6200', sonstiges: '#7b7466', freiwillig: '#b00e2b', hebesatz: '#00263a' };
     var NAME = { steuern: 'Steuern', personal: 'Personal', bildung: 'Bildung', soziales: 'Soziales', verwaltung: 'Verwaltung', strasse: 'Straßen', einmalig: 'Einmalig', sonstiges: 'Sonstiges' };
     var css = document.createElement('style');
     css.textContent = [

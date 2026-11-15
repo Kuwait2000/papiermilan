@@ -57,7 +57,7 @@ GRAFIK.szene({
       MS.baujahr.map(function (b) { return '<option value="' + b.id + '"' + (b.id === zustand.baujahr ? ' selected' : '') + '>' + b.n + ' (' + (b.wert > 0 ? '+' : b.wert < 0 ? '−' : '±') + Math.abs(b.wert) + ' %)</option>'; }).join('') + '</select>' +
       '<label>Lage</label><div class="reihe">' + MS.lage.map(function (l) { return '<button type="button" class="gf-chip klein" data-lage="' + l.id + '" aria-pressed="' + (l.id === 'normal') + '">' + l.l.replace(' Lage', '') + '</button>'; }).join('') + '</div>' +
       '<label>Haus</label><div class="reihe">' + MS.haustyp.map(function (h) { return '<button type="button" class="gf-chip klein" data-haus="' + h.id + '" aria-pressed="' + (h.id === 'mfh') + '">' + (h.id === 'mfh' ? 'Mehrfamilienhaus' : 'Ein-/Zweifamilienhaus') + '</button>'; }).join('') + '</div></div>' +
-      '<div class="mi-liste"><h4>Macht die Wohnung teurer</h4><div class="reihe" id="mi-plus"></div><h4>Macht sie billiger</h4><div class="reihe" id="mi-minus"></div></div>' +
+      '<div class="mi-liste"><h3>Macht die Wohnung teurer</h3><div class="reihe" id="mi-plus"></div><h3>Macht sie billiger</h3><div class="reihe" id="mi-minus"></div></div>' +
       '</div></div>';
 
     var svg = api.szene.querySelector('.mi-bild svg');

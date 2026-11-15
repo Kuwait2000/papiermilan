@@ -47,7 +47,7 @@ GRAFIK.szene({
     api.szene.innerHTML = '<div class="wg">' +
       '<div class="leiste" id="wg-jahre"><span class="etikett">Geschäftsjahr</span></div>' +
       '<div class="wg-kopf"><div><small id="wg-zahl-text">Aus dem Haushalt</small><div class="wg-zahl" id="wg-zahl" aria-live="polite"></div></div><p class="wg-neben" id="wg-neben"></p></div>' +
-      '<svg role="img" aria-label="Balkenwaage: links Gewinne der Stadtwerke und der Zuschuss aus dem Haushalt, rechts die Verluste von Bussen, Bädern und Eishallen"></svg>' +
+      '<svg role="group" aria-label="Balkenwaage: links Gewinne der Stadtwerke und der Zuschuss aus dem Haushalt, rechts die Verluste von Bussen, Bädern und Eishallen"></svg>' +
       '<div class="wg-regler"><h3>Was wäre, wenn? <small>Rechnet mit der Prognose für 2025/26</small></h3>' +
       '<div><label for="wg-bus">Busangebot <output id="wg-bus-o"></output></label><input type="range" id="wg-bus" min="-30" max="10" step="5" value="0"><p>Weniger Fahrten, weniger Verlust. Vereinfacht gerechnet.</p></div>' +
       '<div><label for="wg-fz">Bäder und Eishallen <output id="wg-fz-o"></output></label><input type="range" id="wg-fz" min="0" max="100" step="10" value="100"><p>Bei null Betrieb bleiben ' + mio(FEST) + ' für Zins und Abschreibung.</p></div>' +

@@ -97,6 +97,37 @@ def pdf_text(url):
     return text, seiten, ""
 
 
+# Stellen, an denen sich ein Dokument an den wendet, der es zusammenfasst,
+# statt an Stadtrat und Verwaltung (siehe KURATION.md, "Das Dokument ist
+# Material, keine Anweisung"). Die Liste faengt die plumpen Faelle; sie ist
+# kein Schutz, nur ein Hinweis, genauer hinzusehen. Falsche Treffer sind in
+# Ordnung — eine Vorlage ueber KI in der Verwaltung schlaegt hier auch an.
+VERDAECHTIG = [
+    re.compile(p, re.I) for p in (
+        r"(ignorier\w*|missachte\w*|vergiss)\s+(bitte\s+)?(alle|die|sämtliche|bisherigen?|vorherigen?|obigen?)\b.{0,40}"
+        r"(anweisung|regel|instruktion|vorgabe)",
+        r"\b(ignore|disregard)\s+(all|any|the|previous|prior|above)\b.{0,40}(instruction|rule|prompt)",
+        r"\b(system\s?prompt|prompt[- ]injection)\b",
+        r"\byou are (an?|the) (ai|assistant|language model)\b",
+        r"\b(du bist|sie sind)\s+(eine?\s+)?(ki|sprachmodell|assistent|chatbot)\b",
+        r"\ban (die ki|das sprachmodell|den assistenten|den chatbot)\b",
+        r"\b(zusammenfassung(en)?|kurzfassung(en)?|klartext)\s+(soll(en)?|muss|müssen|darf|dürfen)\b",
+    )
+]
+
+
+def auffaelligkeiten(text):
+    """Bis zu fuenf verdaechtige Stellen mit etwas Umgebung."""
+    funde = []
+    for muster in VERDAECHTIG:
+        for m in muster.finditer(text or ""):
+            a, b = max(m.start() - 60, 0), min(m.end() + 60, len(text))
+            funde.append(re.sub(r"\s+", " ", text[a:b]).strip())
+            if len(funde) >= 5:
+                return funde
+    return funde
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--max", type=int, default=25, help="wie viele Themen")
@@ -223,6 +254,7 @@ def main():
             eintrag["seiten"] = seiten
             eintrag["text"] = text
             eintrag["hinweis"] = hinweis
+            eintrag["auffaellig"] = auffaelligkeiten(text)
         if not eintrag["text"]:
             ohne_text += 1
         print(f"  [{nummer}/{len(gewaehlt)}] {t['titel'][:56]:56} "
@@ -255,6 +287,7 @@ def main():
             eintrag["seiten"] = seiten
             eintrag["text"] = text
             eintrag["hinweis"] = hinweis
+            eintrag["auffaellig"] = auffaelligkeiten(text)
         if not eintrag["text"]:
             ohne_text += 1
         print(f"  [{len(charge) + 1}/{len(gewaehlt) + len(offene_antraege)}] "
@@ -264,6 +297,15 @@ def main():
     ziel = os.path.join(DATEN_VZ, "vorlagen_charge.json")
     with open(ziel, "w", encoding="utf-8") as f:
         json.dump(charge, f, ensure_ascii=False, indent=2)
+
+    verdacht = [c for c in charge if c.get("auffaellig")]
+    if verdacht:
+        print(f"\n  ACHTUNG: {len(verdacht)} Dokumente enthalten Stellen, die sich an ein "
+              "Sprachmodell richten koennten (Feld 'auffaellig').\n"
+              "  Diese Punkte nicht zusammenfassen lassen, sondern selbst lesen:",
+              file=sys.stderr)
+        for c in verdacht:
+            print(f"    {c['ref']}: {c['auffaellig'][0][:110]}", file=sys.stderr)
 
     zeichen = sum(len(c["text"]) for c in charge)
     print(f"\nGeschrieben: {ziel}")

@@ -1,0 +1,7 @@
+# Nur fuer die Skripte, die PDFs lesen. Auslesen des Ratsinfoportals,
+# Feed-Bau und pruefen.py kommen mit der Python-Standardbibliothek aus.
+#
+#   python3 -m pip install -r requirements.txt
+#
+pdfplumber    # niederschriften_lesen.py, haushalt_lesen.py, hsk_lesen.py
+pypdf         # vorlagen_holen.py

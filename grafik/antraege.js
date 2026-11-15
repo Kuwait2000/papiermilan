@@ -58,9 +58,9 @@ GRAFIK.szene({
 
     var STEMPEL = {
       'Beschlossen': ['BESCHLOSSEN', '#2e7d4f'], 'Abgelehnt': ['ABGELEHNT', '#b00e2b'], 'Teilweise beschlossen': ['TEILWEISE', '#2e7d4f'],
-      'Entscheidung angesetzt': ['ENTSCHEIDUNG ANGESETZT', '#a86b00'], 'Wird noch beraten': ['IN BERATUNG', '#a86b00'],
+      'Entscheidung angesetzt': ['ENTSCHEIDUNG ANGESETZT', '#9a6200'], 'Wird noch beraten': ['IN BERATUNG', '#9a6200'],
       'Nur besprochen, nichts entschieden': ['BESPROCHEN', '#3d6f86'], 'Bekanntgabe': ['BEKANNTGABE', '#003e59'],
-      'Noch auf keiner Tagesordnung': ['LIEGT NOCH', '#8a2b1a'], 'In Beratung': ['IN BERATUNG', '#a86b00']
+      'Noch auf keiner Tagesordnung': ['LIEGT NOCH', '#8a2b1a'], 'In Beratung': ['IN BERATUNG', '#9a6200']
     };
     function stempel(st) { return STEMPEL[st] || [String(st).toUpperCase(), '#3d6f86']; }
     function tage(datum) { var d = new Date(datum); return Math.round((heute - d) / 864e5); }

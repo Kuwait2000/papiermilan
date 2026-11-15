@@ -64,6 +64,13 @@
     '  .kopf-menue summary::-webkit-details-marker { display: none; }',
     '  .kopf-menue .kopf-panel { min-width: 0; left: .75rem; right: .75rem; top: calc(100% + .3rem); }',
     '  .site-header .btn-leicht { font-size: .76rem !important; padding: .26rem .6rem !important; white-space: nowrap; }',
+    '}',
+    /* Sehr schmale Anzeigen (320 px, oder 400 % Zoom am Desktop): Logo,
+       Menue und die beiden Schalter passen nicht in eine Zeile. Vorher ragte
+       der Sprach-Schalter aus dem Bild und die ganze Seite scrollte seitlich
+       (WCAG 1.4.10). Jetzt bricht die Kopfzeile um. */
+    '@media (max-width: 380px) {',
+    '  .site-header .container { flex-wrap: wrap !important; row-gap: .4rem !important; }',
     '}'
   ].join('\n');
   document.head.appendChild(css);
@@ -155,8 +162,48 @@
       '<strong>Hinweis:</strong> Die Texte schreibt eine KI mit. Ich lese sie vor dem Veröffentlichen durch. Trotzdem kann ein Fehler drin sein. Richtig ist immer die Original-Quelle. Haben Sie einen Fehler gefunden? Schreiben Sie mir. Die Adresse steht im <a href="impressum.html">Impressum</a>.'];
     var setzeHinweis = function () { hinweis.innerHTML = ki[leicht() ? 1 : 0]; };
     setzeHinweis();
-    fuss.parentNode.insertBefore(hinweis, fuss);
+    /* Ans Ende von <main>, nicht zwischen <main> und Fusszeile: Inhalt
+       ausserhalb jeder Landmarke finden Screenreader-Nutzer nicht, wenn sie
+       von Bereich zu Bereich springen. */
+    var haupt = document.querySelector('main');
+    if (haupt) haupt.appendChild(hinweis); else fuss.parentNode.insertBefore(hinweis, fuss);
     if (btn) new MutationObserver(setzeHinweis).observe(btn, { attributes: true, attributeFilter: ['aria-pressed'] });
+  }
+
+  /* Ziel des Sprunglinks fokussierbar machen, damit der naechste Tab im
+     Inhalt weitergeht und nicht wieder in der Kopfzeile. */
+  var hauptinhalt = document.getElementById('hauptinhalt');
+  if (hauptinhalt && !hauptinhalt.hasAttribute('tabindex')) hauptinhalt.setAttribute('tabindex', '-1');
+
+  /* Breite Diagramme und Tabellen scrollen am Handy seitlich in ihrem Rahmen.
+     So ein Rahmen muss per Tastatur erreichbar sein, sonst kommt man an den
+     abgeschnittenen Teil nicht heran (WCAG 2.1.1). tabindex nur, solange
+     wirklich etwas uebersteht — am Desktop waere es ein nutzloser Tab-Stopp. */
+  function scrollRahmen() {
+    document.querySelectorAll('.diagramm, .svg-scroll, .tabelle-rahmen, [data-scrollbar]').forEach(function (r) {
+      var ueber = r.scrollWidth > r.clientWidth + 1 && /auto|scroll/.test(getComputedStyle(r).overflowX);
+      if (ueber) {
+        if (r.hasAttribute('data-scrollbar')) return;
+        r.setAttribute('data-scrollbar', '');
+        if (!r.hasAttribute('tabindex')) r.setAttribute('tabindex', '0');
+        if (!r.hasAttribute('role')) r.setAttribute('role', 'group');
+        if (!r.hasAttribute('aria-label') && !r.hasAttribute('aria-labelledby')) {
+          var titel = r.querySelector('.diagramm-titel, caption, h3, h4');
+          r.setAttribute('aria-label', (titel ? titel.textContent.trim() + ' – ' : '') + 'seitlich scrollbar');
+        }
+      } else if (r.hasAttribute('data-scrollbar')) {
+        r.removeAttribute('data-scrollbar'); r.removeAttribute('tabindex');
+      }
+    });
+  }
+  var scrollTimer = null;
+  function scrollRahmenBald() { clearTimeout(scrollTimer); scrollTimer = setTimeout(scrollRahmen, 250); }
+  window.addEventListener('load', scrollRahmenBald);
+  window.addEventListener('resize', scrollRahmenBald);
+  /* Die Seiten zeichnen ihre Diagramme erst nach dem Laden und bei jedem
+     Umschalten neu — deshalb auch auf Aenderungen im Inhalt hoeren. */
+  if (hauptinhalt && window.MutationObserver) {
+    new MutationObserver(scrollRahmenBald).observe(hauptinhalt, { childList: true, subtree: true });
   }
 
   /* Aufklapper schliessen bei Klick daneben oder Escape */

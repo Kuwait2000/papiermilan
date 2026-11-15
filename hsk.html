@@ -32,7 +32,7 @@
     --offen: #b00e2b;
     --offen-hell: #f6dfe3;
     --aus-1: #96551f;
-    --aus-2: #b6752f;
+    --aus-2: #a36727;   /* war #b6752f: weisse Schrift darauf hatte nur 3,8:1 Kontrast */
     --aus-3: #cf9a55;
     --aus-fest: #d9d4ca;
     --trend: #b6752f;
@@ -251,7 +251,10 @@
   }
   .m-knopf:hover { background: var(--bg-warm); }
   .m-knopf:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
-  .m-titel { font-size: .92rem; font-weight: 600; line-height: 1.35; }
+  /* overflow-wrap + min-width: lange Woerter ("Kindertagesbetreuung") sprengten
+     auf 320 px Breite die Liste und die ganze Seite scrollte seitlich */
+  .m-titel { font-size: .92rem; font-weight: 600; line-height: 1.35; overflow-wrap: anywhere; }
+  .m-knopf > * { min-width: 0; }
   .m-meta { display: flex; flex-wrap: wrap; gap: .3rem; margin-top: .25rem; }
   .badge { font-size: .7rem; font-weight: 600; border-radius: 4px; padding: .05rem .4rem; background: var(--bg-warm); color: var(--text-muted); white-space: nowrap; }
   .badge.beschlossen { background: #e3eef0; color: #14505c; }
@@ -288,7 +291,9 @@
     font: inherit; font-size: .72rem; font-weight: 600; color: #fff; overflow: hidden; white-space: nowrap;
   }
   .stapel button:last-child { border-right: none; }
-  .stapel button.fest { color: var(--text-muted); }
+  .stapel button.fest { color: var(--text); }
+  /* helles Ocker: weisse Schrift waere dort nicht lesbar (2,5:1) */
+  .stapel button.hell { color: var(--text); }
   .stapel button:hover, .stapel button[aria-pressed="true"] { filter: brightness(.9); }
   .stapel button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
   .klammer { display: flex; font-size: .78rem; color: var(--text-muted); margin-bottom: .6rem; }
@@ -414,6 +419,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
 
 <header class="site-header">
   <div class="container">
@@ -430,13 +436,13 @@
   </div>
 </header>
 
-<div class="disclaimer">
+<div class="disclaimer" role="region" aria-label="Hinweis zu diesem Angebot">
   <div class="container">
     <p id="txt-hinweis"></p>
   </div>
 </div>
 
-<main>
+<main id="hauptinhalt">
   <div class="container">
     <h1 id="txt-h1"></h1>
     <p class="lede" id="txt-lede"></p>
@@ -607,6 +613,7 @@
     <a href="beteiligen.html">Beteiligen</a>
     <a href="impressum.html">Impressum</a>
     <a href="datenschutz.html">Datenschutz</a>
+    <a href="barrierefreiheit.html">Barrierefreiheit</a>
     <a href="https://github.com/mnkeller/papierpanther" rel="noopener noreferrer" target="_blank">Quellcode<span class="sr-only"> (öffnet in neuem Tab)</span></a>
   </div>
 </footer>

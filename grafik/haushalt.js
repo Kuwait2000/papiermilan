@@ -39,7 +39,7 @@ GRAFIK.szene({
     function quad(parent, pts, attrs) { attrs = attrs || {}; attrs.points = poly(pts); return el('polygon', attrs, parent); }
 
     api.szene.innerHTML = '<div class="leiste"><span class="etikett">Ansicht</span><button class="gf-chip" type="button" aria-pressed="true" id="hh-stadt">Wofür das Geld ausgegeben wird</button><button class="gf-chip" type="button" aria-pressed="false" id="hh-fluss">Woher das Geld kommt</button></div>' +
-      '<div style="position:relative"><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Isometrische Stadt aus den Hauptgruppen des Haushalts"></svg><div class="tooltip" id="hh-tip"></div></div>';
+      '<div style="position:relative"><svg viewBox="0 0 ' + W + ' ' + H + '" role="group" aria-label="Isometrische Stadt aus den Hauptgruppen des Haushalts"></svg><div class="tooltip" id="hh-tip"></div></div>';
     var svg = api.szene.querySelector('svg'), tip = api.szene.querySelector('#hh-tip');
     var defs = el('defs', {}, svg);
     var lg = el('linearGradient', { id: 'hh-himmel', x1: 0, y1: 0, x2: 0, y2: 1 }, defs);

@@ -734,11 +734,14 @@
     var beeinflussbar = 0;
     posten.forEach(function (p, i) {
       var anteil = p.teur / AUS.summe_teur;
-      var b = el("button", { type: "button", class: p.beeinflussbar ? "" : "fest", "aria-pressed": i === stapelAktiv ? "true" : "false",
-        "aria-label": p.name + ": " + geld(p.teur) });
+      var zeigtText = anteil > .1;
+      /* Der zugaengliche Name beginnt mit dem sichtbaren Kurzwort, damit
+         Sprachsteuerung ("Personal anklicken") den Knopf findet (WCAG 2.5.3). */
+      var b = el("button", { type: "button", class: p.beeinflussbar ? (fi === 2 ? "hell" : "") : "fest", "aria-pressed": i === stapelAktiv ? "true" : "false",
+        "aria-label": (zeigtText && p.kurz !== p.name ? p.kurz + " – " : "") + p.name + ": " + geld(p.teur) });
       b.style.width = anteil * 100 + "%";
       b.style.background = p.beeinflussbar ? farben[fi++] : (i % 2 ? "#e4dfd5" : "var(--aus-fest)");
-      if (anteil > .1) b.textContent = p.kurz;
+      if (zeigtText) b.textContent = p.kurz;
       if (p.beeinflussbar) beeinflussbar += p.teur;
       b.addEventListener("click", function () { stapelAktiv = i; zeigeStapel(); });
       box.appendChild(b);

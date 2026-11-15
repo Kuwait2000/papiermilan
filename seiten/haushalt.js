@@ -808,8 +808,10 @@
       "Ausgaben " + jahr + " nach Hauptgruppen");
 
     var hoehe = a.endY + 20;
-    var svg = svgEl("svg", { viewBox: "0 0 " + breite + " " + hoehe, role: "img", class: "breit",
-      "aria-label": "Hauptgruppen der Einnahmen und Ausgaben " + jahr + ", anklickbar fuer Details" });
+    /* role="group", nicht "img": ein Bild darf keine bedienbaren Teile
+       enthalten, sonst erreichen Screenreader die Knoepfe darin nicht. */
+    var svg = svgEl("svg", { viewBox: "0 0 " + breite + " " + hoehe, role: "group", class: "breit",
+      "aria-label": "Hauptgruppen der Einnahmen und Ausgaben " + jahr + ", anklickbar für Details" });
     e.kinder.concat(a.kinder).forEach(function (k) { svg.appendChild(k); });
 
     el.innerHTML = "";

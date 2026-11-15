@@ -18,7 +18,7 @@ GRAFIK.szene({
     var P = W.personen, BW = 1200, ZEILE = 92, OBEN = 70, H = OBEN + P.length * ZEILE + 200;   // unten Platz fuer die Sprechblase
     var max = Math.max.apply(null, P.map(function (p) { return p.orte; }));
     var X0 = 330, BREITE = 760;
-    api.szene.innerHTML = '<svg viewBox="0 0 ' + BW + ' ' + H + '" role="img" aria-label="Erreichbare Orte in 15 Minuten je Person"></svg>';
+    api.szene.innerHTML = '<svg viewBox="0 0 ' + BW + ' ' + H + '" role="group" aria-label="Erreichbare Orte in 15 Minuten je Person"></svg>';
     var svg = api.szene.querySelector('svg');
     text(svg, { x: X0, y: 40, 'font-size': 14, fill: '#566a74' }, 'Alltagsorte in 15 Minuten zu Fuß ab ' + W.start);
     P.forEach(function (p, i) {
@@ -60,7 +60,7 @@ GRAFIK.szene({
   init: function (api) {
     var A = W.apotheke, BW = 1200, ZEILE = 40, OBEN = 76, UNTEN = OBEN + A.length * ZEILE + 6, H = UNTEN + 200, X0 = 300, BREITE = 820;
     var FA = '#2a8f7f', FE = '#2f5f86';
-    api.szene.innerHTML = '<svg viewBox="0 0 ' + BW + ' ' + H + '" role="img" aria-label="Anteil mit Apotheke in 15 Minuten je Bezirk"></svg>';
+    api.szene.innerHTML = '<svg viewBox="0 0 ' + BW + ' ' + H + '" role="group" aria-label="Anteil mit Apotheke in 15 Minuten je Bezirk"></svg>';
     var svg = api.szene.querySelector('svg');
     var x = function (v) { return X0 + BREITE * v / 100; };
     [0, 25, 50, 75, 100].forEach(function (v) {

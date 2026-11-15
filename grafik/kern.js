@@ -107,6 +107,12 @@
     '.gf-fuss p { margin: 0; border-top: 1px solid var(--linie-stark); padding-top: 8px; }',
     '.gf-fuss strong { color: var(--tinte); }',
     '.gf-laden { padding: 3rem 0; color: var(--grau); }',
+    /* Sichtbarer Fokus fuer anklickbare Teile in den Schaubildern. Das
+       Schlagwort-Netz hatte den Rahmen abgeschaltet; wer mit der Tastatur
+       unterwegs war, sah nicht, wo er steht (WCAG 2.4.7). */
+    '.grafik svg [tabindex]:focus { outline: none; }',
+    '.grafik svg [tabindex]:focus-visible { outline: 2px solid #b00e2b; outline-offset: 3px; border-radius: 4px; }',
+    '.grafik svg [tabindex]:focus-visible .ring { opacity: 1; }',
     '.btn-grafisch svg { width: 15px; height: 15px; vertical-align: -2px; margin-right: 5px; }',
     '@media (max-width: 760px) { .btn-grafisch .gf-wort { display: none; } .btn-grafisch svg { margin-right: 0; } }',
     // Auf schmalen Handys passt die Kopfzeile mit dem zusätzlichen Knopf sonst nicht ganz
@@ -145,7 +151,9 @@
   /* Knopf in der Kopfzeile, direkt vor „Einfache Sprache“ */
   var btn = document.createElement('button');
   btn.type = 'button'; btn.id = 'btn-grafisch'; btn.className = 'btn-leicht btn-grafisch';
-  btn.setAttribute('aria-pressed', 'false'); btn.setAttribute('aria-label', 'Grafische Fassung');
+  btn.setAttribute('aria-pressed', 'false'); /* Beginnt mit dem sichtbaren Wort, damit Sprachsteuerung den Knopf findet
+     (WCAG 2.5.3); am Handy ist nur das Symbol zu sehen, der Name bleibt. */
+  btn.setAttribute('aria-label', 'Grafisch: Seite als Schaubilder zeigen');
   btn.innerHTML = '<svg viewBox="0 0 16 16" aria-hidden="true"><rect x="1" y="8" width="3" height="7" rx="1" fill="currentColor"/><rect x="6.5" y="4" width="3" height="11" rx="1" fill="currentColor"/><rect x="12" y="1" width="3" height="14" rx="1" fill="currentColor"/></svg><span class="gf-wort">Grafisch</span>';
   btnLeicht.parentNode.insertBefore(btn, btnLeicht);
 
@@ -199,6 +207,13 @@
 
   function baue() {
     bereich.innerHTML = '';
+    /* Die grafische Fassung blendet den Seiteninhalt samt Hauptueberschrift
+       aus. Fuer Screenreader bleibt eine <h1>, sonst hat die Seite keine. */
+    var h1alt = document.querySelector('main h1');
+    var h1 = document.createElement('h1');
+    h1.className = 'sr-only';
+    h1.textContent = (h1alt ? h1alt.textContent.replace(/\s+/g, ' ').trim() : document.title) + ' – grafische Fassung';
+    bereich.appendChild(h1);
     liste.forEach(function (id) {
       var d = szenen[id]; if (!d) return;
       var s = document.createElement('section');

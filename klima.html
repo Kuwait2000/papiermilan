@@ -34,7 +34,7 @@
     --solar-stecker: #ddb989;
     --speicher: #2f7080;
     --laden: #14505c;
-    --soll: #8f8779;
+    --soll: #7b7466;   /* war #8f8779: weisse Zahl im Balken hatte nur 3,6:1 Kontrast */
   }
   .container { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
 
@@ -161,6 +161,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
 
 <header class="site-header">
   <div class="container">
@@ -177,13 +178,13 @@
   </div>
 </header>
 
-<div class="disclaimer">
+<div class="disclaimer" role="region" aria-label="Hinweis zu diesem Angebot">
   <div class="container">
     <p id="txt-hinweis"></p>
   </div>
 </div>
 
-<main>
+<main id="hauptinhalt">
   <div class="container">
     <h1 id="txt-h1"></h1>
     <p class="lede" id="txt-lede"></p>
@@ -251,6 +252,7 @@
     <a href="index.html">Übersicht</a>
     <a href="impressum.html">Impressum</a>
     <a href="datenschutz.html">Datenschutz</a>
+    <a href="barrierefreiheit.html">Barrierefreiheit</a>
     <a href="https://github.com/mnkeller/papierpanther" rel="noopener noreferrer" target="_blank">Quellcode<span class="sr-only"> (öffnet in neuem Tab)</span></a>
     <a href="https://2035.de/" rel="noopener noreferrer" target="_blank">Klimaschutz der Stadt: 2035.de<span class="sr-only"> (öffnet in neuem Tab)</span></a>
   </div>

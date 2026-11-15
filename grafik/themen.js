@@ -65,7 +65,7 @@ GRAFIK.szene({
       ['l:Unterwegs', 'l:Eltern & Kinder', 'a:Klima & Umwelt', 'l:Wohnen & Miete', 'a:Gebühren & Preise'].map(function (id) {
         return '<button class="gf-chip klein" type="button" data-zu="' + id + '">' + id.split(':')[1] + '</button>';
       }).join('') + '</div>' +
-      '<div style="position:relative"><svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Netzwerk der Schlagworte"></svg><div class="tooltip" id="th-tip"></div></div>';
+      '<div style="position:relative"><svg viewBox="0 0 ' + W + ' ' + H + '" role="group" aria-label="Netzwerk der Schlagworte"></svg><div class="tooltip" id="th-tip"></div></div>';
     var svg = d3.select(api.szene.querySelector('svg')), tip = api.szene.querySelector('#th-tip');
     var hinter = svg.append('rect').attr('width', W).attr('height', H).attr('fill', '#fff');
     var gRing = svg.append('g'), gL = svg.append('g'), gE = svg.append('g'), gK = svg.append('g'), gZ = svg.append('g').attr('pointer-events', 'none');
@@ -73,7 +73,7 @@ GRAFIK.szene({
     var linie = gL.selectAll('line').data(kanten).join('line')
       .attr('stroke', '#c9c2b5').attr('stroke-linecap', 'round')
       .attr('stroke-width', function (k) { return 1 + 7 * k.n / maxN; }).attr('stroke-opacity', .55);
-    var g = gK.selectAll('g').data(knoten).join('g').style('cursor', 'pointer').style('outline', 'none').attr('tabindex', 0).attr('role', 'button')
+    var g = gK.selectAll('g').data(knoten).join('g').style('cursor', 'pointer').attr('tabindex', 0).attr('role', 'button')
       .attr('aria-label', function (k) { return k.name + ', ' + k.n + ' Einträge'; });
     g.append('circle').attr('class', 'ring').attr('r', function (k) { return k.r + 6; }).attr('fill', 'none').attr('stroke', function (k) { return FARBE[k.art][1]; }).attr('stroke-width', 2).attr('opacity', 0);
     g.append('circle').attr('r', function (k) { return k.r; })

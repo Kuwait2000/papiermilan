@@ -960,6 +960,9 @@ function zeigeListe() {
       knopf.className = 'wenn-knopf';
       knopf.textContent = zustand.wenn === a.oi ? t('Zurück', 'Zurück') : t('Wenn dieser Ort schließt', 'Was ist, wenn er zu macht?');
       knopf.setAttribute('aria-pressed', zustand.wenn === a.oi ? 'true' : 'false');
+      /* Jede Zeile hat denselben Knopftext; der Ortsname macht ihn fuer
+         Screenreader unterscheidbar. Beginnt mit dem sichtbaren Text. */
+      knopf.setAttribute('aria-label', knopf.textContent + ': ' + (ORTE.orte[a.oi][1] || katName(kat)));
       knopf.addEventListener('click', () => { zustand.wenn = zustand.wenn === a.oi ? null : a.oi; zeigeListe(); });
       li.appendChild(knopf);
       if (zustand.wenn === a.oi) li.appendChild(wennZeile(kat, a));
@@ -1801,7 +1804,7 @@ function tabelle() {
     [t('Nacht: unbeleuchteter Weg', 'Nachts: Weg ohne Licht'), (p) => (p.nachts_gesperrt ? t('gesperrt', 'geht nicht') : '×' + zahlDE(BEDINGUNGEN.nacht.faktor_unbeleuchtet))],
     [t('Hitze: Weg ohne Schatten', 'Hitze: Weg ohne Schatten'), () => '×' + zahlDE(BEDINGUNGEN.hitze.faktor_ohne_schatten)],
   ];
-  let html = '<div class="tabelle-rahmen"><table class="werte"><thead><tr><th></th>' +
+  let html = '<div class="tabelle-rahmen"><table class="werte"><thead><tr><th><span class="sr-only">' + t('Annahme', 'Was') + '</span></th>' +
     REIHE.map((k) => '<th><i class="punkt" style="background:' + PERSONEN[k].farbe + '"></i>' + personName(k) + '</th>').join('') + '</tr></thead><tbody>';
   for (const [label, f] of zeilen) html += '<tr><th>' + label + '</th>' + REIHE.map((k) => '<td>' + f(PERSONEN[k]) + '</td>').join('') + '</tr>';
   html += '</tbody></table></div>';

@@ -30,17 +30,28 @@ cd scraper && python3 ris_ingolstadt.py --von 2026-01 --bis 2026-07 \
   && python3 niederschriften_lesen.py && python3 feed_bauen.py && python3 pruefen.py
 ```
 
-Nur Python-Standardbibliothek, keine Abhängigkeiten.
+Auslesen, Feed-Bau und `pruefen.py` brauchen nur die Python-Standardbibliothek.
+Die Skripte, die PDFs lesen (Niederschriften, Haushalt, Sparplan, Vorlagen),
+brauchen `pdfplumber` und `pypdf` (`pip install -r requirements.txt`). Die
+Karten- und Wege-Skripte rufen zusätzlich `curl` auf.
+
+Ohne `--no-cache` lädt `ris_ingolstadt.py` nur neu, was sich noch ändern kann:
+Kalender ab dem Vormonat, Sitzungen der letzten 70 Tage und alle kommenden,
+Beratungswege laufender Vorlagen. Alles Ältere kommt aus `scraper/.cache/`.
 
 ## Aufbau
 
 ```
 index.html            Startseite: Auf einen Blick, Themen-Kacheln, alle Einträge
+basis.css             Farben, Schriften, Kopf- und Fußzeile für alle Seiten
+themenseite.css       Bausteine der Zahlen-Themenseiten (Legende, Kacheln, Quellen)
+seiten/               das Skript jeder Seite (seiten/index.js gehört zu index.html)
 themen.html           Themen im Überblick (Kacheln mit je einer Kernzahl)
 kopf.js               gemeinsame Kopfzeile aller Seiten (Start · Themen · So funktioniert's)
 themen-kacheln.js     zeichnet die Themen-Kacheln aus data/themen.js
 impressum.html        Impressum (§ 5 DDG)
 datenschutz.html      Datenschutzerklärung
+barrierefreiheit.html Erklärung zur Barrierefreiheit (Selbstprüfung)
 KURATION.md           wie die Kurztexte entstehen (inkl. Einfache Sprache)
 scraper/
   ris_ingolstadt.py   liest beide Portale aus       -> data/rohdaten.json
@@ -48,6 +59,7 @@ scraper/
   niederschriften_lesen.py  Beschlüsse aus Protokollen -> data/beschluesse.json
                             (+ data/niederschriften.json)
   feed_bauen.py       Rohdaten + Kuration           -> data/feed.json + feed.js
+  anker_setzen.py     Titel-Anker in kuration.json prüfen und reparieren
   pruefen.py          Zusagen der Seite nachrechnen (Exit-Code)
   themen_bauen.py     Kennzahlen für die Themen-Kacheln -> data/themen.js
   beteiligungen_bauen.py  prüft data/beteiligungen.json -> data/beteiligungen.js
@@ -72,6 +84,48 @@ dabei **nicht** verändert — Gestaltung und Logik der Seite gehören dir allei
 
 Die Trennung von `rohdaten.json` und `kuration.json` ist bewusst: Neu-Scrapen
 überschreibt niemals die aufbereiteten Texte.
+
+### Titel-Anker: Text und Tagesordnungspunkt gehören zusammen
+
+Der Schlüssel eines Eintrags ist Sitzung plus TOP-Nummer, bei unnummerierten
+Punkten die Position („Ö3"). Schiebt die Stadt per Nachtrag einen Punkt ein,
+zeigt derselbe Schlüssel auf einen anderen Punkt. Jeder Eintrag merkt sich
+deshalb in `titel_anker` den amtlichen Titel, zu dem er geschrieben wurde.
+`feed_bauen.py` setzt den Anker bei neuen Einträgen selbst, `pruefen.py`
+bricht ab, wenn Anker und Titel auseinanderlaufen.
+
+```bash
+python3 scraper/anker_setzen.py --zeigen      # was ist verrutscht?
+python3 scraper/anker_setzen.py --umhaengen   # an den Punkt mit passendem Titel hängen
+python3 scraper/anker_setzen.py --bestaetigen "stadt:13534#Ö 2"   # Titel nur umformuliert
+```
+
+### Aufbau der Seiten
+
+Jede Seite besteht aus drei Teilen: der HTML-Datei mit ihrem eigenen
+`<style>`-Block, dem Skript in `seiten/<name>.js` und den gemeinsamen Dateien
+`basis.css`, `kopf.js` und `zaehler.js`. Was alle Seiten teilen (Farben,
+Kopfzeile, Fußzeile, Sprunglink), steht nur in `basis.css`. In die HTML-Datei
+gehört kein `<script>` mit Inhalt und kein `onclick=`: Die
+Content-Security-Policy im `<head>` jeder Seite erlaubt nur Skripte aus eigenen
+Dateien (`script-src 'self'`).
+
+### Sicherheit
+
+Die Seite zeigt Texte, die nicht von hier stammen: Titel aus dem
+Ratsinfoportal, Zusammenfassungen eines Sprachmodells, Ortsnamen aus
+OpenStreetMap. Drei Sicherungen greifen hintereinander:
+
+1. **Maskieren bei der Ausgabe.** Fremder Text kommt per `textContent` auf die
+   Seite oder läuft vor `innerHTML` durch `esc()`.
+2. **Content-Security-Policy ohne `'unsafe-inline'` für Skripte.** Selbst wenn
+   HTML durchrutscht, führt der Browser darin keinen Code aus.
+3. **`pruefen.py`.** Links im Feed zeigen nur auf die erlaubten Hosts
+   (`p_nur_erlaubte_hosts`), Namen aus OpenStreetMap, Fahrplan und Adressbestand
+   enthalten keine HTML-Tags (`p_kein_html_in_fremddaten`).
+
+Gegen manipulierte Vorlagen (versteckter Text, der dem Sprachmodell
+Anweisungen gibt) steht eine Regel in [KURATION.md](KURATION.md).
 
 Jeder kuratierte Eintrag trägt seine Texte in zwei Fassungen — normale Sprache
 und **Einfache Sprache**. Beide entstehen im selben Arbeitsgang; die Regeln dafür

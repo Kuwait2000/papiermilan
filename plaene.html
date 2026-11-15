@@ -143,7 +143,7 @@
   .stand { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--border-strong); }
   .ladehinweis { color: var(--text-faint); font-size: .9rem; }
   /* ---------- Baugebiete und Pläne ---------- */
-  :root { --s-grundsatz: #7b7466; --s-aufstellung: #a86a10; --s-entwurf: #2f5f86; --s-satzung: #3f8f5f; --s-kraft: #14532d; --s-offen: #8f8779; }
+  :root { --s-grundsatz: #7b7466; --s-aufstellung: #9a600c; --s-entwurf: #2f5f86; --s-satzung: #2f7a4a; --s-kraft: #14532d; --s-offen: #8f8779; }
   .filter { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: .75rem 1rem; margin: 1.25rem 0 .75rem;
     background: var(--card); border-top: 2px solid var(--text); padding: .9rem 1.1rem 1rem; }
   .filter label { display: block; font-size: .8rem; font-weight: 600; color: var(--text-muted); margin-bottom: .2rem; }
@@ -209,6 +209,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#hauptinhalt">Zum Inhalt springen</a>
 
 <header class="site-header">
   <div class="container">
@@ -225,13 +226,13 @@
   </div>
 </header>
 
-<div class="disclaimer">
+<div class="disclaimer" role="region" aria-label="Hinweis zu diesem Angebot">
   <div class="container">
     <p id="txt-hinweis"></p>
   </div>
 </div>
 
-<main>
+<main id="hauptinhalt">
   <div class="container">
     <h1 id="txt-h1"></h1>
     <p class="lede" id="txt-lede"></p>
@@ -283,6 +284,7 @@
     <a href="index.html">Übersicht</a>
     <a href="impressum.html">Impressum</a>
     <a href="datenschutz.html">Datenschutz</a>
+    <a href="barrierefreiheit.html">Barrierefreiheit</a>
     <a href="https://github.com/mnkeller/papierpanther" rel="noopener noreferrer" target="_blank">Quellcode<span class="sr-only"> (öffnet in neuem Tab)</span></a>
     <a href="https://www.ingolstadt.de/sessionnet/" rel="noopener noreferrer" target="_blank">Ratsinfoportal<span class="sr-only"> (öffnet in neuem Tab)</span></a>
   </div>

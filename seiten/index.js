@@ -803,9 +803,11 @@
         if (achse.key === 'bezirk' && wert === 'stadtweit') {
           b.appendChild(document.createTextNode(txt('bezirkStadtweit')));
         } else if (achse.key === 'bezirk' && bezirkNr(wert)) {
+          /* Leerzeichen als eigener Text: der zugaengliche Name lautet dann
+             "II Nordwest" wie sichtbar. Ein aria-label "II-Nordwest" wich davon
+             ab, und Sprachsteuerung fand den Knopf nicht (WCAG 2.5.3). */
           b.appendChild(el('span', 'nr', bezirkNr(wert)));
-          b.appendChild(document.createTextNode(bezirkName(wert)));
-          b.setAttribute('aria-label', wert);
+          b.appendChild(document.createTextNode(' ' + bezirkName(wert) + ' '));
         } else {
           b.appendChild(document.createTextNode(achsenwertText(achse.key, wert)));
         }
