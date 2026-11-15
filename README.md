@@ -67,6 +67,7 @@ scraper/
   plaene_alt_holen.py Plan-Punkte vor 11/2023 (Stadtrat, Planungsausschuss) -> data/plaene_alt.json
   plaene_bauen.py     Ratsdaten + Landesdienst + Handdatei -> data/plaene.js
   waerme_bauen.py     Eignungsgebiete der Wärmeplanung (2035.de) + Adressen + Ratsdaten -> data/waerme.js
+  baublock_bauen.py   Baublöcke des Energie-Atlas Bayern (Heizung, Baualter, Wärmebedarf) -> data/baublock.js
   grafik_bauen.py     Daten der grafischen Fassung  -> data/grafik.js
   altstadt_bauen.py   Altstadt aus OpenStreetMap    -> data/altstadt.js
   wege_bauen.py       Fußnetz, Orte, Zensus, Bezirke -> data/wege-*.js, data/bezirke.js
@@ -315,6 +316,18 @@ Flächen und beantwortet damit Fragen, die die Karte der Stadt offen lässt:
 - **Seit dem Beschluss**: Einträge aus `data/feed.json`, von Hand ausgewählt
   (Liste `RAT` im Skript). Der Beschluss vom 22.10.2024 („gegen vier Stimmen“)
   ist aus der Niederschrift gelesen.
+
+- **Heizung heute je Baublock**: `baublock_bauen.py` holt aus dem Dienst
+  „Planungsgrundlagen Wärme“ des Landesamts für Umwelt (Energie-Atlas Bayern,
+  CC BY 4.0) für rund 2.000 Baublöcke den überwiegenden Energieträger, das
+  Baualter (beides Zensus 2022) und den modellierten Wärmebedarf und ordnet
+  jeden Block einem Gebiet des Wärmeplans zu. Der Dienst gibt keine Geometrien
+  als Daten heraus; das Skript rechnet sie aus dem SVG-Kartenbild zurück und
+  prüft jede Fläche gegen die Flächenangabe des LfU. Wichtig beim Abruf: Ein
+  Pixel muss in beiden Richtungen gleich viele Grad messen, sonst verschiebt
+  der Dienst den Ausschnitt stillschweigend. Neu holen (rund 2.700 Abfragen,
+  einige Minuten): `python3 baublock_bauen.py --neu`. Die Daten werden von der
+  eigenen Domain ausgeliefert; Besucher rufen nichts beim LfU ab.
 
 Die Zahlen aus dem Abschlussbericht (greenventory, 28.05.2024) stehen mit
 Seitenzahl in `AUS_DEM_BERICHT` im Skript; sie stammen aus dem Fließtext, nicht

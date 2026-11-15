@@ -577,6 +577,34 @@ def p_waerme():
                 fehlt(f"waerme.json: Link im Abschnitt Rat fuehrt nicht zur Stadt: {u}")
     if not any(r["vorlage"] == w["beschluss"]["vorlage"] for r in w["rat"]):
         warnt("waerme.json: Der Beschluss des Waermeplans (V0651/24) steht nicht mehr im Feed")
+    p_baublock()
+
+
+def p_baublock():
+    """Baubloecke des Energie-Atlas Bayern (baublock_bauen.py): Lage, Namensnennung und Summen."""
+    if not os.path.exists(os.path.join(DATEN_VZ, "baublock.json")):
+        warnt("baublock.json fehlt; waerme.html zeigt dann keine Baubloecke (baublock_bauen.py)")
+        return
+    b = lade("baublock.json")
+    bloecke = b["bloecke"]["features"]
+    if len(bloecke) < 1500:
+        fehlt(f"baublock.json: nur {len(bloecke)} Bloecke, erwartet rund 2.000")
+    if "Bayerisches Landesamt für Umwelt, www.lfu.bayern.de" not in b["quelle"].get("namensnennung", "") or b["quelle"].get("lizenz") != "CC BY 4.0":
+        fehlt("baublock.json: Namensnennung des LfU oder Lizenz CC BY 4.0 fehlt")
+    probe = b["flaechenprobe"]
+    if probe["geprueft"] < 1500 or probe["abweichend"] > 0.03 * probe["geprueft"]:
+        fehlt(f"baublock.json: Flaechenprobe {probe['abweichend']} von {probe['geprueft']} abweichend; Umrisse liegen vermutlich falsch")
+    for f in bloecke:
+        teile = [f["geometry"]["coordinates"]] if f["geometry"]["type"] == "Polygon" else f["geometry"]["coordinates"]
+        x, y = teile[0][0][0]
+        if not (11.2 < x < 11.6 and 48.65 < y < 48.85):
+            fehlt(f"baublock.json: Block {f['properties']['id']} liegt ausserhalb der Stadt")
+            break
+    g = b["gesamt"]
+    if sum(g["wohnungen_je_traeger"]) != g["wohnungen"] or sum(z["wohnungen"] for z in b["je_klasse"].values()) != g["wohnungen"]:
+        fehlt("baublock.json: Wohnungen je Energietraeger oder je Klasse ergeben nicht die Gesamtzahl")
+    if not 55000 < g["wohnungen"] < 90000:
+        warnt(f"baublock.json: {g['wohnungen']} Wohnungen in Bloecken mit Angabe; erwartet rund 70.000")
 
 
 def p_nur_oeffentliche_tops(kur, index):

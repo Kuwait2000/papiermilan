@@ -110,6 +110,16 @@ Lizenzen
   Namensnennung: Bauleitpläne Bayern. Die Geometrien sind unverändert
   übernommen; diese Dateien stehen nicht unter der Lizenz des übrigen Projekts.
   Der Dienst ist eine Erstinformation ohne Gewähr.
+- Die Baublöcke in `data/baublock.*` (Umrisse, überwiegender Energieträger,
+  Baualter, Wohnungen, Wärmebedarf) stammen aus dem Dienst „Planungsgrundlagen
+  Wärme“ des Energie-Atlas Bayern unter der Lizenz Creative Commons
+  Namensnennung 4.0 International (CC BY 4.0),
+  https://creativecommons.org/licenses/by/4.0/deed.de.
+  Datenquelle: Bayerisches Landesamt für Umwelt, www.lfu.bayern.de.
+  Grundlage sind der Zensus 2022 und ein Wärmebedarfsmodell des Landesamts.
+  Verändert: Umrisse aus dem Kartenbild des Dienstes zurückgerechnet, auf fünf
+  Nachkommastellen gerundet und vereinfacht; Blöcke ohne Angaben weggelassen;
+  Gebietsklasse des Wärmeplans und Stadtbezirk ergänzt.
 - Die Eignungsgebiete der kommunalen Wärmeplanung in `data/waerme.*`
   (Umrisse, Namen, Anmerkungen) stammen von der Stadt Ingolstadt, Stabsstelle
   Strategien Klima, Biodiversität & Donau, aus der Karte auf https://2035.de/map/

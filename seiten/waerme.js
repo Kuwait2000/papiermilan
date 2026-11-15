@@ -144,6 +144,63 @@
     return f ? { nr: f.properties.beznr, name: f.properties.bezname } : null;
   }
 
+  /* ---- Baublöcke (Energie-Atlas Bayern): werden nachgeladen, die Seite wartet nicht darauf ---- */
+  var TRAEGER_FARBE = [["Gas", "#d9a400"], ["Fernwärme", "#c2410c"], ["Heizöl", "#5b4636"], ["Strom", "#7c3aed"],
+    ["Biomasse", "#84a03c"], ["Solar", "#1f8a70"], ["Holz", "#a16207"], ["kein", "#9ca3af"]];
+  function traegerFarbe(name) {
+    var x = TRAEGER_FARBE.filter(function (f) { return name.indexOf(f[0]) === 0; })[0];
+    return x ? x[1] : "#9ca3af";
+  }
+  function traegerKurz(name) {
+    return name.replace(" (verschiedene Energieträger)", "").replace(" (ohne Wärmepumpen)", "").replace(" (ohne Holz), Biogas", "").replace("kein Energieträger (keine Heizung)", "keine Heizung");
+  }
+  function traegerLeicht(name) {
+    var k = traegerKurz(name);
+    return { "Fernwärme": "Fern-Wärme", "Heizöl": "Heiz-Öl", "Solar-/Geothermie, Wärmepumpen": "Wärme-Pumpe oder Sonne", "Holz, Holzpellets": "Holz" }[k] || k;
+  }
+  function blockBei(lon, lat) {
+    var BBD = window.BAUBLOCK;
+    if (!BBD) return null;
+    var f = BBD.bloecke.features.filter(function (b) { return inGeometrie(lon, lat, b.geometry); })[0];
+    return f ? f.properties : null;
+  }
+  function baueBloecke() {
+    var BBD = window.BAUBLOCK, ziel = document.getElementById("bloecke-stapel");
+    if (!BBD) return;
+    var T = BBD.energietraeger, klassen = ["netz", "netz_spaeter", "gas_wp", "einzel"];
+    // Träger mit weniger als einem halben Prozent der Wohnungen in „übrige“ zusammenfassen
+    var gross = T.map(function (n, i) { return i; }).filter(function (i) { return BBD.gesamt.wohnungen_je_traeger[i] / BBD.gesamt.wohnungen >= 0.005; });
+    document.getElementById("bloecke-legende").innerHTML = gross.map(function (i) {
+      return "<span><i style=\"background:" + traegerFarbe(T[i]) + "\"></i>" + esc(t(traegerKurz(T[i]), traegerLeicht(T[i]))) + "</span>";
+    }).join("") + "<span><i style=\"background:#9ca3af\"></i>" + t("übrige", "anderes") + "</span>";
+    ziel.innerHTML = klassen.map(function (k) {
+      var z = BBD.je_klasse[k], rest = z.wohnungen, teile = [];
+      var streifen = gross.map(function (i) {
+        var n = z.wohnungen_je_traeger[i]; rest -= n;
+        if (n / z.wohnungen >= 0.01) teile.push(t(traegerKurz(T[i]), traegerLeicht(T[i])) + " " + prozent(n, z.wohnungen));
+        return n ? "<i style=\"--k:" + traegerFarbe(T[i]) + ";width:" + (n / z.wohnungen * 100).toFixed(2) + "%\"></i>" : "";
+      }).join("") + (rest > 0 ? "<i style=\"--k:#9ca3af;width:" + (rest / z.wohnungen * 100).toFixed(2) + "%\"></i>" : "");
+      return "<div class=\"st-zeile\"><span class=\"st-name\">" + t(KLASSE[k].n, KLASSE[k].l) + "</span>" +
+        "<span class=\"st-balken\" role=\"img\" aria-label=\"" + esc(t(KLASSE[k].n, KLASSE[k].l) + ": " + teile.join(", ")) + "\">" + streifen +
+        "</span><span class=\"st-text\">" + teile.join(" · ") + t(" · " + zahl(z.wohnungen) + " Wohnungen", "") + "</span></div>";
+    }).join("");
+    var n = BBD.je_klasse.netz, e = BBD.je_klasse.einzel, g = BBD.je_klasse.gas_wp, iGas = T.indexOf("Gas"), iOel = T.indexOf("Heizöl");
+    var iFern = T.map(function (x) { return x.indexOf("Fernwärme") === 0; }).indexOf(true);
+    document.getElementById("txt-bloecke-p2").innerHTML = t(
+      "In den Wärmenetz-Gebieten liegen " + prozent(n.wohnungen_je_traeger[iGas], n.wohnungen) + " der Wohnungen in Blöcken, in denen noch überwiegend mit Gas geheizt wird, und " + prozent(n.wohnungen_je_traeger[iFern], n.wohnungen) +
+      " in Blöcken mit überwiegend Fernwärme. Dort, wo der Plan eine eigene Heizung für jedes Haus vorsieht, überwiegt in Blöcken mit " + prozent(e.wohnungen_je_traeger[iOel], e.wohnungen) +
+      " der Wohnungen das Heizöl. Nach dem Modell des Landesamts ließe sich der Wärmebedarf der Wohngebäude durch umfassende Sanierung in den Prüfgebieten um rund " + Math.round((1 - g.bedarf_saniert / g.bedarf) * 100) +
+      " Prozent senken, in den Wärmenetz-Gebieten um rund " + Math.round((1 - n.bedarf_saniert / n.bedarf) * 100) + " Prozent.",
+      "In den Gebieten für Fern-Wärme heizen die meisten Häuser heute noch mit Gas. In den Gebieten für eine eigene Heizung heizen die meisten Häuser mit Heiz-Öl.");
+  }
+  (function ladeBloecke() {
+    var sk = document.createElement("script");
+    sk.src = "data/baublock.js";
+    sk.onload = function () { baueBloecke(); baueQuellen(); zeigeAntwort(); };
+    sk.onerror = function () { document.getElementById("bloecke-stapel").innerHTML = "<p class=\"klein\">Die Baublock-Daten ließen sich nicht laden.</p>"; };
+    document.head.appendChild(sk);
+  })();
+
   var gewaehlt = null;   // { text, lat, lon, ... } der letzten Auswahl
   function zeigeAntwort() {
     var box = document.getElementById("antwort");
@@ -169,6 +226,18 @@
     if (K.wege[i].length) {
       html += "<h4>" + t("Diese Wege nennt der Plan für hier", "Das geht hier") + "</h4><ul>" +
         K.wege[i].map(function (w) { return "<li>" + w + "</li>"; }).join("") + "</ul>";
+    }
+    var block = blockBei(gewaehlt.lon, gewaehlt.lat);
+    if (block && window.BAUBLOCK) {
+      var BBD = window.BAUBLOCK, zeilen = [];
+      if (block.e != null) zeilen.push(t("Im Baublock wird überwiegend so geheizt: ", "Die meisten Häuser hier heizen mit: ") + "<strong>" + esc(traegerKurz(BBD.energietraeger[block.e])) + "</strong>.");
+      if (block.a != null && !leicht) zeilen.push("Die meisten Gebäude stammen aus der Zeit " + esc(BBD.baualter[block.a].replace("-", "–")) + ".");
+      if (block.q != null && block.qs != null && block.q > 0 && !leicht) zeilen.push("Geschätzter Wärmebedarf des Blocks: " + zahl(block.q) + " Megawattstunden im Jahr; umfassend saniert wären es " + zahl(block.qs) + " (" + Math.round((1 - block.qs / block.q) * 100) + " Prozent weniger).");
+      if (zeilen.length) {
+        html += "<h4>" + t("Ihr Baublock heute", "So ist es heute bei Ihnen") + "</h4><ul>" + zeilen.map(function (z) { return "<li>" + z + "</li>"; }).join("") + "</ul>" +
+          "<p class=\"klein\">" + t("Ein Baublock ist die von Straßen umschlossene Fläche um Ihr Haus" + (block.w != null ? " (" + zahl(block.w) + " Wohnungen)" : "") + ". Die Angaben gelten für den häufigsten Fall im Block, nicht für jedes Haus. Quelle: Energie-Atlas Bayern, Zensus 2022.",
+            "Das gilt für die Häuser um Ihr Haus herum. Für Ihr Haus kann es anders sein.") + "</p>";
+      }
     }
     html += "<h4>" + t("Was das für Sie heißt", "Das heißt für Sie") + "</h4><ul>" +
       "<li>" + t("Sie müssen wegen des Plans nichts tun. Er verpflichtet niemanden und gibt niemandem einen Anspruch.", "Sie müssen jetzt nichts tun. Der Plan ist keine Vorschrift.") + "</li>" +
@@ -331,6 +400,9 @@
       t(": Vorlagen und Niederschriften, Stand " + datumDE(D.stand_ratsdaten) + ".", "") + "</li>" +
       "<li>" + lnk("https://www.openstreetmap.org/copyright", t("OpenStreetMap-Mitwirkende", "OpenStreetMap")) +
       t(" (ODbL 1.0): Hausadressen für die Suche und die Zählung je Bezirk. Stadtbezirke: Stadt Ingolstadt (CC BY 3.0 DE).", "") + "</li>" +
+      (window.BAUBLOCK ? "<li>" + lnk(window.BAUBLOCK.quelle.karte, t("Energie-Atlas Bayern, Planungsgrundlagen Wärme", "Energie-Atlas Bayern")) +
+        t(": Heizung, Baualter und Wärmebedarf je Baublock. Datenquelle: Bayerisches Landesamt für Umwelt, www.lfu.bayern.de, Lizenz " + lnk(window.BAUBLOCK.quelle.lizenz_url, "CC BY 4.0") +
+          ", auf Grundlage des Zensus 2022; abgerufen am " + datumDE(window.BAUBLOCK.erzeugt_am) + ". Bearbeitet: Umrisse aus dem Kartendienst zurückgerechnet und vereinfacht, den Gebieten des Wärmeplans von uns zugeordnet.", "") + "</li>" : "") +
       "<li>" + t("Zusammengeführt von scraper/waerme_bauen.py am " + datumDE(D.erzeugt_am) + ". Ihre Eingabe bleibt in Ihrem Browser und wird nicht übertragen.", "Ihre Adresse bleibt auf Ihrem Gerät.") + "</li></ul>";
   }
 
@@ -351,6 +423,17 @@
     "sprung-gebiete": { n: "Die vier Gebiete", l: "Die 4 Gebiete" },
     "sprung-bezirke": { n: "Je Bezirk", l: "Mein Bezirk" },
     "sprung-zahlen": { n: "Heute und 2035", l: "Heute und 2035" },
+    "sprung-bloecke": { n: "Heizung heute", l: "So wird heute geheizt" },
+    "bloecke-h2": { n: "Womit die Gebiete heute heizen", l: "So wird heute geheizt" },
+    "bloecke-p": {
+      n: "Der Plan sagt, was werden soll. Der Zensus 2022 zeigt, wo die Stadt heute steht: Das Landesamt für Umwelt hat für jeden Baublock ausgewertet, mit welchem Energieträger die meisten Gebäude heizen. Wir haben diese Blöcke den Gebieten des Wärmeplans zugeordnet. Diese Gegenüberstellung steht weder im Bericht noch auf der Karte der Stadt.",
+      l: "Der Plan sagt, wie es werden soll. Hier sehen Sie, wie die Häuser heute heizen."
+    },
+    "bloecke-titel": { n: "Wohnungen nach dem überwiegenden Energieträger ihres Baublocks, je Gebietsklasse", l: "Damit heizen die Häuser heute, je Gebiet" },
+    "bloecke-fuss": {
+      n: "Gezählt ist der häufigste Energieträger im Baublock, nicht die Heizung jeder Wohnung: In einem „Gas“-Block können einzelne Häuser anders heizen. Stand der Erhebung: 15. Mai 2022. Blöcke mit gesperrten Zahlen fehlen. Datenquelle: Bayerisches Landesamt für Umwelt, www.lfu.bayern.de; Zuordnung: eigene Auswertung.",
+      l: "Die Zahlen sind aus dem Jahr 2022."
+    },
     "sprung-seither": { n: "Seit dem Beschluss", l: "Was seitdem passiert ist" },
     "sprung-grenzen": { n: "Was die Seite nicht weiß", l: "Das wissen wir nicht" },
     "blick-h2": { n: "Auf einen Blick", l: "Das Wichtigste" },
