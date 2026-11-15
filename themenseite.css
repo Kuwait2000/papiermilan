@@ -1,0 +1,16 @@
+/* Bausteine, die alle Themenseiten mit Zahlen teilen: Diagrammtitel, Legende,
+   Kennzahl-Kacheln, Quellenliste, Stand-Zeile.
+
+   Eingebunden von: beteiligungen.html, haushalt.html, hsk.html, klima.html, miete.html, plaene.html, waerme.html, wohnen.html.
+   Nicht von der Startseite — dort heisst .stand etwas anderes (Statuszeile
+   einer Karte). Deshalb eine eigene Datei statt basis.css. */
+
+.diagramm-titel { font-size: .95rem; font-weight: 600; color: var(--text); margin-bottom: .9rem; }
+.legende { display: flex; flex-wrap: wrap; gap: .4rem 1.1rem; font-size: .8rem; color: var(--text-muted); margin-bottom: .75rem; }
+.legende span { display: inline-flex; align-items: center; gap: .4rem; }
+.legende i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; }
+.kachel p { margin: 0; }
+.kachel-label { font-size: .8rem; font-weight: 600; color: var(--text-muted); line-height: 1.4; min-height: 2.8em; }
+.kachel-unter { font-size: .8rem; color: var(--text-faint); line-height: 1.45; }
+.quellen { font-size: .82rem; color: var(--text-faint); }
+.quellen a { color: var(--primary-dark); }
