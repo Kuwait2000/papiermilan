@@ -37,7 +37,9 @@
   var ACHSEN = [
     { key: 'bezirk',     textId: 'achseBezirk' },
     { key: 'status',     textId: 'achseStatus' },
-    { key: 'ebene',      textId: 'achseEbene', mehr: true },
+    /* oben: eigener Schalter direkt unter dem Seitenkopf (baueEbenen), nicht
+       in der Filterliste — siehe dort. */
+    { key: 'ebene',      textId: 'achseEbene', oben: true },
     { key: 'lebenslage', textId: 'achseLebenslage', mehr: true },
     { key: 'anlass',     textId: 'achseAnlass', mehr: true }
   ];
@@ -185,6 +187,11 @@
     achseBezirk:     { n: 'Stadtbezirk', l: 'Ihr Stadt-Bezirk' },
     achseAnlass:     { n: 'Anlass', l: 'Das Thema' },
     achseEbene:      { n: 'Wer berät', l: 'Wer redet darüber?' },
+    ebenenTitel:     { n: 'Anzeigen:', l: 'Zeigen:' },
+    ebenenOhneObb:   { n: 'Der Bezirk Oberbayern ist ausgeblendet. Er ist eine eigene Ebene über der Stadt und zuständig für Soziales, Kliniken und Kultur in ganz Oberbayern.',
+                       l: 'Der Bezirk Oberbayern ist nicht dabei. Er ist größer als die Stadt. Sie können ihn dazu schalten.' },
+    ebenenNurObb:    { n: 'Sie sehen nur den Bezirk Oberbayern, nichts aus Ingolstadt.',
+                       l: 'Sie sehen nur den Bezirk Oberbayern. Die Stadt Ingolstadt ist nicht dabei.' },
     achseStatus:     { n: 'Stand', l: 'Wie weit ist es?' }
   };
 
@@ -377,6 +384,56 @@
      damit man "meinen Bezirk" als Lesezeichen speichern und weiterschicken
      kann. Stadtbezirke kurz als roemische Ziffer; alles andere mit vollem
      Wert, mehrfach wiederholt statt Komma-getrennt (Werte enthalten Kommas). */
+  /* ---------------- Ebenen-Schalter ----------------
+     Stadtrat, Bezirksausschuesse und Bezirk Oberbayern sind drei verschiedene
+     Ebenen. Der Schalter sitzt direkt unter dem Seitenkopf und gilt fuer die
+     ganze Seite: Termine, "mitreden", "entschieden" und die Liste. Der Bezirk
+     Oberbayern ist anfangs aus — er ist fuer die meisten Besucher nicht das,
+     was sie unter "Stadtpolitik" suchen, fuellte aber Termine und Liste. */
+  var QUELLE_EBENE = { stadt: 'Stadtrat & Ausschüsse', bza: 'Bezirksausschüsse', bezirk_obb: 'Bezirk Oberbayern' };
+  var EBENE_OBB = 'Bezirk Oberbayern';
+  function ebeneStandard() {
+    var ohne = daten.achsen.ebene.filter(function (w) { return w !== EBENE_OBB; });
+    return ohne.length ? ohne : daten.achsen.ebene.slice();
+  }
+  function gleicheMenge(a, b) {
+    return a.length === b.length && a.every(function (w) { return b.indexOf(w) !== -1; });
+  }
+  function ebeneAn(quelle) {
+    return aktiv.ebene.indexOf(QUELLE_EBENE[quelle] || QUELLE_EBENE.stadt) !== -1;
+  }
+  function baueEbenen() {
+    var box = document.getElementById('ebenen-schalter');
+    if (!box) return;
+    document.getElementById('ebenen-titel').textContent = txt('ebenenTitel');
+    box.textContent = '';
+    daten.achsen.ebene.forEach(function (wert) {
+      var b = el('button', 'chip-btn');
+      b.type = 'button';
+      var an = aktiv.ebene.indexOf(wert) !== -1;
+      b.setAttribute('aria-pressed', an ? 'true' : 'false');
+      b.appendChild(document.createTextNode(achsenwertText('ebene', wert)));
+      b.addEventListener('click', function () {
+        var i = aktiv.ebene.indexOf(wert);
+        if (i === -1) aktiv.ebene.push(wert);
+        else if (aktiv.ebene.length > 1) aktiv.ebene.splice(i, 1);
+        else return;   // die letzte Ebene bleibt an, sonst waere die Seite leer
+        gezeigt = ERSTE_SEITE;
+        baueEbenen();
+        baueFilter();      // Zahlen an den Filterchips haengen an der Ebene
+        baueDemnaechst();
+        zeichne();
+        /* Fokus bleibt auf dem Knopf, obwohl die Leiste neu gebaut wurde */
+        var neu = box.querySelectorAll('button')[daten.achsen.ebene.indexOf(wert)];
+        if (neu) neu.focus();
+      });
+      box.appendChild(b);
+    });
+    var hinweis = document.getElementById('ebenen-hinweis');
+    hinweis.textContent = aktiv.ebene.indexOf(EBENE_OBB) === -1 ? txt('ebenenOhneObb')
+      : aktiv.ebene.length === 1 ? txt('ebenenNurObb') : '';
+  }
+
   function urlLesen() {
     var p;
     try { p = new URLSearchParams(location.search); } catch (err) { return; }
@@ -391,6 +448,10 @@
         if (erlaubt.indexOf(w) !== -1 && aktiv[a.key].indexOf(w) === -1) aktiv[a.key].push(w);
       });
     });
+    /* Ebene: ohne Angabe gilt die Voreinstellung (Stadt und Bezirksausschuesse),
+       "ebene=alle" schaltet den Bezirk Oberbayern dazu. */
+    if (p.getAll('ebene').indexOf('alle') !== -1) aktiv.ebene = daten.achsen.ebene.slice();
+    else if (!aktiv.ebene.length) aktiv.ebene = ebeneStandard();
     var q = p.get('q');
     if (q) { suchbegriff = q.trim().toLowerCase(); document.getElementById('suche').value = q; }
   }
@@ -399,6 +460,11 @@
     if (!window.history || !history.replaceState) return;
     var teile = [];
     ACHSEN.forEach(function (a) {
+      if (a.key === 'ebene') {
+        /* Voreinstellung steht nicht in der Adresse, alles zusammen als "alle" */
+        if (gleicheMenge(aktiv.ebene, ebeneStandard())) return;
+        if (aktiv.ebene.length === daten.achsen.ebene.length) { teile.push('ebene=alle'); return; }
+      }
       aktiv[a.key].forEach(function (w) {
         var v = (a.key === 'bezirk' && bezirkNr(w)) ? bezirkNr(w) : w;
         teile.push(a.key + '=' + encodeURIComponent(v));
@@ -598,7 +664,7 @@
     /* 1. Termine */
     var tb = document.getElementById('blick-termine');
     spaltenKopf(tb, txt('blickTermine'), txt('blickTermineU'));
-    var termine = (daten.kommende_termine || []).filter(function (t) { return t.datum >= heute; });
+    var termine = (daten.kommende_termine || []).filter(function (t) { return t.datum >= heute && ebeneAn(t.quelle); });
     function terminLi(t) {
       var li = el('li', 'blick-termin');
       li.appendChild(el('span', 'tag', kurzDatum(t.datum)));
@@ -629,7 +695,7 @@
     /* 2. Noch offen: mit festem Termin zuerst, naechster zuerst */
     var ob = document.getElementById('blick-offen');
     spaltenKopf(ob, txt('blickOffen'), txt('blickOffenU'));
-    var offen = daten.eintraege.filter(function (e) { return e.status === 'Noch offen' && !e.duenn && e.quelle !== 'bezirk_obb'; });
+    var offen = daten.eintraege.filter(function (e) { return e.status === 'Noch offen' && !e.duenn && ebeneAn(e.quelle); });
     var mitTermin = offen.filter(function (e) { return isoAus(e.stand_datum) >= heute; })
       .sort(function (a, b) { return isoAus(a.stand_datum) < isoAus(b.stand_datum) ? -1 : 1; });
     var auswahl = mitTermin.concat(offen.filter(function (e) { return mitTermin.indexOf(e) === -1; })).slice(0, 4);
@@ -650,7 +716,7 @@
     /* 3. Zuletzt entschieden */
     var eb = document.getElementById('blick-entschieden');
     spaltenKopf(eb, txt('blickEnt'), txt('blickEntU'));
-    var ent = daten.eintraege.filter(function (e) { return e.status === 'Entschieden' && !e.duenn && e.quelle !== 'bezirk_obb'; })
+    var ent = daten.eintraege.filter(function (e) { return e.status === 'Entschieden' && !e.duenn && ebeneAn(e.quelle); })
       .sort(function (a, b) { return isoAus(a.stand_datum) > isoAus(b.stand_datum) ? -1 : 1; });
     var ul3 = el('ul', 'blick-liste');
     ent.slice(0, 4).forEach(function (e) {
@@ -697,8 +763,10 @@
 
   /* ---------------- Filter aufbauen ---------------- */
   function anzahlFuer(achse, wert) {
+    /* Zaehlt nur, was der Ebenen-Schalter oben gerade zulaesst — sonst stuende
+       neben "Jugend" eine Zahl, die die Liste nie zeigt. */
     return daten.eintraege.filter(function (e) {
-      return werte(e, achse).indexOf(wert) !== -1;
+      return ebeneAn(e.quelle) && werte(e, achse).indexOf(wert) !== -1;
     }).length;
   }
 
@@ -710,6 +778,7 @@
     mehrBox.id = 'filter-mehr';
     mehrBox.hidden = !(mehrFilterOffen || mehrAktiv);
     ACHSEN.forEach(function (achse) {
+      if (achse.oben) return;   // hat seinen eigenen Schalter oben
       var gruppe = el('div', 'filter-group');
       var ueberschrift = el('h3', null, txt(achse.textId));
       ueberschrift.id = 'achse-titel-' + achse.key;
@@ -783,6 +852,7 @@
   function aktualisiereFilterZusammenfassung() {
     var namen = [];
     ACHSEN.forEach(function (a) {
+      if (a.oben) return;
       aktiv[a.key].forEach(function (w) { namen.push(achsenwertText(a.key, w)); });
     });
     var box = document.getElementById('filter-aktiv-zusammenfassung');
@@ -816,6 +886,9 @@
 
   document.getElementById('btn-reset').addEventListener('click', function () {
     ACHSEN.forEach(function (a) { aktiv[a.key] = []; });
+    aktiv.ebene = ebeneStandard();
+    baueEbenen();
+    baueDemnaechst();
     suchbegriff = '';
     sucheInput.value = '';
     gezeigt = ERSTE_SEITE;
@@ -831,6 +904,7 @@
     try { localStorage.setItem(LS_KEY_LEICHT, leicht ? '1' : '0'); } catch (err) { /* Storage kann gesperrt sein */ }
     texteAnwenden();
     baueHeroStats();
+    baueEbenen();
     baueFilter();
     baueFooterMeta();
     baueDemnaechst();
@@ -1160,12 +1234,16 @@
     urlSchreiben();
     zeichneBezirkKopf(treffer);
 
-    var gewaehlt = ACHSEN.reduce(function (n, a) { return n + aktiv[a.key].length; }, 0)
-      + (suchbegriff ? 1 : 0);
+    /* Der Ebenen-Schalter zaehlt nur als Auswahl, wenn er enger steht als
+       die Voreinstellung (etwa: nur Bezirksausschuesse). */
+    var ebeneEng = !gleicheMenge(aktiv.ebene, ebeneStandard()) && aktiv.ebene.length < daten.achsen.ebene.length;
+    var gewaehlt = ACHSEN.reduce(function (n, a) { return n + (a.oben ? 0 : aktiv[a.key].length); }, 0)
+      + (suchbegriff ? 1 : 0) + (ebeneEng ? 1 : 0);
     document.getElementById('feed-count').textContent =
       gewaehlt === 0
         ? (leicht
-            ? treffer.length + ' Einträge. Das sind alle Themen.'
+            ? treffer.length + (aktiv.ebene.indexOf(EBENE_OBB) === -1
+                ? ' Einträge. Das sind alle Themen aus Ingolstadt.' : ' Einträge. Das sind alle Themen.')
             : treffer.length + ' Einträge mit Zusammenfassung, die neuesten zuerst')
         : (leicht
             ? treffer.length + ' Einträge passen zu Ihrer Wahl.'
@@ -1220,6 +1298,7 @@
   urlLesen();
   texteAnwenden();
   baueHeroStats();
+  baueEbenen();
   baueFilter();
   baueFooterMeta();
   baueDemnaechst();

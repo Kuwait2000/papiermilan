@@ -467,6 +467,12 @@
   .hero { padding: 2.6rem 0 1.6rem; }
   .hero p { font-size: 1.08rem; }
   .site-footer .hero-stats { margin: 1rem 0 1.5rem; }
+  /* Ebenen-Schalter direkt unter dem Seitenkopf */
+  .ebenen { padding: 0 0 1.6rem; }
+  .ebenen .container { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem .8rem; }
+  .ebenen-titel { font-family: var(--font-body); font-size: .9rem; font-weight: 600; color: var(--text-muted); margin: 0; }
+  .ebenen-hinweis { flex-basis: 100%; font-size: .82rem; color: var(--text-faint); margin: 0; max-width: 70ch; }
+  .ebenen-hinweis:empty { display: none; }
   .blick { padding: .5rem 0 2.2rem; }
   /* Drei Rubriken wie in der Zeitung: kraeftige Linie ueber der Ueberschrift
      statt Karte mit farbigem Streifen (Designrunde 2026-10-26). */
@@ -569,6 +575,15 @@
         PapierPanther sammelt sie ein, fasst sie zusammen und sortiert sie
         danach, wen sie betreffen. Suchen Sie einfach Ihren Stadtbezirk.
       </p>
+    </div>
+  </section>
+
+  <!-- Ebenen-Schalter: gilt fuer alles darunter, siehe seiten/index.js::baueEbenen -->
+  <section class="ebenen" aria-labelledby="ebenen-titel">
+    <div class="container">
+      <h2 class="ebenen-titel" id="ebenen-titel">Anzeigen:</h2>
+      <div class="filter-opts" id="ebenen-schalter" role="group" aria-labelledby="ebenen-titel"></div>
+      <p class="ebenen-hinweis" id="ebenen-hinweis" aria-live="polite"></p>
     </div>
   </section>
 

@@ -186,6 +186,9 @@
     });
   }
 
+  var ERSTE_JE_PARTEI = 5;
+  var offen = {};   // Parteien, deren ganze Liste aufgeklappt wurde
+
   function baueListe() {
     listeEl.textContent = '';
     var parteien = aktivePartei ? [aktivePartei] : Object.keys(D.parteien);
@@ -197,8 +200,33 @@
       irgendwas = true;
       summe += antraege.length;
       var gruppe = el('section', 'partei-gruppe');
+      gruppe.setAttribute('data-partei', partei);
       gruppe.appendChild(el('h2', null, partei + ' (' + antraege.length + ')'));
-      antraege.forEach(function (a) { gruppe.appendChild(antragKarte(a)); });
+      /* In der Uebersicht aller Parteien zuerst nur die neuesten je Partei.
+         Vorher standen alle rund 400 Antraege untereinander — am Handy eine
+         Seite von 150.000 Pixeln Hoehe, in der die naechste Partei nicht mehr
+         zu finden war. Wer eine Partei waehlt oder sucht, sieht alles. */
+      var alleZeigen = aktivePartei || suchwoerter.length || offen[partei];
+      var sichtbar = alleZeigen ? antraege : antraege.slice(0, ERSTE_JE_PARTEI);
+      sichtbar.forEach(function (a) { gruppe.appendChild(antragKarte(a)); });
+      if (sichtbar.length < antraege.length) {
+        var mehr = el('button', 'mehr-knopf',
+          (leicht ? 'Alle {n} Anträge zeigen: ' : 'Alle {n} Anträge anzeigen: ').replace('{n}', antraege.length) + partei);
+        mehr.type = 'button';
+        mehr.addEventListener('click', function () {
+          offen[partei] = true;
+          baueListe();
+          /* Fokus auf den ersten neu erschienenen Antrag, damit Tastatur und
+             Screenreader dort weitermachen, wo die Liste laenger wurde. */
+          var gruppen = listeEl.querySelectorAll('.partei-gruppe');
+          for (var i = 0; i < gruppen.length; i++) {
+            if (gruppen[i].getAttribute('data-partei') !== partei) continue;
+            var ziel = gruppen[i].querySelectorAll('.antrag')[ERSTE_JE_PARTEI];
+            if (ziel) { ziel.setAttribute('tabindex', '-1'); ziel.focus(); }
+          }
+        });
+        gruppe.appendChild(mehr);
+      }
       listeEl.appendChild(gruppe);
     });
     if (!irgendwas) {
