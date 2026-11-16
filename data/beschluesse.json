@@ -223,13 +223,13 @@
     "empfehlung": false,
     "weg": "vorlage-block"
   },
-  "stadt:13538#Ö2": {
+  "stadt:13538#Ö 14": {
     "formel": "Mit allen Stimmen",
     "ergebnis": "beschlossen",
     "text": "Mit allen Stimmen: Entsprechend dem Antrag genehmigt.",
-    "vorlage": "V0374/26",
+    "vorlage": "V0281/26",
     "empfehlung": false,
-    "weg": "vorlage-block"
+    "weg": "gemeinsame-beratung"
   },
   "stadt:13538#Ö3": {
     "formel": "Mit allen Stimmen",
@@ -1191,13 +1191,13 @@
     "empfehlung": false,
     "weg": "vorlage-block"
   },
-  "stadt:13513#Ö17": {
+  "stadt:13513#Ö 27": {
     "formel": "Gegen 7 Stimmen",
     "ergebnis": "beschlossen",
     "text": "Gegen 7 Stimmen: Entsprechend dem Antrag genehmigt, mit der Maßgabe, dass Herr Dr. Frank schnellstmöglich den Bezirksausschuss West besucht und dessen Meinung eingeholt wird.",
-    "vorlage": "V0138/26",
+    "vorlage": "V0139/26",
     "empfehlung": false,
-    "weg": "vorlage-block"
+    "weg": "gemeinsame-beratung"
   },
   "bezirk_obb:5002#Ö 2": {
     "formel": "Ja 16, Nein 0",
@@ -5287,13 +5287,13 @@
     "empfehlung": true,
     "weg": "vorlage-block"
   },
-  "stadt:10125#Ö4": {
+  "stadt:10125#Ö 16": {
     "formel": "Mit allen Stimmen",
     "ergebnis": "beschlossen",
     "text": "Mit allen Stimmen: Entsprechend dem Antrag befürwortet. 16.07.2024",
-    "vorlage": "V0424/24",
+    "vorlage": "V0330/24",
     "empfehlung": true,
-    "weg": "vorlage-block"
+    "weg": "gemeinsame-beratung"
   },
   "stadt:10125#Ö 18": {
     "formel": "Mit allen Stimmen",

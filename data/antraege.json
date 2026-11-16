@@ -1,7 +1,7 @@
 {
   "erzeugt_von": "scraper/antraege_holen_lesen.py",
   "quelle_hinweis": "Anträge der Stadtratsfraktionen aus dem Ratsinfoportal der Stadt Ingolstadt, laufende Wahlperiode. Status stammt aus den bereits gescrapten Tagesordnungen und dem kuratierten Feed dieser Seite, nicht aus einer eigenen Recherche.",
-  "abgerufen_am": "2026-11-15",
+  "abgerufen_am": "2026-11-16",
   "parteien": {
     "CSU": [
       {
@@ -231,7 +231,7 @@
         "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23127",
         "pdf_url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=251347&type=do",
         "in_beratung": true,
-        "stand": "Beschlossen",
+        "stand": "Nur besprochen, nichts entschieden",
         "ref": "stadt:13538#Ö2",
         "klartext_titel": "CSU beantragt neuen Badesteg am Baggersee",
         "klartext": "Die CSU-Stadtratsfraktion beantragt, den im Zuge des Sicherheitskonzepts entfernten Badesteg beim Wildgehege am Baggersee an einem anderen, nahegelegenen Standort wieder zu errichten. Die Verwaltung soll dafür die rechtlichen, wasserrechtlichen, naturschutzfachlichen und sicherheitsrelevanten Voraussetzungen prüfen und die Kosten ermitteln, bevor der Stadtrat informiert wird. Begründet wird der Antrag mit der hohen Bedeutung des Baggersees als Naherholungsgebiet und dem Wunsch vieler Besucherinnen und Besucher nach einem attraktiven Wasserzugang an dieser Stelle.",
@@ -6029,7 +6029,7 @@
         "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=22885",
         "pdf_url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=248257&type=do",
         "in_beratung": true,
-        "stand": "Beschlossen",
+        "stand": "Nur besprochen, nichts entschieden",
         "ref": "stadt:13513#Ö17",
         "klartext_titel": "FDP/JU will Fahrplan-Kürzung bei Buslinie 60 zurückstellen",
         "klartext": "Die Ausschussgemeinschaft FDP/JU beantragt, die geplante weitere Taktverschlechterung bei der Buslinie 60 zum 15. September 2026 zurückzustellen, bis die Stadtwerke-Geschäftsführung die Maßnahme mit dem betroffenen Bezirksausschuss besprochen hat. Die Fraktion verweist darauf, dass das Angebot auf dieser Linie bereits einmal gekürzt wurde und die nun vorgeschlagene weitere Änderung einer Halbierung des bisherigen Angebots gleichkäme; belastbare Fahrgastzahlen zur Einschätzung der Folgen lägen nicht vor. Zudem sehe die Geschäftsordnung der Bezirksausschüsse bei Buslinien-Änderungen ausdrücklich ein Anhörungsrecht vor.",

@@ -318,6 +318,49 @@ def bloecke_nach_vorlage(volltext):
     return ergebnis
 
 
+# Gemeinsame Beratung: "Der Antrag der Verwaltung V0281/26, sowie der Antrag
+# der CSU-Stadtratsfraktion V0374/26 werden gemeinsam diskutiert und
+# behandelt." Die eine Abstimmung steht dann im Block der Vorlage, auf die
+# die anderen per "Beschlussfassung siehe ..." verweisen. Meist ist das die
+# Vorlage der Verwaltung — dann stimmt die Zuordnung. Steht sie aber im Block
+# eines Fraktionsantrags und verweist die Verwaltungsvorlage dorthin, gilt
+# "Entsprechend dem Antrag genehmigt" dem Antrag der Verwaltung, nicht dem
+# Fraktionsantrag (Kontrolle 2026-11-16: V0374/26 Badesteg Baggersee stand
+# als angenommen da, genehmigt wurde die Allgemeinverfuegung V0281/26; der
+# CSU-Antrag erledigte sich erst in TOP 15 mit V0482/26).
+VERWEIS_ZIEL = re.compile(r"Beschlussfassung\s+siehe\s+(V\d{4}/\d{2}(?:/\d+)?)")
+VERWALTUNG_GENANNT = re.compile(
+    r"(?:Antrag|Vorlage|Stellungnahme)\s+der\s+Verwal-?\s*tung\s+(V\d{4}/\d{2}(?:/\d+)?)"
+)
+
+
+def abstimmung_umleiten(bloecke):
+    """{Block mit der Abstimmung: Verwaltungsvorlage, der sie gilt}.
+
+    Nur wenn der Block selbst KEINE Verwaltungsvorlage ist und genau eine
+    der Vorlagen, die auf ihn verweisen, im Text als Antrag/Vorlage/
+    Stellungnahme der Verwaltung genannt wird. Alles andere bleibt wie
+    bisher."""
+    verweiser = collections.defaultdict(set)
+    for nr, liste in bloecke.items():
+        for block in liste:
+            for m in VERWEIS_ZIEL.finditer(block):
+                if m.group(1) != nr:
+                    verweiser[m.group(1)].add(nr)
+    umleitung = {}
+    for ziel, quellen in verweiser.items():
+        eigene = bloecke.get(ziel, [])
+        if len(eigene) != 1:
+            continue
+        verwaltung = set(VERWALTUNG_GENANNT.findall(eigene[0]))
+        if ziel in verwaltung:
+            continue
+        kandidaten = [q for q in quellen if q in verwaltung]
+        if len(kandidaten) == 1:
+            umleitung[ziel] = kandidaten[0]
+    return umleitung
+
+
 def normtitel(t):
     return re.sub(r"[^a-z0-9äöüß]", "", (t or "").lower())
 
@@ -434,7 +477,7 @@ def main():
     beschluesse = {}
     zuordnung = {}          # Sitzungs-URL -> Protokoll-URL (geprueft)
     zaehler = {"weg1": 0, "weg2": 0, "weg3": 0, "mehrdeutig": 0, "keine_formel": 0,
-               "vertagt": 0, "falsche_sitzung": 0, "umgehaengt": 0}
+               "vertagt": 0, "falsche_sitzung": 0, "umgehaengt": 0, "umgeleitet": 0}
     pdfs_gelesen = 0
 
     je_kennung = {
@@ -490,13 +533,28 @@ def main():
             continue
 
         bloecke = bloecke_nach_vorlage(volltext)
+        umleitung = abstimmung_umleiten(bloecke)
+        herkunft = {verwaltung: block_nr for block_nr, verwaltung in umleitung.items()}
         for top in kandidaten:
             ergebnis = beschluss_aus_text(volltext, top["vorlage"])
             if ergebnis is not None:
                 ergebnis["weg"] = "abstimmung"
                 ergebnis["empfehlung"] = ist_empfehlung(ergebnis["text"])
                 zaehler["weg1"] += 1
+            elif top["vorlage"] in umleitung:
+                # Die Abstimmung in diesem Block gilt der Verwaltungsvorlage.
+                zaehler["umgeleitet"] += 1
+                continue
             else:
+                if top["vorlage"] in herkunft:
+                    eigene = bloecke.get(herkunft[top["vorlage"]], [])
+                    if len(eigene) == 1:
+                        ergebnis = ergebnis_aus_block(eigene[0], top["vorlage"])
+                        if ergebnis is not None:
+                            ergebnis["weg"] = "gemeinsame-beratung"
+                            beschluesse[top_ref(quelle, sitzung, top, bare_pos)] = ergebnis
+                            zaehler["weg2"] += 1
+                            continue
                 eigene = bloecke.get(top["vorlage"], [])
                 if len(eigene) != 1:
                     zaehler["mehrdeutig"] += 1
@@ -520,6 +578,7 @@ def main():
     print(f"  {zaehler['mehrdeutig']} Vorlagen ohne eindeutigen Block (übersprungen)")
     print(f"  {zaehler['keine_formel']} mit Block, aber ohne genau eine Abstimmungsformel")
     print(f"  {zaehler['vertagt']} vertagt/abgesetzt")
+    print(f"  {zaehler['umgeleitet']} Abstimmungen gemeinsamer Beratung der Verwaltungsvorlage zugeordnet")
     print(f"  {zaehler['umgehaengt']} Protokolle hingen an der falschen Sitzung (umgehängt), "
           f"{zaehler['falsche_sitzung']} nicht zuordenbar (Datum passt nicht)")
 

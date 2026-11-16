@@ -659,7 +659,7 @@ def p_beschluesse_belegt(beschluesse, index):
         warnt(f"{len(reste)} Beschlusstexte mit Seitenfuss/Sitzungsende: {reste[:5]}")
     formel_fremd = [
         r for r, b in beschluesse.items()
-        if b.get("weg") in ("abstimmung", "vorlage-block")
+        if b.get("weg") in ("abstimmung", "vorlage-block", "gemeinsame-beratung")
         and not re.match(r"\s*(?:Ziffer \d+:\s*)?" + re.escape(b["formel"]), b["text"])
     ]
     if formel_fremd:
