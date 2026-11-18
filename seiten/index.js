@@ -129,7 +129,6 @@
     mehrFilterAus: { n: 'Weniger Filter ▴', l: 'Weniger Auswahl zeigen ▴' },
     listeTitel: { n: 'Alle Einträge', l: 'Alle Themen' },
     listeUnter: { n: 'Nach Stadtbezirk, Stand oder Stichwort filtern – die neuesten zuerst.', l: 'Hier können Sie suchen. Zum Beispiel nach Ihrem Stadt-Bezirk.' },
-    themenTitel: { n: 'Themen im Überblick', l: 'Themen' },
     titelZeigen: { n: 'Auch {n} Punkte ohne Zusammenfassung zeigen (nur Titel)', l: 'Auch {n} Themen ohne Erklärung zeigen' },
     titelVerbergen: { n: 'Nur Einträge mit Zusammenfassung zeigen', l: 'Nur Themen mit Erklärung zeigen' },
     filtersHeadH2: { n: 'Wonach möchten Sie schauen?', l: 'Was möchten Sie sehen?' },
@@ -836,7 +835,6 @@
     document.getElementById('hero-p').textContent = txt('heroP');
     document.getElementById('liste-titel').textContent = txt('listeTitel');
     document.getElementById('liste-unter').textContent = txt('listeUnter');
-    document.getElementById('themen-titel').textContent = txt('themenTitel');
     document.getElementById('filters-head-h2').textContent = txt('filtersHeadH2');
     document.getElementById('filters-hint').textContent = txt('filtersHint');
     document.getElementById('btn-reset').textContent = txt('btnReset');

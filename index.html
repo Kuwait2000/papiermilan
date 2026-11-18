@@ -544,7 +544,6 @@
   .titel-umschalter { background: none; border: none; padding: 0; font: inherit; font-size: .84rem;
     color: var(--primary-dark); text-decoration: underline; cursor: pointer; margin: -.4rem 0 1rem; }
 
-  .themen-start { padding: 0 0 2.4rem; }
   .abschnitt-titel { font-family: var(--font-display); font-size: 1.5rem; color: var(--primary-dark); margin-bottom: .8rem; }
   .liste-kopf { display: block !important; padding-top: 1.2rem; }
   .liste-kopf .abschnitt-titel { margin-bottom: .1rem; }
@@ -555,8 +554,6 @@
   .filter-mehr { display: flex; flex-direction: column; gap: 1.35rem; }
   .filter-mehr[hidden] { display: none; }
   .chip-btn .nr { font-weight: 700; margin-right: .25em; }
-  /* Auf dem Handy stehen die Themen schon im Menue */
-  @media (max-width: 760px) { .themen-start { display: none; } }
 </style>
 </head>
 <body>
@@ -635,13 +632,6 @@
         <div class="blick-spalte" id="blick-offen"></div>
         <div class="blick-spalte" id="blick-entschieden"></div>
       </div>
-    </div>
-  </section>
-
-  <section class="themen-start">
-    <div class="container">
-      <h2 class="abschnitt-titel" id="themen-titel">Themen im Überblick</h2>
-      <div class="kompakt" data-themen-kacheln></div>
     </div>
   </section>
 
@@ -744,8 +734,6 @@
 <script src="data/orte.js"></script>
 <script src="seiten/hilfen.js"></script>
 <script src="seiten/index.js"></script>
-<script src="data/themen.js" defer></script>
-<script src="themen-kacheln.js" defer></script>
 <script src="kopf.js" defer></script>
 <script src="grafik/kern.js" defer></script>
 <script src="zaehler.js" defer></script>
