@@ -585,12 +585,18 @@ Dateicache.
 
 ## Lizenz und Herkunft
 
-Code MIT (siehe [LICENSE](LICENSE)), geschriebene Inhalte dieses Repositories
-CC-BY-4.0.
+Code unter der European Union Public Licence 1.2 (EUPL-1.2, siehe
+[LICENSE](LICENSE)), geschriebene Inhalte dieses Repositories unter CC BY 4.0.
+Wer eine veränderte Fassung weitergibt oder als Website betreibt, muss den
+Quellcode ebenfalls unter der EUPL oder einer kompatiblen Lizenz offenlegen.
+Stände vor der Umstellung am 18.11.2026 bleiben unter der MIT-Lizenz. Name,
+Wortmarke und Maskottchen „PapierPanther“ sind nicht mitlizenziert.
 
-PapierPanther baut auf dem **MeinBezirk-Toolkit von Igor Schwarzmann /
-Known Unknowns GmbH** auf ([github.com/igor/meinbezirk](https://github.com/igor/meinbezirk),
-CC-BY-4.0), aus dem die frühe Methodik und Teile der ursprünglichen
-Oberflächenstruktur stammen. Scraper, Datenaufbereitung und die Ingolstädter
-Anpassung — inklusive des kompletten Redesigns von `index.html` — sind in
-diesem Repository entstanden. Details zur Herkunft: [NOTICE](NOTICE).
+PapierPanther folgt der Idee von **MeinBezirk**, einem Toolkit von Igor
+Schwarzmann / Known Unknowns GmbH für kommunale Transparenz
+([github.com/igor/meinbezirk](https://github.com/igor/meinbezirk)). Von dort
+stammen die Anregung und die frühe Methodik, danke dafür. Das Repository ist
+aus einer Kopie seines Berliner Prototyps hervorgegangen; seine Commits in der
+Git-Historie behalten ihre Lizenzen MIT und CC BY 4.0. Im heutigen Stand ist
+kein Code und kein Text daraus mehr enthalten. Details zur Herkunft:
+[NOTICE](NOTICE).

@@ -1,37 +1,56 @@
 PapierPanther — Herkunftshinweise
 ==================================
 
-Dieses Projekt baut auf dem MeinBezirk-Toolkit von Igor Schwarzmann /
-Known Unknowns GmbH auf (https://github.com/igor/meinbezirk, CC-BY-4.0).
+Copyright (c) 2026 Michael Keller
+Licensed under the EUPL
 
-Was übernommen wurde
----------------------
-Der ursprüngliche Ingolstadt-Prototyp entstand aus einer Kopie von Igors
-Berliner Referenzprototyp. Die frühe Grundstruktur der Oberfläche —
-Kartenlayout, Filter-Raster, Chip-Darstellung — geht darauf zurück. Seit dem
-PapierPanther-Redesign ist `index.html` eigenständiger Code; erkennbar sind
-noch einzelne generische CSS-Klassennamen, die aus der Konvention des
-Toolkits stammen (`.container`, `.hero`, `.feed`, `.chip`, u. a.).
+Dank und Idee
+-------------
+PapierPanther folgt der Idee von MeinBezirk, einem Toolkit von Igor
+Schwarzmann / Known Unknowns GmbH für kommunale Transparenz
+(https://igorschwarzmann.com/meinbezirk/toolkit/,
+https://github.com/igor/meinbezirk). Von dort stammen die Anregung, Ratsinfos
+nach Wohnort und Betroffenheit aufzubereiten, und die frühe Methodik. Danke
+dafür.
+
+Herkunft und Git-Historie
+-------------------------
+Dieses Repository ist aus einer Kopie von Igors Berliner Referenzprototyp
+hervorgegangen. Die Commits von Igor Schwarzmann bis einschließlich 3ae5f95
+(21.02.2026) stehen weiterhin unter seinen ursprünglichen Lizenzen: Code
+unter MIT, Markdown-Dokumentation unter CC BY 4.0.
+
+Im heutigen Stand ist kein Code und kein Text daraus mehr enthalten.
+Geprüft am 18.11.2026 mit `git blame -w -M -C -C -C` über alle Code- und
+Textdateien: keine Zeile von Igor Schwarzmann, auch nicht verschoben oder
+kopiert, und keine gleiche Zeile mit den Toolkit-Texten. Übrig sind nur
+einzelne allgemeine CSS-Klassennamen wie `.container`, `.hero` und `.feed`.
 
 Was eigenständig entstand
 --------------------------
-Design (Farbschema, Wortmarke „PapierPanther", Maskottchen), das komplette
-Markup und Stylesheet von `index.html`, der komplette Datenauslese- und
+Design (Farbschema, Wortmarke „PapierPanther", Maskottchen), Markup,
+Stylesheets und Skripte aller Seiten, der komplette Datenauslese- und
 Aufbereitungspfad (`scraper/`), die Ingolstadt-spezifische Datenmodellierung
 sowie Impressum, Datenschutzerklärung und diese Dokumentation wurden für
 dieses Repository geschrieben.
 
 Lizenzen
 --------
-- Quellcode dieses Repositories (`index.html`, `scraper/`): MIT, siehe
-  LICENSE. Copyright (c) 2026 Michael Keller, mit Portions Copyright (c)
-  2026 Igor Schwarzmann / Known Unknowns GmbH für die frühe, inzwischen
-  weitgehend ersetzte Grundstruktur.
-- Geschriebene Inhalte dieses Repositories (Markdown-Dokumentation) stehen
-  unter CC-BY-4.0: https://creativecommons.org/licenses/by/4.0/legalcode
-- Das MeinBezirk-Toolkit von Igor Schwarzmann selbst ist dual lizenziert:
-  sein `index.html` unter MIT, seine `.md`-Dokumentation unter CC-BY-4.0.
-  Quelle: https://github.com/igor/meinbezirk
+- Quellcode dieses Repositories (HTML, CSS, JavaScript und Python außerhalb
+  von `vendor/` und `schrift/`): European Union Public Licence 1.2
+  (EUPL-1.2), siehe LICENSE. Alle Sprachfassungen der EUPL sind gleichwertig,
+  die deutsche Fassung steht unter
+  https://interoperable-europe.ec.europa.eu/collection/eupl/eupl-text-eupl-12.
+  Stände vor der Umstellung am 18.11.2026 bleiben unter der MIT-Lizenz.
+- Geschriebene Inhalte dieses Repositories (Markdown-Dokumentation und die
+  selbst verfassten Texte der Seiten) stehen unter CC BY 4.0:
+  https://creativecommons.org/licenses/by/4.0/legalcode.de
+- Der Name „PapierPanther", die Wortmarke und das Maskottchen sind von
+  diesen Lizenzen ausgenommen (vgl. Art. 5 EUPL, „Legal Protection“). Sie
+  dürfen genannt werden, um die Herkunft zu beschreiben. Für veränderte
+  Fassungen oder andere Angebote ist eine Zustimmung nötig.
+- Daten in `data/` und `karten/` sowie Fremdbibliotheken haben eigene
+  Lizenzen, siehe die folgenden Punkte.
 - Die Überschriftenschrift Source Serif 4 im Ordner `schrift/` stammt von
   Adobe (© 2014–2021 Adobe Systems Incorporated, Reserved Font Name „Source“)
   und steht unter der SIL Open Font License 1.1, siehe `schrift/OFL.txt`.

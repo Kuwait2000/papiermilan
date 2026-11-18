@@ -307,6 +307,6 @@ Die Liste „Wenn es weitergeht" vom Juli 2026, mit heutigem Stand:
 
 ---
 
-Methodik: MeinBezirk-Toolkit von Igor Schwarzmann, CC-BY-4.0.
+Idee und frühe Methodik: MeinBezirk-Toolkit von Igor Schwarzmann.
 Ingolstadt-Adaption und Parser: dieses Repository.
 Datenquelle: Ratsinfoportal der Stadt Ingolstadt, öffentlich zugängliche Seiten.
