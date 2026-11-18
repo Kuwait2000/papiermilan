@@ -27,7 +27,8 @@ Daten neu holen und Feed neu bauen:
 
 ```bash
 cd scraper && python3 ris_ingolstadt.py --von 2026-01 --bis 2026-07 \
-  && python3 niederschriften_lesen.py && python3 feed_bauen.py && python3 pruefen.py
+  && python3 niederschriften_lesen.py && python3 feed_bauen.py \
+  && python3 orte_bauen.py && python3 pruefen.py
 ```
 
 Auslesen, Feed-Bau und `pruefen.py` brauchen nur die Python-Standardbibliothek.
@@ -60,6 +61,7 @@ scraper/
   niederschriften_lesen.py  Beschlüsse aus Protokollen -> data/beschluesse.json
                             (+ data/niederschriften.json)
   feed_bauen.py       Rohdaten + Kuration           -> data/feed.json + feed.js
+  orte_bauen.py       Orte der Einträge, Unfälle, Baustellen -> data/orte.js, unfaelle.js, baustellen.js
   anker_setzen.py     Titel-Anker in kuration.json prüfen und reparieren
   pruefen.py          Zusagen der Seite nachrechnen (Exit-Code)
   themen_bauen.py     Kennzahlen für die Themen-Kacheln -> data/themen.js
@@ -338,6 +340,61 @@ Lizenzangabe (siehe NOTICE). Die grafische Fassung ist `grafik/waerme.js`
 übergibt die Adresse dorthin. `pruefen.py` wacht über Flächenzahl, Summen und
 Links. Wärmebedarf, Baualter oder Heizung je Gebäude gibt es nicht als offene Daten.
 
+### Orte, Vorgänge und Unfälle (Startseite)
+
+```bash
+cd scraper && python3 feed_bauen.py && python3 orte_bauen.py && python3 pruefen.py
+```
+
+Drei Verknüpfungen machen aus der Liste der Einträge etwas, das man nach Ort
+und Verlauf lesen kann. Alle drei entstehen automatisch und sagen das auf der
+Seite auch.
+
+- **Orte** (`orte_bauen.py` → `data/orte.js`): Das Skript sucht in Titel,
+  Kurztext und im Feld `ort` jedes Eintrags von Stadtrat und
+  Bezirksausschüssen nach Straßen (Verlauf aus dem OpenStreetMap-Auszug von
+  `wege_bauen.py`), Hausnummern, benannten Einrichtungen und Bebauungsplänen
+  (Zuordnung von `plaene_bauen.py`). Am 17.11.2026 trugen 873 von 3.708
+  Einträgen mindestens einen Ort. Die Regeln stehen im Kopf des Skripts und
+  sind vorsichtig: Ein Straßenname, den es mehrfach gibt, zählt nur im
+  Bezirksausschuss des Bezirks, in dem er liegt; im Bezirksausschuss zählt
+  ein Ort nur im eigenen Bezirk oder bis 300 m davor; Allerweltsnamen wie
+  „Schulweg“ zählen nur im amtlichen Titel. `python3 orte_bauen.py --zeigen`
+  druckt die häufigsten Namen und eine Stichprobe zum Gegenlesen.
+- **Auf der Seite**: Jeder Ortsname an einem Eintrag ist ein Knopf und zeigt
+  alles, was denselben Ort nennt (`?ort=<Name>` in der Adresse). „In meiner
+  Nähe“ nimmt eine Adresse und einen Umkreis (300 m, 500 m, 1 km) und zeigt
+  die Einträge, deren Ort in diesem Umkreis liegt; bei Straßen zählt der
+  Abstand zum Verlauf, bei Bebauungsplänen der Umgriff aus
+  `data/plangebiete.js`. Die Adresse bleibt im Browser und steht nicht in der
+  Adresszeile. Im Schaubild der Startseite zeigt `grafik/orte.js` dieselben
+  Orte auf der Stadtkarte.
+- **Vorgänge** (`feed_bauen.py::ketten_setzen` → Feld `kette`): Punkte der
+  Bezirksausschüsse haben keine Vorlage, über die der Feed sie bündeln könnte.
+  Verbunden wird, was im selben Bezirksausschuss in verschiedenen Sitzungen
+  dasselbe Aktenzeichen trägt und im Titel ein tragendes Wort teilt, oder was
+  denselben Titel hat und kein Routinepunkt ist. Das Aktenzeichen allein
+  reicht nicht, die Nummern werden doppelt vergeben (`2024-07-005` steht für
+  ein Holztipi im Kindergarten und für E-Scooter-Stellplätze). Die Seite zeigt
+  den Verlauf an der Karte und unter `?kette=<Kennung>`.
+- **Unfälle** (`data/orte.js`, `data/unfaelle.js`): Bei Verkehrsthemen steht
+  an der Straße, Kreuzung oder Adresse, wie viele Unfälle mit Verletzten der
+  Unfallatlas dort in den letzten fünf Jahren verzeichnet (Straße: bis 15 m
+  neben der Achse, Kreuzung: 35 m, Adresse: 50 m). Der Atlas enthält nur
+  Unfälle mit Personenschaden, die die Polizei aufgenommen hat; die Seite
+  nennt die Zahl mit Quelle und wertet nicht. `--neu` holt den Atlas frisch
+  (fünf Jahre, rund 65 MB, im Cache bleiben nur die Ingolstädter Zeilen).
+- **Baustellen** (`data/baustellen.js`): die Vorschau der Stadt für 14 Tage,
+  bei jedem Lauf frisch geholt. Die Seite blendet abgelaufene Baustellen aus
+  und nennt den Stand. Sie veraltet schnell; `pruefen.py` warnt nach 14 Tagen.
+
+`pruefen.py` wacht darüber, dass `orte.json` zum aktuellen Feed gehört, jeder
+Ort im Stadtgebiet liegt und gebraucht wird, die Unfallzahlen in sich stimmen,
+Ketten nur Punkte eines Bezirksausschusses aus verschiedenen Sitzungen
+verbinden und die Baustellen keine Kontaktadresse enthalten. Die Lärmkarte des
+Landesamts für Umwelt ist nicht eingebunden: Der Dienst liefert nur ein
+Kartenbild und an Hausadressen überwiegend keinen Wert.
+
 ### Deine 15 Minuten (`wege.html`)
 
 ```bash
@@ -462,7 +519,7 @@ Fahrplandaten: CC BY-SA 3.0 DE, nicht kommerziell (siehe NOTICE); die abgeleitet
 Datei steht unter derselben Lizenz.
 
 Reihenfolge nach einem Daten-Update: `wege_bauen.py` → `oepnv_bauen.py` →
-`grafik_bauen.py` → `themen_bauen.py` → `pruefen.py`. `wege_bauen.py` schreibt dabei
+`orte_bauen.py` → `grafik_bauen.py` → `themen_bauen.py` → `pruefen.py`. `wege_bauen.py` schreibt dabei
 auch `data/wege-rathausplatz.json` (Orte in 15 Minuten ab Rathausplatz je Person)
 für die grafische Fassung (`grafik/wege.js`).
 

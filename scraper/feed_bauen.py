@@ -14,6 +14,7 @@ nicht "entschieden".
 """
 
 import collections
+import hashlib
 import json
 import os
 import re
@@ -176,6 +177,126 @@ def thema_schluessel(quelle, top):
     if kvonr:
         return f"{quelle}:vorlage:{kvonr.group(1)}"
     return None
+
+
+# Aktenzeichen der Bezirksausschuesse: Jahr-Bezirk-Nummer, mit "B" fuer den
+# Buergerhaushalt (eigene Nummernreihe).
+AKTENZEICHEN = re.compile(r"(?<![\d/-])(20\d\d)\s?-\s?(\d{2})\s?-\s?(\d{3})(?![\d-])(\s?B\b)?")
+# Titel, die in jeder Sitzung wiederkehren und kein Vorgang sind
+KETTE_ROUTINE = re.compile(
+    r"stellungnahme|information|verschiedenes|protokoll|bürgerhaushalt|\bbhh\b|geschwindigkeits|"
+    r"antwortschreiben|sachst[aä]nd|laufende|bürgeranliegen|e-?mails|umgesetzte|beiträge|anträge|bekanntgabe|"
+    r"termine|bürgerversammlung|unterrichtung|mängelmelder|aktuelles|bericht", re.I)
+# Woerter, die zwei Titel nicht zum selben Vorgang machen
+KETTE_FUELLWORT = {
+    "antrag", "antraege", "stellungnahme", "schreiben", "stadt", "verwaltung", "referat", "bezirksausschuss",
+    "sitzung", "zuschuss", "buergerhaushalt", "anschaffung", "oeffentlich", "nicht", "strasse", "ingolstadt",
+    "bereich", "errichtung", "aufstellung", "sanierung", "aufwertung", "situation", "betreffend", "hoehe",
+    "zwischen", "sowie", "einer", "eines", "einem", "durch", "ueber", "unter", "neben", "wegen",
+    "strassen", "bezirk", "bericht", "stadtrat", "aenderung", "massnahme", "pruefung", "ortstermin"}
+
+
+def _glatt(text):
+    text = (text or "").lower()
+    for a, b in (("ß", "ss"), ("ä", "ae"), ("ö", "oe"), ("ü", "ue")):
+        text = text.replace(a, b)
+    return text
+
+
+def titel_kern(titel):
+    """Titel ohne Aktenzeichen und Satzzeichen, fuer den Vergleich ueber Sitzungen hinweg."""
+    az = r"(az\.?:?\s*)?20\d\d\s?-\s?\d{2}\s?-\s?\d{2,3}(\s?b\b)?"
+    # mit Klammer samt Zusatz darin ("(Ref. II; Az: 2024-12-025 nicht öffentlich)"), sonst nur die Nummer
+    t = re.sub(r"\([^()]{0,40}?" + az + r"[^()]{0,40}\)|" + az, " ", _glatt(titel))
+    return re.sub(r"[^a-z0-9]+", " ", t).strip()
+
+
+def titel_stichworte(titel):
+    """Wortanfaenge (fuenf Buchstaben) der tragenden Woerter eines Titels."""
+    fuell = {w[:5] for w in KETTE_FUELLWORT}
+    return {w[:5] for w in titel_kern(titel).split() if len(w) >= 5 and w[:5] not in fuell}
+
+
+def ketten_setzen(feed):
+    """
+    Derselbe Vorgang in mehreren Sitzungen eines Bezirksausschusses.
+
+    Bezirksausschuss-Punkte haben keine Vorlage, ueber die thema_schluessel
+    sie buendeln koennte. Zwei Merkmale verbinden sie trotzdem:
+
+    1. Dasselbe Aktenzeichen im Titel (2024-05-001). Das allein reicht nicht:
+       Die Nummern werden doppelt vergeben (2024-07-005 steht fuer ein Holztipi
+       im Kindergarten und fuer E-Scooter-Stellplaetze). Deshalb muessen die
+       Titel zusaetzlich ein tragendes Wort teilen.
+    2. Derselbe Titel, wenn er kein Routinepunkt ist ("Stellungnahmen der
+       Stadt") und hoechstens sechsmal vorkommt.
+
+    Verbunden wird nur innerhalb eines Bezirksausschusses und nur ueber
+    verschiedene Sitzungen. Jeder Eintrag einer Kette bekommt dasselbe Feld
+    "kette"; die Seite zeigt daraus den Verlauf.
+    """
+    bza = [e for e in feed if e["quelle"] == "bza"]
+    eltern = {e["ref"]: e["ref"] for e in bza}
+
+    def wurzel(r):
+        while eltern[r] != r:
+            eltern[r] = eltern[eltern[r]]
+            r = eltern[r]
+        return r
+
+    name = {}
+    # Sitzungen je Gruppe: Zwei Punkte derselben Sitzung sind nie derselbe Vorgang,
+    # auch nicht ueber einen dritten Punkt.
+    sitzungen = {e["ref"]: {e["sitzung_url"]} for e in bza}
+    je_az = collections.defaultdict(list)
+    je_titel = collections.defaultdict(list)
+    for e in bza:
+        for m in AKTENZEICHEN.finditer(e["amtlicher_titel"]):
+            az = f"{m.group(1)}-{m.group(2)}-{m.group(3)}" + ("B" if m.group(4) else "")
+            je_az[(e["gremium"], az)].append(e)
+        kern = titel_kern(e["amtlicher_titel"])
+        if len(kern) >= 12 and not KETTE_ROUTINE.search(e["amtlicher_titel"]):
+            je_titel[(e["gremium"], kern)].append(e)
+
+    def verbinde(a, b, kennung):
+        ra, rb = wurzel(a["ref"]), wurzel(b["ref"])
+        if ra != rb:
+            if sitzungen[ra] & sitzungen[rb]:
+                return
+            eltern[rb] = ra
+            sitzungen[ra] |= sitzungen.pop(rb)
+        # Ein Aktenzeichen ist die bessere Kennung als der Titel-Hash ("t...")
+        kandidaten = [n for n in (name.pop(ra, None), name.pop(rb, None), kennung) if n]
+        name[ra] = next((n for n in kandidaten if not n.startswith("t")), kandidaten[0])
+
+    for (gremium, az), gruppe in je_az.items():
+        for i, a in enumerate(gruppe):
+            for b in gruppe[i + 1:]:
+                if titel_stichworte(a["amtlicher_titel"]) & titel_stichworte(b["amtlicher_titel"]):
+                    verbinde(a, b, az)
+    for (gremium, kern), gruppe in je_titel.items():
+        if 2 <= len(gruppe) <= 6:
+            for i, a in enumerate(gruppe):
+                for b in gruppe[i + 1:]:
+                    verbinde(a, b, "t" + hashlib.sha1(kern.encode()).hexdigest()[:8])
+
+    gruppen = collections.defaultdict(list)
+    for e in bza:
+        gruppen[wurzel(e["ref"])].append(e)
+    ketten, vergeben = 0, collections.Counter()
+    for w, gruppe in gruppen.items():
+        if len(gruppe) < 2:
+            continue
+        ketten += 1
+        m = re.search(r"Bezirksausschuss ([IVX]+)\b", gruppe[0]["gremium"])
+        kennung = f"{m.group(1) if m else 'BZA'}:{name[wurzel(w)]}"
+        # Dasselbe Aktenzeichen fuer zwei verschiedene Vorgaenge: zwei Kennungen
+        vergeben[kennung] += 1
+        if vergeben[kennung] > 1:
+            kennung += f"-{vergeben[kennung]}"
+        for e in gruppe:
+            e["kette"] = kennung
+    return ketten
 
 
 def leitstation(auftritte):
@@ -602,6 +723,8 @@ def main():
         })
     kommende_termine.sort(key=lambda t: (t["datum"], t.get("zeit") or ""))
 
+    ketten = ketten_setzen(feed)
+
     stand_verteilung = {}
     for e in feed:
         stand_verteilung[e["stand"]] = stand_verteilung.get(e["stand"], 0) + 1
@@ -741,6 +864,8 @@ def main():
         f"{len(ausgabe['achsen']['stand'])} Staende"
     )
 
+    print(f"  Vorgangsketten in den Bezirksausschuessen: {ketten} "
+          f"({sum(1 for e in feed if e.get('kette'))} Eintraege)")
     mehrfach = sum(1 for e in feed if len(e["auftritte"]) > 1)
     print(
         f"  Themen: {len(feed)} Karten aus {len(eintraege_kuration)} "

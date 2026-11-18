@@ -28,7 +28,7 @@
   },
   "hinweis": "Oeffentlich zugaengliche Seiten, ohne Anmeldung abgerufen.",
   "daten_abgerufen_am": "2026-11-15",
-  "feed_gebaut_am": "2026-11-16",
+  "feed_gebaut_am": "2026-11-17",
   "zeitraum": {
     "von": "2023-11",
     "bis": "2027-01"
@@ -59,23 +59,23 @@
       "bezirk_obb": 547
     },
     "stand": {
-      "Nur besprochen, nichts entschieden": 1262,
+      "Nur besprochen, nichts entschieden": 1264,
       "Wird noch beraten": 49,
-      "Steht auf der Tagesordnung": 8,
-      "Entscheidung angesetzt": 263,
-      "Kommt im Bezirksausschuss": 23,
+      "Steht auf der Tagesordnung": 6,
+      "Entscheidung angesetzt": 265,
+      "Kommt im Bezirksausschuss": 18,
       "Bekanntgabe": 334,
-      "Entscheidung geplant": 3,
-      "Im Bezirksausschuss behandelt": 1525,
+      "Entscheidung geplant": 1,
+      "Im Bezirksausschuss behandelt": 1530,
       "Noch nicht terminiert": 144,
       "Beschlossen": 630,
       "Abgelehnt": 13,
       "Teilweise beschlossen": 1
     },
     "status": {
-      "Nur zur Information": 3129,
-      "Noch offen": 219,
-      "Ergebnis steht im Protokoll": 263,
+      "Nur zur Information": 3134,
+      "Noch offen": 212,
+      "Ergebnis steht im Protokoll": 265,
       "Entschieden": 644
     },
     "stadtbezirke": 12,
@@ -1440,7 +1440,8 @@
       "datum_anzeige": "18.11.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14357",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "II:t3c128765"
     },
     {
       "ref": "bza:14357#Ö 5",
@@ -1632,7 +1633,8 @@
       "datum_anzeige": "18.11.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14357",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "II:t7c4894eb"
     },
     {
       "ref": "bza:14357#Ö 7",
@@ -1916,7 +1918,8 @@
       "datum_anzeige": "18.11.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14357",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "II:tea34c559"
     },
     {
       "ref": "bza:14357#Ö 10.3",
@@ -2145,9 +2148,9 @@
       ],
       "entwurf": false,
       "duenn": false,
-      "stand": "Entscheidung geplant",
+      "stand": "Entscheidung angesetzt",
       "stand_datum": "17.11.2026",
-      "status": "Noch offen",
+      "status": "Ergebnis steht im Protokoll",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "stadt",
@@ -2289,9 +2292,9 @@
       "ort": [],
       "entwurf": false,
       "duenn": false,
-      "stand": "Entscheidung geplant",
+      "stand": "Entscheidung angesetzt",
       "stand_datum": "17.11.2026",
-      "status": "Noch offen",
+      "status": "Ergebnis steht im Protokoll",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bezirk_obb",
@@ -2609,8 +2612,8 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Steht auf der Tagesordnung",
-      "stand_datum": "17.11.2026",
+      "stand": "Nur besprochen, nichts entschieden",
+      "stand_datum": "",
       "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
@@ -2655,8 +2658,8 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Steht auf der Tagesordnung",
-      "stand_datum": "17.11.2026",
+      "stand": "Nur besprochen, nichts entschieden",
+      "stand_datum": "",
       "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
@@ -2701,9 +2704,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "17.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -2749,9 +2752,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "17.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -2795,9 +2798,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "17.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -2841,9 +2844,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "17.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -2887,9 +2890,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "17.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -5049,7 +5052,8 @@
       "datum_anzeige": "10.11.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14336",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "III:t42f4d07b"
     },
     {
       "ref": "bza:14336#Ö 3.4",
@@ -11855,7 +11859,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=254735&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:t811fd3be"
     },
     {
       "ref": "bza:14353#Ö 2.3",
@@ -11910,7 +11915,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=254741&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2024-05-001"
     },
     {
       "ref": "bza:14353#Ö 3",
@@ -15373,7 +15379,8 @@
       "datum_anzeige": "14.10.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14200",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "II:t7c4894eb"
     },
     {
       "ref": "bza:14200#Ö 6.3",
@@ -15617,7 +15624,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=254211&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "II:t66cd2099"
     },
     {
       "ref": "bza:14200#Ö 8.2",
@@ -15665,7 +15673,8 @@
       "datum_anzeige": "14.10.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14200",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "II:tf2beedcf"
     },
     {
       "ref": "bza:14200#Ö 8.4",
@@ -15713,7 +15722,8 @@
       "datum_anzeige": "14.10.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14200",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "II:tea34c559"
     },
     {
       "ref": "bza:14200#Ö 9",
@@ -15868,7 +15878,8 @@
       "datum_anzeige": "14.10.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14200",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "II:t3c128765"
     },
     {
       "ref": "bza:14200#Ö 12",
@@ -16683,7 +16694,8 @@
       "datum_anzeige": "13.10.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14324",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:tf2286ad9"
     },
     {
       "ref": "bza:14324#Ö 2.5",
@@ -17575,7 +17587,8 @@
       "datum_anzeige": "08.10.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14153",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:t7f009133"
     },
     {
       "ref": "bza:14153#Ö 3.2",
@@ -19675,7 +19688,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=253352&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:t9071f404"
     },
     {
       "ref": "bza:14249#Ö 7",
@@ -19767,7 +19781,8 @@
       "datum_anzeige": "17.09.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14249",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:2022-06-016"
     },
     {
       "ref": "stadt:antrag:23312",
@@ -26590,7 +26605,8 @@
       "datum_anzeige": "23.07.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14152",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:t7f009133"
     },
     {
       "ref": "bza:14152#Ö 3.3",
@@ -30999,7 +31015,8 @@
       "datum_anzeige": "08.07.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14155",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "II:t66cd2099"
     },
     {
       "ref": "bza:14155#Ö 5.2",
@@ -31047,7 +31064,8 @@
       "datum_anzeige": "08.07.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14155",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "II:tf2beedcf"
     },
     {
       "ref": "bza:14155#Ö 6",
@@ -32189,7 +32207,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=251060&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2025-05-001"
     },
     {
       "ref": "bza:14132#Ö 2.2",
@@ -32308,7 +32327,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=251062&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:t31cd7e7a"
     },
     {
       "ref": "bza:14132#Ö 2.4",
@@ -32766,7 +32786,8 @@
       "datum_anzeige": "30.06.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14132",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:t811fd3be"
     },
     {
       "ref": "bza:14132#Ö 4",
@@ -43221,7 +43242,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=249021&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:2025-10-015"
     },
     {
       "ref": "bza:14060#Ö 2.2",
@@ -44958,7 +44980,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=248615&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VII:2025-07-010"
     },
     {
       "ref": "bza:14025#Ö 3.3",
@@ -53560,7 +53583,8 @@
       "datum_anzeige": "24.02.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13956",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:2025-10-015"
     },
     {
       "ref": "bza:13956#Ö 2.4",
@@ -53854,7 +53878,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=247274&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2024-05-001"
     },
     {
       "ref": "bza:13874#Ö 2.2",
@@ -58552,7 +58577,8 @@
       "datum_anzeige": "10.02.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13832",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t964ac889"
     },
     {
       "ref": "bza:13832#Ö 2.3",
@@ -61475,7 +61501,8 @@
       "datum_anzeige": "14.01.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13835",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "II:tf2beedcf"
     },
     {
       "ref": "stadt:antrag:22747",
@@ -61823,7 +61850,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=244913&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VII:2025-07-010"
     },
     {
       "ref": "bza:13612#Ö 3.4",
@@ -66331,7 +66359,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=245023&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:2024-11-018"
     },
     {
       "ref": "bza:13357#Ö 3.2",
@@ -66760,7 +66789,8 @@
       "datum_anzeige": "16.12.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13665",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:tf4ff9a61"
     },
     {
       "ref": "bza:13665#Ö 4.2",
@@ -66806,7 +66836,8 @@
       "datum_anzeige": "16.12.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13665",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2024-05-031"
     },
     {
       "ref": "bza:13665#Ö 5.1",
@@ -82266,7 +82297,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=242714&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:tf40aad6f"
     },
     {
       "ref": "bza:13163#Ö 3.3",
@@ -82541,7 +82573,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=242718&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:t9ff524aa"
     },
     {
       "ref": "bza:13163#Ö 3.8",
@@ -82653,7 +82686,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=242721&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:2022-11-002"
     },
     {
       "ref": "bza:13163#Ö 3.10",
@@ -83857,7 +83891,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=242434&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2024-05-031"
     },
     {
       "ref": "bza:13592#Ö 3.4",
@@ -83956,7 +83991,8 @@
       "datum_anzeige": "23.10.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13592",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:t31cd7e7a"
     },
     {
       "ref": "bza:13592#Ö 3.6",
@@ -89917,7 +89953,8 @@
       "datum_anzeige": "07.10.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13231",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t05080842"
     },
     {
       "ref": "bza:13231#Ö 2.4",
@@ -89965,7 +90002,8 @@
       "datum_anzeige": "07.10.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13231",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:tb4d50b3c"
     },
     {
       "ref": "bza:13231#Ö 2.6",
@@ -90014,7 +90052,8 @@
       "datum_anzeige": "07.10.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13231",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:ta5698ed3"
     },
     {
       "ref": "bza:13231#Ö 2.7",
@@ -90609,7 +90648,8 @@
       "datum_anzeige": "02.10.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13579",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:2022-06-016"
     },
     {
       "ref": "bza:13579#Ö 2",
@@ -101518,7 +101558,8 @@
       "datum_anzeige": "15.07.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13229",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:tc3076b5c"
     },
     {
       "ref": "bza:13229#Ö 2.3",
@@ -101616,7 +101657,8 @@
       "datum_anzeige": "15.07.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13229",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:tf2070c47"
     },
     {
       "ref": "bza:13229#Ö 2.5",
@@ -101665,7 +101707,8 @@
       "datum_anzeige": "15.07.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13229",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:ta5698ed3"
     },
     {
       "ref": "bza:13229#Ö 2.6",
@@ -102154,7 +102197,8 @@
       "datum_anzeige": "10.07.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13217",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:2023-04-010B"
     },
     {
       "ref": "bza:13217#Ö 2.2",
@@ -111762,7 +111806,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=235933&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:2024-11-018"
     },
     {
       "ref": "bza:13161#Ö 3.3",
@@ -111810,7 +111855,8 @@
       "datum_anzeige": "27.05.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13161",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:2024-11-011"
     },
     {
       "ref": "bza:13161#Ö 3.4",
@@ -111956,7 +112002,8 @@
       "datum_anzeige": "27.05.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13161",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:tf40aad6f"
     },
     {
       "ref": "bza:13161#Ö 4.2",
@@ -112054,7 +112101,8 @@
       "datum_anzeige": "27.05.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13161",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:t9ff524aa"
     },
     {
       "ref": "bza:13161#Ö 4.4",
@@ -114614,7 +114662,8 @@
       "datum_anzeige": "13.05.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13344",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:t8adff1cc"
     },
     {
       "ref": "bza:13344#Ö 2.7",
@@ -115082,7 +115131,8 @@
       "datum_anzeige": "13.05.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13228",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t05080842"
     },
     {
       "ref": "bza:13228#Ö 3.6",
@@ -115226,7 +115276,8 @@
       "datum_anzeige": "13.05.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13228",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:tb4d50b3c"
     },
     {
       "ref": "bza:13228#Ö 3.9",
@@ -115368,7 +115419,8 @@
       "datum_anzeige": "13.05.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13228",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t964ac889"
     },
     {
       "ref": "bza:13228#Ö 3.12",
@@ -118500,7 +118552,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=235007&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "III:t42f4d07b"
     },
     {
       "ref": "bza:13298#Ö 3.6",
@@ -118820,7 +118873,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=235011&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "III:2024-03-013"
     },
     {
       "ref": "bza:13298#Ö 3.12",
@@ -119450,7 +119504,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=234177&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VII:2023-07-023"
     },
     {
       "ref": "bza:13311#Ö 6",
@@ -123732,7 +123787,8 @@
       "datum_anzeige": "08.04.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13149",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XII:2024-12-025"
     },
     {
       "ref": "bza:13149#Ö 4.3",
@@ -126500,7 +126556,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=233577&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:2022-06-016"
     },
     {
       "ref": "bza:13295#Ö 6",
@@ -127080,7 +127137,8 @@
       "datum_anzeige": "27.03.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13297",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IX:2023-09-006B"
     },
     {
       "ref": "bza:13297#Ö 3.5",
@@ -129490,7 +129548,8 @@
       "datum_anzeige": "25.03.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13296",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:t8adff1cc"
     },
     {
       "ref": "bza:13227#Ö 1",
@@ -129867,7 +129926,8 @@
       "datum_anzeige": "25.03.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13227",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t2af2f854"
     },
     {
       "ref": "bza:13227#Ö 2.6",
@@ -132046,7 +132106,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=232166&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2025-05-001"
     },
     {
       "ref": "bza:13271#Ö 3.2",
@@ -132152,7 +132213,8 @@
       "datum_anzeige": "11.03.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13271",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:tc39b79e4"
     },
     {
       "ref": "bza:13271#Ö 4.2",
@@ -132202,7 +132264,8 @@
       "datum_anzeige": "11.03.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13271",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:te9407bd0"
     },
     {
       "ref": "bza:13271#Ö 5.1",
@@ -136335,7 +136398,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=231549&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2025-05-001"
     },
     {
       "ref": "bza:13255#Ö 5.2",
@@ -136585,7 +136649,8 @@
       "datum_anzeige": "25.02.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13255",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:tc39b79e4"
     },
     {
       "ref": "bza:13255#Ö 7.2",
@@ -136635,7 +136700,8 @@
       "datum_anzeige": "25.02.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13255",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:te9407bd0"
     },
     {
       "ref": "bza:13255#Ö 8.1",
@@ -137812,7 +137878,8 @@
       "datum_anzeige": "19.02.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13215",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:t9b61a4f4"
     },
     {
       "ref": "bza:13215#Ö 4.3",
@@ -139025,7 +139092,8 @@
       "datum_anzeige": "11.02.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13147",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XII:2024-12-025"
     },
     {
       "ref": "bza:13147#Ö 3.3",
@@ -139543,7 +139611,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=230920&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "III:tff5acbd5"
     },
     {
       "ref": "bza:13226#Ö 3.4",
@@ -139700,7 +139769,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=230922&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "III:tcb61bb61"
     },
     {
       "ref": "bza:13226#Ö 3.7",
@@ -143390,7 +143460,8 @@
       "datum_anzeige": "21.01.2025",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=13157",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:2024-10-016"
     },
     {
       "ref": "bza:13157#Ö 3.3",
@@ -151834,7 +151905,8 @@
       "datum_anzeige": "04.12.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11490",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:t03a883ba"
     },
     {
       "ref": "bza:11490#Ö 2.6",
@@ -152024,7 +152096,8 @@
       "datum_anzeige": "04.12.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11490",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:t9b61a4f4"
     },
     {
       "ref": "bza:11490#Ö 4.3",
@@ -153187,7 +153260,8 @@
       "datum_anzeige": "26.11.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11917",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:tf4ff9a61"
     },
     {
       "ref": "bza:11917#Ö 3.5",
@@ -153567,7 +153641,8 @@
       "datum_anzeige": "26.11.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11453",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:tf2070c47"
     },
     {
       "ref": "bza:11453#Ö 3.4",
@@ -153661,7 +153736,8 @@
       "datum_anzeige": "26.11.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11453",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t4450af37"
     },
     {
       "ref": "bza:11453#Ö 4.1",
@@ -155376,7 +155452,8 @@
       "datum_anzeige": "20.11.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11908",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:tfd307824"
     },
     {
       "ref": "bza:11908#Ö 3.1",
@@ -156707,7 +156784,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=225475&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VII:2023-07-023"
     },
     {
       "ref": "bza:11795#Ö 3.2",
@@ -158427,7 +158505,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=225573&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "III:tcb61bb61"
     },
     {
       "ref": "bza:11907#Ö 4.1",
@@ -159867,7 +159946,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=224964&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2024-05-006"
     },
     {
       "ref": "bza:11899#Ö 2.3",
@@ -159918,7 +159998,8 @@
       "datum_anzeige": "29.10.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11899",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2024-05-007"
     },
     {
       "ref": "bza:11899#Ö 3.1",
@@ -161524,7 +161605,8 @@
       "datum_anzeige": "22.10.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11871",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:t0546b2c8"
     },
     {
       "ref": "bza:11871#Ö 3",
@@ -166127,7 +166209,8 @@
       "datum_anzeige": "15.10.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11529",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:2024-11-011"
     },
     {
       "ref": "bza:11529#Ö 4.1",
@@ -169324,7 +169407,8 @@
       "datum_anzeige": "08.10.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11864",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XII:t682cec11"
     },
     {
       "ref": "bza:11864#Ö 5",
@@ -169720,7 +169804,8 @@
       "datum_anzeige": "08.10.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11452",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t7263acf6"
     },
     {
       "ref": "bza:11452#Ö 2.4",
@@ -170348,7 +170433,8 @@
       "datum_anzeige": "08.10.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11452",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t4450af37"
     },
     {
       "ref": "bza:11452#Ö 4.1",
@@ -171008,7 +171094,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=223660&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "III:2024-03-013"
     },
     {
       "ref": "bza:11788#Ö 3.4",
@@ -171170,7 +171257,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=223668&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "III:t2af3ac91"
     },
     {
       "ref": "bza:11788#Ö 3.7",
@@ -172614,7 +172702,8 @@
       "datum_anzeige": "24.09.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11797",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:tfd307824"
     },
     {
       "ref": "bza:11797#Ö 2.4",
@@ -172810,7 +172899,8 @@
       "datum_anzeige": "24.09.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11797",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:t8adff1cc"
     },
     {
       "ref": "bza:11797#Ö 4",
@@ -174410,7 +174500,8 @@
       "datum_anzeige": "30.07.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11747",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:t029e9a61"
     },
     {
       "ref": "bza:11747#Ö 3",
@@ -174864,7 +174955,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=221167&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VII:2023-07-023"
     },
     {
       "ref": "bza:11736#Ö 3.3",
@@ -181304,7 +181396,8 @@
       "datum_anzeige": "23.07.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11451",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t19786437"
     },
     {
       "ref": "bza:11451#Ö 2.2",
@@ -181544,7 +181637,8 @@
       "datum_anzeige": "23.07.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11451",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t7263acf6"
     },
     {
       "ref": "bza:11451#Ö 3.1",
@@ -184296,7 +184390,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=220700&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:2024-10-016"
     },
     {
       "ref": "bza:11733#Ö 2.2",
@@ -184694,7 +184789,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=220704&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:2022-10-013B"
     },
     {
       "ref": "bza:11733#Ö 2.10",
@@ -184988,7 +185084,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=220631&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:2022-06-016"
     },
     {
       "ref": "bza:11700#Ö 2.3",
@@ -185036,7 +185133,8 @@
       "datum_anzeige": "16.07.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11700",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:t627ca076"
     },
     {
       "ref": "bza:11700#Ö 2.4",
@@ -185337,7 +185435,8 @@
       "datum_anzeige": "16.07.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11700",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:t9071f404"
     },
     {
       "ref": "stadt:antrag:19350",
@@ -187805,7 +187904,8 @@
       "datum_anzeige": "11.07.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11488",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:tdc09037e"
     },
     {
       "ref": "bza:11488#Ö 3.2",
@@ -189085,7 +189185,8 @@
       "datum_anzeige": "09.07.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11711",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XII:t682cec11"
     },
     {
       "ref": "bza:11711#Ö 5.3",
@@ -191623,7 +191724,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=219718&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2024-05-006"
     },
     {
       "ref": "bza:11698#Ö 3.6",
@@ -191683,7 +191785,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=219720&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2024-05-007"
     },
     {
       "ref": "bza:11698#Ö 3.7",
@@ -191961,7 +192064,8 @@
       "datum_anzeige": "25.06.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11450",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:tf2286ad9"
     },
     {
       "ref": "bza:11450#Ö 2.2",
@@ -195785,7 +195889,8 @@
       "datum_anzeige": "11.06.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11527",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:td262f75d"
     },
     {
       "ref": "bza:11527#Ö 4",
@@ -195995,7 +196100,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=219023&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:tedc8786f"
     },
     {
       "ref": "bza:11527#Ö 5.4",
@@ -196050,7 +196156,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=219026&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:2022-11-002"
     },
     {
       "ref": "bza:11527#Ö 5.5",
@@ -196105,7 +196212,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=219027&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:2023-11-010"
     },
     {
       "ref": "bza:11527#Ö 6",
@@ -201752,7 +201860,8 @@
       "datum_anzeige": "15.05.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11487",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:tdc09037e"
     },
     {
       "ref": "bza:11487#Ö 3.2",
@@ -201807,7 +201916,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=218248&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:t5b3f6199"
     },
     {
       "ref": "bza:11487#Ö 3.3",
@@ -201863,7 +201973,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=218252&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:2022-04-076"
     },
     {
       "ref": "bza:11487#Ö 3.4",
@@ -203327,7 +203438,8 @@
       "datum_anzeige": "14.05.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11644",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:2022-06-016"
     },
     {
       "ref": "bza:11644#Ö 2.1",
@@ -203425,7 +203537,8 @@
       "datum_anzeige": "14.05.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11644",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:t627ca076"
     },
     {
       "ref": "bza:11644#Ö 3",
@@ -203476,7 +203589,8 @@
       "datum_anzeige": "14.05.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11644",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:t0267c4b5"
     },
     {
       "ref": "bza:11644#Ö 4",
@@ -203778,7 +203892,8 @@
       "datum_anzeige": "14.05.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11633",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "III:tff5acbd5"
     },
     {
       "ref": "bza:11633#Ö 4.5",
@@ -203874,7 +203989,8 @@
       "datum_anzeige": "14.05.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11633",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "III:t2af3ac91"
     },
     {
       "ref": "bza:11633#Ö 5.2",
@@ -204304,7 +204420,8 @@
       "datum_anzeige": "14.05.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11449",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:tc3076b5c"
     },
     {
       "ref": "bza:11449#Ö 3.5",
@@ -204445,7 +204562,8 @@
       "datum_anzeige": "14.05.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11449",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t42d69071"
     },
     {
       "ref": "bza:11449#Ö 4.2",
@@ -204637,7 +204755,8 @@
       "datum_anzeige": "14.05.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11449",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t19786437"
     },
     {
       "ref": "bza:11449#Ö 4.6",
@@ -215140,7 +215259,8 @@
       "datum_anzeige": "09.04.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11526",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:td262f75d"
     },
     {
       "ref": "bza:11526#Ö 5",
@@ -217102,7 +217222,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=215947&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "III:t42f4d07b"
     },
     {
       "ref": "bza:11507#Ö 4.3",
@@ -217533,7 +217654,8 @@
       "datum_anzeige": "19.03.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11448",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t3846a047"
     },
     {
       "ref": "bza:11448#Ö 2.5",
@@ -225303,7 +225425,8 @@
       "datum_anzeige": "27.02.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11531",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:tec4dd08d"
     },
     {
       "ref": "bza:11531#Ö 2",
@@ -225351,7 +225474,8 @@
       "datum_anzeige": "27.02.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11531",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:t029e9a61"
     },
     {
       "ref": "bza:11531#Ö 3",
@@ -225450,7 +225574,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=214984&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2023-05-002B"
     },
     {
       "ref": "bza:11531#Ö 3.2",
@@ -225500,7 +225625,8 @@
       "datum_anzeige": "27.02.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11531",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:t3381c463"
     },
     {
       "ref": "bza:11531#Ö 3.3",
@@ -225597,7 +225723,8 @@
       "datum_anzeige": "27.02.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11531",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:t6f69f32d"
     },
     {
       "ref": "bza:11531#Ö 3.5",
@@ -225718,7 +225845,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=214989&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2024-05-001"
     },
     {
       "ref": "bza:11521#Ö 1",
@@ -225781,7 +225909,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=214759&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:2022-06-016"
     },
     {
       "ref": "bza:11521#Ö 2.1",
@@ -226288,7 +226417,8 @@
       "datum_anzeige": "22.02.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11521",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:t0267c4b5"
     },
     {
       "ref": "bza:11521#Ö 10",
@@ -229012,7 +229142,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=214680&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:2023-11-010"
     },
     {
       "ref": "bza:11522#Ö 3.10",
@@ -229493,7 +229624,8 @@
       "datum_anzeige": "20.02.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11522",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "XI:tedc8786f"
     },
     {
       "ref": "bza:11522#Ö 4.2",
@@ -231095,7 +231227,8 @@
       "datum_anzeige": "06.02.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11447",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t1cac314c"
     },
     {
       "ref": "bza:11447#Ö 2.3",
@@ -231868,7 +232001,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=213976&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:2022-04-076"
     },
     {
       "ref": "bza:11485#Ö 3.3",
@@ -232236,7 +232370,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=213982&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:2023-04-010B"
     },
     {
       "ref": "bza:11485#Ö 5",
@@ -232884,7 +233019,8 @@
       "datum_anzeige": "30.01.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11492",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:tec4dd08d"
     },
     {
       "ref": "bza:11492#Ö 2",
@@ -232932,7 +233068,8 @@
       "datum_anzeige": "30.01.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11492",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:t029e9a61"
     },
     {
       "ref": "bza:11492#Ö 3",
@@ -233026,7 +233163,8 @@
       "datum_anzeige": "30.01.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11492",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:2023-05-002B"
     },
     {
       "ref": "bza:11492#Ö 3.2",
@@ -233076,7 +233214,8 @@
       "datum_anzeige": "30.01.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11492",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:t3381c463"
     },
     {
       "ref": "bza:11492#Ö 3.3",
@@ -233173,7 +233312,8 @@
       "datum_anzeige": "30.01.2024",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11492",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "V:t6f69f32d"
     },
     {
       "ref": "stadt:11491#Ö 1",
@@ -233903,7 +234043,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=213341&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:2022-10-013B"
     },
     {
       "ref": "bza:11446#Ö 2.4",
@@ -234009,7 +234150,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=213346&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:ta4e207ae"
     },
     {
       "ref": "bza:11446#Ö 2.6",
@@ -235893,7 +236035,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=212582&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IX:2023-09-006B"
     },
     {
       "ref": "bza:11402#Ö 1",
@@ -236175,7 +236318,8 @@
       "datum_anzeige": "19.12.2023",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11402",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t2af2f854"
     },
     {
       "ref": "bza:11402#Ö 4.2",
@@ -243663,7 +243807,8 @@
       "datum_anzeige": "07.12.2023",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=9776",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:t03a883ba"
     },
     {
       "ref": "bza:9776#Ö 4.4",
@@ -243713,7 +243858,8 @@
       "datum_anzeige": "07.12.2023",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=9776",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "IV:t5b3f6199"
     },
     {
       "ref": "bza:9776#Ö 4.5",
@@ -246538,7 +246684,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=211550&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "VI:t0546b2c8"
     },
     {
       "ref": "bza:11361#Ö 2.2",
@@ -247241,7 +247388,8 @@
       "datum_anzeige": "28.11.2023",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11362",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t3846a047"
     },
     {
       "ref": "bza:11362#Ö 3.2",
@@ -247425,7 +247573,8 @@
       "datum_anzeige": "28.11.2023",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11362",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t42d69071"
     },
     {
       "ref": "bza:11362#Ö 3.6",
@@ -247618,7 +247767,8 @@
       "datum_anzeige": "28.11.2023",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=11362",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "I:t1cac314c"
     },
     {
       "ref": "bza:11362#Ö 3.10",
@@ -251255,7 +251405,8 @@
           "url": "https://www.ingolstadt.de/sessionnetbza/getfile.php?id=210603&type=do"
         }
       ],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:2022-10-013B"
     },
     {
       "ref": "bza:10341#Ö 2.5",
@@ -251523,7 +251674,8 @@
       "datum_anzeige": "07.11.2023",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=10341",
       "dokumente": [],
-      "beratungsweg": []
+      "beratungsweg": [],
+      "kette": "X:ta4e207ae"
     },
     {
       "ref": "bezirk_obb:4119#Ö 1",
@@ -253656,16 +253808,6 @@
     }
   ],
   "kommende_termine": [
-    {
-      "gremium": "Kulturbeirat",
-      "artikel": "",
-      "datum": "2026-11-16",
-      "datum_anzeige": "16.11.2026",
-      "zeit": "15:00 Uhr",
-      "ort": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
-      "quelle": "stadt",
-      "tagesordnung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13771"
-    },
     {
       "gremium": "Ausschuss für Bau, Umwelt und Energie",
       "artikel": "",

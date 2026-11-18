@@ -13,7 +13,7 @@
   'use strict';
 
   var SEITEN = {
-    'index.html': ['start', 'themen'],
+    'index.html': ['start', 'orte', 'themen'],
     'themen.html': ['themen'],
     'antraege.html': ['antraege'],
     'haushalt.html': ['haushalt'],
@@ -29,6 +29,7 @@
   };
   // Zusätzliche Daten je Szene; data/wohnen.js und data/miete.js laden die Seiten selbst
   var EXTRA = { klima: ['data/altstadt.js'], waage: ['data/beteiligungen.js'],
+    orte: ['data/unfaelle.js', 'data/baustellen.js', 'data/bezirke.js', 'vendor/pmtiles/pmtiles.js', 'vendor/protomaps/basemaps.js'],
     waerme: ['data/bezirke.js', 'data/baublock.js', 'vendor/pmtiles/pmtiles.js', 'vendor/protomaps/basemaps.js'],
     plaene: ['data/plangebiete.js', 'data/bezirke.js', 'vendor/pmtiles/pmtiles.js', 'vendor/protomaps/basemaps.js'] };
   // Szenen, die in der Datei einer anderen Szene stehen

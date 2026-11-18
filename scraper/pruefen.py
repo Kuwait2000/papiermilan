@@ -22,6 +22,7 @@ import os
 import re
 import sys
 import urllib.parse
+from datetime import date
 
 HIER = os.path.dirname(os.path.abspath(__file__))
 DATEN_VZ = os.path.join(os.path.dirname(HIER), "data")
@@ -324,7 +325,7 @@ def p_kein_html_in_fremddaten():
     wege.js maskiert bei der Ausgabe, wege_bauen.py filtert beim Bauen; das
     hier ist die dritte Sicherung und die einzige, die laut wird.
     """
-    for name in ("wege-orte", "wege-adressen", "wege-bus", "bezirke"):
+    for name in ("wege-orte", "wege-adressen", "wege-bus", "bezirke", "orte", "baustellen"):
         pfad = os.path.join(DATEN_VZ, name + ".json")
         if not os.path.exists(pfad):
             continue
@@ -607,6 +608,125 @@ def p_baublock():
         warnt(f"baublock.json: {g['wohnungen']} Wohnungen in Bloecken mit Angabe; erwartet rund 70.000")
 
 
+def p_ketten(feed):
+    """
+    Vorgangsketten (feed_bauen.py::ketten_setzen): Eine Kette verbindet nur
+    Punkte desselben Bezirksausschusses aus verschiedenen Sitzungen. Alles
+    andere waere eine behauptete Verbindung, die es nicht gibt.
+    """
+    ketten = collections.defaultdict(list)
+    for e in feed["eintraege"]:
+        if e.get("kette"):
+            ketten[e["kette"]].append(e)
+    for kennung, gruppe in ketten.items():
+        if len(gruppe) < 2:
+            fehlt(f"Kette {kennung}: nur ein Eintrag")
+        if any(e["quelle"] != "bza" for e in gruppe) or len({e["gremium"] for e in gruppe}) != 1:
+            fehlt(f"Kette {kennung}: verbindet Punkte verschiedener Gremien")
+        if len({e["sitzung_url"] for e in gruppe}) < 2:
+            fehlt(f"Kette {kennung}: alle Punkte stammen aus derselben Sitzung")
+        if len(gruppe) > 8:
+            warnt(f"Kette {kennung}: {len(gruppe)} Punkte; ist das ein Routinepunkt (KETTE_ROUTINE in feed_bauen.py)?")
+
+
+def p_orte(feed):
+    """
+    Ortsschicht (orte_bauen.py): Jeder verortete Eintrag steht im Feed, jeder
+    Ort liegt im Stadtgebiet und wird gebraucht, die Unfallzahlen sind in
+    sich stimmig, und die Datei gehoert zum aktuellen Feed. Ohne die Datei
+    zeigt die Startseite keine Orte; das ist eine Warnung, kein Fehler.
+    """
+    if not os.path.exists(os.path.join(DATEN_VZ, "orte.json")):
+        warnt("orte.json fehlt; die Startseite zeigt dann keine Orte (orte_bauen.py)")
+        return
+    o = lade("orte.json")
+    if o.get("stand_feed") != feed["feed_gebaut_am"]:
+        fehlt(f"orte.json gehoert zum Feed vom {o.get('stand_feed')}, der Feed ist vom "
+              f"{feed['feed_gebaut_am']}: orte_bauen.py nach feed_bauen.py laufen lassen")
+    je_ref = {e["ref"]: e for e in feed["eintraege"]}
+    benutzt = set()
+    for ref, z in o["eintraege"].items():
+        e = je_ref.get(ref)
+        if not e:
+            fehlt(f"orte.json: {ref} steht nicht im Feed")
+            continue
+        if e["quelle"] not in ("stadt", "bza"):
+            fehlt(f"orte.json: {ref} gehoert zum Bezirk Oberbayern und darf keinen Ingolstaedter Ort tragen")
+        if not z["o"] or any(not 0 <= i < len(o["orte"]) for i in z["o"]):
+            fehlt(f"orte.json: {ref} zeigt auf einen Ort, den es nicht gibt")
+            continue
+        benutzt.update(z["o"])
+    if len(benutzt) != len(o["orte"]):
+        fehlt(f"orte.json: {len(o['orte']) - len(benutzt)} Orte ohne Eintrag")
+    namen = collections.Counter(ort[1] for ort in o["orte"])
+    doppelt = [n for n, k in namen.items() if k > 1]
+    if doppelt:
+        fehlt(f"orte.json: Ortsname mehrfach vergeben (der Name ist der Schluessel in der Adresszeile): {doppelt[:3]}")
+    for art, name, lat, lon, linien, unfall, zusatz in o["orte"]:
+        if art not in "sakop" or not (4865000 < lat < 4885000 and 1120000 < lon < 1160000):
+            fehlt(f"orte.json: {name!r} hat eine unbekannte Art oder liegt ausserhalb der Stadt")
+        if art == "s" and not linien:
+            fehlt(f"orte.json: Strasse {name!r} ohne Verlauf")
+        if art == "p" and not (isinstance(zusatz, dict) and zusatz.get("nr")):
+            fehlt(f"orte.json: Bebauungsplan {name!r} ohne Plannummer")
+        if unfall and not (len(unfall) == 4 and unfall[0] >= max(unfall[1:]) and min(unfall) >= 0):
+            fehlt(f"orte.json: Unfallzahlen von {name!r} passen nicht zusammen: {unfall}")
+    u = o["unfall"]
+    if "Statistische Ämter des Bundes und der Länder" not in u.get("vermerk", "") or u.get("lizenz") != "dl-de/by-2-0":
+        fehlt("orte.json: Quellenvermerk oder Lizenz des Unfallatlas fehlt")
+    if not 1500 < u["anzahl"] < 6000:
+        warnt(f"orte.json: {u['anzahl']} Unfaelle in {u['bis'] - u['von'] + 1} Jahren; erwartet rund 3.300")
+    anteil = len(o["eintraege"]) / max(1, o["statistik"]["eintraege"])
+    if not 0.15 < anteil < 0.45:
+        warnt(f"orte.json: {anteil:.0%} der Eintraege verortet; erwartet etwa ein Viertel. Regeln in orte_bauen.py pruefen")
+
+    # Verlauf jeder Strasse entpacken (wie seiten/index.js::ortInfo) und im Stadtgebiet halten
+    for ort in o["orte"]:
+        for linie in ort[4] or []:
+            a = b = 0
+            for k in range(0, len(linie), 2):
+                a += linie[k]
+                b += linie[k + 1]
+                if not (4865000 < a < 4885000 and 1120000 < b < 1160000):
+                    fehlt(f"orte.json: Verlauf von {ort[1]!r} liegt ausserhalb der Stadt (Kodierung der Linien?)")
+                    break
+    plan_ids = {p["id"] for p in lade("plaene.json")["plaene"]} if os.path.exists(os.path.join(DATEN_VZ, "plaene.json")) else None
+    if plan_ids is not None:
+        for ort in o["orte"]:
+            if ort[0] == "p" and ort[6].get("id") not in plan_ids:
+                fehlt(f"orte.json: {ort[1]!r} zeigt auf einen Plan, den plaene.html nicht kennt")
+    # Das Schaubild der Startseite laedt unfaelle.js und baustellen.js fest; fehlt eine, faellt es ganz aus
+    pfad = os.path.join(DATEN_VZ, "unfaelle.js")
+    if not os.path.exists(pfad):
+        fehlt("unfaelle.js fehlt; das Schaubild der Startseite laedt dann nicht (orte_bauen.py)")
+    else:
+        with open(pfad, encoding="utf-8") as f:
+            text = f.read()
+        un = json.loads(text[text.index("{"):text.rindex("}") + 1])
+        if len(un["punkte"]) != u["anzahl"] or "Statistische Ämter" not in un.get("quelle", "") or "dl-de/by-2-0" not in un.get("lizenz", ""):
+            fehlt("unfaelle.js: Punktzahl passt nicht zu orte.json oder Quellenvermerk fehlt")
+    if not os.path.exists(os.path.join(DATEN_VZ, "baustellen.json")) or not os.path.exists(os.path.join(DATEN_VZ, "baustellen.js")):
+        fehlt("baustellen.json/.js fehlt; das Schaubild der Startseite laedt dann nicht (orte_bauen.py mit Netz laufen lassen)")
+        return
+    b = lade("baustellen.json")
+    if "CC BY 4.0" not in b.get("quelle", "") or "Stadt Ingolstadt" not in b.get("quelle", ""):
+        fehlt("baustellen.json: Namensnennung der Stadt oder Lizenz CC BY 4.0 fehlt")
+    for zeile in b["liste"]:
+        lat, lon, wo, quer, beginn, ende = zeile[:6]
+        if not (48.65 < lat < 48.85 and 11.2 < lon < 11.6):
+            fehlt(f"baustellen.json: {wo!r} liegt ausserhalb der Stadt")
+            break
+        if any(d and not re.fullmatch(r"\d{4}-\d\d-\d\d", d) for d in (beginn, ende)):
+            fehlt(f"baustellen.json: {wo!r} hat ein Datum, das kein ISO-Datum ist")
+            break
+    # Die Stadt liefert je Baustelle eine Kontaktadresse mit; sie gehoert nicht auf die Seite
+    if any("@" in t for t in _texte(b["liste"])):
+        fehlt("baustellen.json: enthaelt eine E-Mail-Adresse")
+    alter = (date.today() - date.fromisoformat(b["stand"])).days
+    if alter > 14:
+        warnt(f"baustellen.json ist {alter} Tage alt; die Vorschau der Stadt reicht 14 Tage (orte_bauen.py)")
+
+
 def p_nur_oeffentliche_tops(kur, index):
     """
     Nicht-oeffentliche Tagesordnungspunkte duerfen nie kuratiert werden.
@@ -871,6 +991,8 @@ def main():
     p_kein_html_in_fremddaten()
     p_plaene()
     p_waerme()
+    p_ketten(feed)
+    p_orte(feed)
     p_oberflaeche(feed)
     gruende = p_abdeckung(roh, feed["eintraege"])
 

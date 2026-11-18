@@ -49,6 +49,23 @@
   var aktiv = { status: [], lebenslage: [], bezirk: [], anlass: [], ebene: [] };
   var suchbegriff = '';
 
+  /* ---------------- Orte, Vorgangsketten, Naehe ----------------
+     data/orte.js (scraper/orte_bauen.py) sagt, welcher Eintrag welche Strasse,
+     Einrichtung oder welchen Bebauungsplan nennt. Daraus entstehen drei
+     Ansichten, von denen immer nur eine gilt:
+       ort    alles, was denselben Ort nennt (Klick auf einen Ortsnamen)
+       kette  derselbe Vorgang in mehreren Sitzungen eines Bezirksausschusses
+              (Feld "kette" aus feed_bauen.py)
+       naehe  alles im Umkreis einer Adresse. Die Adresse bleibt im Browser
+              und steht bewusst nicht in der Adresszeile.
+     Fehlt data/orte.js, bleibt die Seite wie zuvor. */
+  var ORTE = window.ORTE && window.ORTE.orte ? window.ORTE : null;
+  var ortGewaehlt = null;
+  var ketteGewaehlt = '';
+  var naehe = null;
+  var naeheRadius = 500;
+  var naeheTreffer = {};
+
   /* ---------------- Einfache Sprache ----------------
      Ein Schalter stellt die ganze Seite um, nicht nur die Kartentexte —
      siehe KURATION.md, Abschnitt "Der Umschalter fuer die ganze Seite".
@@ -155,6 +172,72 @@
     herkunftBezirkObb: { n: 'Bezirk Oberbayern', l: 'Bezirk Oberbayern' },
     herkunftEntwurf: { n: 'automatisch verschlagwortet', l: 'automatisch sortiert' },
     ort: { n: 'Ort: ', l: 'Ort: ' },
+    ortKnopfTitel: { n: 'Alle Einträge zu diesem Ort zeigen', l: 'Alle Themen zu diesem Ort zeigen' },
+    ortArtS: { n: 'Straße', l: 'Straße' },
+    ortArtK: { n: 'Kreuzung', l: 'Kreuzung' },
+    ortArtA: { n: 'Adresse', l: 'Adresse' },
+    ortArtO: { n: 'Einrichtung', l: 'Ort' },
+    ortArtP: { n: 'Bebauungsplan', l: 'Bau-Plan' },
+    ortKopfAnzahl: { n: '{n} Einträge nennen diesen Ort.', l: '{n} Themen gehören zu diesem Ort.' },
+    ortKopfAnzahlEins: { n: 'Ein Eintrag nennt diesen Ort.', l: 'Ein Thema gehört zu diesem Ort.' },
+    ortKopfDavon: { n: 'Zu Ihrer Auswahl passen davon {n}.', l: 'Zu Ihrer Auswahl passen {n}.' },
+    ortKopfPlan: { n: 'Steckbrief des Plans mit allen Unterlagen', l: 'Mehr zu diesem Bau-Plan' },
+    ortHinweis: {
+      n: 'Die Orte hat ein Programm in Titel und Kurztext gefunden. Das gelingt bei etwa jedem vierten Eintrag und kann danebenliegen. Straßen und Einrichtungen: © OpenStreetMap-Mitwirkende.',
+      l: 'Ein Computer-Programm hat die Orte gesucht. Es findet nicht alles. Es kann sich irren. Die Straßen-Namen kommen von © OpenStreetMap-Mitwirkende.'
+    },
+    ansichtZurueck: { n: 'Zurück zur ganzen Liste', l: 'Zurück zu allen Themen' },
+    ketteKopf: { n: 'Ein Vorgang in {n} Sitzungen', l: 'Ein Thema in {n} Treffen' },
+    ketteKopfText: {
+      n: 'Diese Punkte standen im selben Bezirksausschuss unter demselben Aktenzeichen oder demselben Titel auf der Tagesordnung. Die Verbindung ist automatisch entstanden. Ob es derselbe Vorgang ist, zeigt das Original.',
+      l: 'Diese Themen haben den gleichen Namen oder die gleiche Nummer. Ein Computer-Programm hat sie verbunden. Es kann sich irren.'
+    },
+    vorgangTitel: { n: 'Derselbe Vorgang in anderen Sitzungen', l: 'Dieses Thema gab es öfter' },
+    vorgangKnopf: { n: 'Verlauf zeigen ({n} Punkte)', l: 'Alle {n} zeigen' },
+    vorgangKurz: { n: 'Verlauf ({n})', l: 'Verlauf ({n})' },
+    vorgangQuelle: {
+      n: 'Automatisch verbunden: gleiches Aktenzeichen oder gleicher Titel im selben Bezirksausschuss.',
+      l: 'Ein Computer-Programm hat die Themen verbunden.'
+    },
+    unfallTitel: { n: 'Unfälle mit Verletzten, {von} bis {bis}', l: 'Unfälle von {von} bis {bis}' },
+    unfallQuelle: {
+      n: 'Gezählt ist, was die Polizei aufgenommen hat und wobei jemand verletzt wurde. Unfälle an einer Kreuzung zählen bei beiden Straßen. Quelle: ',
+      l: 'Gezählt sind nur Unfälle mit Verletzten. Quelle: '
+    },
+    unfallQuelleKurz: {
+      n: 'Gezählt ist, was die Polizei aufgenommen hat und wobei jemand verletzt wurde. Quelle: ',
+      l: 'Gezählt sind nur Unfälle mit Verletzten. Quelle: '
+    },
+    unfallQuelleName: { n: 'Unfallatlas', l: 'Unfall-Atlas' },
+    unfallGanzeStrasse: { n: ' (ganze Straße)', l: ' (ganze Straße)' },
+    unfallUmkreis: { n: ' (Umkreis {m} m)', l: ' (in der Nähe)' },
+    naeheLabel: { n: 'In meiner Nähe', l: 'In meiner Nähe' },
+    naehePlaceholder: { n: 'Straße und Hausnummer', l: 'Ihre Straße' },
+    naeheRadiusLabel: { n: 'Umkreis', l: 'Wie weit?' },
+    naeheKlein: {
+      n: 'Zeigt, was im Umkreis beraten wurde. Ihre Eingabe bleibt in Ihrem Browser.',
+      l: 'Ihre Adresse bleibt auf Ihrem Gerät.'
+    },
+    naeheKopf: { n: 'Rund um {a}', l: 'In der Nähe von {a}' },
+    naeheKopfAnzahl: { n: '{n} Einträge nennen einen Ort im Umkreis von {r}.', l: '{n} Themen sind in der Nähe.' },
+    naeheKopfKeine: {
+      n: 'Kein Eintrag nennt einen Ort im Umkreis von {r}. Ein größerer Umkreis findet vielleicht mehr.',
+      l: 'In der Nähe gibt es kein Thema. Wählen Sie einen größeren Kreis.'
+    },
+    naeheUnfaelle: { n: 'Unfälle mit Verletzten im Umkreis, {von} bis {bis}', l: 'Unfälle in der Nähe von {von} bis {bis}' },
+    naeheBaustellen: { n: 'Gemeldete Baustellen und Sperrungen im Umkreis', l: 'Baustellen in der Nähe' },
+    ortBaustellen: { n: 'Gemeldete Baustellen und Sperrungen an diesem Ort', l: 'Baustellen an diesem Ort' },
+    baustellenKeine: { n: 'Keine gemeldet.', l: 'Es gibt keine.' },
+    baustellenStand: {
+      n: 'Stand {d}: Vorschau der Stadt für 14 Tage. Quelle: Stadt Ingolstadt (open.bydata), CC BY 4.0.',
+      l: 'Stand: {d}. Die Liste kommt von der Stadt Ingolstadt (open.bydata), CC BY 4.0.'
+    },
+    baustellenAb: { n: 'ab {d}', l: 'ab {d}' },
+    baustellenBis: { n: 'bis {d}', l: 'bis {d}' },
+    baustellenMehr: { n: 'und {n} weitere', l: 'und {n} weitere' },
+    naeheEnde: { n: 'Suche in der Nähe beenden', l: 'Suche beenden' },
+    entfernungDort: { n: 'direkt dort', l: 'direkt dort' },
+    entfernung: { n: 'rund {m} entfernt', l: '{m} entfernt' },
     keineLeichteFassung: {
       n: '', l: 'Für dieses Thema gibt es noch keine Einfache-Sprache-Fassung. Hier steht der normale Text.'
     },
@@ -333,11 +416,17 @@
   /* Suchtext je Eintrag einmalig vorberechnen: normale und leichte Fassung,
      Titel, Gremium, Schlagworte — die Suche soll unabhaengig vom Sprach-
      modus alle passenden Eintraege finden. */
+  var kettenIndex = {};
   daten.eintraege.forEach(function (e) {
+    var z = ORTE && ORTE.eintraege[e.ref];
+    e._orte = z ? z.o : [];
+    e._verkehr = !!(z && z.v);
+    if (e.kette) (kettenIndex[e.kette] = kettenIndex[e.kette] || []).push(e);
     e._suchtext = [
       e.klartext_titel, e.klartext, e.klartext_titel_leicht, e.klartext_leicht,
       e.amtlicher_titel, e.gremium, e.vorlage, e.antragsteller,
       (e.ort || []).join(' '),
+      e._orte.map(function (i) { return ORTE.orte[i][1]; }).join(' '),
       werte(e, 'lebenslage').join(' '), werte(e, 'bezirk').join(' '), werte(e, 'anlass').join(' ')
     ].filter(Boolean).join(' ').toLowerCase();
   });
@@ -414,6 +503,7 @@
         if (i === -1) aktiv.ebene.push(wert);
         else if (aktiv.ebene.length > 1) aktiv.ebene.splice(i, 1);
         else return;   // die letzte Ebene bleibt an, sonst waere die Seite leer
+        ketteGewaehlt = '';   // die Kette gilt ohne Filter; wer filtert, verlaesst sie
         gezeigt = ERSTE_SEITE;
         baueEbenen();
         baueFilter();      // Zahlen an den Filterchips haengen an der Ebene
@@ -450,6 +540,16 @@
     else if (!aktiv.ebene.length) aktiv.ebene = ebeneStandard();
     var q = p.get('q');
     if (q) { suchbegriff = q.trim().toLowerCase(); document.getElementById('suche').value = q; }
+    /* Ort und Vorgangskette duerfen in die Adresse (ein Ortsname ist nichts
+       Persoenliches), die Adresse der Nähe-Suche nicht. */
+    var kette = p.get('kette');
+    if (kette && kettenIndex[kette]) ketteGewaehlt = kette;
+    var ortName = p.get('ort');
+    if (ortName && ORTE && !ketteGewaehlt) {
+      for (var i = 0; i < ORTE.orte.length; i++) {
+        if (ORTE.orte[i][1] === ortName) { ortGewaehlt = i; break; }
+      }
+    }
   }
 
   function urlSchreiben() {
@@ -468,6 +568,8 @@
     });
     var q = document.getElementById('suche').value.trim();
     if (q) teile.push('q=' + encodeURIComponent(q));
+    if (ketteGewaehlt) teile.push('kette=' + encodeURIComponent(ketteGewaehlt));
+    else if (ortGewaehlt !== null) teile.push('ort=' + encodeURIComponent(ORTE.orte[ortGewaehlt][1]));
     var neu = location.pathname + (teile.length ? '?' + teile.join('&') : '') + location.hash;
     try { history.replaceState(null, '', neu); } catch (err) { /* file:// o. ae. */ }
   }
@@ -623,6 +725,9 @@
   function zeigeAlle(status) {
     aktiv.status = [status];
     mitTiteln = null;
+    /* "Alle offenen Punkte" meint alle, nicht nur die eines Orts oder Vorgangs */
+    ortGewaehlt = null; ketteGewaehlt = ''; naehe = null; naeheTreffer = {};
+    document.getElementById('naehe-adresse').value = '';
     gezeigt = ERSTE_SEITE;
     baueFilter();
     zeichne();
@@ -739,6 +844,10 @@
       txt(btnFilterToggle.getAttribute('aria-expanded') === 'true' ? 'filterToggleAus' : 'filterToggleAn');
     document.getElementById('suche-label').textContent = txt('sucheLabel');
     document.getElementById('suche').setAttribute('placeholder', txt('suchePlaceholder'));
+    document.getElementById('naehe-label').textContent = txt('naeheLabel');
+    document.getElementById('naehe-adresse').setAttribute('placeholder', txt('naehePlaceholder'));
+    document.getElementById('naehe-radius-label').textContent = txt('naeheRadiusLabel');
+    document.getElementById('naehe-klein').textContent = txt('naeheKlein');
     document.getElementById('footer-h2').textContent = txt('footerH2');
     document.getElementById('footer-p1').textContent = txt('footerP1');
     document.getElementById('footer-p2').innerHTML = txt('footerP2');
@@ -809,6 +918,7 @@
           var i = liste.indexOf(wert);
           if (i === -1) { liste.push(wert); b.setAttribute('aria-pressed', 'true'); }
           else { liste.splice(i, 1); b.setAttribute('aria-pressed', 'false'); }
+          ketteGewaehlt = '';
           gezeigt = ERSTE_SEITE;   // neue Auswahl faengt wieder oben an
           aktualisiereFilterZusammenfassung();
           zeichne();
@@ -873,6 +983,7 @@
     clearTimeout(sucheTimer);
     sucheTimer = setTimeout(function () {
       suchbegriff = wert.trim().toLowerCase();
+      if (suchbegriff) ketteGewaehlt = '';
       gezeigt = ERSTE_SEITE;
       zeichne();
     }, 120);
@@ -885,6 +996,8 @@
     baueDemnaechst();
     suchbegriff = '';
     sucheInput.value = '';
+    ortGewaehlt = null; ketteGewaehlt = ''; naehe = null; naeheTreffer = {};
+    document.getElementById('naehe-adresse').value = '';
     gezeigt = ERSTE_SEITE;
     baueFilter();   // ruft aktualisiereFilterZusammenfassung() mit auf
     zeichne();
@@ -906,6 +1019,309 @@
     zeichne();
   });
 
+  /* ---------------- Orte: Geometrie und Abstaende ---------------- */
+  var MY = 111195, MX = 111320 * Math.cos(48.763 * Math.PI / 180);   // Meter je Grad bei Ingolstadt
+  var ortCache = {};
+  function ortInfo(i) {
+    if (ortCache[i]) return ortCache[i];
+    var o = ORTE.orte[i], linien = [];
+    (o[4] || []).forEach(function (flach) {
+      var a = 0, b = 0, pts = [];
+      for (var k = 0; k < flach.length; k += 2) { a += flach[k]; b += flach[k + 1]; pts.push([a / 1e5, b / 1e5]); }
+      linien.push(pts);
+    });
+    ortCache[i] = { art: o[0], name: o[1], lat: o[2] / 1e5, lon: o[3] / 1e5, linien: linien, unfall: o[5] || null, zusatz: o[6] || null };
+    return ortCache[i];
+  }
+  function meter(lat1, lon1, lat2, lon2) {
+    var dx = (lon2 - lon1) * MX, dy = (lat2 - lat1) * MY;
+    return Math.sqrt(dx * dx + dy * dy);
+  }
+  /* Abstand eines Punkts von der Strecke a-b; a und b als [lat, lon] */
+  function abstandStrecke(lat, lon, a, b) {
+    var px = (lon - a[1]) * MX, py = (lat - a[0]) * MY, dx = (b[1] - a[1]) * MX, dy = (b[0] - a[0]) * MY;
+    var l2 = dx * dx + dy * dy, t = l2 ? Math.max(0, Math.min(1, (px * dx + py * dy) / l2)) : 0;
+    return Math.sqrt((px - t * dx) * (px - t * dx) + (py - t * dy) * (py - t * dy));
+  }
+  function abstandLinien(lat, lon, linien) {
+    var best = Infinity;
+    linien.forEach(function (l) {
+      for (var k = 0; k + 1 < l.length; k++) best = Math.min(best, abstandStrecke(lat, lon, l[k], l[k + 1]));
+    });
+    return best;
+  }
+  /* Umgriff eines Bebauungsplans aus data/plangebiete.js (unveraendert, CC BY-ND).
+     Ist die Datei noch nicht geladen, gilt der Punkt aus data/orte.js. */
+  function abstandPlan(lat, lon, nr) {
+    var G = window.PLANGEBIETE, f = null;
+    if (!G) return null;
+    for (var i = 0; i < G.features.length; i++) if (G.features[i].properties.nr === nr) { f = G.features[i]; break; }
+    if (!f) return null;
+    var g = f.geometry, polys = g.type === 'Polygon' ? [g.coordinates] : g.coordinates, best = Infinity, drin = false;
+    polys.forEach(function (poly) {
+      poly.forEach(function (ring) {
+        for (var k = 0, j = ring.length - 1; k < ring.length; j = k++) {
+          var a = ring[k], b = ring[j];
+          if ((a[1] > lat) !== (b[1] > lat) && lon < (b[0] - a[0]) * (lat - a[1]) / (b[1] - a[1]) + a[0]) drin = !drin;
+          best = Math.min(best, abstandStrecke(lat, lon, [a[1], a[0]], [b[1], b[0]]));
+        }
+      });
+    });
+    return drin ? 0 : best;
+  }
+  function abstandOrt(i, lat, lon) {
+    var o = ortInfo(i);
+    if (o.art === 'p') {
+      var d = abstandPlan(lat, lon, o.zusatz.nr);
+      if (d !== null) return d;
+    }
+    return o.linien.length ? abstandLinien(lat, lon, o.linien) : meter(lat, lon, o.lat, o.lon);
+  }
+
+  function rechneNaehe() {
+    naeheTreffer = {};
+    if (!naehe || !ORTE) return;
+    var jeOrt = {};
+    daten.eintraege.forEach(function (e) {
+      var best = null;
+      e._orte.forEach(function (i) {
+        if (!(i in jeOrt)) jeOrt[i] = abstandOrt(i, naehe.lat, naehe.lon);
+        if (jeOrt[i] <= naeheRadius && (!best || jeOrt[i] < best.m)) best = { m: jeOrt[i], ort: i };
+      });
+      if (best) naeheTreffer[e.ref] = best;
+    });
+  }
+
+  function meterText(m) { return m >= 1000 ? String(m / 1000).replace('.', ',') + ' km' : m + ' m'; }
+  function entfernungText(m) {
+    return m < 40 ? txt('entfernungDort') : txt('entfernung').replace('{m}', meterText(Math.round(m / 10) * 10));
+  }
+
+  /* Unfallzahlen als Satz: u = [alle, mit Rad, mit Fussgaenger, schwer oder toedlich] */
+  function unfallSatz(u) {
+    if (!u[0]) return leicht ? 'kein Unfall mit Verletzten' : 'keine Unfälle mit Verletzten verzeichnet';
+    var kopf = u[0] + (u[0] === 1 ? ' Unfall' : ' Unfälle') + ' mit Verletzten';
+    var teile = [];
+    if (u[1]) teile.push(u[1] + ' mit Fahrrad');
+    if (u[2]) teile.push(u[2] + (leicht ? ' mit Fußgängern' : ' mit Fußgängerinnen oder Fußgängern'));
+    if (u[3] && !leicht) teile.push(u[3] + ' mit Schwerverletzten oder Getöteten');
+    return kopf + (teile.length ? ', davon ' + teile.join(', ') : '');
+  }
+  function unfallZeitraum(id) {
+    return txt(id).replace('{von}', ORTE.unfall.von).replace('{bis}', ORTE.unfall.bis);
+  }
+  function unfallQuelle(kurz) {
+    var p = el('p', 'quelle klein', txt(kurz ? 'unfallQuelleKurz' : 'unfallQuelle'));
+    var a = el('a', null, txt('unfallQuelleName'));
+    a.href = ORTE.unfall.url; a.target = '_blank'; a.rel = 'noopener';
+    neuerTabHinweis(a);
+    p.appendChild(a);
+    /* Vermerk und Lizenz, wie die Datenlizenz Deutschland sie verlangt; auch in Einfacher Sprache */
+    p.appendChild(document.createTextNode(', ' + ORTE.unfall.vermerk + ' ('));
+    var lz = el('a', null, ORTE.unfall.lizenz);
+    lz.href = ORTE.unfall.lizenz_url; lz.target = '_blank'; lz.rel = 'noopener';
+    neuerTabHinweis(lz);
+    p.appendChild(lz);
+    p.appendChild(document.createTextNode(')'));
+    return p;
+  }
+  function ortMitZusatz(o) {
+    /* Bei mehrfach vergebenen Namen steht der Bezirk schon in Klammern dahinter */
+    if (o.art === 's') return o.name + (o.name.indexOf('(') === -1 ? txt('unfallGanzeStrasse') : '');
+    if (o.art === 'k') return txt('ortArtK') + ' ' + o.name + txt('unfallUmkreis').replace('{m}', ORTE.unfall.kreuzung_m);
+    return o.name + txt('unfallUmkreis').replace('{m}', ORTE.unfall.adresse_m);
+  }
+
+  /* Unfallpunkte (data/unfaelle.js) und Baustellen (data/baustellen.js) kommen
+     erst, wenn eine Orts- oder Nähe-Ansicht sie braucht. */
+  var unfallPunkte = null;
+  function unfaelleImUmkreis(lat, lon, radius) {
+    var U = window.UNFAELLE;
+    if (!U) return null;
+    if (!unfallPunkte) {
+      var a = 0, b = 0;
+      unfallPunkte = U.punkte.map(function (p) { a += p[0]; b += p[1]; return [a / 1e5, b / 1e5, p[3], p[4], p[5]]; });
+    }
+    var z = [0, 0, 0, 0];
+    unfallPunkte.forEach(function (p) {
+      if (meter(lat, lon, p[0], p[1]) > radius) return;
+      z[0]++; if (p[3]) z[1]++; if (p[4]) z[2]++; if (p[2] <= 2) z[3]++;
+    });
+    return z;
+  }
+  function baustellenBei(test) {
+    var B = window.BAUSTELLEN;
+    if (!B) return null;
+    var heute = heuteIso();
+    return B.liste.filter(function (b) { return (!b[5] || b[5] >= heute) && test(b[0], b[1]); });
+  }
+  function baustellenBlock(liste, titelId) {
+    var box = document.createDocumentFragment();
+    box.appendChild(el('h3', null, txt(titelId)));
+    if (!liste.length) {
+      box.appendChild(el('p', null, txt('baustellenKeine')));
+    } else {
+      var ul = el('ul');
+      liste.slice(0, 6).forEach(function (b) {
+        var wo = b[2] + (b[3] ? ' (' + b[3] + ')' : '');
+        var was = [b[6], b[4] > heuteIso() ? txt('baustellenAb').replace('{d}', datumDe(b[4])) : '',
+          b[5] ? txt('baustellenBis').replace('{d}', datumDe(b[5])) : ''].filter(Boolean).join(', ');
+        var li = el('li');
+        li.appendChild(el('strong', null, wo));
+        li.appendChild(document.createTextNode(was ? ': ' + was : ''));
+        ul.appendChild(li);
+      });
+      if (liste.length > 6) ul.appendChild(el('li', null, txt('baustellenMehr').replace('{n}', liste.length - 6)));
+      box.appendChild(ul);
+    }
+    box.appendChild(el('p', 'klein', txt('baustellenStand').replace('{d}', datumDe(window.BAUSTELLEN.stand))));
+    return box;
+  }
+  var zusatzAngefragt = {}, letzteTreffer = [];
+  function ladeZusatz(dateien) {
+    var neu = dateien.filter(function (d) { return !zusatzAngefragt[d]; });
+    if (!neu.length) return;
+    neu.forEach(function (d) { zusatzAngefragt[d] = true; });
+    Promise.all(neu.map(function (d) { return H.ladeSkript(d).catch(function () { /* ohne die Datei fehlt nur der Zusatz */ }); }))
+      .then(function () {
+        if (!ketteGewaehlt && ortGewaehlt === null && !naehe) return;   // Ansicht inzwischen beendet
+        /* Mit den Umgriffen der Plaene koennen sich die Treffer der Nähe-Suche
+           aendern. Nur dann die Liste neu bauen; sonst bliebe ein gerade
+           aufgeklappter Eintrag nicht offen. */
+        var vorher = Object.keys(naeheTreffer).sort().join('|');
+        rechneNaehe();
+        if (Object.keys(naeheTreffer).sort().join('|') !== vorher) zeichne();
+        else zeichneOrtsKopf(letzteTreffer);
+      });
+  }
+
+  /* Eine der drei Ansichten waehlen; die anderen beiden enden damit. */
+  function ansicht(art, wert) {
+    ortGewaehlt = art === 'ort' ? wert : null;
+    ketteGewaehlt = art === 'kette' ? wert : '';
+    naehe = art === 'naehe' ? wert : null;
+    if (art !== 'naehe') document.getElementById('naehe-adresse').value = '';
+    /* "Alles zu diesem Ort" und der Verlauf eines Vorgangs meinen alles: Suchwort
+       und Filter enden. Die Nähe-Suche steht bei den Filtern und gilt mit ihnen. */
+    if (art === 'ort' || art === 'kette') {
+      ACHSEN.forEach(function (a) { if (!a.oben) aktiv[a.key] = []; });
+      suchbegriff = '';
+      sucheInput.value = '';
+      baueFilter();
+    }
+    rechneNaehe();
+    mitTiteln = null;   // die Ortsansichten zeigen auch Punkte, von denen es nur den Titel gibt
+    gezeigt = ERSTE_SEITE;
+    kopfFokus = !!art;
+    zeichne();
+    scrolleZu(document.getElementById(art ? 'orts-kopf' : 'filter'));
+    if (!art) {
+      /* Der Knopf "Zurück" ist mit dem Kopf verschwunden; der Fokus geht zur Zählzeile der Liste */
+      var zz = document.getElementById('feed-count');
+      zz.setAttribute('tabindex', '-1');
+      zz.focus({ preventScroll: true });
+    }
+  }
+  var kopfFokus = false;
+
+  function ortKnopf(i) {
+    var b = el('button', 'ort-knopf', ortInfo(i).name);
+    b.type = 'button';
+    b.title = txt('ortKnopfTitel');
+    b.addEventListener('click', function () { ansicht('ort', i); });
+    return b;
+  }
+  function verlaufKnopf(e, klasse, textId) {
+    var b = el('button', klasse, txt(textId).replace('{n}', kettenIndex[e.kette].length));
+    b.type = 'button';
+    b.addEventListener('click', function () { ansicht('kette', e.kette); });
+    return b;
+  }
+
+  /* Kopf ueber dem Feed fuer Ort, Vorgangskette und Nähe-Suche */
+  function zeichneOrtsKopf(treffer) {
+    var kopf = document.getElementById('orts-kopf');
+    /* Der Kopf wird nach dem Nachladen der Zusatzdaten neu gebaut; stand der
+       Fokus auf seiner Ueberschrift, soll er dort bleiben. */
+    var hatteFokus = kopf.contains(document.activeElement);
+    kopf.textContent = '';
+    if (!ketteGewaehlt && ortGewaehlt === null && !naehe) { kopf.hidden = true; return; }
+    kopf.hidden = false;
+    var h2, endeText = txt('ansichtZurueck');
+    if (ketteGewaehlt) {
+      h2 = el('h2', null, txt('ketteKopf').replace('{n}', kettenIndex[ketteGewaehlt].length));
+      kopf.appendChild(h2);
+      kopf.appendChild(el('p', null, txt('ketteKopfText')));
+    } else if (ortGewaehlt !== null) {
+      var o = ortInfo(ortGewaehlt);
+      ladeZusatz(['data/baustellen.js']);
+      kopf.appendChild(el('p', 'klein', txt('ortArt' + o.art.toUpperCase())));
+      h2 = el('h2', null, o.name);
+      kopf.appendChild(h2);
+      var alleAmOrt = daten.eintraege.filter(function (e) { return e._orte.indexOf(ortGewaehlt) !== -1; }).length;
+      kopf.appendChild(el('p', null, (alleAmOrt === 1 ? txt('ortKopfAnzahlEins') : txt('ortKopfAnzahl').replace('{n}', alleAmOrt)) +
+        (treffer.length < alleAmOrt ? ' ' + txt('ortKopfDavon').replace('{n}', treffer.length) : '')));
+      if (o.art === 'p') {
+        var pl = el('a', null, txt('ortKopfPlan'));
+        pl.href = 'plaene.html#plan-' + o.zusatz.id;
+        var pp = el('p'); pp.appendChild(pl); kopf.appendChild(pp);
+      }
+      if (o.unfall) {
+        kopf.appendChild(el('h3', null, unfallZeitraum('unfallTitel')));
+        kopf.appendChild(el('p', null, ortMitZusatz(o) + ': ' + unfallSatz(o.unfall) + '.'));
+        kopf.appendChild(unfallQuelle(o.art !== 's'));
+      }
+      var bo = baustellenBei(function (lat, lon) {
+        return (o.linien.length ? abstandLinien(lat, lon, o.linien) : meter(lat, lon, o.lat, o.lon)) <= (o.linien.length ? 30 : 100);
+      });
+      if (bo && bo.length) kopf.appendChild(baustellenBlock(bo, 'ortBaustellen'));
+      kopf.appendChild(el('p', 'klein', txt('ortHinweis')));
+    } else {
+      ladeZusatz(['data/plangebiete.js', 'data/unfaelle.js', 'data/baustellen.js']);
+      endeText = txt('naeheEnde');
+      h2 = el('h2', null, txt('naeheKopf').replace('{a}', naehe.text));
+      kopf.appendChild(h2);
+      kopf.appendChild(el('p', null, txt(treffer.length ? 'naeheKopfAnzahl' : 'naeheKopfKeine')
+        .replace('{n}', treffer.length).replace('{r}', meterText(naeheRadius))));
+      var u = unfaelleImUmkreis(naehe.lat, naehe.lon, naeheRadius);
+      if (u) {
+        kopf.appendChild(el('h3', null, unfallZeitraum('naeheUnfaelle')));
+        var satz = unfallSatz(u);
+        kopf.appendChild(el('p', null, satz.charAt(0).toUpperCase() + satz.slice(1) + '.'));
+        kopf.appendChild(unfallQuelle(true));
+      }
+      var bn = baustellenBei(function (lat, lon) { return meter(naehe.lat, naehe.lon, lat, lon) <= naeheRadius; });
+      if (bn) kopf.appendChild(baustellenBlock(bn, 'naeheBaustellen'));
+      kopf.appendChild(el('p', 'klein', txt('ortHinweis')));
+    }
+    var akt = el('div', 'bezirk-kopf-aktionen');
+    var zb = el('button', null, endeText);
+    zb.type = 'button';
+    zb.addEventListener('click', function () { ansicht('', null); });
+    akt.appendChild(zb);
+    kopf.appendChild(akt);
+    if (kopfFokus || hatteFokus) { h2.setAttribute('tabindex', '-1'); h2.focus({ preventScroll: true }); kopfFokus = false; }
+  }
+
+  /* Zeile "Ort:" einer Karte: Orte aus data/orte.js als Knoepfe, dazu der
+     freie Ortsvermerk der Kuration, soweit er nicht schon dabei ist. */
+  function ortsZeile(e) {
+    var frei = (e.ort || []).filter(function (name) {
+      var n = name.toLowerCase();
+      return !e._orte.some(function (i) {
+        var m = ortInfo(i).name.toLowerCase();
+        return m.indexOf(n) !== -1 || n.indexOf(m) !== -1;
+      });
+    });
+    if (!e._orte.length && !frei.length) return null;
+    var zeile = el('div', 'ortsvermerk', txt('ort'));
+    e._orte.forEach(function (i) { zeile.appendChild(ortKnopf(i)); });
+    if (frei.length) zeile.appendChild(document.createTextNode(frei.join(', ')));
+    var t = naehe && naeheTreffer[e.ref];
+    if (t) zeile.appendChild(el('span', 'ort-weit', ' ' + entfernungText(t.m)));
+    return zeile;
+  }
+
   /* ---------------- Karten ---------------- */
   /* Mehrere Suchwoerter gelten zusammen (UND): "gruene tempo 30" findet
      Eintraege, in denen "gruene", "tempo" und "30" irgendwo vorkommen. */
@@ -923,6 +1339,8 @@
     for (var i = 0; i < woerter.length; i++) {
       if (eintrag._suchtext.indexOf(woerter[i]) === -1) return false;
     }
+    if (ortGewaehlt !== null && eintrag._orte.indexOf(ortGewaehlt) === -1) return false;
+    if (naehe && !naeheTreffer[eintrag.ref]) return false;
     return ACHSEN.every(function (a) {
       var gewaehlt = aktiv[a.key];
       if (!gewaehlt.length) return true;
@@ -978,9 +1396,37 @@
       c.appendChild(bd);
     }
 
-    /* Freier Ortsvermerk, kein Filter */
-    if (e.ort && e.ort.length) {
-      c.appendChild(el('div', 'ortsvermerk', txt('ort') + e.ort.join(', ')));
+    var oz = ortsZeile(e);
+    if (oz) c.appendChild(oz);
+
+    /* Verkehrsthema an einer Strasse, Kreuzung oder Adresse: die Unfaelle
+       dort aus dem Unfallatlas. Nur als Zahl mit Quelle, ohne Wertung. */
+    var mitUnfall = e._verkehr ? e._orte.filter(function (i) { return ortInfo(i).unfall; }).slice(0, 3) : [];
+    if (mitUnfall.length) {
+      var kx = el('div', 'kontext');
+      kx.appendChild(el('strong', null, unfallZeitraum('unfallTitel')));
+      var kul = el('ul');
+      mitUnfall.forEach(function (i) {
+        var o = ortInfo(i);
+        kul.appendChild(el('li', null, ortMitZusatz(o) + ': ' + unfallSatz(o.unfall)));
+      });
+      kx.appendChild(kul);
+      kx.appendChild(unfallQuelle());
+      c.appendChild(kx);
+    }
+
+    /* Derselbe Vorgang in anderen Sitzungen (Feld "kette") */
+    if (e.kette && kettenIndex[e.kette].length > 1 && !ketteGewaehlt) {
+      var vg = el('div', 'vorgang');
+      vg.appendChild(el('strong', null, txt('vorgangTitel')));
+      var vol = el('ol');
+      kettenIndex[e.kette].slice().sort(function (a, b) { return a.datum < b.datum ? -1 : 1; }).forEach(function (x) {
+        if (x !== e) vol.appendChild(el('li', null, x.datum_anzeige + ' · ' + ((leicht && x.klartext_titel_leicht) || x.klartext_titel)));
+      });
+      vg.appendChild(vol);
+      vg.appendChild(verlaufKnopf(e, null, 'vorgangKnopf'));
+      vg.appendChild(el('p', 'quelle', txt('vorgangQuelle')));
+      c.appendChild(vg);
     }
 
     var chips = el('div', 'chips');
@@ -1112,7 +1558,19 @@
     var ul = el('ul', 'sammel-liste');
     gruppe.forEach(function (e) {
       var li = el('li');
-      li.appendChild(el('span', null, (leicht && e.klartext_titel_leicht) || e.klartext_titel));
+      /* Titel, Ort und Verlauf links in einem Block, der Link zum Original rechts */
+      var links = el('div', 'sammel-text');
+      links.appendChild(el('span', null, (leicht && e.klartext_titel_leicht) || e.klartext_titel));
+      var oz = ortsZeile(e);
+      if (oz) {
+        if (e.kette && kettenIndex[e.kette].length > 1 && !ketteGewaehlt) oz.appendChild(verlaufKnopf(e, 'verlauf-knopf', 'vorgangKurz'));
+        links.appendChild(oz);
+      } else if (e.kette && kettenIndex[e.kette].length > 1 && !ketteGewaehlt) {
+        var vz = el('div', 'ortsvermerk');
+        vz.appendChild(verlaufKnopf(e, 'verlauf-knopf', 'vorgangKurz'));
+        links.appendChild(vz);
+      }
+      li.appendChild(links);
       var a = el('a', null, txt('sammelLink'));
       a.href = e.vorlage_url || e.sitzung_url;
       a.target = '_blank'; a.rel = 'noopener';
@@ -1218,21 +1676,30 @@
   var fokusNachRender = null;
 
   function zeichne() {
-    var alleTreffer = daten.eintraege.filter(passt);
+    /* Eine Vorgangskette zeigt alle ihre Punkte, unabhaengig von den Filtern,
+       aelteste zuerst. */
+    var alleTreffer = ketteGewaehlt
+      ? kettenIndex[ketteGewaehlt].slice().sort(function (a, b) { return a.datum < b.datum ? -1 : 1; })
+      : daten.eintraege.filter(passt);
     var einBezirk = aktiv.bezirk.filter(function (b) { return bezirkNr(b); }).length === 1;
-    var zeigeTitel = mitTiteln === null ? einBezirk : mitTiteln;
+    var ortsAnsicht = !!ketteGewaehlt || ortGewaehlt !== null || !!naehe;
+    /* In den Ortsansichten zaehlen auch die Punkte, von denen es nur den Titel
+       gibt: bei den Bezirksausschuessen sind das die meisten. */
+    var zeigeTitel = mitTiteln === null ? (einBezirk || ortsAnsicht) : mitTiteln;
     var titelAnzahl = alleTreffer.filter(function (e) { return e.duenn; }).length;
     var treffer = zeigeTitel ? alleTreffer : alleTreffer.filter(function (e) { return !e.duenn; });
     var feed = document.getElementById('feed');
     feed.textContent = '';
     urlSchreiben();
     zeichneBezirkKopf(treffer);
+    letzteTreffer = treffer;
+    zeichneOrtsKopf(treffer);
 
     /* Der Ebenen-Schalter zaehlt nur als Auswahl, wenn er enger steht als
        die Voreinstellung (etwa: nur Bezirksausschuesse). */
     var ebeneEng = !gleicheMenge(aktiv.ebene, ebeneStandard()) && aktiv.ebene.length < daten.achsen.ebene.length;
     var gewaehlt = ACHSEN.reduce(function (n, a) { return n + (a.oben ? 0 : aktiv[a.key].length); }, 0)
-      + (suchbegriff ? 1 : 0) + (ebeneEng ? 1 : 0);
+      + (suchbegriff ? 1 : 0) + (ebeneEng ? 1 : 0) + (ortsAnsicht ? 1 : 0);
     document.getElementById('feed-count').textContent =
       gewaehlt === 0
         ? (leicht
@@ -1288,6 +1755,72 @@
       feed.appendChild(mehr);
     }
   }
+
+  /* ---------------- In meiner Naehe ---------------- */
+  (function () {
+    var box = document.getElementById('naehe-box');
+    if (!ORTE) return;   // ohne data/orte.js gibt es die Suche nicht
+    box.hidden = false;
+    var feld = document.getElementById('naehe-adresse'), liste = document.getElementById('naehe-vorschlaege');
+    var suche = null, aktuell = [];
+    function ladeAdressen() {
+      return H.ladeSkript('data/wege-adressen.js').then(function () {
+        if (!suche && window.WEGE_ADRESSEN) suche = H.adressSuche(window.WEGE_ADRESSEN);
+      });
+    }
+    function zu() { liste.hidden = true; }
+    /* Verlaesst der Fokus Feld und Liste, schliesst die Liste; sonst laege sie ueber den Umkreis-Knoepfen */
+    document.getElementById('naehe-box').addEventListener('focusout', function (e) {
+      if (!e.relatedTarget || (e.relatedTarget !== feld && !liste.contains(e.relatedTarget))) setTimeout(zu, 150);
+    });
+    function waehle(v) {
+      feld.value = v.text;
+      aktuell = [];
+      liste.textContent = ''; zu();
+      ansicht('naehe', { lat: v.lat, lon: v.lon, text: v.text });
+    }
+    feld.addEventListener('focus', function () { ladeAdressen().catch(function () { /* Suche bleibt dann leer */ }); });
+    feld.addEventListener('input', function () {
+      if (!feld.value.trim()) {
+        aktuell = [];
+        liste.textContent = ''; liste.hidden = true;
+        if (naehe) ansicht('', null);
+        return;
+      }
+      ladeAdressen().then(function () {
+        aktuell = suche ? suche.vorschlaege(feld.value) : [];
+        liste.textContent = '';
+        aktuell.forEach(function (v) {
+          var li = el('li'), b = el('button', null, v.text);
+          b.type = 'button';
+          b.addEventListener('click', function () { waehle(v); });
+          li.appendChild(b); liste.appendChild(li);
+        });
+        liste.hidden = aktuell.length === 0;
+      }).catch(function () { liste.hidden = true; });
+    });
+    feld.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && aktuell.length) { e.preventDefault(); waehle(aktuell[0]); }
+      if (e.key === 'Escape') zu();
+    });
+    var gruppe = document.getElementById('naehe-radius');
+    [300, 500, 1000].forEach(function (r) {
+      var b = el('button', 'chip-btn', meterText(r));
+      b.type = 'button';
+      b.setAttribute('aria-pressed', r === naeheRadius ? 'true' : 'false');
+      b.addEventListener('click', function () {
+        naeheRadius = r;
+        Array.prototype.forEach.call(gruppe.querySelectorAll('button'), function (x) {
+          x.setAttribute('aria-pressed', x === b ? 'true' : 'false');
+        });
+        if (naehe) { rechneNaehe(); gezeigt = ERSTE_SEITE; zeichne(); }
+      });
+      gruppe.appendChild(b);
+    });
+  })();
+
+  /* Fuer die Karte im Schaubild (grafik/orte.js): Ort in der Liste zeigen */
+  window.PP_START = { zeigeOrt: function (i) { ansicht('ort', i); } };
 
   urlLesen();
   texteAnwenden();

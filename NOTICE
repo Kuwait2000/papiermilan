@@ -63,7 +63,7 @@ Lizenzen
 - Die Kartenbibliothek MapLibre GL JS (Version 6.16.0, Dateien maplibre-gl.mjs,
   maplibre-gl-worker.mjs, maplibre-gl.css) im Ordner `vendor/maplibre-gl/`
   (© MapLibre contributors, © Mapbox) steht unter der BSD-3-Clause-Lizenz, siehe
-  `vendor/maplibre-gl/LICENSE.txt`. Sie wird nur auf `wege.html` geladen, selbst gehostet.
+  `vendor/maplibre-gl/LICENSE.txt`. Sie wird nur für die Karten geladen (`wege.html` und grafische Fassungen), selbst gehostet.
 - Die Bibliothek pmtiles (Version 4.5.0) in `vendor/pmtiles/` (© Protomaps LLC)
   steht unter der BSD-3-Clause-Lizenz, siehe `vendor/pmtiles/LICENSE`.
 - Der Kartenstil `vendor/protomaps/basemaps.js` (@protomaps/basemaps 5.7.2,
@@ -129,3 +129,28 @@ Lizenzen
   gerundet, Klassen umbenannt, Adresszahl und Bezirk je Fläche ergänzt. Die
   Kennzahlen stammen aus dem „Energienutzungsplan Ingolstadt, Abschlussbericht“
   (greenventory GmbH im Auftrag der Stadt Ingolstadt, 28.05.2024).
+- Die Ortsschicht der Startseite in `data/orte.*` (erzeugt von
+  `scraper/orte_bauen.py`): Straßenverläufe, Hausadressen und benannte
+  Einrichtungen beruhen auf OpenStreetMap, © OpenStreetMap-Mitwirkende,
+  verfügbar unter der Open Database License (ODbL) 1.0,
+  https://www.openstreetmap.org/copyright. Die Datei ist eine daraus
+  abgeleitete Datenbank und steht ihrerseits unter der ODbL 1.0. Welcher
+  Eintrag welchen Ort nennt, ist eigene Auswertung. Für Bebauungspläne steht
+  dort nur ein Punkt; der Umgriff bleibt unverändert in `data/plangebiete.*`.
+- Die Unfallzahlen in `data/orte.*` und die Unfallpunkte in `data/unfaelle.js`
+  stammen aus dem Unfallatlas (https://unfallatlas.statistikportal.de/),
+  © Statistische Ämter des Bundes und der Länder, Deutschland, 2026, unter der
+  Datenlizenz Deutschland – Namensnennung – Version 2.0 (dl-de/by-2-0),
+  https://www.govdata.de/dl-de/by-2-0. Enthalten sind Unfälle mit
+  Personenschaden, die die Polizei aufgenommen hat. Verändert: auf das
+  Stadtgebiet Ingolstadt und die Jahre 2021 bis 2025 beschränkt, auf Lage,
+  Jahr, Unfallkategorie und Beteiligung von Rad und Fußverkehr gekürzt; die
+  Summen je Straße, Kreuzung und Adresse sind eigene Auswertung.
+- Die Baustellen in `data/baustellen.*` stammen aus dem Datensatz „Baustellen
+  Stadt Ingolstadt“ der Stadt Ingolstadt
+  (https://www.ingolstadt.de/openbydata/VMS/, über open.bydata.de) unter der
+  Lizenz Creative Commons Namensnennung 4.0 International (CC BY 4.0),
+  https://creativecommons.org/licenses/by/4.0/. Verändert: von EPSG:25832 nach
+  WGS84 umgerechnet, auf Ort, Zeitraum, Art der Arbeiten und Art der
+  Verkehrsbeschränkung gekürzt; die Kontaktadresse des Auftraggebers ist
+  weggelassen.

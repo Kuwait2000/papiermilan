@@ -7,7 +7,7 @@
      Drittressourcen, kein Nachladen von fremden Servern. Deckt auch den Fall
      ab, dass ein kuenftiger Datenfehler eine externe URL in href/src schleust
      — 'self' laesst nur Ressourcen von dieser Seite selbst zu. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://mnkeller.goatcounter.com; object-src 'none'; base-uri 'self'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' https://mnkeller.goatcounter.com; object-src 'none'; base-uri 'self'; form-action 'self'">
 <title>PapierPanther — Schanzer Stadtpolitik. Mit einem Klick. Auf einen Blick.</title>
 <meta name="description" content="Der PapierPanther schnüffelt durchs Ingolstädter Ratsinfoportal und sortiert Entscheidungen nach Lebenslage, Ort und Anlass.">
 <link rel="canonical" href="https://schanzer-papierpanther.de/">
@@ -298,6 +298,55 @@
   .beschluss-original p { margin-top: .5rem; }
 
   .ortsvermerk { margin-top: .6rem; font-size: .84rem; color: var(--text-muted); }
+  /* Orte aus data/orte.js: jeder Name ist ein Knopf und zeigt, was sonst noch dort war */
+  .ort-knopf, .sammel-liste .verlauf-knopf, .vorgang button {
+    font: inherit; font-size: .82rem; cursor: pointer; background: #fff; color: var(--primary-dark);
+    border: 1px solid var(--border-strong); border-radius: 999px; padding: .12rem .6rem; margin: .1rem .25rem .1rem 0;
+  }
+  .ort-knopf:hover, .sammel-liste .verlauf-knopf:hover, .vorgang button:hover { border-color: var(--primary); background: var(--bg-warm); }
+  .ort-knopf:focus-visible, .verlauf-knopf:focus-visible, .vorgang button:focus-visible,
+  .bezirk-kopf-aktionen button:focus-visible, #naehe-vorschlaege button:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  .ort-weit { font-size: .78rem; color: var(--text-faint); }
+  .sammel-text { min-width: 0; }
+  .sammel-text .ortsvermerk { margin-top: .15rem; font-size: .8rem; }
+  /* Zahlen zum Ort (Unfallatlas) und Verlauf eines Vorgangs: abgesetzt wie der Beschlusstext */
+  .kontext, .vorgang {
+    margin-top: .8rem; padding: .6rem .9rem; font-size: .86rem; color: var(--text-muted);
+    background: var(--bg-warm); border-left: 3px solid var(--border-strong); border-radius: 0 6px 6px 0;
+  }
+  .kontext strong, .vorgang strong { color: var(--text); font-weight: 600; }
+  .kontext ul, .vorgang ol { margin: .3rem 0 .2rem 1.1rem; }
+  .kontext li, .vorgang li { margin-bottom: .15rem; }
+  .kontext .quelle, .vorgang .quelle { font-size: .78rem; color: var(--text-faint); margin-top: .3rem; }
+  .vorgang li.hier { color: var(--text); font-weight: 600; }
+  .orts-kopf ul { margin: .4rem 0 0 1.1rem; font-size: .88rem; color: var(--text-muted); }
+  .orts-kopf li { margin-bottom: .2rem; }
+  .orts-kopf .klein { font-size: .78rem; color: var(--text-faint); }
+  .orts-kopf h3 { font-size: .95rem; margin-top: .9rem; }
+
+  /* ---------- In meiner Naehe ---------- */
+  .naehe-box { margin-bottom: 1.25rem; }
+  .naehe-box[hidden] { display: none; }
+  .naehe-box label, #naehe-radius-label {
+    display: block; font-size: .7rem; text-transform: uppercase; letter-spacing: .09em;
+    color: var(--text-faint); margin-bottom: .4rem; font-weight: 600;
+  }
+  .naehe-feld { position: relative; }
+  #naehe-vorschlaege {
+    list-style: none; position: absolute; left: 0; right: 0; top: 100%; z-index: 20; background: #fff;
+    border: 1px solid var(--border-strong); border-top: 0; border-radius: 0 0 8px 8px;
+    box-shadow: 0 8px 20px rgba(22,35,43,.14);
+  }
+  #naehe-vorschlaege button {
+    display: block; width: 100%; text-align: left; font: inherit; font-size: .9rem;
+    background: none; border: 0; padding: .5rem .7rem; cursor: pointer; color: var(--text);
+  }
+  #naehe-vorschlaege button:hover, #naehe-vorschlaege button:focus-visible { background: var(--bg-warm); }
+  .naehe-radius { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin-top: .6rem; }
+  #naehe-radius-label { margin: 0 .3rem 0 0; }
+  .naehe-klein { font-size: .76rem; color: var(--text-faint); margin-top: .45rem; }
 
   /* Beratungsweg im aufgeklappten Bereich */
   .weg { margin: .5rem 0 .3rem 1.1rem; font-size: .84rem; }
@@ -608,6 +657,18 @@
           <input type="search" id="suche" name="suche" class="search-input"
                  placeholder="z. B. Kita, Radweg, Piuspark" autocomplete="off">
         </div>
+        <div class="naehe-box" id="naehe-box" hidden>
+          <label for="naehe-adresse" id="naehe-label">In meiner Nähe</label>
+          <div class="naehe-feld">
+            <input type="search" id="naehe-adresse" name="naehe-adresse" class="search-input"
+                   placeholder="Straße und Hausnummer" autocomplete="off" aria-controls="naehe-vorschlaege">
+            <ul id="naehe-vorschlaege" hidden></ul>
+          </div>
+          <div class="naehe-radius" id="naehe-radius" role="group" aria-labelledby="naehe-radius-label">
+            <span id="naehe-radius-label">Umkreis</span>
+          </div>
+          <p class="naehe-klein" id="naehe-klein"></p>
+        </div>
         <div class="filters-head">
           <h2 id="filters-head-h2">Wonach möchten Sie schauen?</h2>
           <span class="filters-hint" id="filters-hint">Mehreres auswählbar</span>
@@ -626,6 +687,7 @@
 
       <div class="feed-spalte">
         <div class="bezirk-kopf" id="bezirk-kopf" hidden></div>
+        <div class="bezirk-kopf orts-kopf" id="orts-kopf" hidden></div>
         <p class="feed-count" id="feed-count" aria-live="polite"></p>
         <div class="feed" id="feed"></div>
       </div>
@@ -679,6 +741,7 @@
      scraper/feed_bauen.py erzeugt. Klassisches <script src>, damit die
      Seite auch per Doppelklick (file://) funktioniert. -->
 <script src="data/feed.js"></script>
+<script src="data/orte.js"></script>
 <script src="seiten/hilfen.js"></script>
 <script src="seiten/index.js"></script>
 <script src="data/themen.js" defer></script>
