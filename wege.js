@@ -1780,7 +1780,7 @@ const TEXTE = {
       '<li>Die Karte weiß nicht, wann ein Geschäft offen ist.</li>',
   },
   mithelfen: {
-    n: 'Fehlt etwas? Orte und Wege lassen sich in <a href="https://www.openstreetmap.org" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> selbst eintragen, auch Beleuchtung, Gehwege und Bordsteine; nach dem nächsten Daten-Update erscheinen sie hier. Welche Angaben am meisten helfen und wie das geht, steht auf der Seite <a href="beteiligen.html#wege-eintragen">Beteiligen</a>.',
+    n: 'Fehlt etwas? Orte und Wege lassen sich in <a href="https://www.openstreetmap.org" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> selbst eintragen, auch Beleuchtung, Gehwege und Bordsteine; nach dem nächsten Daten-Update erscheinen sie hier. Wie das geht, steht auf der Seite <a href="beteiligen.html#wege-eintragen">Beteiligen</a>.',
     l: 'Fehlt etwas? Sie können es bei <a href="https://www.openstreetmap.org" target="_blank" rel="noopener noreferrer">OpenStreetMap</a> eintragen. Wie das geht, steht auf der Seite <a href="beteiligen.html#wege-eintragen">Mitmachen</a>.',
   },
 };

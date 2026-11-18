@@ -24,11 +24,11 @@
         'die Stelle suchen und „Bearbeiten“ wählen; dafür braucht es ein kostenloses Konto. Am Handy geht es einfacher mit der App ' +
         '<a href="https://streetcomplete.app" target="_blank" rel="noopener noreferrer">StreetComplete</a>, die in der Nähe gezielt ' +
         'nach fehlenden Angaben fragt. Ganz ohne Konto lässt sich ein Hinweis als Notiz auf der Karte hinterlassen, den Freiwillige ' +
-        'dann prüfen und eintragen. Diese Angaben helfen der Karte am meisten (mit dem Eintrag in OpenStreetMap):',
+        'dann prüfen und eintragen.',
       l: 'So geht es: Gehen Sie auf <a href="https://www.openstreetmap.org" target="_blank" rel="noopener noreferrer">openstreetmap.org</a>. ' +
         'Dafür brauchen Sie ein Konto. Das kostet nichts. Mit dem Handy geht es leichter. Dafür gibt es die App ' +
         '<a href="https://streetcomplete.app" target="_blank" rel="noopener noreferrer">StreetComplete</a>. ' +
-        'Ohne Konto können Sie eine Notiz schreiben. Andere Menschen tragen es dann ein. Das hilft der Karte am meisten:',
+        'Ohne Konto können Sie eine Notiz schreiben. Andere Menschen tragen es dann ein.',
     },
     'osm-cta-text': {
       n: 'Kein Konto, keine Zeit? Eine Notiz an der richtigen Stelle genügt.',
@@ -38,51 +38,6 @@
       n: 'Was Sie in OpenStreetMap eintragen, steht unter der Open Database License (ODbL) und darf von allen genutzt werden, ' +
         'auch von dieser Seite. Bitte nur eintragen, was Sie selbst vor Ort gesehen haben.',
       l: 'Was Sie eintragen, dürfen alle benutzen. Tragen Sie nur ein, was Sie selbst gesehen haben.',
-    },
-    'osm-bank-titel': { n: 'Sitzbänke', l: 'Bänke' },
-    'osm-bank-text': {
-      n: 'Wo eine Bank steht, rechnet die Karte für ältere Menschen keine Pause ein. In OpenStreetMap fehlen viele Bänke.',
-      l: 'Ältere Menschen brauchen Bänke zum Ausruhen. Viele Bänke fehlen auf der Karte.',
-    },
-    'osm-bordstein-titel': { n: 'Bordsteine an Querungen', l: 'Bord-Steine' },
-    'osm-bordstein-text': {
-      n: 'Ein hoher Bordstein sperrt den Weg für Rollstuhl und Kinderwagen. Eingetragen ist er nur an wenigen Stellen.',
-      l: 'Ein hoher Bord-Stein ist für einen Rollstuhl zu hoch. Auf der Karte fehlen viele Bord-Steine.',
-    },
-    'osm-licht-titel': { n: 'Beleuchtung', l: 'Licht' },
-    'osm-licht-text': {
-      n: 'Nachts rechnet die Karte mit Umwegen um dunkle Wege. Ob ein Weg beleuchtet ist, steht nur an etwa 3.200 von 17.000 Wegen.',
-      l: 'Nachts sind dunkle Wege schwierig. Die Karte weiß oft nicht, ob ein Weg Licht hat.',
-    },
-    'osm-treppe-titel': { n: 'Treppen', l: 'Treppen' },
-    'osm-treppe-text': {
-      n: 'Treppen sperren den Weg für Rollstuhl und Kinderwagen. Eine Rampe daneben sollte als eigener Weg eingetragen sein.',
-      l: 'Mit dem Rollstuhl kommt man keine Treppe hoch. Gibt es eine Rampe? Dann tragen Sie sie ein.',
-    },
-    'osm-querung-titel': { n: 'Ampeln und Zebrastreifen', l: 'Ampeln und Zebra-Streifen' },
-    'osm-querung-text': {
-      n: 'Kinder lässt die Karte große Straßen nur an eingetragenen Ampeln und Zebrastreifen überqueren. Fehlt der Eintrag, endet ihr Weg an der Straße.',
-      l: 'Kinder gehen nur an der Ampel oder am Zebra-Streifen über große Straßen. Manche fehlen auf der Karte.',
-    },
-    'osm-gehweg-titel': { n: 'Gehwege', l: 'Geh-Wege' },
-    'osm-gehweg-text': {
-      n: 'Ob eine Straße einen Gehweg hat, steht nur an rund 2.000 Straßen. Ohne Angabe nimmt die Karte einen an.',
-      l: 'Die Karte weiß oft nicht, ob es einen Geh-Weg gibt.',
-    },
-    'osm-schule-titel': { n: 'Grundschulen', l: 'Grund-Schulen' },
-    'osm-schule-text': {
-      n: 'Nur 14 Ingolstädter Grundschulen sind in OpenStreetMap als solche erkennbar. Der Zusatz macht sie für die Kinder-Karte sichtbar.',
-      l: 'Manche Grund-Schulen fehlen auf der Karte.',
-    },
-    'osm-praxis-titel': { n: 'Fachrichtung von Arztpraxen', l: 'Arzt-Praxen' },
-    'osm-praxis-text': {
-      n: 'Bei den meisten Praxen fehlt die Fachrichtung. Die Karte kann dann nicht sicher sagen, wo eine Hausarztpraxis ist.',
-      l: 'Bei vielen Ärzten fehlt auf der Karte, was für ein Arzt es ist.',
-    },
-    'osm-wasser-titel': { n: 'Trinkwasser', l: 'Trink-Wasser' },
-    'osm-wasser-text': {
-      n: 'Bei Hitze zeigt die Karte Trinkwasserbrunnen. Brunnen in Parks und an Schulen fehlen oft.',
-      l: 'Bei Hitze braucht man Wasser. Manche Brunnen fehlen auf der Karte.',
     },
     'h1': { n: 'Beteiligen', l: 'Mitmachen' },
     'lede': {
@@ -182,15 +137,6 @@
     'link-portal-cta': { n: 'Alle Beteiligungsprojekte ansehen', l: 'Alle Mitmach-Projekte ansehen' },
     'link-mitmacher': { n: 'Zu den MitmacherINnen', l: 'Zu den MitmacherINnen' },
     'link-osm-notiz': { n: 'Notiz in OpenStreetMap hinterlassen', l: 'Eine Notiz schreiben' },
-    'link-osm-bank': { n: 'So wird es eingetragen', l: 'So geht das' },
-    'link-osm-bordstein': { n: 'So wird es eingetragen', l: 'So geht das' },
-    'link-osm-licht': { n: 'So wird es eingetragen', l: 'So geht das' },
-    'link-osm-treppe': { n: 'So wird es eingetragen', l: 'So geht das' },
-    'link-osm-querung': { n: 'So wird es eingetragen', l: 'So geht das' },
-    'link-osm-gehweg': { n: 'So wird es eingetragen', l: 'So geht das' },
-    'link-osm-schule': { n: 'So wird es eingetragen', l: 'So geht das' },
-    'link-osm-praxis': { n: 'So wird es eingetragen', l: 'So geht das' },
-    'link-osm-wasser': { n: 'So wird es eingetragen', l: 'So geht das' },
   };
 
   function setLinkText(id, paar) {
