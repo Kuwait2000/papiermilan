@@ -49,8 +49,28 @@ Lizenzen
   diesen Lizenzen ausgenommen (vgl. Art. 5 EUPL, „Legal Protection“). Sie
   dürfen genannt werden, um die Herkunft zu beschreiben. Für veränderte
   Fassungen oder andere Angebote ist eine Zustimmung nötig.
-- Daten in `data/` und `karten/` sowie Fremdbibliotheken haben eigene
-  Lizenzen, siehe die folgenden Punkte.
+- Die kuratierten Ratsdaten stehen unter CC BY 4.0:
+  https://creativecommons.org/licenses/by/4.0/legalcode.de. Gemeint sind die
+  aus den Ratsinfoportalen der Stadt Ingolstadt, ihrer Bezirksausschüsse und
+  des Bezirks Oberbayern ausgelesenen und aufbereiteten Daten samt
+  Klartext-Titeln, Kurztexten, Schlagworten, Ortszuordnungen und
+  Bearbeitungsständen: `data/rohdaten.*`, `data/kuration.*`, `data/feed.*`,
+  `data/fabrik.*`, `data/beschluesse.*`, `data/niederschriften.*`,
+  `data/antraege.*`, `data/offene_antraege.*`, `data/plaene_alt.*` und
+  `data/plaene_hand.*`. Dazu gehören die aus Dokumenten der Stadt
+  übertragenen Zahlen in `data/hsk.*`, `data/hsk_bericht.*`,
+  `data/haushalt.*` und `data/beteiligungen.*`. In `data/plaene.*` gilt
+  CC BY 4.0 nur für die Angaben aus dem Ratsinfoportal; die aus „Bauleitpläne
+  Bayern“ übernommenen Angaben bleiben unter CC BY-ND 4.0, siehe unten.
+  Vorschlag für die Namensnennung: „PapierPanther, Michael Keller,
+  schanzer-papierpanther.de, CC BY 4.0“. Die Lizenz umfasst auch das
+  Datenbankrecht an der Sammlung. Die zugrunde liegenden Dokumente der Stadt
+  sind weitgehend amtliche Werke im Sinne des § 5 UrhG; ihre freie Nutzung
+  schränkt diese Lizenz nicht ein. Ein Teil der Kurztexte ist mit einem
+  Sprachmodell entstanden; die Lizenz gilt, soweit an ihnen Schutzrechte
+  bestehen.
+- Alle übrigen Daten in `data/` und `karten/` sowie Fremdbibliotheken haben
+  eigene Lizenzen, siehe die folgenden Punkte.
 - Die Überschriftenschrift Source Serif 4 im Ordner `schrift/` stammt von
   Adobe (© 2014–2021 Adobe Systems Incorporated, Reserved Font Name „Source“)
   und steht unter der SIL Open Font License 1.1, siehe `schrift/OFL.txt`.

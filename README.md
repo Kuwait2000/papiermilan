@@ -590,7 +590,12 @@ Code unter der European Union Public Licence 1.2 (EUPL-1.2, siehe
 Wer eine veränderte Fassung weitergibt oder als Website betreibt, muss den
 Quellcode ebenfalls unter der EUPL oder einer kompatiblen Lizenz offenlegen.
 Stände vor der Umstellung am 18.11.2026 bleiben unter der MIT-Lizenz. Name,
-Wortmarke und Maskottchen „PapierPanther“ sind nicht mitlizenziert.
+Wortmarke und Maskottchen „PapierPanther“ sind nicht mitlizenziert. Die
+kuratierten Ratsdaten in `data/` (Auslesung der Ratsinfoportale, Kurztexte,
+Schlagworte, Ortszuordnungen, Zahlen aus HSK, Haushalt und
+Beteiligungsbericht) stehen unter CC BY 4.0; welche Dateien genau dazugehören,
+steht in [NOTICE](NOTICE). Alle übrigen Daten tragen die Lizenzen ihrer
+Quellen.
 
 PapierPanther folgt der Idee von **MeinBezirk**, einem Toolkit von Igor
 Schwarzmann / Known Unknowns GmbH für kommunale Transparenz
