@@ -65,6 +65,7 @@ scraper/
   anker_setzen.py     Titel-Anker in kuration.json prüfen und reparieren
   pruefen.py          Zusagen der Seite nachrechnen (Exit-Code)
   themen_bauen.py     Kennzahlen für die Themen-Kacheln -> data/themen.js
+  inhalte_bauen.py    Inhaltskatalog aller Seiten mit Zahlen -> INHALTE.md
   beteiligungen_bauen.py  prüft data/beteiligungen.json -> data/beteiligungen.js
   plangebiete_holen.py  Umgriffe der Bebauungspläne (Land) -> data/plangebiete.js
   plaene_alt_holen.py Plan-Punkte vor 11/2023 (Stadtrat, Planungsausschuss) -> data/plaene_alt.json
@@ -146,8 +147,15 @@ falls sie eine Kachel bekommen). Die Kacheln auf der Startseite und auf
 `themen.html` zeigen je eine Zahl aus den Datendateien der Themenseiten:
 
 ```bash
-cd scraper && python3 themen_bauen.py   # nach jedem Daten-Update
+cd scraper && python3 themen_bauen.py && python3 inhalte_bauen.py   # nach jedem Daten-Update
 ```
+
+`inhalte_bauen.py` schreibt [INHALTE.md](INHALTE.md): je Seite Kernaussage,
+Zahlen mit Stand, Quellen, Lizenz, Fallstricke und Ideen für Posts, dazu
+kommende Sitzungen und die zuletzt entschiedenen Punkte. Der Katalog ist für
+Arbeit außerhalb des Repos gedacht (Social Media, Vorträge) und lässt sich in
+andere Projekte kopieren. Die Texte je Seite stehen im Skript (`SEITEN`); bei
+einer neuen Themenseite dort einen Eintrag und eine Zahlenfunktion ergänzen.
 
 ### Grafische Fassung (`grafik/`)
 
