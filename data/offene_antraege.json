@@ -1,6 +1,6 @@
 {
   "hinweis": "Antraege ohne Sitzungstermin, aus der Liste 'Aktuelle Stadtratsantraege' im Ratsinfoportal der Stadt Ingolstadt. Sobald die Tagesordnung seiner Sitzung veroeffentlicht ist, verschwindet ein Antrag von hier und taucht stattdessen ganz normal ueber ris_ingolstadt.py auf. Bis dahin steht ein schon angesetzter Termin im Feld 'termin'.",
-  "abgerufen_am": "2026-11-15",
+  "abgerufen_am": "2026-11-19",
   "antraege": [
     {
       "quelle": "stadt",
@@ -161,24 +161,6 @@
         {
           "titel": "Stadtratsantrag SPD",
           "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254653&type=do"
-        }
-      ]
-    },
-    {
-      "quelle": "stadt",
-      "kvonr": "23440",
-      "titel": "Lichtschneisen für die Innenstadt",
-      "antragsteller": "SPD-Stadtratsfraktion",
-      "antragsdatum": "2026-10-16",
-      "antragsdatum_anzeige": "16.10.2026",
-      "vorlage": "V0681/26",
-      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23440",
-      "ziel_gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
-      "termin": "",
-      "dokumente": [
-        {
-          "titel": "Stadtratsantrag SPD",
-          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254656&type=do"
         }
       ]
     },

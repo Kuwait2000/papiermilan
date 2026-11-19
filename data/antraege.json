@@ -1,7 +1,7 @@
 {
   "erzeugt_von": "scraper/antraege_holen_lesen.py",
   "quelle_hinweis": "Anträge der Stadtratsfraktionen aus dem Ratsinfoportal der Stadt Ingolstadt, laufende Wahlperiode. Status stammt aus den bereits gescrapten Tagesordnungen und dem kuratierten Feed dieser Seite, nicht aus einer eigenen Recherche.",
-  "abgerufen_am": "2026-11-16",
+  "abgerufen_am": "2026-11-19",
   "parteien": {
     "CSU": [
       {
@@ -1294,7 +1294,7 @@
         "vorlage": "V0681/26",
         "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23440",
         "pdf_url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254656&type=do",
-        "in_beratung": false,
+        "in_beratung": true,
         "stand": null,
         "ref": null,
         "klartext_titel": null,
@@ -7070,8 +7070,8 @@
   },
   "statistik": {
     "gesamt": 391,
-    "in_beratung": 222,
+    "in_beratung": 223,
     "kuratiert": 218,
-    "nur_eingereicht": 169
+    "nur_eingereicht": 168
   }
 }

@@ -23,15 +23,15 @@ Adresse: https://schanzer-papierpanther.de/
 
 **Was man dort tun kann:** Filter nach Bezirk, Lebenslage und Stand; Orte an Einträgen anklickbar (`?ort=`); „In meiner Nähe“ mit Umkreis; Vorgangsketten der Bezirksausschüsse (`?kette=`); Unfallzahlen an Verkehrsthemen; Baustellen der nächsten 14 Tage; kommende Sitzungstermine.
 
-**Zahlen** (Daten abgerufen 15.11.2026, Feed gebaut 17.11.2026):
+**Zahlen** (Daten abgerufen 19.11.2026, Feed gebaut 19.11.2026):
 
-- 658 Sitzungen und 6.493 Tagesordnungspunkte ausgelesen (2023-11 bis 2027-01), davon 4.255 als Eintrag in Klartext
-- Einträge je Quelle: Stadtrat und Ausschüsse 2.160, Bezirksausschüsse 1.548, Bezirk Oberbayern 547
-- 1.628 Einträge auch in Einfacher Sprache
-- Stand der Einträge: Im Bezirksausschuss behandelt 1.530, Nur besprochen, nichts entschieden 1.264, Beschlossen 630, Bekanntgabe 334, Entscheidung angesetzt 265, Noch nicht terminiert 144, Wird noch beraten 49, Kommt im Bezirksausschuss 18, Abgelehnt 13, Steht auf der Tagesordnung 6, Entscheidung geplant 1, Teilweise beschlossen 1
-- 873 von 3.708 Einträgen tragen einen Ort (495 verschiedene Orte)
+- 661 Sitzungen und 6.514 Tagesordnungspunkte ausgelesen (2023-11 bis 2027-02), davon 4.265 als Eintrag in Klartext
+- Einträge je Quelle: Stadtrat und Ausschüsse 2.170, Bezirksausschüsse 1.548, Bezirk Oberbayern 547
+- 1.633 Einträge auch in Einfacher Sprache
+- Stand der Einträge: Im Bezirksausschuss behandelt 1.548, Nur besprochen, nichts entschieden 1.266, Beschlossen 631, Bekanntgabe 335, Entscheidung angesetzt 265, Noch nicht terminiert 143, Wird noch beraten 52, Abgelehnt 13, Steht auf der Tagesordnung 10, Entscheidung geplant 1, Teilweise beschlossen 1
+- 874 von 3.718 Einträgen tragen einen Ort (496 verschiedene Orte)
 - Unfallatlas 2021–2025: 3.326 Unfälle mit Verletzten im Stadtgebiet
-- Einträge je Stadtbezirk: stadtweit 1.005, I-Mitte 343, IV-Südost 196, II-Nordwest 171, V-Südwest 164, VII-Etting 145, III-Nordost 140, XII-Münchener Straße 139, X-Süd 130, XI-Friedrichshofen/Hollerstauden 100, VI-West 96, VIII-Oberhaunstadt 47, IX-Mailing/Feldkirchen 36
+- Einträge je Stadtbezirk: stadtweit 1.009, I-Mitte 343, IV-Südost 196, II-Nordwest 171, V-Südwest 164, VII-Etting 145, III-Nordost 140, XII-Münchener Straße 139, X-Süd 131, XI-Friedrichshofen/Hollerstauden 100, VI-West 96, VIII-Oberhaunstadt 47, IX-Mailing/Feldkirchen 36
 
 **Schaubild:** Schaubild mit Szenen „start“, „orte“ (Stadtkarte mit Orten der Einträge) und „themen“.
 
@@ -45,17 +45,17 @@ Adresse: https://schanzer-papierpanther.de/
 
 Adresse: https://schanzer-papierpanther.de/antraege.html
 
-**Kachel:** 391 Anträge der Stadtratsfraktionen in dieser Wahlperiode – 169 davon noch auf keiner Tagesordnung.  
-*Einfache Sprache:* Das wollen die Parteien im Stadt-Rat. 169 Anträge sind noch nicht besprochen.
+**Kachel:** 391 Anträge der Stadtratsfraktionen in dieser Wahlperiode – 168 davon noch auf keiner Tagesordnung.  
+*Einfache Sprache:* Das wollen die Parteien im Stadt-Rat. 168 Anträge sind noch nicht besprochen.
 
 **Worum es geht:** Alle Anträge der Stadtratsfraktionen in der Wahlperiode, je Fraktion, mit Klartext und Stand: in Beratung oder noch auf keiner Tagesordnung.
 
 **Was man dort tun kann:** Je Partei aufklappbar, Stand je Antrag, Link zum Antrag als PDF.
 
-**Zahlen** (abgerufen 16.11.2026):
+**Zahlen** (abgerufen 19.11.2026):
 
 - 391 Anträge der Stadtratsfraktionen in dieser Wahlperiode
-- 222 davon schon in Beratung, 169 noch auf keiner Tagesordnung
+- 223 davon schon in Beratung, 168 noch auf keiner Tagesordnung
 - Je Fraktion: SPD 77, CSU 69, BÜNDNIS 90/DIE GRÜNEN 44, ÖDP 38, Freie Wähler 35, Gemeinschaftsanträge 35, AfD 29, Die Linke 21, UWG 20, FDP/JU 20, Die Linke/ÖDP 3
 
 **Schaubild:** Szene „antraege“.
@@ -152,19 +152,19 @@ Adresse: https://schanzer-papierpanther.de/beteiligungen.html
 
 Adresse: https://schanzer-papierpanther.de/klima.html
 
-**Kachel:** 9.729 Solaranlagen gibt es in Ingolstadt (2026), dazu 1.538 öffentliche Ladepunkte. Plus: Wetter seit 1961.  
+**Kachel:** 9.738 Solaranlagen gibt es in Ingolstadt (2026), dazu 1.538 öffentliche Ladepunkte. Plus: Wetter seit 1961.  
 *Einfache Sprache:* So viele Anlagen machen in Ingolstadt Strom aus Sonne.
 
 **Worum es geht:** Wetter seit 1961 (heiße Tage, Tropennächte, Frosttage), Solaranlagen und Speicher, öffentliche Ladepunkte, Klimaziele und Treibhausgasbilanz der Stadt.
 
 **Was man dort tun kann:** Zeitreihen je Jahr, Vergleich mit Referenzperiode 1971–2000.
 
-**Zahlen** (erzeugt 15.11.2026):
+**Zahlen** (erzeugt 19.11.2026):
 
-- 9.729 Solaranlagen mit 127,5 MW (2026), Zubau 2026: 1.382 Anlagen, davon 664 Steckersolar
+- 9.738 Solaranlagen mit 127,6 MW (2026), Zubau 2026: 1.391 Anlagen, davon 667 Steckersolar
 - 1.538 öffentliche Ladepunkte an 869 Standorten, 222 davon Schnelllader (Stand 12.11.2026)
 - Wetter: Station Kösching, Tageswerte seit 1961
-- Heiße Tage (ab 30 °C): Mittel 1971–2000 5,6, 2025: 17, 2026 bis 14.11.2026: 40; Höchstwert 40 (2026). Mitteltemperatur 2025: 10,1 °C (Referenz 8,2 °C)
+- Heiße Tage (ab 30 °C): Mittel 1971–2000 5,6, 2025: 17, 2026 bis 18.11.2026: 40; Höchstwert 40 (2026). Mitteltemperatur 2025: 10,1 °C (Referenz 8,2 °C)
 - Ziel klimaneutral: Stadt 2035, Verwaltung 2030 (Stadtratsbeschluss Juni 2022)
 - CO₂-Minderung nötig 89.500 t/Jahr, erreicht 70.500 t/Jahr (Durchschnitt seit 2019, Bilanzjahr 2023); Industrie-Anteil 2021: 48 %
 
@@ -326,22 +326,22 @@ Adresse: https://schanzer-papierpanther.de/beteiligen.html
 
 ## Aktuell aus dem Rat
 
-Stand 17.11.2026. Veraltet schnell, vor einem Post auf der Seite gegenprüfen.
+Stand 19.11.2026. Veraltet schnell, vor einem Post auf der Seite gegenprüfen.
 
 ### Kommende Sitzungen
 
-- 17.11.2026 16:00 Uhr: Ausschuss für Sport, Veranstaltungen und Freizeit
-- 17.11.2026 20:00 Uhr: Bezirksausschuss IX-Mailing/Feldkirchen
-- 18.11.2026 18:30 Uhr: Bezirksausschuss II-Nordwest
 - 19.11.2026 16:00 Uhr: Ausschuss für Soziales, Gesundheit, Stiftungen und Familien
 - 19.11.2026 19:00 Uhr: Bezirksausschuss VIII-Oberhaunstadt
 - 24.11.2026 16:00 Uhr: Ausschuss für Kultur und Bildung
 - 24.11.2026 18:30 Uhr: Bürgerversammlung XII - Münchener Straße
-- 25.11.2026 16:00 Uhr: Inklusionsrates
-- 26.11.2026 16:00 Uhr: Ausschusses für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit
+- 25.11.2026 16:00 Uhr: Inklusionsbeirat
+- 26.11.2026 16:00 Uhr: Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit
 - 01.12.2026: Bezirksausschusses I-Mitte
 - 03.12.2026 16:00 Uhr: Ausschusses für Finanzen und Personal
 - 08.12.2026: Bezirksausschusses XI-Friedrichshofen/Hollerstauden
+- 10.12.2026 10:00 Uhr: Stadtrates
+- 11.12.2026 17:30 Uhr: Jugendparlamentes
+- 17.12.2026: Bezirksausschusses IV-Südost
 
 ### Zuletzt entschieden
 

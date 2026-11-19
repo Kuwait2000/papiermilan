@@ -6,8 +6,8 @@ window.THEMEN_DATEN = [
   "titel": "Anträge der Parteien",
   "titel_l": "Anträge der Parteien",
   "zahl": "391 Anträge",
-  "text": "der Stadtratsfraktionen in dieser Wahlperiode – 169 davon noch auf keiner Tagesordnung.",
-  "text_l": "Das wollen die Parteien im Stadt-Rat. 169 Anträge sind noch nicht besprochen."
+  "text": "der Stadtratsfraktionen in dieser Wahlperiode – 168 davon noch auf keiner Tagesordnung.",
+  "text_l": "Das wollen die Parteien im Stadt-Rat. 168 Anträge sind noch nicht besprochen."
  },
  {
   "href": "haushalt.html",
@@ -41,7 +41,7 @@ window.THEMEN_DATEN = [
   "farbe": "#2e7d4f",
   "titel": "Klima",
   "titel_l": "Klima",
-  "zahl": "9.729 Solaranlagen",
+  "zahl": "9.738 Solaranlagen",
   "text": "gibt es in Ingolstadt (2026), dazu 1.538 öffentliche Ladepunkte. Plus: Wetter seit 1961.",
   "text_l": "So viele Anlagen machen in Ingolstadt Strom aus Sonne."
  },

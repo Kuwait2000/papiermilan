@@ -6,8 +6,8 @@
       "software": "Session (Somacos GmbH & Co. KG)",
       "basis_url": "https://www.ingolstadt.de/sessionnet",
       "endung": "php",
-      "anzahl_sitzungen": 393,
-      "anzahl_tops": 3358
+      "anzahl_sitzungen": 396,
+      "anzahl_tops": 3379
     },
     "bza": {
       "name": "Ratsinfoportal der Bezirksausschüsse der Stadt Ingolstadt",
@@ -27,21 +27,21 @@
     }
   },
   "hinweis": "Oeffentlich zugaengliche Seiten, ohne Anmeldung abgerufen.",
-  "daten_abgerufen_am": "2026-11-15",
-  "feed_gebaut_am": "2026-11-17",
+  "daten_abgerufen_am": "2026-11-19",
+  "feed_gebaut_am": "2026-11-19",
   "zeitraum": {
     "von": "2023-11",
-    "bis": "2027-01"
+    "bis": "2027-02"
   },
   "statistik": {
-    "sitzungen_ausgelesen": 658,
-    "tops_ausgelesen": 6493,
-    "tops_verfahren": 904,
-    "tops_kuratiert": 4255,
-    "tops_abgedeckt": 4936,
-    "tops_sitzungsroutine_offen": 902,
-    "tops_beteiligung": 267,
-    "tops_sonstige": 386,
+    "sitzungen_ausgelesen": 661,
+    "tops_ausgelesen": 6514,
+    "tops_verfahren": 906,
+    "tops_kuratiert": 4265,
+    "tops_abgedeckt": 4950,
+    "tops_sitzungsroutine_offen": 904,
+    "tops_beteiligung": 270,
+    "tops_sonstige": 388,
     "tops_nicht_oeffentlich": 2,
     "tops_offen": 0,
     "jahre_vollstaendig": [
@@ -51,35 +51,34 @@
       "2026"
     ],
     "jahre_rueckstand": [],
-    "entwuerfe": 1660,
-    "leichte_sprache": 1628,
+    "entwuerfe": 1665,
+    "leichte_sprache": 1633,
     "je_quelle": {
-      "stadt": 2160,
+      "stadt": 2170,
       "bza": 1548,
       "bezirk_obb": 547
     },
     "stand": {
-      "Nur besprochen, nichts entschieden": 1264,
-      "Wird noch beraten": 49,
-      "Steht auf der Tagesordnung": 6,
-      "Entscheidung angesetzt": 265,
-      "Kommt im Bezirksausschuss": 18,
-      "Bekanntgabe": 334,
+      "Wird noch beraten": 52,
+      "Bekanntgabe": 335,
       "Entscheidung geplant": 1,
-      "Im Bezirksausschuss behandelt": 1530,
-      "Noch nicht terminiert": 144,
-      "Beschlossen": 630,
+      "Steht auf der Tagesordnung": 10,
+      "Nur besprochen, nichts entschieden": 1266,
+      "Entscheidung angesetzt": 265,
+      "Im Bezirksausschuss behandelt": 1548,
+      "Noch nicht terminiert": 143,
+      "Beschlossen": 631,
       "Abgelehnt": 13,
       "Teilweise beschlossen": 1
     },
     "status": {
-      "Nur zur Information": 3134,
-      "Noch offen": 212,
+      "Noch offen": 196,
+      "Nur zur Information": 3159,
       "Ergebnis steht im Protokoll": 265,
-      "Entschieden": 644
+      "Entschieden": 645
     },
     "stadtbezirke": 12,
-    "duenn": 2627
+    "duenn": 2632
   },
   "achsen": {
     "lebenslage": [
@@ -144,13 +143,810 @@
       "Teilweise beschlossen",
       "Abgelehnt",
       "Bekanntgabe",
-      "Kommt im Bezirksausschuss",
       "Steht auf der Tagesordnung",
       "Im Bezirksausschuss behandelt",
       "Nur besprochen, nichts entschieden"
     ]
   },
   "eintraege": [
+    {
+      "ref": "stadt:13552#Ö 7",
+      "thema": "stadt:vorlage:23448",
+      "auftritte": [
+        {
+          "datum": "2026-11-24",
+          "datum_anzeige": "24.11.2026",
+          "gremium": "Ausschuss für Kultur und Bildung",
+          "top_nr": "Ö 7",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552"
+        },
+        {
+          "datum": "2026-11-26",
+          "datum_anzeige": "26.11.2026",
+          "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+          "top_nr": "Ö 4",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553"
+        }
+      ],
+      "klartext_titel": "Stadtheimatpfleger soll bis 2033 im Amt bleiben",
+      "klartext": "Dr. Tobias Schönauer soll zum 1. Januar 2027 erneut zum Heimatpfleger der Stadt Ingolstadt ernannt werden, für die Zeit bis 31. Dezember 2033. Er übt das Ehrenamt seit 2011 aus. Die Aufwandsentschädigung soll bei 300 Euro im Monat bleiben, das sind 3.600 Euro im Jahr. Einen stellvertretenden Stadtheimatpfleger soll es künftig nicht mehr geben; das ist Teil der Haushaltskonsolidierung. Das Landesamt für Denkmalpflege, der Landesverein für Heimatpflege und die Bezirksheimatpflegerin haben die Wiederbestellung laut Vorlage begrüßt. Zwei Ausschüsse beraten Ende November, der Stadtrat soll am 10. Dezember 2026 entscheiden.",
+      "klartext_titel_leicht": "Der Heimat-Pfleger soll weiter arbeiten",
+      "klartext_leicht": "Ein Heimat-Pfleger kümmert sich um die Geschichte und die alten Gebäude von einer Stadt. Das ist ein Ehren-Amt. In Ingolstadt macht das Herr Schönauer seit dem Jahr 2011. Er soll weiter Heimat-Pfleger bleiben. Das soll bis Ende 2033 gelten. Er bekommt dafür 300 Euro im Monat. Einen Stellvertreter soll es nicht mehr geben. So will die Stadt Geld sparen. Der Stadt-Rat soll am 10. Dezember 2026 entscheiden.",
+      "lebenslage": [
+        "Ehrenamt & Vereine"
+      ],
+      "bezirk": [
+        "stadtweit"
+      ],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [
+        "Kultur & Bildung"
+      ],
+      "ort": [],
+      "entwurf": false,
+      "duenn": false,
+      "stand": "Wird noch beraten",
+      "stand_datum": "26.11.2026",
+      "status": "Noch offen",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "Wiederbestellung des Stadtheimatpflegers",
+      "top_nr": "Ö 4",
+      "vorlage": "V0687/26",
+      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23448",
+      "antragsteller": "",
+      "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+      "sitzung_kennung": "PLA/04/2026",
+      "datum": "2026-11-26",
+      "datum_anzeige": "26.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553",
+      "dokumente": [
+        {
+          "titel": "Vorlage",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254739&type=do"
+        }
+      ],
+      "beratungsweg": [
+        {
+          "datum": "2026-11-24",
+          "datum_anzeige": "24.11.2026",
+          "gremium": "Ausschuss für Kultur und Bildung",
+          "top_nr": "7",
+          "oeffentlich": true,
+          "rolle": "Vorberatung",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552&toselect=91264"
+        },
+        {
+          "datum": "2026-11-26",
+          "datum_anzeige": "26.11.2026",
+          "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+          "top_nr": "4",
+          "oeffentlich": true,
+          "rolle": "Vorberatung",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553&toselect=91323"
+        }
+      ]
+    },
+    {
+      "ref": "stadt:13553#Ö 1",
+      "thema": "stadt:vorlage:23451",
+      "auftritte": [
+        {
+          "datum": "2026-11-26",
+          "datum_anzeige": "26.11.2026",
+          "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+          "top_nr": "Ö 1",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553"
+        }
+      ],
+      "klartext_titel": "Mobilitätsplan 2040+: Wie Ingolstadt heute unterwegs ist und welche Ziele gelten sollen",
+      "klartext": "Die Stadt arbeitet an einem neuen Mobilitätsplan bis 2040, der den bisherigen Verkehrsentwicklungsplan ablöst; die EU verlangt so einen Plan von Ingolstadt bis Ende 2027. Vorgelegt werden die Ergebnisse der Befragung „Mobilität in Deutschland 2023“ mit 4.224 Personen aus 2.196 Ingolstädter Haushalten. Danach werden 48 Prozent der Wege mit dem Auto zurückgelegt, 26 Prozent zu Fuß, 19 Prozent mit dem Rad und 8 Prozent mit Bus und Bahn. 86 Prozent der Haushalte haben mindestens ein Auto; mit dem Nahverkehr sind 37 Prozent zufrieden, mit dem Zufußgehen 83 Prozent. Die Bestandsanalyse nennt unter anderem Staus an Hauptknoten, Lücken im Radwegenetz, fehlende Querungen und Taktlücken im Busverkehr in Randlagen. Der Bauausschuss soll am 26. November 2026 vorberaten, der Stadtrat am 10. Dezember 2026 über Leitbild und Zielkonzept des Plans entscheiden.",
+      "klartext_titel_leicht": "So sind die Menschen in Ingolstadt unterwegs",
+      "klartext_leicht": "Die Stadt macht einen neuen Plan für den Verkehr. Der Plan soll bis zum Jahr 2040 gelten. Die Stadt hat dafür Menschen in Ingolstadt befragt. Ungefähr 4.200 Menschen haben mitgemacht. Fast die Hälfte der Wege fahren die Menschen mit dem Auto. Ungefähr jeden vierten Weg gehen sie zu Fuß. Ungefähr jeden fünften Weg fahren sie mit dem Rad. Ungefähr jeder 3. Mensch findet Bus und Bahn gut. Der Stadt-Rat soll am 10. Dezember 2026 über die Ziele für den Plan entscheiden.",
+      "lebenslage": [
+        "Unterwegs"
+      ],
+      "bezirk": [
+        "stadtweit"
+      ],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [
+        "Verkehrsplanung",
+        "Konzept & Planung"
+      ],
+      "ort": [],
+      "entwurf": false,
+      "duenn": false,
+      "stand": "Wird noch beraten",
+      "stand_datum": "26.11.2026",
+      "status": "Noch offen",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "Zwischenbericht zum Mobilitätsplan Ingolstadt 2040+ und Endbericht zur Erhebung „Mobilität in Deutschland – MiD 2023“",
+      "top_nr": "Ö 1",
+      "vorlage": "V0690/26",
+      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23451",
+      "antragsteller": "",
+      "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+      "sitzung_kennung": "PLA/04/2026",
+      "datum": "2026-11-26",
+      "datum_anzeige": "26.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553",
+      "dokumente": [
+        {
+          "titel": "Vorlage",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254770&type=do"
+        },
+        {
+          "titel": "Anlage 1 V0690-26",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254780&type=do"
+        },
+        {
+          "titel": "Anlage 2 V0690-26",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254781&type=do"
+        },
+        {
+          "titel": "Anlage 3 V0690-26",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254782&type=do"
+        }
+      ],
+      "beratungsweg": [
+        {
+          "datum": "2026-11-26",
+          "datum_anzeige": "26.11.2026",
+          "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+          "top_nr": "1",
+          "oeffentlich": true,
+          "rolle": "Vorberatung",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553&toselect=91325"
+        }
+      ]
+    },
+    {
+      "ref": "stadt:13553#Ö 2",
+      "thema": "stadt:vorlage:23450",
+      "auftritte": [
+        {
+          "datum": "2026-11-26",
+          "datum_anzeige": "26.11.2026",
+          "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+          "top_nr": "Ö 2",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553"
+        }
+      ],
+      "klartext_titel": "Neuer Flächennutzungsplan: 81 Stellungnahmen und ein Rahmenplan für den 2. Grünring",
+      "klartext": "Ingolstadt stellt seinen Flächennutzungsplan neu auf; er legt für die ganze Stadt fest, wo Wohnen, Gewerbe, Grün- und Verkehrsflächen vorgesehen sind, und gilt bisher in der Fassung von 1996. Bei der ersten Beteiligung im Mai und Juni 2024 kamen 81 Stellungnahmen, darunter 29 von Privatleuten und 7 aus Bezirksausschüssen; die meisten davon betreffen den 2. Grünring. Die Verwaltung schlägt vor, wie mit jeder Stellungnahme umgegangen werden soll, und will vor dem Entwurf die Bezirksausschüsse informieren. Außerdem soll der überarbeitete Rahmenplan 2. Grünring als Entwicklungskonzept gelten und in den Flächennutzungsplan eingehen. Nach der Vorlage stehen Solar- und Batteriespeicheranlagen wegen geänderter Gesetze dem Grünring nicht entgegen. Der Entwurf des Plans ist für Ende 2027 oder Anfang 2028 angekündigt; dann können Öffentlichkeit und Behörden erneut Stellung nehmen. Der Bauausschuss soll am 26. November 2026 vorberaten, der Stadtrat am 10. Dezember 2026 entscheiden.",
+      "klartext_titel_leicht": "Die Stadt plant, wo künftig was hinkommt",
+      "klartext_leicht": "Ein Flächen-Nutzungs-Plan ist eine große Karte von der Stadt. Darauf steht: Hier sollen Wohnungen hin, hier Firmen, hier Grün. Ingolstadt macht diesen Plan jetzt neu. Der alte Plan ist von 1996. Im Jahr 2024 konnten alle Menschen ihre Meinung sagen. Es kamen 81 Meinungen von Menschen und Ämtern. Ungefähr die Hälfte davon betrifft den 2. Grün-Ring. Der 2. Grün-Ring ist ein Plan für Grün-Flächen. Der Stadt-Rat soll am 10. Dezember 2026 über die nächsten Schritte entscheiden.",
+      "lebenslage": [
+        "Wohnen & Miete"
+      ],
+      "bezirk": [
+        "stadtweit"
+      ],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [
+        "Bauleitplanung",
+        "Konzept & Planung",
+        "Klima & Umwelt"
+      ],
+      "ort": [
+        "2. Grünring"
+      ],
+      "entwurf": false,
+      "duenn": false,
+      "stand": "Wird noch beraten",
+      "stand_datum": "26.11.2026",
+      "status": "Noch offen",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "Neuaufstellung des Flächennutzungsplanes mit integriertem Landschaftsplan — Zwischenbericht und Abwägungsbeschluss, Rahmenplan 2. Grünring",
+      "top_nr": "Ö 2",
+      "vorlage": "V0689/26",
+      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23450",
+      "antragsteller": "",
+      "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+      "sitzung_kennung": "PLA/04/2026",
+      "datum": "2026-11-26",
+      "datum_anzeige": "26.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553",
+      "dokumente": [
+        {
+          "titel": "Vorlage",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254763&type=do"
+        },
+        {
+          "titel": "Anlage 1 Rahmenplan 2. Grünring",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255174&type=do"
+        },
+        {
+          "titel": "Anlage 2 Abwägungstabelle",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255175&type=do"
+        }
+      ],
+      "beratungsweg": [
+        {
+          "datum": "2026-11-26",
+          "datum_anzeige": "26.11.2026",
+          "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+          "top_nr": "2",
+          "oeffentlich": true,
+          "rolle": "Vorberatung",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553&toselect=91324"
+        }
+      ]
+    },
+    {
+      "ref": "stadt:13553#Ö 3",
+      "thema": "stadt:vorlage:23431",
+      "auftritte": [
+        {
+          "datum": "2026-11-26",
+          "datum_anzeige": "26.11.2026",
+          "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+          "top_nr": "Ö 3",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553"
+        }
+      ],
+      "klartext_titel": "Globus-Baumarkt im Weiherfeld soll 15.000 statt 12.050 m² Verkaufsfläche haben dürfen",
+      "klartext": "Der Globus Bau- und Gartenmarkt im Gewerbegebiet Weiherfeld bei Zuchering soll umgebaut werden: Bisher offene oder nur überdachte Freiflächen sollen in geschlossene Gebäude einbezogen werden. Dafür soll der Bebauungsplan für rund 3,8 Hektar geändert und die erlaubte Verkaufsfläche von 12.050 auf 15.000 Quadratmeter angehoben werden; laut Vorlage entsteht das vor allem durch eine andere Berechnung, nicht durch zusätzliche Bauten. Statt der von der Stellplatzsatzung geforderten 375 Fahrradstellplätze sollen 38 Fahrrad- und 10 Lastenradstellplätze verlangt werden; die 396 vorhandenen Autostellplätze genügen nach der Vorlage. Neu- und Umbauten sollen ein begrüntes Dach bekommen, und zu den 54 vorhandenen Bäumen sollen 21 neue kommen. Weil sich die Nutzung nicht ändert, will die Stadt das vereinfachte Verfahren ohne frühe Bürgerbeteiligung nutzen; die förmliche Auslegung folgt danach, die externen Planungskosten trägt die Eigentümerin des Markts. Der Bauausschuss soll am 26. November 2026 vorberaten, der Stadtrat am 10. Dezember 2026 entscheiden.",
+      "klartext_titel_leicht": "Der Bau-Markt im Weiherfeld soll größer werden",
+      "klartext_leicht": "Im Weiherfeld bei Zuchering gibt es einen großen Bau-Markt. Er heißt Globus. Der Markt will umbauen. Flächen draußen sollen in das Haus kommen. Dann darf der Markt mehr Waren im Haus verkaufen. Statt ungefähr 12.000 Quadrat-Meter sollen es 15.000 Quadrat-Meter sein. Es soll 48 Plätze für Fahrräder geben. Es sollen 21 neue Bäume dazukommen. Der Stadt-Rat soll am 10. Dezember 2026 darüber entscheiden.",
+      "lebenslage": [
+        "Gewerbe & Gastro"
+      ],
+      "bezirk": [
+        "X-Süd"
+      ],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [
+        "Bauleitplanung"
+      ],
+      "ort": [
+        "Weiherfeld",
+        "Zuchering"
+      ],
+      "entwurf": false,
+      "duenn": false,
+      "stand": "Wird noch beraten",
+      "stand_datum": "26.11.2026",
+      "status": "Noch offen",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "Bebauungs- und Grünordnungsplan Nr. 930 Ä III \"3. Änderung Weiherfeld\" — - Änderungsbeschluss / Entwurfsgenehmigung -",
+      "top_nr": "Ö 3",
+      "vorlage": "V0672/26",
+      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23431",
+      "antragsteller": "",
+      "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+      "sitzung_kennung": "PLA/04/2026",
+      "datum": "2026-11-26",
+      "datum_anzeige": "26.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553",
+      "dokumente": [
+        {
+          "titel": "Vorlage",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254599&type=do"
+        },
+        {
+          "titel": "Anlage 01 Begründung",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255395&type=do"
+        },
+        {
+          "titel": "Anlage 02 Bebauungsplan",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255396&type=do"
+        },
+        {
+          "titel": "Anlage 03 Freiflächengestaltungsplan",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255397&type=do"
+        },
+        {
+          "titel": "Anlage 04 Auswirkungsanalyse",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255398&type=do"
+        }
+      ],
+      "beratungsweg": [
+        {
+          "datum": "2026-11-26",
+          "datum_anzeige": "26.11.2026",
+          "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+          "top_nr": "3",
+          "oeffentlich": true,
+          "rolle": "Vorberatung",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553&toselect=91322"
+        }
+      ]
+    },
+    {
+      "ref": "stadt:13553#Ö 5",
+      "thema": "stadt:vorlage:23471",
+      "auftritte": [
+        {
+          "datum": "2026-11-26",
+          "datum_anzeige": "26.11.2026",
+          "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+          "top_nr": "Ö 5",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553"
+        }
+      ],
+      "klartext_titel": "Blutbuche am Kassenhäuschen der Schloss-Tiefgarage gefällt – kein Naturdenkmal mehr",
+      "klartext": "Die Blutbuche am Kassenhäuschen der Schloss-Tiefgarage war als Naturdenkmal Nr. 11 geschützt. Sie war an der Buchenkomplexkrankheit erkrankt, bei der Trockenheit, Hitze, Verletzungen und Pilz- oder Insektenbefall zusammenwirken; Pflege- und Sanierungsmaßnahmen der letzten Jahre brachten laut Vorlage keinen Erfolg. Nach einem Gutachten vom 6. August 2026 war der Baum aus Gründen der Verkehrssicherheit zu fällen, der Naturschutzbeirat stimmte am 13. Oktober zu. Der Oberbürgermeister ordnete die Fällung per dringlicher Anordnung an, das Gartenamt fällte den Baum am 29. Oktober 2026; die Kosten liegen bei rund 12.750 Euro. Der Standort soll erhalten bleiben und neu bepflanzt werden. Der Bauausschuss bekommt die Anordnung am 26. November 2026 bekannt gegeben.",
+      "klartext_titel_leicht": "Ein alter Baum an der Schloss-Tiefgarage ist gefällt",
+      "klartext_leicht": "An der Schloss-Tiefgarage stand eine große Buche. Der Baum hieß Blut-Buche. Der Baum war besonders geschützt. Man nennt das Natur-Denkmal. Der Baum war krank. Er war eine Gefahr für Menschen. Darum hat die Stadt ihn am 29. Oktober 2026 gefällt. An der Stelle soll ein neuer Baum wachsen. Der Bau-Ausschuss bekommt das am 26. November 2026 gesagt.",
+      "lebenslage": [],
+      "bezirk": [
+        "I-Mitte"
+      ],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [
+        "Grün & Sauberkeit",
+        "Klima & Umwelt"
+      ],
+      "ort": [
+        "Schloss-Tiefgarage"
+      ],
+      "entwurf": false,
+      "duenn": false,
+      "stand": "Bekanntgabe",
+      "stand_datum": "26.11.2026",
+      "status": "Nur zur Information",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "Herausnahme des Naturdenkmals 11 „Blutbuche am Kassenhäuschen“ aus Anhang 1 der Naturdenkmalverordnung der Stadt Ingolstadt vom 30. Juli 2014, zuletzt aktualisiert — am 24. September 2019",
+      "top_nr": "Ö 5",
+      "vorlage": "V0708/26",
+      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23471",
+      "antragsteller": "",
+      "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+      "sitzung_kennung": "PLA/04/2026",
+      "datum": "2026-11-26",
+      "datum_anzeige": "26.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553",
+      "dokumente": [
+        {
+          "titel": "Dringliche Anordnung",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255304&type=do"
+        },
+        {
+          "titel": "Anlage 1 Lageplan Naturdenkmal 11",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255114&type=do"
+        },
+        {
+          "titel": "Anlage 2 Kontrollbericht ND11 Sachverständigenbüros Peter Klug",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255132&type=do"
+        },
+        {
+          "titel": "Anlage 3 Eingehende Untersuchung Blutbuche",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255116&type=do"
+        },
+        {
+          "titel": "Anlage 4 Dringliche Anordnung des Oberbürgermeisters",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255117&type=do"
+        }
+      ],
+      "beratungsweg": [
+        {
+          "datum": "2026-11-26",
+          "datum_anzeige": "26.11.2026",
+          "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+          "top_nr": "5",
+          "oeffentlich": true,
+          "rolle": "Bekanntgabe",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553&toselect=91331"
+        }
+      ]
+    },
+    {
+      "ref": "stadt:13553#Ö 6",
+      "thema": "stadt:vorlage:23464",
+      "auftritte": [
+        {
+          "datum": "2026-11-26",
+          "datum_anzeige": "26.11.2026",
+          "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+          "top_nr": "Ö 6",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553"
+        }
+      ],
+      "klartext_titel": "Lichtmasterplan: Grundlage für die öffentliche Beleuchtung in Ingolstadt",
+      "klartext": "Die Stadt hat einen Lichtmasterplan für die öffentliche Beleuchtung in Ingolstadt ausgearbeitet. Er soll Verkehrssicherheit, das Sicherheitsgefühl, Lichtqualität, Energieverbrauch, Umwelt- und Artenschutz und das Stadtbild in Einklang bringen. Er betrifft Straßen, Wege und Plätze und auch das Anstrahlen von Gebäuden und Bauwerken, die das Stadtbild prägen. Der Plan enthält Ziele und Empfehlungen, an denen sich künftige Beleuchtungsmaßnahmen orientieren sollen. Eine Pflicht, einzelne Maßnahmen umzusetzen, entsteht laut Vorlage nicht; Umsetzung hängt von Wirtschaftlichkeit und Haushaltsmitteln ab. Der Bauausschuss soll am 26. November 2026 darüber entscheiden.",
+      "klartext_titel_leicht": "Ein Plan für das Licht in der Stadt",
+      "klartext_leicht": "In Ingolstadt gibt es viele Lampen an Straßen und Wegen. Die Stadt hat dafür einen Plan gemacht. Er heißt Licht-Plan. Das Licht soll sicher machen. Das Licht soll wenig Strom brauchen. Das Licht soll Tiere wenig stören. Der Plan ist eine Hilfe für später. Die Stadt muss nicht alles sofort umsetzen. Der Bau-Ausschuss soll am 26. November 2026 entscheiden.",
+      "lebenslage": [
+        "Unterwegs"
+      ],
+      "bezirk": [
+        "stadtweit"
+      ],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [
+        "Konzept & Planung",
+        "Sicherheit",
+        "Klima & Umwelt"
+      ],
+      "ort": [],
+      "entwurf": false,
+      "duenn": false,
+      "stand": "Entscheidung geplant",
+      "stand_datum": "26.11.2026",
+      "status": "Noch offen",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "Lichtmasterplan Ingolstadt",
+      "top_nr": "Ö 6",
+      "vorlage": "V0702/26",
+      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23464",
+      "antragsteller": "",
+      "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+      "sitzung_kennung": "PLA/04/2026",
+      "datum": "2026-11-26",
+      "datum_anzeige": "26.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553",
+      "dokumente": [
+        {
+          "titel": "Vorlage",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255045&type=do"
+        },
+        {
+          "titel": "Anlage 251216 LMPI",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255088&type=do"
+        },
+        {
+          "titel": "Präsentation-Stadtrat",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255086&type=do"
+        }
+      ],
+      "beratungsweg": [
+        {
+          "datum": "2026-11-26",
+          "datum_anzeige": "26.11.2026",
+          "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+          "top_nr": "6",
+          "oeffentlich": true,
+          "rolle": "Entscheidung",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553&toselect=91340"
+        }
+      ]
+    },
+    {
+      "ref": "stadt:13774#Ö 3",
+      "thema": "stadt:13774#Ö 3",
+      "auftritte": [
+        {
+          "datum": "2026-11-25",
+          "datum_anzeige": "25.11.2026",
+          "gremium": "Inklusionsbeirat",
+          "top_nr": "Ö 3",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13774"
+        }
+      ],
+      "klartext_titel": "Allgemeine Informationen und organisatorische Hinweise zur Beiratsarbeit",
+      "klartext": "",
+      "klartext_titel_leicht": "",
+      "klartext_leicht": "",
+      "lebenslage": [
+        "Gesundheit & Pflege"
+      ],
+      "bezirk": [],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [],
+      "ort": [],
+      "entwurf": true,
+      "duenn": true,
+      "stand": "Steht auf der Tagesordnung",
+      "stand_datum": "25.11.2026",
+      "status": "Nur zur Information",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "Allgemeine Informationen und organisatorische Hinweise zur Beiratsarbeit",
+      "top_nr": "Ö 3",
+      "vorlage": "",
+      "vorlage_url": "",
+      "antragsteller": "",
+      "gremium": "Inklusionsbeirat",
+      "sitzung_kennung": "IR/01/2026",
+      "datum": "2026-11-25",
+      "datum_anzeige": "25.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13774",
+      "dokumente": [],
+      "beratungsweg": []
+    },
+    {
+      "ref": "stadt:13774#Ö 4",
+      "thema": "stadt:13774#Ö 4",
+      "auftritte": [
+        {
+          "datum": "2026-11-25",
+          "datum_anzeige": "25.11.2026",
+          "gremium": "Inklusionsbeirat",
+          "top_nr": "Ö 4",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13774"
+        }
+      ],
+      "klartext_titel": "kurze Vorstellungsrunde der Inklusionsbeiratsmitglieder",
+      "klartext": "",
+      "klartext_titel_leicht": "",
+      "klartext_leicht": "",
+      "lebenslage": [
+        "Gesundheit & Pflege"
+      ],
+      "bezirk": [],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [],
+      "ort": [],
+      "entwurf": true,
+      "duenn": true,
+      "stand": "Steht auf der Tagesordnung",
+      "stand_datum": "25.11.2026",
+      "status": "Nur zur Information",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "kurze Vorstellungsrunde der Inklusionsbeiratsmitglieder",
+      "top_nr": "Ö 4",
+      "vorlage": "",
+      "vorlage_url": "",
+      "antragsteller": "",
+      "gremium": "Inklusionsbeirat",
+      "sitzung_kennung": "IR/01/2026",
+      "datum": "2026-11-25",
+      "datum_anzeige": "25.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13774",
+      "dokumente": [],
+      "beratungsweg": []
+    },
+    {
+      "ref": "stadt:13774#Ö 5",
+      "thema": "stadt:13774#Ö 5",
+      "auftritte": [
+        {
+          "datum": "2026-11-25",
+          "datum_anzeige": "25.11.2026",
+          "gremium": "Inklusionsbeirat",
+          "top_nr": "Ö 5",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13774"
+        }
+      ],
+      "klartext_titel": "Technisches Rathaus - Vorstellung der geplanten Umbaumaßnahme hinsichtlich Barrierefreiheit",
+      "klartext": "",
+      "klartext_titel_leicht": "",
+      "klartext_leicht": "",
+      "lebenslage": [
+        "Gesundheit & Pflege"
+      ],
+      "bezirk": [],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [
+        "Baustelle",
+        "Grün & Sauberkeit"
+      ],
+      "ort": [],
+      "entwurf": true,
+      "duenn": true,
+      "stand": "Steht auf der Tagesordnung",
+      "stand_datum": "25.11.2026",
+      "status": "Nur zur Information",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "Technisches Rathaus - Vorstellung der geplanten Umbaumaßnahme hinsichtlich Barrierefreiheit — (Referent: Herr Matthias Franz, Referent für Hoch- und Tiefbau Stadt Ingolstadt",
+      "top_nr": "Ö 5",
+      "vorlage": "",
+      "vorlage_url": "",
+      "antragsteller": "",
+      "gremium": "Inklusionsbeirat",
+      "sitzung_kennung": "IR/01/2026",
+      "datum": "2026-11-25",
+      "datum_anzeige": "25.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13774",
+      "dokumente": [],
+      "beratungsweg": []
+    },
+    {
+      "ref": "stadt:13774#Ö 6",
+      "thema": "stadt:13774#Ö 6",
+      "auftritte": [
+        {
+          "datum": "2026-11-25",
+          "datum_anzeige": "25.11.2026",
+          "gremium": "Inklusionsbeirat",
+          "top_nr": "Ö 6",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13774"
+        }
+      ],
+      "klartext_titel": "Barrierefreie Toiletten - Toilette für alle",
+      "klartext": "",
+      "klartext_titel_leicht": "",
+      "klartext_leicht": "",
+      "lebenslage": [
+        "Gesundheit & Pflege"
+      ],
+      "bezirk": [],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [],
+      "ort": [],
+      "entwurf": true,
+      "duenn": true,
+      "stand": "Steht auf der Tagesordnung",
+      "stand_datum": "25.11.2026",
+      "status": "Nur zur Information",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "Barrierefreie Toiletten - Toilette für alle",
+      "top_nr": "Ö 6",
+      "vorlage": "",
+      "vorlage_url": "",
+      "antragsteller": "",
+      "gremium": "Inklusionsbeirat",
+      "sitzung_kennung": "IR/01/2026",
+      "datum": "2026-11-25",
+      "datum_anzeige": "25.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13774",
+      "dokumente": [],
+      "beratungsweg": []
+    },
+    {
+      "ref": "stadt:13543#Ö6",
+      "thema": "stadt:vorlage:23249",
+      "auftritte": [
+        {
+          "datum": "2026-10-13",
+          "datum_anzeige": "13.10.2026",
+          "gremium": "Ausschuss für Kultur und Bildung",
+          "top_nr": "Ö",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13543"
+        },
+        {
+          "datum": "2026-10-29",
+          "datum_anzeige": "29.10.2026",
+          "gremium": "Stadtrat",
+          "top_nr": "Ö",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548"
+        },
+        {
+          "datum": "2026-11-24",
+          "datum_anzeige": "24.11.2026",
+          "gremium": "Ausschuss für Kultur und Bildung",
+          "top_nr": "Ö",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552"
+        }
+      ],
+      "klartext_titel": "Stadtrat soll bei Partnerstadt-Besuchen besser eingebunden werden",
+      "klartext": "Die FW-Stadtratsfraktion beantragt ein Konzept, das sicherstellt, dass Stadträtinnen und Stadträte rechtzeitig über Besuche aus Partnerstädten informiert werden, und dass offizielle Besuche grundsätzlich von Oberbürgermeister, Bürgermeister:innen oder Stadtratsmitgliedern begleitet werden – nicht nur von der Verwaltung. Zusätzlich soll ein Konzept zur nachhaltigen Pflege der Städtepartnerschaften mit mehr Bürgerbeteiligung erarbeitet werden.",
+      "klartext_titel_leicht": "Mehr Beteiligung des Stadtrats bei Partnerstadt-Besuchen",
+      "klartext_leicht": "Ingolstadt hat Partnerstädte im Ausland. Bei Besuchen von dort soll künftig immer der Oberbürgermeister, eine Bürgermeisterin oder ein Stadtratsmitglied dabei sein. Nicht nur Mitarbeiter:innen der Verwaltung, das fordern die Freien Wähler. Auch der Stadtrat soll früher über solche Besuche informiert werden.",
+      "lebenslage": [],
+      "bezirk": [],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [
+        "Konzept & Planung"
+      ],
+      "ort": [],
+      "entwurf": false,
+      "duenn": false,
+      "stand": "Nur besprochen, nichts entschieden",
+      "stand_datum": "",
+      "status": "Nur zur Information",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "- Antrag der FW-Stadtratsfraktion vom 28.07.2026 -",
+      "top_nr": "Ö",
+      "vorlage": "V0494/26",
+      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23249",
+      "antragsteller": "",
+      "gremium": "Ausschuss für Kultur und Bildung",
+      "sitzung_kennung": "KBA/04/2026",
+      "datum": "2026-11-24",
+      "datum_anzeige": "24.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552",
+      "dokumente": [
+        {
+          "titel": "Stadtratsantrag FW",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=252557&type=do"
+        }
+      ],
+      "beratungsweg": []
+    },
+    {
+      "ref": "stadt:13543#Ö7",
+      "thema": "stadt:vorlage:23318",
+      "auftritte": [
+        {
+          "datum": "2026-10-13",
+          "datum_anzeige": "13.10.2026",
+          "gremium": "Ausschuss für Kultur und Bildung",
+          "top_nr": "Ö",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13543"
+        },
+        {
+          "datum": "2026-10-29",
+          "datum_anzeige": "29.10.2026",
+          "gremium": "Stadtrat",
+          "top_nr": "Ö",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548"
+        },
+        {
+          "datum": "2026-11-24",
+          "datum_anzeige": "24.11.2026",
+          "gremium": "Ausschuss für Kultur und Bildung",
+          "top_nr": "Ö",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552"
+        }
+      ],
+      "klartext_titel": "Partnerstädte: Fraktionen sollen Ansprechpersonen benennen",
+      "klartext": "Auf den Antrag der Freien Wähler zur Betreuung von Besuchen aus Partnerstädten beschreibt die Verwaltung das bisherige Vorgehen: Zu Veranstaltungen mit Delegationen lädt der Oberbürgermeister die Fraktionen ein, empfangen werden Delegationen vom Oberbürgermeister, dem zweiten oder dritten Bürgermeister oder dem zuständigen Referenten. Bei Austauschen etwa von Sportvereinen liegen Organisation und Einladungen bei den Vereinen selbst, die Verwaltung ist meist nicht eingebunden. Bei Reisen in die Partnerstädte entscheidet grundsätzlich die einladende Stadt über Größe und Ausrichtung der Delegation. Neu vorgeschlagen wird, dass jede Fraktion und Stadtratsgruppe eine Ansprechperson für internationale Beziehungen benennt. Diese sollen einmal im Jahr eine Übersicht der geplanten Aktivitäten mit den Partnerstädten erhalten. Der Stadtrat soll am 29. Oktober 2026 entscheiden.",
+      "klartext_titel_leicht": "Partner-Städte: Jede Partei soll eine Ansprech-Person nennen",
+      "klartext_leicht": "Die Partei Freie Wähler will mehr Infos über Besuch aus Partner-Städten. Die Verwaltung von der Stadt antwortet darauf. Sie sagt: Der Ober-Bürgermeister lädt die Parteien schon zu Treffen ein. Sie macht einen neuen Vorschlag. Jede Partei im Stadt-Rat nennt eine Ansprech-Person. Diese Personen bekommen 1 Mal im Jahr eine Liste. Darin steht: Das ist mit den Partner-Städten geplant. Der Stadt-Rat soll am 29. Oktober 2026 entscheiden.",
+      "lebenslage": [
+        "Ehrenamt & Vereine"
+      ],
+      "bezirk": [
+        "stadtweit"
+      ],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [
+        "Kultur & Bildung"
+      ],
+      "ort": [],
+      "entwurf": false,
+      "duenn": false,
+      "stand": "Nur besprochen, nichts entschieden",
+      "stand_datum": "",
+      "status": "Nur zur Information",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "Stellungnahme der Verwaltung",
+      "top_nr": "Ö",
+      "vorlage": "V0562/26",
+      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23318",
+      "antragsteller": "",
+      "gremium": "Ausschuss für Kultur und Bildung",
+      "sitzung_kennung": "KBA/04/2026",
+      "datum": "2026-11-24",
+      "datum_anzeige": "24.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552",
+      "dokumente": [
+        {
+          "titel": "Vorlage",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=253434&type=do"
+        }
+      ],
+      "beratungsweg": []
+    },
     {
       "ref": "stadt:13552#Ö1",
       "thema": "stadt:vorlage:23243",
@@ -534,71 +1330,6 @@
       "beratungsweg": []
     },
     {
-      "ref": "stadt:13552#Ö 7",
-      "thema": "stadt:vorlage:23448",
-      "auftritte": [
-        {
-          "datum": "2026-11-24",
-          "datum_anzeige": "24.11.2026",
-          "gremium": "Ausschuss für Kultur und Bildung",
-          "top_nr": "Ö 7",
-          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552"
-        }
-      ],
-      "klartext_titel": "Stadtheimatpfleger soll bis 2033 im Amt bleiben",
-      "klartext": "Dr. Tobias Schönauer soll zum 1. Januar 2027 erneut zum Heimatpfleger der Stadt Ingolstadt ernannt werden, für die Zeit bis 31. Dezember 2033. Er übt das Ehrenamt seit 2011 aus. Die Aufwandsentschädigung soll bei 300 Euro im Monat bleiben, das sind 3.600 Euro im Jahr. Einen stellvertretenden Stadtheimatpfleger soll es künftig nicht mehr geben; das ist Teil der Haushaltskonsolidierung. Das Landesamt für Denkmalpflege, der Landesverein für Heimatpflege und die Bezirksheimatpflegerin haben die Wiederbestellung laut Vorlage begrüßt. Zwei Ausschüsse beraten Ende November, der Stadtrat soll am 10. Dezember 2026 entscheiden.",
-      "klartext_titel_leicht": "Der Heimat-Pfleger soll weiter arbeiten",
-      "klartext_leicht": "Ein Heimat-Pfleger kümmert sich um die Geschichte und die alten Gebäude von einer Stadt. Das ist ein Ehren-Amt. In Ingolstadt macht das Herr Schönauer seit dem Jahr 2011. Er soll weiter Heimat-Pfleger bleiben. Das soll bis Ende 2033 gelten. Er bekommt dafür 300 Euro im Monat. Einen Stellvertreter soll es nicht mehr geben. So will die Stadt Geld sparen. Der Stadt-Rat soll am 10. Dezember 2026 entscheiden.",
-      "lebenslage": [
-        "Ehrenamt & Vereine"
-      ],
-      "bezirk": [
-        "stadtweit"
-      ],
-      "ebene": [
-        "Stadtrat & Ausschüsse"
-      ],
-      "anlass": [
-        "Kultur & Bildung"
-      ],
-      "ort": [],
-      "entwurf": false,
-      "duenn": false,
-      "stand": "Wird noch beraten",
-      "stand_datum": "24.11.2026",
-      "status": "Noch offen",
-      "niederschrift_url": "",
-      "beschluss": null,
-      "quelle": "stadt",
-      "amtlicher_titel": "Wiederbestellung des Stadtheimatpflegers",
-      "top_nr": "Ö 7",
-      "vorlage": "V0687/26",
-      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23448",
-      "antragsteller": "",
-      "gremium": "Ausschuss für Kultur und Bildung",
-      "sitzung_kennung": "KBA/04/2026",
-      "datum": "2026-11-24",
-      "datum_anzeige": "24.11.2026",
-      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552",
-      "dokumente": [
-        {
-          "titel": "Vorlage",
-          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254739&type=do"
-        }
-      ],
-      "beratungsweg": [
-        {
-          "datum": "2026-11-24",
-          "datum_anzeige": "24.11.2026",
-          "gremium": "Ausschuss für Kultur und Bildung",
-          "top_nr": "7",
-          "oeffentlich": true,
-          "rolle": "Vorberatung",
-          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552&toselect=91264"
-        }
-      ]
-    },
-    {
       "ref": "stadt:13552#Ö 1",
       "thema": "stadt:13552#Ö 1",
       "auftritte": [
@@ -844,6 +1575,54 @@
       "beratungsweg": []
     },
     {
+      "ref": "stadt:13552#Ö 9",
+      "thema": "stadt:13552#Ö 9",
+      "auftritte": [
+        {
+          "datum": "2026-11-24",
+          "datum_anzeige": "24.11.2026",
+          "gremium": "Ausschuss für Kultur und Bildung",
+          "top_nr": "Ö 9",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552"
+        }
+      ],
+      "klartext_titel": "Regelung für die Betreuung von Besuchen von oder bei Partnerstädten",
+      "klartext": "",
+      "klartext_titel_leicht": "",
+      "klartext_leicht": "",
+      "lebenslage": [
+        "Freizeit & Sport"
+      ],
+      "bezirk": [],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [
+        "Kultur & Bildung"
+      ],
+      "ort": [],
+      "entwurf": true,
+      "duenn": true,
+      "stand": "Steht auf der Tagesordnung",
+      "stand_datum": "24.11.2026",
+      "status": "Nur zur Information",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "Regelung für die Betreuung von Besuchen von oder bei Partnerstädten",
+      "top_nr": "Ö 9",
+      "vorlage": "",
+      "vorlage_url": "",
+      "antragsteller": "",
+      "gremium": "Ausschuss für Kultur und Bildung",
+      "sitzung_kennung": "KBA/04/2026",
+      "datum": "2026-11-24",
+      "datum_anzeige": "24.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552",
+      "dokumente": [],
+      "beratungsweg": []
+    },
+    {
       "ref": "stadt:13551#Ö 4",
       "thema": "stadt:vorlage:23385",
       "auftritte": [
@@ -952,9 +1731,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "19.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1002,9 +1781,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "19.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1257,9 +2036,9 @@
       ],
       "entwurf": false,
       "duenn": false,
-      "stand": "Entscheidung geplant",
+      "stand": "Entscheidung angesetzt",
       "stand_datum": "19.11.2026",
-      "status": "Noch offen",
+      "status": "Ergebnis steht im Protokoll",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "stadt",
@@ -1320,8 +2099,8 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Steht auf der Tagesordnung",
-      "stand_datum": "19.11.2026",
+      "stand": "Nur besprochen, nichts entschieden",
+      "stand_datum": "",
       "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
@@ -1370,9 +2149,9 @@
       ],
       "entwurf": false,
       "duenn": false,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1423,9 +2202,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1472,9 +2251,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1518,9 +2297,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1566,9 +2345,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1616,9 +2395,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1665,9 +2444,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1713,9 +2492,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1759,9 +2538,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1805,9 +2584,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1853,9 +2632,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1901,9 +2680,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -1952,9 +2731,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -2002,9 +2781,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -2050,9 +2829,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -2096,9 +2875,9 @@
       "ort": [],
       "entwurf": true,
       "duenn": true,
-      "stand": "Kommt im Bezirksausschuss",
-      "stand_datum": "18.11.2026",
-      "status": "Noch offen",
+      "stand": "Im Bezirksausschuss behandelt",
+      "stand_datum": "",
+      "status": "Nur zur Information",
       "niederschrift_url": "",
       "beschluss": null,
       "quelle": "bza",
@@ -2375,6 +3154,10 @@
         {
           "titel": "Vorlage",
           "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89037&type=do"
+        },
+        {
+          "titel": "20261117 GAP Neubau-Präsentation",
+          "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89686&type=do"
         }
       ],
       "beratungsweg": [
@@ -2438,6 +3221,10 @@
         {
           "titel": "Vorlage",
           "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89031&type=do"
+        },
+        {
+          "titel": "20261117 FLMG Umbau Küche Kramerladen-Präsentation",
+          "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89687&type=do"
         }
       ],
       "beratungsweg": [
@@ -2907,6 +3694,61 @@
       "datum_anzeige": "17.11.2026",
       "sitzung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14377",
       "dokumente": [],
+      "beratungsweg": []
+    },
+    {
+      "ref": "stadt:13550#Ö1",
+      "thema": "stadt:vorlage:23498",
+      "auftritte": [
+        {
+          "datum": "2026-11-17",
+          "datum_anzeige": "17.11.2026",
+          "gremium": "Ausschuss für Sport, Veranstaltungen und Freizeit",
+          "top_nr": "Ö",
+          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13550"
+        }
+      ],
+      "klartext_titel": "Kein städtisches Bürgerfest 2027",
+      "klartext": "Die Verwaltung schlägt vor, das städtische Bürgerfest 2027 auszusetzen. Im Oktober 2025 hatte der Stadtrat im Sparpaket festgelegt, das Fest nur noch alle zwei Jahre zu feiern, erstmals wieder 2027. Für 2027 müssten laut Vorlage 440.000 Euro Ausgaben und 84.500 Euro Einnahmen eingeplant werden, also ein Minus von 355.500 Euro. Als Grund nennt die Verwaltung die anhaltende Finanzkrise der Stadt. 2026 hatten zwei private Veranstalter ein kleineres Bürgerfest am 18. und 19. September organisiert. Ob es 2029 wieder ein städtisches Fest gibt, soll im Herbst 2028 neu geprüft werden. Der Sportausschuss hat am 17. November 2026 vorberaten, entscheiden soll der Stadtrat am 10. Dezember 2026.",
+      "klartext_titel_leicht": "2027 soll es kein Bürger-Fest der Stadt geben",
+      "klartext_leicht": "Das Bürger-Fest ist ein Fest in Ingolstadt. Bisher hat die Stadt das Fest gemacht. Jetzt hat die Stadt wenig Geld. Das Fest würde die Stadt ungefähr 355.000 Euro kosten. Darum soll es 2027 kein Bürger-Fest der Stadt geben. Im Jahr 2026 haben 2 Bürger selbst ein kleineres Fest gemacht. Im Herbst 2028 schaut die Stadt wieder auf das Fest. Der Stadt-Rat soll am 10. Dezember 2026 entscheiden.",
+      "lebenslage": [
+        "Freizeit & Sport"
+      ],
+      "bezirk": [
+        "stadtweit"
+      ],
+      "ebene": [
+        "Stadtrat & Ausschüsse"
+      ],
+      "anlass": [
+        "Kultur & Bildung"
+      ],
+      "ort": [],
+      "entwurf": false,
+      "duenn": false,
+      "stand": "Nur besprochen, nichts entschieden",
+      "stand_datum": "",
+      "status": "Nur zur Information",
+      "niederschrift_url": "",
+      "beschluss": null,
+      "quelle": "stadt",
+      "amtlicher_titel": "Hierzu liegt vor: — Beschlussvorlage der Verwaltung",
+      "top_nr": "Ö",
+      "vorlage": "V0735/26",
+      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23498",
+      "antragsteller": "",
+      "gremium": "Ausschuss für Sport, Veranstaltungen und Freizeit",
+      "sitzung_kennung": "SVA/03/2026",
+      "datum": "2026-11-17",
+      "datum_anzeige": "17.11.2026",
+      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13550",
+      "dokumente": [
+        {
+          "titel": "Vorlage",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255541&type=do"
+        }
+      ],
       "beratungsweg": []
     },
     {
@@ -6681,126 +7523,6 @@
           "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548&toselect=90742"
         }
       ]
-    },
-    {
-      "ref": "stadt:13543#Ö6",
-      "thema": "stadt:vorlage:23249",
-      "auftritte": [
-        {
-          "datum": "2026-10-13",
-          "datum_anzeige": "13.10.2026",
-          "gremium": "Ausschuss für Kultur und Bildung",
-          "top_nr": "Ö",
-          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13543"
-        },
-        {
-          "datum": "2026-10-29",
-          "datum_anzeige": "29.10.2026",
-          "gremium": "Stadtrat",
-          "top_nr": "Ö",
-          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548"
-        }
-      ],
-      "klartext_titel": "Stadtrat soll bei Partnerstadt-Besuchen besser eingebunden werden",
-      "klartext": "Die FW-Stadtratsfraktion beantragt ein Konzept, das sicherstellt, dass Stadträtinnen und Stadträte rechtzeitig über Besuche aus Partnerstädten informiert werden, und dass offizielle Besuche grundsätzlich von Oberbürgermeister, Bürgermeister:innen oder Stadtratsmitgliedern begleitet werden – nicht nur von der Verwaltung. Zusätzlich soll ein Konzept zur nachhaltigen Pflege der Städtepartnerschaften mit mehr Bürgerbeteiligung erarbeitet werden.",
-      "klartext_titel_leicht": "Mehr Beteiligung des Stadtrats bei Partnerstadt-Besuchen",
-      "klartext_leicht": "Ingolstadt hat Partnerstädte im Ausland. Bei Besuchen von dort soll künftig immer der Oberbürgermeister, eine Bürgermeisterin oder ein Stadtratsmitglied dabei sein. Nicht nur Mitarbeiter:innen der Verwaltung, das fordern die Freien Wähler. Auch der Stadtrat soll früher über solche Besuche informiert werden.",
-      "lebenslage": [],
-      "bezirk": [],
-      "ebene": [
-        "Stadtrat & Ausschüsse"
-      ],
-      "anlass": [
-        "Konzept & Planung"
-      ],
-      "ort": [],
-      "entwurf": false,
-      "duenn": false,
-      "stand": "Nur besprochen, nichts entschieden",
-      "stand_datum": "",
-      "status": "Nur zur Information",
-      "niederschrift_url": "",
-      "beschluss": null,
-      "quelle": "stadt",
-      "amtlicher_titel": "- Antrag der FW-Stadtratsfraktion vom 28.07.2026 -",
-      "top_nr": "Ö",
-      "vorlage": "V0494/26",
-      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23249",
-      "antragsteller": "",
-      "gremium": "Stadtrat",
-      "sitzung_kennung": "StR/05/2026",
-      "datum": "2026-10-29",
-      "datum_anzeige": "29.10.2026",
-      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548",
-      "dokumente": [
-        {
-          "titel": "Stadtratsantrag FW",
-          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=252557&type=do"
-        }
-      ],
-      "beratungsweg": []
-    },
-    {
-      "ref": "stadt:13543#Ö7",
-      "thema": "stadt:vorlage:23318",
-      "auftritte": [
-        {
-          "datum": "2026-10-13",
-          "datum_anzeige": "13.10.2026",
-          "gremium": "Ausschuss für Kultur und Bildung",
-          "top_nr": "Ö",
-          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13543"
-        },
-        {
-          "datum": "2026-10-29",
-          "datum_anzeige": "29.10.2026",
-          "gremium": "Stadtrat",
-          "top_nr": "Ö",
-          "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548"
-        }
-      ],
-      "klartext_titel": "Partnerstädte: Fraktionen sollen Ansprechpersonen benennen",
-      "klartext": "Auf den Antrag der Freien Wähler zur Betreuung von Besuchen aus Partnerstädten beschreibt die Verwaltung das bisherige Vorgehen: Zu Veranstaltungen mit Delegationen lädt der Oberbürgermeister die Fraktionen ein, empfangen werden Delegationen vom Oberbürgermeister, dem zweiten oder dritten Bürgermeister oder dem zuständigen Referenten. Bei Austauschen etwa von Sportvereinen liegen Organisation und Einladungen bei den Vereinen selbst, die Verwaltung ist meist nicht eingebunden. Bei Reisen in die Partnerstädte entscheidet grundsätzlich die einladende Stadt über Größe und Ausrichtung der Delegation. Neu vorgeschlagen wird, dass jede Fraktion und Stadtratsgruppe eine Ansprechperson für internationale Beziehungen benennt. Diese sollen einmal im Jahr eine Übersicht der geplanten Aktivitäten mit den Partnerstädten erhalten. Der Stadtrat soll am 29. Oktober 2026 entscheiden.",
-      "klartext_titel_leicht": "Partner-Städte: Jede Partei soll eine Ansprech-Person nennen",
-      "klartext_leicht": "Die Partei Freie Wähler will mehr Infos über Besuch aus Partner-Städten. Die Verwaltung von der Stadt antwortet darauf. Sie sagt: Der Ober-Bürgermeister lädt die Parteien schon zu Treffen ein. Sie macht einen neuen Vorschlag. Jede Partei im Stadt-Rat nennt eine Ansprech-Person. Diese Personen bekommen 1 Mal im Jahr eine Liste. Darin steht: Das ist mit den Partner-Städten geplant. Der Stadt-Rat soll am 29. Oktober 2026 entscheiden.",
-      "lebenslage": [
-        "Ehrenamt & Vereine"
-      ],
-      "bezirk": [
-        "stadtweit"
-      ],
-      "ebene": [
-        "Stadtrat & Ausschüsse"
-      ],
-      "anlass": [
-        "Kultur & Bildung"
-      ],
-      "ort": [],
-      "entwurf": false,
-      "duenn": false,
-      "stand": "Nur besprochen, nichts entschieden",
-      "stand_datum": "",
-      "status": "Nur zur Information",
-      "niederschrift_url": "",
-      "beschluss": null,
-      "quelle": "stadt",
-      "amtlicher_titel": "Stellungnahme der Verwaltung",
-      "top_nr": "Ö",
-      "vorlage": "V0562/26",
-      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23318",
-      "antragsteller": "",
-      "gremium": "Stadtrat",
-      "sitzung_kennung": "StR/05/2026",
-      "datum": "2026-10-29",
-      "datum_anzeige": "29.10.2026",
-      "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13548",
-      "dokumente": [
-        {
-          "titel": "Vorlage",
-          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=253434&type=do"
-        }
-      ],
-      "beratungsweg": []
     },
     {
       "ref": "stadt:13542#Ö 4",
@@ -12464,11 +13186,14 @@
       "ort": [],
       "entwurf": false,
       "duenn": false,
-      "stand": "Entscheidung angesetzt",
+      "stand": "Beschlossen",
       "stand_datum": "27.10.2026",
-      "status": "Ergebnis steht im Protokoll",
-      "niederschrift_url": "",
-      "beschluss": null,
+      "status": "Entschieden",
+      "niederschrift_url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89466&type=do",
+      "beschluss": {
+        "formel": "Ja 16, Nein 1",
+        "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den Klimabericht 2025/2026 zur Kenntnis und stimmt der Entwicklung des Maßnahmenplans zur Klimaanpas- sung zu."
+      },
       "quelle": "bezirk_obb",
       "amtlicher_titel": "Vorstellung des Entwurfs zum Klimabericht 2025/26 inkl. Klima- und Energiebilanz und Stand der Maßnahmenumsetzung aus dem Klimaschutzkonzept",
       "top_nr": "Ö 2",
@@ -12532,7 +13257,7 @@
       "stand": "Bekanntgabe",
       "stand_datum": "27.10.2026",
       "status": "Nur zur Information",
-      "niederschrift_url": "",
+      "niederschrift_url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89466&type=do",
       "beschluss": null,
       "quelle": "bezirk_obb",
       "amtlicher_titel": "Vorstellung des Entwurfs der Ökobilanz 2025 nach EMAS",
@@ -12685,7 +13410,7 @@
       "stand": "Nur besprochen, nichts entschieden",
       "stand_datum": "",
       "status": "Nur zur Information",
-      "niederschrift_url": "",
+      "niederschrift_url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89466&type=do",
       "beschluss": null,
       "quelle": "bezirk_obb",
       "amtlicher_titel": "Bekanntgaben und Sonstiges",
@@ -14572,54 +15297,6 @@
         {
           "titel": "Stadtratsantrag SPD",
           "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254653&type=do"
-        }
-      ],
-      "beratungsweg": []
-    },
-    {
-      "ref": "stadt:antrag:23440",
-      "thema": "stadt:antrag:23440",
-      "auftritte": [],
-      "klartext_titel": "SPD will beleuchtete „Lichtschneisen“ durch die Innenstadt",
-      "klartext": "Die SPD-Stadtratsfraktion beantragt zu prüfen, ob in der Innenstadt gezielt „Lichtschneisen“ entstehen können: besser beleuchtete Wege, die wichtige Orte miteinander verbinden. Geprüft werden soll, welche Wege sich eignen, wie sie energieeffizient ausgeleuchtet werden können und wie dort durch Gastronomie, Kultur und Veranstaltungen mehr Leben entsteht. Die gesamte Innenstadt soll ausdrücklich nicht heller werden; die Maßnahme soll zum Lichtmasterplan passen und Lichtverschmutzung vermeiden. Die Fraktion begründet das damit, dass manche Bereiche abends als zu dunkel empfunden und deshalb gemieden werden. Der Antrag stammt vom 16. Oktober 2026. Der Antrag ist noch keiner Sitzung zugeteilt.",
-      "klartext_titel_leicht": "Die SPD will hellere Wege in der Innenstadt",
-      "klartext_leicht": "Abends sind manche Wege in der Innenstadt dunkel. Dort fühlen sich manche Menschen nicht sicher. Die Partei SPD will wichtige Wege heller machen. Nicht die ganze Innenstadt soll heller werden. Nur bestimmte Wege zwischen wichtigen Orten. Die Lampen sollen wenig Strom brauchen. Es gibt noch keinen Termin für den Antrag.",
-      "lebenslage": [
-        "Unterwegs"
-      ],
-      "bezirk": [
-        "I-Mitte"
-      ],
-      "ebene": [
-        "Stadtrat & Ausschüsse"
-      ],
-      "anlass": [
-        "Sicherheit",
-        "Konzept & Planung"
-      ],
-      "ort": [],
-      "entwurf": false,
-      "duenn": false,
-      "stand": "Noch nicht terminiert",
-      "stand_datum": "",
-      "status": "Noch offen",
-      "niederschrift_url": "",
-      "beschluss": null,
-      "quelle": "stadt",
-      "amtlicher_titel": "Lichtschneisen für die Innenstadt",
-      "top_nr": "",
-      "vorlage": "V0681/26",
-      "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23440",
-      "antragsteller": "SPD-Stadtratsfraktion",
-      "gremium": "Antrag an Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
-      "sitzung_kennung": "",
-      "datum": "2026-10-16",
-      "datum_anzeige": "16.10.2026",
-      "sitzung_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23440",
-      "dokumente": [
-        {
-          "titel": "Stadtratsantrag SPD",
-          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254656&type=do"
         }
       ],
       "beratungsweg": []
@@ -253809,56 +254486,6 @@
   ],
   "kommende_termine": [
     {
-      "gremium": "Ausschuss für Bau, Umwelt und Energie",
-      "artikel": "",
-      "datum": "2026-11-17",
-      "datum_anzeige": "17.11.2026",
-      "zeit": "09:30-11:30 Uhr",
-      "ort": "Sitzungssaal im 5. OG des Verwaltungsgebäudes",
-      "quelle": "bezirk_obb",
-      "tagesordnung_url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/si0056.asp?__ksinr=4939"
-    },
-    {
-      "gremium": "Ausschuss für Kultur, Schulen und Museen",
-      "artikel": "",
-      "datum": "2026-11-17",
-      "datum_anzeige": "17.11.2026",
-      "zeit": "13:30-15:30 Uhr",
-      "ort": "Sitzungssaal im 5. OG des Verwaltungsgebäudes",
-      "quelle": "bezirk_obb",
-      "tagesordnung_url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/si0056.asp?__ksinr=5018"
-    },
-    {
-      "gremium": "Ausschuss für Sport, Veranstaltungen und Freizeit",
-      "artikel": "",
-      "datum": "2026-11-17",
-      "datum_anzeige": "17.11.2026",
-      "zeit": "16:00 Uhr",
-      "ort": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
-      "quelle": "stadt",
-      "tagesordnung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13550"
-    },
-    {
-      "gremium": "Bezirksausschuss IX-Mailing/Feldkirchen",
-      "artikel": "",
-      "datum": "2026-11-17",
-      "datum_anzeige": "17.11.2026",
-      "zeit": "20:00 Uhr",
-      "ort": "Sportheim Mailing, Am Himmelreich 15, 85055 Ingolstadt",
-      "quelle": "bza",
-      "tagesordnung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14377"
-    },
-    {
-      "gremium": "Bezirksausschuss II-Nordwest",
-      "artikel": "",
-      "datum": "2026-11-18",
-      "datum_anzeige": "18.11.2026",
-      "zeit": "18:30 Uhr",
-      "ort": "Stadtteiltreff Piusviertel, Pfitznerstraße 19a, 85057 Ingolstadt",
-      "quelle": "bza",
-      "tagesordnung_url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14357"
-    },
-    {
       "gremium": "Ausschuss für Soziales, Gesundheit, Stiftungen und Familien",
       "artikel": "",
       "datum": "2026-11-19",
@@ -253899,13 +254526,14 @@
       "tagesordnung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13872"
     },
     {
-      "gremium": "Inklusionsrates",
-      "artikel": "des",
+      "gremium": "Inklusionsbeirat",
+      "artikel": "",
       "datum": "2026-11-25",
       "datum_anzeige": "25.11.2026",
       "zeit": "16:00 Uhr",
       "ort": "",
-      "quelle": "stadt"
+      "quelle": "stadt",
+      "tagesordnung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13774"
     },
     {
       "gremium": "Sozial- und Gesundheitsausschuss",
@@ -253917,13 +254545,14 @@
       "quelle": "bezirk_obb"
     },
     {
-      "gremium": "Ausschusses für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
-      "artikel": "des",
+      "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+      "artikel": "",
       "datum": "2026-11-26",
       "datum_anzeige": "26.11.2026",
       "zeit": "16:00 Uhr",
       "ort": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
-      "quelle": "stadt"
+      "quelle": "stadt",
+      "tagesordnung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553"
     },
     {
       "gremium": "Bezirksausschusses I-Mitte",

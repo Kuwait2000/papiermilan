@@ -1,4 +1,12 @@
 {
+  "bezirk_obb:4938#Ö 2": {
+    "formel": "Ja 16, Nein 1",
+    "ergebnis": "beschlossen",
+    "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den Klimabericht 2025/2026 zur Kenntnis und stimmt der Entwicklung des Maßnahmenplans zur Klimaanpas- sung zu.",
+    "vorlage": "82/BV/159/2026",
+    "empfehlung": false,
+    "weg": "obb-top"
+  },
   "bezirk_obb:4983#Ö 5": {
     "formel": "Ja 73, Nein 3",
     "ergebnis": "beschlossen",
@@ -92,54 +100,6 @@
     "ergebnis": "beschlossen",
     "text": "Der Bezirksausschuss beschließt: 1. Der Durchführung des Vorhabens „Schaffung der Grundlagen für Monito- ring, Früherkennung und Prävention der invasiven Quaggamuschel in oberbayerischen Seen“ mit einem Gesamtvolumen von 60.000 € wird zu- gestimmt. 2. Die Verwaltung wird beauftragt, bei der Regierung von Oberbayern die Gewährung einer Zuwendung aus Mitteln der Fraktionsinitiative zur Prä- vention der Quaggamuschel in Oberbayern in Höhe von 54.000 € zu bean- tragen und die zur Umsetzung des Vorhabens erforderlichen Maßnahmen durchzuführen. 3. Der Bezirk Oberbayern stellt für das Vorhaben Eigenmittel in Höhe von 6.000 € bereit. 4. Der außerplanmäßigen Bereitstellung der zur Abwicklung des Vorhabens erforderlichen Einnahmen und Ausgaben im Verwaltungs- und Vermögens- haushalt der Haushaltsjahre 2026 und 2027 wird zugestimmt. Hierfür wer- den überplanmäßige Ausgaben in Höhe von 33.000 € auf der Haushaltstel- le 2.78010.93500.999 genehmigt. Die Deckung erfolgt aus der Haushalts- stelle 2.88910.93200 (Erwerb von Grundstücken und baulichen Anlagen). Im Haushaltsplan 2027 werden auf der Haushaltsstelle 2.78010.93500.999 weitere 12.000 € bereitgestellt. Im Verwaltungshaushalt 2027 werden auf der Haushaltsstelle 1.78010.63202 (Quagga-Muschel) 15.000 € bereitge- stellt. 5. Die Verwaltung wird ermächtigt, im Rahmen des bewilligten Gesamtvolu- mens notwendige Anpassungen bei der Umsetzung und Mittelverwendung vorzunehmen, soweit hierdurch der Förderzweck und der Eigenmittelanteil des Bezi",
     "vorlage": "15/BV/182/2026",
-    "empfehlung": false,
-    "weg": "obb-top"
-  },
-  "bezirk_obb:4937#Ö 2": {
-    "formel": "Ja 15, Nein 0",
-    "ergebnis": "beschlossen",
-    "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den vorgestellten Sachverhalt zur Kenntnis und beschließt, die Verwaltung zu ermächtigen, für die Umbaumaßnahmen im Bereich der Feintäschnerei die erforderlichen Planungs- und Bauleistungen anzubahnen und zu beauftragen.",
-    "vorlage": "12/BV/085/2026",
-    "empfehlung": false,
-    "weg": "obb-top"
-  },
-  "bezirk_obb:4937#Ö 3": {
-    "formel": "Ja 15, Nein 0",
-    "ergebnis": "beschlossen",
-    "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den vorgestellten Sachverhalt zur Kenntnis und gibt die Entwurfsplanung innerhalb des Gesamtkostenrahmens inklusiv Planungskosten und Risikozuschlag von bis zu 65.500.000 Euro frei und beschließt, die Verwaltung zu ermächtigen, für den Neubau des Johann-Nepomuk- von-Kurz-Zentrums die Genehmigungsplanung zu beauftragen.",
-    "vorlage": "12/BV/084/2026",
-    "empfehlung": false,
-    "weg": "obb-top"
-  },
-  "bezirk_obb:4937#Ö 4": {
-    "formel": "Ja 15, Nein 0",
-    "ergebnis": "beschlossen",
-    "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den vorgestellten Sachverhalt zur Kenntnis und beschließt, die Verwaltung zu ermächtigen, für die Instandsetzung der anlagentechnischen Regelstruktur die erforderlichen Planungs- und Bauleistungen anzubahnen und zu beauftragen.",
-    "vorlage": "12/BV/086/2026",
-    "empfehlung": false,
-    "weg": "obb-top"
-  },
-  "bezirk_obb:4937#Ö 5": {
-    "formel": "Ja 15, Nein 0",
-    "ergebnis": "beschlossen",
-    "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den vorgestellten Sachverhalt zur Kenntnis, gibt die Entwurfsplanung frei und beschließt, die Verwaltung zu ermächtigen, für die Dachaufstockung Bauteil B die weiteren Planungsleistungen (Leistungsphase 5 bis 9) zu beauftragen. Zudem wird die Verwaltung ermächtigt, eine Vergabe der Bauleistungen an einen Generalunternehmer innerhalb des Gesamtkostenrahmens bis zu 5.320.000 Euro vorzubereiten.",
-    "vorlage": "12/BV/083/2026",
-    "empfehlung": false,
-    "weg": "obb-top"
-  },
-  "bezirk_obb:4937#Ö 6": {
-    "formel": "Ja 15, Nein 0",
-    "ergebnis": "beschlossen",
-    "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den vorgestellten Sachverhalt zur Kenntnis und beschließt, die Verwaltung zu ermächtigen, für die PV- Anlagenerweiterung über dem Casino die erforderlichen Planungs- und Bauleistungen anzubahnen und zu beauftragen.",
-    "vorlage": "12/BV/089/2026",
-    "empfehlung": false,
-    "weg": "obb-top"
-  },
-  "bezirk_obb:4937#Ö 7": {
-    "formel": "Ja 14, Nein 0",
-    "ergebnis": "beschlossen",
-    "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den vorgestellten Sachverhalt zur Kenntnis, gibt die Entwurfsplanung frei und beschließt, die Verwaltung zu ermächtigen, für die Erneuerung der Sprinkleranlage in der Hauptverwaltung des Bezirks Oberbayern die erforderlichen Planungs- und Bauleistungen anzubahnen und zu beauftragen.",
-    "vorlage": "12/BV/087/2026",
     "empfehlung": false,
     "weg": "obb-top"
   },
@@ -718,6 +678,54 @@
     "vorlage": "V0176/26",
     "empfehlung": false,
     "weg": "vorlage-block"
+  },
+  "bezirk_obb:4937#Ö 2": {
+    "formel": "Ja 15, Nein 0",
+    "ergebnis": "beschlossen",
+    "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den vorgestellten Sachverhalt zur Kenntnis und beschließt, die Verwaltung zu ermächtigen, für die Umbaumaßnahmen im Bereich der Feintäschnerei die erforderlichen Planungs- und Bauleistungen anzubahnen und zu beauftragen.",
+    "vorlage": "12/BV/085/2026",
+    "empfehlung": false,
+    "weg": "obb-top"
+  },
+  "bezirk_obb:4937#Ö 3": {
+    "formel": "Ja 15, Nein 0",
+    "ergebnis": "beschlossen",
+    "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den vorgestellten Sachverhalt zur Kenntnis und gibt die Entwurfsplanung innerhalb des Gesamtkostenrahmens inklusiv Planungskosten und Risikozuschlag von bis zu 65.500.000 Euro frei und beschließt, die Verwaltung zu ermächtigen, für den Neubau des Johann-Nepomuk- von-Kurz-Zentrums die Genehmigungsplanung zu beauftragen.",
+    "vorlage": "12/BV/084/2026",
+    "empfehlung": false,
+    "weg": "obb-top"
+  },
+  "bezirk_obb:4937#Ö 4": {
+    "formel": "Ja 15, Nein 0",
+    "ergebnis": "beschlossen",
+    "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den vorgestellten Sachverhalt zur Kenntnis und beschließt, die Verwaltung zu ermächtigen, für die Instandsetzung der anlagentechnischen Regelstruktur die erforderlichen Planungs- und Bauleistungen anzubahnen und zu beauftragen.",
+    "vorlage": "12/BV/086/2026",
+    "empfehlung": false,
+    "weg": "obb-top"
+  },
+  "bezirk_obb:4937#Ö 5": {
+    "formel": "Ja 15, Nein 0",
+    "ergebnis": "beschlossen",
+    "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den vorgestellten Sachverhalt zur Kenntnis, gibt die Entwurfsplanung frei und beschließt, die Verwaltung zu ermächtigen, für die Dachaufstockung Bauteil B die weiteren Planungsleistungen (Leistungsphase 5 bis 9) zu beauftragen. Zudem wird die Verwaltung ermächtigt, eine Vergabe der Bauleistungen an einen Generalunternehmer innerhalb des Gesamtkostenrahmens bis zu 5.320.000 Euro vorzubereiten.",
+    "vorlage": "12/BV/083/2026",
+    "empfehlung": false,
+    "weg": "obb-top"
+  },
+  "bezirk_obb:4937#Ö 6": {
+    "formel": "Ja 15, Nein 0",
+    "ergebnis": "beschlossen",
+    "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den vorgestellten Sachverhalt zur Kenntnis und beschließt, die Verwaltung zu ermächtigen, für die PV- Anlagenerweiterung über dem Casino die erforderlichen Planungs- und Bauleistungen anzubahnen und zu beauftragen.",
+    "vorlage": "12/BV/089/2026",
+    "empfehlung": false,
+    "weg": "obb-top"
+  },
+  "bezirk_obb:4937#Ö 7": {
+    "formel": "Ja 14, Nein 0",
+    "ergebnis": "beschlossen",
+    "text": "Der Ausschuss für Bau, Umwelt und Energie nimmt den vorgestellten Sachverhalt zur Kenntnis, gibt die Entwurfsplanung frei und beschließt, die Verwaltung zu ermächtigen, für die Erneuerung der Sprinkleranlage in der Hauptverwaltung des Bezirks Oberbayern die erforderlichen Planungs- und Bauleistungen anzubahnen und zu beauftragen.",
+    "vorlage": "12/BV/087/2026",
+    "empfehlung": false,
+    "weg": "obb-top"
   },
   "bezirk_obb:4978#Ö 2": {
     "formel": "Ja 11, Nein 0",

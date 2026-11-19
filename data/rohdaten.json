@@ -5,8 +5,8 @@
       "software": "Session (Somacos GmbH & Co. KG)",
       "basis_url": "https://www.ingolstadt.de/sessionnet",
       "endung": "php",
-      "anzahl_sitzungen": 393,
-      "anzahl_tops": 3358
+      "anzahl_sitzungen": 396,
+      "anzahl_tops": 3379
     },
     "bza": {
       "name": "Ratsinfoportal der Bezirksausschüsse der Stadt Ingolstadt",
@@ -26,15 +26,474 @@
     }
   },
   "hinweis": "Oeffentlich zugaengliche Seiten, ohne Anmeldung abgerufen.",
-  "abgerufen_am": "2026-11-15",
+  "abgerufen_am": "2026-11-19",
   "zeitraum": {
     "von": "2023-11",
-    "bis": "2027-01"
+    "bis": "2027-02"
   },
-  "anzahl_sitzungen": 658,
-  "anzahl_tops": 6493,
-  "anzahl_verfahren": 904,
+  "anzahl_sitzungen": 661,
+  "anzahl_tops": 6514,
+  "anzahl_verfahren": 906,
   "sitzungen": [
+    {
+      "id": "13553",
+      "kennung": "PLA/04/2026",
+      "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+      "raum": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
+      "datum": "2026-11-26",
+      "datum_anzeige": "26.11.2026",
+      "zeit": "16:00 Uhr",
+      "url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553",
+      "dokumente": [
+        {
+          "titel": "Öffentliche Bekanntmachung",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255625&type=do"
+        },
+        {
+          "titel": "Livestream",
+          "url": "https://www.ingolstadt.de/live"
+        }
+      ],
+      "tops": [
+        {
+          "nr": "Ö 1",
+          "titel": "Zwischenbericht zum Mobilitätsplan Ingolstadt 2040+ und Endbericht zur Erhebung „Mobilität in Deutschland – MiD 2023“",
+          "zusatz": "Referentin: Frau Wittmann-Brand",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0690/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23451",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254770&type=do"
+            },
+            {
+              "titel": "Anlage 1 V0690-26",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254780&type=do"
+            },
+            {
+              "titel": "Anlage 2 V0690-26",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254781&type=do"
+            },
+            {
+              "titel": "Anlage 3 V0690-26",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254782&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-11-26",
+              "datum_anzeige": "26.11.2026",
+              "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+              "top_nr": "1",
+              "oeffentlich": true,
+              "rolle": "Vorberatung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553&toselect=91325"
+            }
+          ]
+        },
+        {
+          "nr": "Ö 2",
+          "titel": "Neuaufstellung des Flächennutzungsplanes mit integriertem Landschaftsplan — Zwischenbericht und Abwägungsbeschluss, Rahmenplan 2. Grünring",
+          "zusatz": "Referentin: Frau Wittmann-Brand",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0689/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23450",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254763&type=do"
+            },
+            {
+              "titel": "Anlage 1 Rahmenplan 2. Grünring",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255174&type=do"
+            },
+            {
+              "titel": "Anlage 2 Abwägungstabelle",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255175&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-11-26",
+              "datum_anzeige": "26.11.2026",
+              "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+              "top_nr": "2",
+              "oeffentlich": true,
+              "rolle": "Vorberatung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553&toselect=91324"
+            }
+          ]
+        },
+        {
+          "nr": "Ö 3",
+          "titel": "Bebauungs- und Grünordnungsplan Nr. 930 Ä III \"3. Änderung Weiherfeld\" — - Änderungsbeschluss / Entwurfsgenehmigung -",
+          "zusatz": "Referentin: Frau Wittmann-Brand",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0672/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23431",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254599&type=do"
+            },
+            {
+              "titel": "Anlage 01 Begründung",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255395&type=do"
+            },
+            {
+              "titel": "Anlage 02 Bebauungsplan",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255396&type=do"
+            },
+            {
+              "titel": "Anlage 03 Freiflächengestaltungsplan",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255397&type=do"
+            },
+            {
+              "titel": "Anlage 04 Auswirkungsanalyse",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255398&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-11-26",
+              "datum_anzeige": "26.11.2026",
+              "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+              "top_nr": "3",
+              "oeffentlich": true,
+              "rolle": "Vorberatung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553&toselect=91322"
+            }
+          ]
+        },
+        {
+          "nr": "Ö 4",
+          "titel": "Wiederbestellung des Stadtheimatpflegers",
+          "zusatz": "Referentin: Frau Wittmann-Brand",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0687/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23448",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254739&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-11-24",
+              "datum_anzeige": "24.11.2026",
+              "gremium": "Ausschuss für Kultur und Bildung",
+              "top_nr": "7",
+              "oeffentlich": true,
+              "rolle": "Vorberatung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552&toselect=91264"
+            },
+            {
+              "datum": "2026-11-26",
+              "datum_anzeige": "26.11.2026",
+              "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+              "top_nr": "4",
+              "oeffentlich": true,
+              "rolle": "Vorberatung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553&toselect=91323"
+            }
+          ]
+        },
+        {
+          "nr": "Ö 5",
+          "titel": "Herausnahme des Naturdenkmals 11 „Blutbuche am Kassenhäuschen“ aus Anhang 1 der Naturdenkmalverordnung der Stadt Ingolstadt vom 30. Juli 2014, zuletzt aktualisiert — am 24. September 2019",
+          "zusatz": "Referent: Oberbürgermeister Dr. Kern",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0708/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23471",
+          "dokumente": [
+            {
+              "titel": "Dringliche Anordnung",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255304&type=do"
+            },
+            {
+              "titel": "Anlage 1 Lageplan Naturdenkmal 11",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255114&type=do"
+            },
+            {
+              "titel": "Anlage 2 Kontrollbericht ND11 Sachverständigenbüros Peter Klug",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255132&type=do"
+            },
+            {
+              "titel": "Anlage 3 Eingehende Untersuchung Blutbuche",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255116&type=do"
+            },
+            {
+              "titel": "Anlage 4 Dringliche Anordnung des Oberbürgermeisters",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255117&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-11-26",
+              "datum_anzeige": "26.11.2026",
+              "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+              "top_nr": "5",
+              "oeffentlich": true,
+              "rolle": "Bekanntgabe",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553&toselect=91331"
+            }
+          ]
+        },
+        {
+          "nr": "Ö 6",
+          "titel": "Lichtmasterplan Ingolstadt",
+          "zusatz": "Referent: Herr Franz",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0702/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23464",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255045&type=do"
+            },
+            {
+              "titel": "Anlage 251216 LMPI",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255088&type=do"
+            },
+            {
+              "titel": "Präsentation-Stadtrat",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255086&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-11-26",
+              "datum_anzeige": "26.11.2026",
+              "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+              "top_nr": "6",
+              "oeffentlich": true,
+              "rolle": "Entscheidung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553&toselect=91340"
+            }
+          ]
+        },
+        {
+          "nr": "Ö",
+          "titel": "Hierzu liegt vor:",
+          "zusatz": "",
+          "antragsteller": "Antrag der SPD-Stadtratsfraktion vom 16.10.2026 zum Thema Lichtschneisen für die Innenstadt-",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0681/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23440",
+          "dokumente": [
+            {
+              "titel": "Stadtratsantrag SPD",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=254656&type=do"
+            }
+          ],
+          "beratungen": []
+        }
+      ],
+      "quelle": "stadt"
+    },
+    {
+      "id": "13777",
+      "kennung": "ASBI/03/2026",
+      "gremium": "Stadtbus Ingolstadt GmbH, Aufsichtsrat",
+      "raum": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
+      "datum": "2026-11-26",
+      "datum_anzeige": "26.11.2026",
+      "zeit": "13:00 Uhr",
+      "url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13777",
+      "dokumente": [
+        {
+          "titel": "Öffentliche Bekanntmachung SBI",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255735&type=do"
+        }
+      ],
+      "tops": [
+        {
+          "nr": "Ö 1",
+          "titel": "Bericht des Fahrgastbeirates",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 2",
+          "titel": "Mündlicher Bericht der Geschäftsleitung",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 2.1",
+          "titel": "Fahrgastanalyse 2026",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 2.2",
+          "titel": "On-Demand-Verkehre",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 3",
+          "titel": "Verschiedenes",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": true,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        }
+      ],
+      "quelle": "stadt"
+    },
+    {
+      "id": "13774",
+      "kennung": "IR/01/2026",
+      "gremium": "Inklusionsbeirat",
+      "raum": "",
+      "datum": "2026-11-25",
+      "datum_anzeige": "25.11.2026",
+      "zeit": "16:00 Uhr",
+      "url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13774",
+      "dokumente": [
+        {
+          "titel": "Öffentliche Bekanntmachung",
+          "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255593&type=do"
+        }
+      ],
+      "tops": [
+        {
+          "nr": "Ö 2",
+          "titel": "Begrüßung",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": true,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 3",
+          "titel": "Allgemeine Informationen und organisatorische Hinweise zur Beiratsarbeit",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 4",
+          "titel": "kurze Vorstellungsrunde der Inklusionsbeiratsmitglieder",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 5",
+          "titel": "Technisches Rathaus - Vorstellung der geplanten Umbaumaßnahme hinsichtlich Barrierefreiheit — (Referent: Herr Matthias Franz, Referent für Hoch- und Tiefbau Stadt Ingolstadt",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 6",
+          "titel": "Barrierefreie Toiletten - Toilette für alle",
+          "zusatz": "Referentin: Inge Braun, Inklusionsbeauftragte",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 7",
+          "titel": "Ausblick und Termine",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        }
+      ],
+      "quelle": "stadt"
+    },
     {
       "id": "13552",
       "kennung": "KBA/04/2026",
@@ -288,6 +747,15 @@
               "oeffentlich": true,
               "rolle": "Vorberatung",
               "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13552&toselect=91264"
+            },
+            {
+              "datum": "2026-11-26",
+              "datum_anzeige": "26.11.2026",
+              "gremium": "Ausschuss für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
+              "top_nr": "4",
+              "oeffentlich": true,
+              "rolle": "Vorberatung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13553&toselect=91323"
             }
           ]
         },
@@ -302,6 +770,55 @@
           "vorlage": "",
           "vorlage_url": "",
           "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö 9",
+          "titel": "Regelung für die Betreuung von Besuchen von oder bei Partnerstädten",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "19.11.2026",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "",
+          "vorlage_url": "",
+          "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö",
+          "titel": "- Antrag der FW-Stadtratsfraktion vom 28.07.2026 -",
+          "zusatz": "",
+          "antragsteller": "",
+          "nachtrag": "19.11.2026",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0494/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23249",
+          "dokumente": [
+            {
+              "titel": "Stadtratsantrag FW",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=252557&type=do"
+            }
+          ],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö",
+          "titel": "Stellungnahme der Verwaltung",
+          "zusatz": "Referent: Herr Grandmontagne",
+          "antragsteller": "",
+          "nachtrag": "19.11.2026",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0562/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23318",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=253434&type=do"
+            }
+          ],
           "beratungen": []
         }
       ],
@@ -972,7 +1489,7 @@
       "raum": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
       "datum": "2026-11-17",
       "datum_anzeige": "17.11.2026",
-      "zeit": "16:00 Uhr",
+      "zeit": "16:00-17:17 Uhr",
       "url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13550",
       "dokumente": [
         {
@@ -996,6 +1513,24 @@
           "vorlage": "",
           "vorlage_url": "",
           "dokumente": [],
+          "beratungen": []
+        },
+        {
+          "nr": "Ö",
+          "titel": "Hierzu liegt vor: — Beschlussvorlage der Verwaltung",
+          "zusatz": "Referent: Herr Grandmontagne",
+          "antragsteller": "",
+          "nachtrag": "",
+          "oeffentlich": true,
+          "verfahren": false,
+          "vorlage": "V0735/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23498",
+          "dokumente": [
+            {
+              "titel": "Vorlage",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=255541&type=do"
+            }
+          ],
           "beratungen": []
         },
         {
@@ -1040,12 +1575,16 @@
       "raum": "Sitzungssaal im 5. OG des Verwaltungsgebäudes",
       "datum": "2026-11-17",
       "datum_anzeige": "17.11.2026",
-      "zeit": "13:30-15:30 Uhr",
+      "zeit": "13:30-14:34 Uhr",
       "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/si0056.asp?__ksinr=5018",
       "dokumente": [
         {
           "titel": "Öffentliche Bekanntmachung",
           "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89587&type=do"
+        },
+        {
+          "titel": "Niederschift Ö v. 20.10.2026",
+          "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89630&type=do"
         }
       ],
       "tops": [
@@ -1135,6 +1674,10 @@
         {
           "titel": "Öffentliche Bekanntmachung",
           "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89593&type=do"
+        },
+        {
+          "titel": "Niederschrift vom 27.10.26 ö",
+          "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89590&type=do"
         }
       ],
       "tops": [
@@ -1193,6 +1736,10 @@
             {
               "titel": "Vorlage",
               "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89037&type=do"
+            },
+            {
+              "titel": "20261117 GAP Neubau-Präsentation",
+              "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89686&type=do"
             }
           ],
           "beratungen": [
@@ -1221,6 +1768,10 @@
             {
               "titel": "Vorlage",
               "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89031&type=do"
+            },
+            {
+              "titel": "20261117 FLMG Umbau Küche Kramerladen-Präsentation",
+              "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89687&type=do"
             }
           ],
           "beratungen": [
@@ -1646,7 +2197,7 @@
       "raum": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
       "datum": "2026-11-13",
       "datum_anzeige": "13.11.2026",
-      "zeit": "14:00 Uhr",
+      "zeit": "14:00-17:14 Uhr",
       "url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=14372",
       "dokumente": [
         {
@@ -1830,7 +2381,7 @@
       "raum": "Ingolstadt, Bürgerhaus Neuburger Kasten, II. OG, Seminarraum 24",
       "datum": "2026-11-12",
       "datum_anzeige": "12.11.2026",
-      "zeit": "10:00 Uhr",
+      "zeit": "10:00-11:45 Uhr",
       "url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13769",
       "dokumente": [
         {
@@ -1927,7 +2478,7 @@
       "raum": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
       "datum": "2026-11-12",
       "datum_anzeige": "12.11.2026",
-      "zeit": "16:00 Uhr",
+      "zeit": "16:00-16:51 Uhr",
       "url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13549",
       "dokumente": [
         {
@@ -5067,10 +5618,10 @@
       "id": "14355",
       "kennung": "BZA-VII/05/2026",
       "gremium": "Bezirksausschuss VII-Etting",
-      "raum": "Sportheim Etting, Retzbachweg 10, 85055 Ingolstadt — —",
+      "raum": "Sportheim Etting, Retzbachweg 10, 85055 Ingolstadt",
       "datum": "2026-10-29",
       "datum_anzeige": "29.10.2026",
-      "zeit": "19:30 Uhr",
+      "zeit": "19:30-22:00 Uhr",
       "url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14355",
       "dokumente": [
         {
@@ -6129,6 +6680,10 @@
           "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=88939&type=do"
         },
         {
+          "titel": "Niederschrift öffentlich",
+          "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=89466&type=do"
+        },
+        {
           "titel": "Niederschrift vom 12.05.26 ö",
           "url": "https://buergerinfo-bezirk-obb.digitalfabrix.de/getfile.asp?id=88171&type=do"
         }
@@ -6458,7 +7013,7 @@
       "raum": "Jugendheim Hundszell, Klausenweg, 85051 Ingolstadt",
       "datum": "2026-10-27",
       "datum_anzeige": "27.10.2026",
-      "zeit": "19:30 Uhr",
+      "zeit": "19:30-20:55 Uhr",
       "url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14353",
       "dokumente": [
         {
@@ -7749,7 +8304,7 @@
       "raum": "Sportcenter Zuchering, Seeweg 17, 85051 Ingolstadt",
       "datum": "2026-10-22",
       "datum_anzeige": "22.10.2026",
-      "zeit": "19:30 Uhr",
+      "zeit": "19:30-22:15 Uhr",
       "url": "https://www.ingolstadt.de/sessionnetbza/si0056.php?__ksinr=14308",
       "dokumente": [
         {
@@ -11618,10 +12173,29 @@
           "nachtrag": "",
           "oeffentlich": true,
           "verfahren": false,
-          "vorlage": "",
-          "vorlage_url": "",
-          "dokumente": [],
-          "beratungen": []
+          "vorlage": "V0530/26",
+          "vorlage_url": "https://www.ingolstadt.de/sessionnet/vo0050.php?__kvonr=23286",
+          "dokumente": [
+            {
+              "titel": "Vorlage KB",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=253588&type=do"
+            },
+            {
+              "titel": "Beschluss KB",
+              "url": "https://www.ingolstadt.de/sessionnet/getfile.php?id=253971&type=do"
+            }
+          ],
+          "beratungen": [
+            {
+              "datum": "2026-09-29",
+              "datum_anzeige": "29.09.2026",
+              "gremium": "Verwaltungsrat der Ingolstädter Kommunalbetriebe",
+              "top_nr": "11",
+              "oeffentlich": true,
+              "rolle": "Entscheidung",
+              "sitzung_url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13750&toselect=90074"
+            }
+          ]
         },
         {
           "nr": "Ö 12",
@@ -11739,7 +12313,7 @@
       "raum": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
       "datum": "2026-09-29",
       "datum_anzeige": "29.09.2026",
-      "zeit": "10:00 Uhr",
+      "zeit": "10:03-12:35 Uhr",
       "url": "https://www.ingolstadt.de/sessionnet/si0056.php?__ksinr=13745",
       "dokumente": [
         {
@@ -11763,19 +12337,6 @@
         },
         {
           "nr": "Ö 2",
-          "titel": "Bericht des Fahrgastbeirates",
-          "zusatz": "",
-          "antragsteller": "",
-          "nachtrag": "",
-          "oeffentlich": true,
-          "verfahren": false,
-          "vorlage": "",
-          "vorlage_url": "",
-          "dokumente": [],
-          "beratungen": []
-        },
-        {
-          "nr": "Ö 3",
           "titel": "Fahrplanmaßnahmen ÖPNV Ingolstadt",
           "zusatz": "",
           "antragsteller": "",
@@ -11803,7 +12364,7 @@
           ]
         },
         {
-          "nr": "Ö 4",
+          "nr": "Ö 3",
           "titel": "Tarifanpassung Airport-Express",
           "zusatz": "",
           "antragsteller": "",
@@ -11835,7 +12396,7 @@
           ]
         },
         {
-          "nr": "Ö 5",
+          "nr": "Ö 4",
           "titel": "Verschiedenes",
           "zusatz": "",
           "antragsteller": "",
@@ -177690,24 +178251,6 @@
     }
   ],
   "kommende_termine": [
-    {
-      "gremium": "Inklusionsrates",
-      "artikel": "des",
-      "datum": "2026-11-25",
-      "datum_anzeige": "25.11.2026",
-      "zeit": "16:00 Uhr",
-      "ort": "",
-      "quelle": "stadt"
-    },
-    {
-      "gremium": "Ausschusses für Stadtentwicklung, Bau, Umwelt und Nachhaltigkeit",
-      "artikel": "des",
-      "datum": "2026-11-26",
-      "datum_anzeige": "26.11.2026",
-      "zeit": "16:00 Uhr",
-      "ort": "Ingolstadt, Neues Rathaus, Großer Sitzungssaal, II. OG",
-      "quelle": "stadt"
-    },
     {
       "gremium": "Sozial- und Gesundheitsausschuss",
       "artikel": "",
