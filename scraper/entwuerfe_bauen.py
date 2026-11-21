@@ -241,6 +241,7 @@ def main():
     vorhanden = kuration["eintraege"]
 
     offen = []
+    kandidaten = {}   # ref -> (sitzung, top, quelle), auch fuer vorhandene Entwuerfe
     for sitzung in roh["sitzungen"]:
         quelle = sitzung.get("quelle", HAUPT_QUELLE)
         if args.quelle != "alle" and quelle != args.quelle:
@@ -250,6 +251,7 @@ def main():
         bare_pos = bare_positionen(sitzung)
         for top in sitzung["tops"]:
             ref = top_ref(quelle, sitzung, top, bare_pos)
+            kandidaten[ref] = (sitzung, top, quelle)
             if ref in vorhanden:
                 continue
             if not top["oeffentlich"] or top["verfahren"]:
@@ -279,11 +281,20 @@ def main():
                 }
                 top = {"titel": antrag["titel"], "zusatz": "", "vorlage": antrag["vorlage"]}
                 offen.append((ref, sitzung, top, antrag["quelle"]))
+                kandidaten[ref] = (sitzung, top, antrag["quelle"])
 
     if args.max:
         offen = offen[: args.max]
 
-    if not offen:
+    # Das Textbuendel umfasst auch vorhandene Entwuerfe, die noch keinen
+    # Klartext haben (z. B. aus einem frueheren Lauf ohne --prompt-bundle).
+    bundle_refs = [r for r, *_ in offen]
+    if args.prompt_bundle:
+        for ref, eintrag in vorhanden.items():
+            if eintrag.get("entwurf") and ref in kandidaten and ref not in bundle_refs:
+                bundle_refs.append(ref)
+
+    if not offen and not bundle_refs:
         print("Keine offenen Tagesordnungspunkte — nichts zu tun.")
         return
 
@@ -326,15 +337,16 @@ def main():
         print("\nProbelauf — nichts geschrieben.")
         return
 
-    vorhanden.update(neu)
-    # Gleiche Einrueckung wie anker_setzen.py, sonst schreibt jedes der beiden
-    # Skripte die ganze Datei um und der Git-Diff wird unlesbar.
-    with open(kur_pfad, "w", encoding="utf-8") as f:
-        json.dump(kuration, f, ensure_ascii=False, indent=1)
-        f.write("\n")
-    print(f"\nGeschrieben: {kur_pfad} ({len(vorhanden)} Eintraege insgesamt)")
+    if neu:
+        vorhanden.update(neu)
+        # Gleiche Einrueckung wie anker_setzen.py, sonst schreibt jedes der beiden
+        # Skripte die ganze Datei um und der Git-Diff wird unlesbar.
+        with open(kur_pfad, "w", encoding="utf-8") as f:
+            json.dump(kuration, f, ensure_ascii=False, indent=1)
+            f.write("\n")
+        print(f"\nGeschrieben: {kur_pfad} ({len(vorhanden)} Eintraege insgesamt)")
 
-    if args.prompt_bundle:
+    if args.prompt_bundle and bundle_refs:
         ziel = os.path.join(DATEN_VZ, args.prompt_bundle)
         with open(ziel, "w", encoding="utf-8") as f:
             f.write(
@@ -343,7 +355,9 @@ def main():
                 "keine erfundenen Fakten) und 1-2 Saetze Klartext schreiben. "
                 "Nur umformulieren, was im amtlichen Titel steht.\n\n"
             )
-            for ref, sitzung, top, _quelle in offen:
+            for ref in bundle_refs:
+                sitzung, top, _quelle = kandidaten[ref]
+                entwurf_titel = (neu.get(ref) or vorhanden[ref]).get("klartext_titel", "")
                 f.write(f"## {ref}\n")
                 f.write(f"- Gremium: {sitzung['gremium']} ({sitzung['datum_anzeige']})\n")
                 f.write(f"- Amtlicher Titel: {top['titel']}\n")
@@ -351,8 +365,8 @@ def main():
                     f.write(f"- Zusatz: {top['zusatz']}\n")
                 if top.get("vorlage"):
                     f.write(f"- Vorlage: {top['vorlage']}\n")
-                f.write(f"- Entwurf-Titel: {neu[ref]['klartext_titel']}\n\n")
-        print(f"Textbuendel: {ziel}")
+                f.write(f"- Entwurf-Titel: {entwurf_titel}\n\n")
+        print(f"Textbuendel: {ziel} ({len(bundle_refs)} Punkte)")
 
 
 if __name__ == "__main__":
