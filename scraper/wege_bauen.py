@@ -39,7 +39,7 @@ HIER = os.path.dirname(os.path.abspath(__file__))
 CACHE = os.path.join(HIER, '.cache', 'wege')
 DATEN = os.path.join(HIER, '..', 'data')
 NEU = '--neu' in sys.argv
-USER_AGENT = 'PapierPanther (schanzer-papierpanther.de)'
+USER_AGENT = 'PapierPanther-Bueren-KreisPaderborn (DEINE-DOMAIN.example)'
 PAUSE_SEKUNDEN = 1.2
 
 # IPv4 zuerst, wie in ris_ingolstadt.py: Die IPv6-Route haengt von manchen Anschluessen aus.
@@ -52,15 +52,21 @@ ZENSUS = {  # Kurzname: (Zip, Spalte im 100-m-CSV)
     'u18': ('Anteil_unter_18-jaehrige_in_Gitterzellen.zip', 'AnteilUnter18'),
     'ue65': ('Anteil_ab_65-jaehrige_in_Gitterzellen.zip', 'AnteilUeber65'),
 }
-BEZIRKE_URL = 'https://www.ingolstadt.de/openbydata/GIS/Stadtbezirke_Ingolstadt.geojson'
-# Trinkwasserbrunnen der Stadt (open.bydata, CC BY 4.0), ergaenzt die Brunnen aus OpenStreetMap
-BRUNNEN_URL = 'https://www.ingolstadt.de/openbydata/GIS/Trinkwasserbrunnen_Ingolstadt.geojson'
+# Gebiete als GeoJSON (EPSG:25832) mit "beznr"/"bezname" — z. B. die Gemeinden
+# des Kreises Paderborn als Open Data. Leer lassen: dann gibt es keine
+# Bezirksansicht ("Mein Bezirk"), das Wegenetz funktioniert trotzdem.
+BEZIRKE_URL = ''
+# Trinkwasserbrunnen als Open Data der Gebietskörperschaft (CC BY 4.0), ergaenzt die
+# Brunnen aus OpenStreetMap. Leer lassen: nur die OSM-Brunnen.
+BRUNNEN_URL = ''
 BRUNNEN_DUBLETTE_M = 30    # naeher an einem OSM-Brunnen: derselbe Brunnen, OSM behaelt Vorrang
 # Grosse Ziele, die meist nur mit Bus Sinn ergeben (Plan, Phase 5); OSM-Kennungen von Hand geprueft.
 # Das Audi-Werk hat in OSM kein als Haupttor benanntes Tor; stellvertretend das Audi Forum (Punkt im
 # Forum). Rathaus: Rathausplatz 4, Sitz der Stadtverwaltung.
-GROSSE_ZIELE = [('Klinikum', 'w894974428'), ('Hauptbahnhof', 'n3543804400'), ('Rathaus', 'w52512206'),
-                ('Westpark', 'w28013665'), ('Audi Forum', 'n2268039752'), ('Stadttheater', 'w25643773')]
+# Grosse Ziele für die Liste "Grosse Ziele" (OSM-Kennungen). Leer lassen, bis die
+# passenden OSM-Objekte für Büren/Kreis Paderborn geprüft sind (z. B. Bahnhof,
+# Rathaus, größeres Krankenhaus).
+GROSSE_ZIELE = []
 OVERPASS_URL = 'https://overpass-api.de/api/interpreter'
 
 # Werte je Person: data/wege-personen.json, dieselbe Datei liest wege.js (als wege-personen.js)
@@ -112,7 +118,9 @@ def datei(name, url, neu=False):
 
 # ------------------------------------------------------------------ Overpass
 
-GEMEINDE = 'area["de:amtlicher_gemeindeschluessel"="09161000"]->.a;'
+# Gebiet für den OpenStreetMap-Auszug: amtlicher Gemeindeschlüssel (AGS).
+# Kreis Paderborn (gesamter Kreis inkl. Büren): 05774000. Nur Stadt Büren: 05774024.
+GEMEINDE = 'area["de:amtlicher_gemeindeschluessel"="05774000"]->.a;' 
 # Begehbare Wegetypen; motorway und trunk fehlen bewusst.
 KLASSE = {
     'footway': 'fussweg', 'corridor': 'fussweg', 'pedestrian': 'fussgaengerzone',
@@ -263,7 +271,8 @@ _la, _lo = laea_nach_wgs84(_x, _y)
 assert abs(_la - 50) < 1e-7 and abs(_lo - 5) < 1e-7, (_la, _lo)
 
 # Ortsnahe Meter fuer Laengen, Naehe und Raster: x nach Osten, y nach Norden.
-LAT0, LON0 = 48.7630, 11.4250
+# Ortsnahe Meter: Ursprung in Büren (Königstraße 16, 33142 Büren)
+LAT0, LON0 = 51.3706, 8.3697
 _p = math.radians(LAT0)
 MY = 111132.92 - 559.82 * math.cos(2 * _p) + 1.175 * math.cos(4 * _p)
 MX = 111412.84 * math.cos(_p) - 93.5 * math.cos(3 * _p)
@@ -316,7 +325,9 @@ def im_polygon(x, y, ringe):
 # ------------------------------------------------------------------- Bezirke
 
 def bezirke_bauen():
-    roh = json.load(open(datei('Stadtbezirke_Ingolstadt.geojson', BEZIRKE_URL, NEU), encoding='utf-8'))
+    if not BEZIRKE_URL:
+        return None   # keine Gebiete konfiguriert
+    roh = json.load(open(datei('gebiete.geojson', BEZIRKE_URL, NEU), encoding='utf-8'))
     name = (roh.get('crs') or {}).get('properties', {}).get('name', '')
     if '25832' not in name:
         raise SystemExit('Bezirke: unerwartetes Koordinatensystem %r' % name)
@@ -1005,8 +1016,10 @@ def doppelt(orte, kat, name, x, y, abstand_m=50):
 
 
 def brunnen_der_stadt(raster, orte):
-    """Trinkwasserbrunnen aus dem Datensatz der Stadt (CC BY 4.0), soweit nicht schon in OSM."""
-    roh = json.load(open(datei('Trinkwasserbrunnen_Ingolstadt.geojson', BRUNNEN_URL, NEU), encoding='utf-8'))
+    """Trinkwasserbrunnen aus dem Datensatz der Gebietskörperschaft, soweit nicht schon in OSM."""
+    if not BRUNNEN_URL:
+        return [], 0
+    roh = json.load(open(datei('trinkwasserbrunnen.geojson', BRUNNEN_URL, NEU), encoding='utf-8'))
     osm = [xy(o['lat'], o['lon']) for o in orte if o['kat'] == KAT_NR['trinkwasser']]
     neu, doppelt = [], 0
     for f in roh.get('features', []):
@@ -1658,7 +1671,8 @@ def main():
     personen = lade_personen()
     with open(MASSNAHMEN_DATEI, encoding='utf-8') as f:
         massnahmen_roh = json.load(f)
-    bez_geo, bezirke = bezirke_bauen()
+    bez = bezirke_bauen()
+    bez_geo, bezirke = bez if bez else (None, [])
     netz = netz_bauen()
     masken = einrast_masken(netz, personen)
     raster = Kantenraster(netz, masken)

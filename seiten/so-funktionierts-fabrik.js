@@ -126,7 +126,7 @@ function bauen(){
 
   /* ---------- 01 Annahme ---------- */
   const SCHR = [-43, -39, -35];
-  ['STADTRAT', '12 BZA', 'BEZIRK OBB'].forEach((name, i) => {
+  ['RAT BÜREN', 'KREISTAG PB'].forEach((name, i) => {
     const x = SCHR[i], H = 6.4;
     steh(3.2, H, 2.4, M.weiss, x, -4.6);
     for (let r = 0; r < 5; r++){
@@ -230,7 +230,7 @@ function bauen(){
     if (r === 2 && c === 0) continue; // Fach für das rote Werkstück
     box(1.5, h, 1.5, M.papier, RX + c * RW + RW / 2, r * 2 + 0.25 + h / 2, RZ, scene);
   }
-  { const e = etikett('12 BEZIRKE + STADTWEIT', 0.5); e.position.set(RX + RW * 2, 8.95, RZ + 1.2); scene.add(e); }
+  { const e = etikett('2 PORTALE', 0.5); e.position.set(RX + RW * 2, 8.95, RZ + 1.2); scene.add(e); }
   // Bildschirm: die Website
   const bild = new THREE.Group(); bild.position.set(47.6, 0, -0.8); bild.rotation.y = -0.42; scene.add(bild);
   steh(0.45, 2.6, 0.45, M.dunkel, 0, 0, 0, bild, { kanten:false });
@@ -252,7 +252,7 @@ function bauen(){
     const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = aniso;
     const p = new THREE.Mesh(new THREE.PlaneGeometry(6.1, 3.86), new THREE.MeshBasicMaterial({ map: t }));
     p.position.set(0, 4.75, 0.18); bild.add(p);
-    const e = etikett('SCHANZER-PAPIERPANTHER.DE', 0.42); e.position.set(0, 7.3, 0); bild.add(e);
+    const e = etikett('DEINE-DOMAIN.EXAMPLE', 0.42); e.position.set(0, 7.3, 0); bild.add(e);
   }
 
   /* ---------- Schilder ---------- */

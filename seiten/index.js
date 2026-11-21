@@ -77,35 +77,35 @@
 
   var TEXTE = {
     disclaimer: {
-      n: '<strong>Privates Projekt, kein Angebot der Stadt.</strong> Die Zusammenfassungen entstehen mit KI-Unterstützung und können Fehler enthalten – verbindlich ist das verlinkte Original. <a href="#transparenz">Mehr dazu</a>',
-      l: '<strong>Diese Seite ist nicht von der Stadt.</strong> Ein Computer schreibt die Texte. Dabei können Fehler passieren. Das Original ist immer verlinkt. <a href="#transparenz">Mehr dazu</a>'
+      n: '<strong>Privates Projekt, kein Angebot der Stadt Büren oder des Kreises Paderborn.</strong> Die Zusammenfassungen entstehen mit KI-Unterstützung und können Fehler enthalten – verbindlich ist das verlinkte Original. <a href="#transparenz">Mehr dazu</a>',
+      l: '<strong>Diese Seite ist nicht von der Stadt und nicht vom Kreis.</strong> Ein Computer schreibt die Texte. Dabei können Fehler passieren. Das Original ist immer verlinkt. <a href="#transparenz">Mehr dazu</a>'
     },
     heroH1: {
-      n: 'Schanzer Stadtpolitik —<br><em>mit einem Klick. Auf einen Blick.</em>',
-      l: 'Stadt-Politik in Ingolstadt — <em>leicht erklärt.</em>'
+      n: 'Politik in Büren und im Kreis Paderborn —<br><em>mit einem Klick. Auf einen Blick.</em>',
+      l: 'Politik in Büren und im Kreis Paderborn — <em>leicht erklärt.</em>'
     },
     heroP: {
-      n: 'Ob Fahrradbügel, Kita-Plätze oder Gebühren: Der Stadtrat und die zwölf Bezirksausschüsse behandeln jede Woche Themen, die den Alltag in Ingolstadt betreffen. Alles steht öffentlich im Ratsinfoportal — nur eben verteilt über hunderte Einzelpunkte in Amtssprache. Der PapierPanther sammelt sie ein, fasst sie zusammen und sortiert sie danach, wen sie betreffen.',
-      l: 'Der Stadt-Rat trifft viele Entscheidungen. Die 12 Bezirks-Ausschüsse entscheiden mit. Es geht um Rad-Wege, Kita-Plätze oder Gebühren. Alle Infos stehen im Rats-Info-Portal der Stadt. Aber der Text dort ist schwer zu lesen. Der PapierPanther sammelt die Infos. Er schreibt sie einfacher auf. Er sortiert sie nach Thema.'
+      n: 'Ob Kita-Plätze, Radwege oder Gebühren: Rat der Stadt Büren und Kreistag des Kreises Paderborn behandeln jede Woche Themen, die den Alltag betreffen. Alles steht öffentlich im Ratsinfosystem bzw. Kreistagsinformationssystem — nur eben verteilt über hunderte Einzelpunkte in Amtssprache. Der PapierPanther sammelt sie ein, fasst sie zusammen und sortiert sie danach, wen sie betreffen.',
+      l: 'Der Rat von Büren und der Kreis-Tag von Paderborn treffen viele Entscheidungen. Es geht um Kita-Plätze, Rad-Wege oder Gebühren. Alle Infos stehen im Rats-Info-Portal und im Kreis-Tags-Portal. Aber der Text dort ist schwer zu lesen. Der PapierPanther sammelt die Infos. Er schreibt sie einfacher auf. Er sortiert sie nach Thema.'
     },
-    bezirkStadtweit: { n: 'Ganz Ingolstadt', l: 'Ganz Ingolstadt' },
+    bezirkStadtweit: { n: 'Ganzes Gebiet', l: 'Ganzes Gebiet' },
     bezirkKopfTitel: { n: '{b}: Das ist hier los', l: '{b}: Das passiert hier' },
     bezirkKopfAnzahl: {
-      n: '{n} Themen aus Ihrem Stadtbezirk, die neuesten zuerst.',
+      n: '{n} Themen aus Ihrem Gebiet, die neuesten zuerst.',
       l: 'Hier gibt es {n} Themen. Die neuesten stehen oben.'
     },
     bezirkKopfTermin: {
-      n: 'Nächste Sitzung des Bezirksausschusses: ',
-      l: 'Der Bezirks-Ausschuss trifft sich wieder am: '
+      n: 'Nächste Sitzung: ',
+      l: 'Das Gremium trifft sich wieder am: '
     },
     bezirkKopfKeinTermin: {
-      n: 'Der nächste Sitzungstermin des Bezirksausschusses ist noch nicht veröffentlicht.',
-      l: 'Der nächste Termin vom Bezirks-Ausschuss steht noch nicht fest.'
+      n: 'Der nächste Sitzungstermin ist noch nicht veröffentlicht.',
+      l: 'Der nächste Termin steht noch nicht fest.'
     },
-    bezirkStadtweitDazu: { n: '+ Themen für ganz Ingolstadt', l: '+ Themen für ganz Ingolstadt' },
+    bezirkStadtweitDazu: { n: '+ Themen für das ganze Gebiet', l: '+ Themen für das ganze Gebiet' },
     bezirkStadtweitWeg: { n: '− Nur mein Bezirk', l: '− Nur mein Bezirk' },
     bezirkAlle: { n: 'Alle Bezirke', l: 'Alle Bezirke' },
-    bezirkMitmachen: { n: 'Bezirksausschuss ansprechen', l: 'Mit dem Bezirks-Ausschuss reden' },
+    bezirkMitmachen: { n: 'Gremium ansprechen', l: 'Mit dem Gremium reden' },
     sammelTitel: { n: 'Themen dieser Sitzung', l: 'Diese Themen gab es in der Sitzung' },
     sammelTitelEins: { n: 'Thema dieser Sitzung', l: 'Dieses Thema gab es in der Sitzung' },
     sammelHinweis: {
@@ -128,7 +128,7 @@
     mehrFilterAn: { n: 'Mehr Filter: Gremium, Lebenslage, Anlass ▾', l: 'Mehr Auswahl zeigen ▾' },
     mehrFilterAus: { n: 'Weniger Filter ▴', l: 'Weniger Auswahl zeigen ▴' },
     listeTitel: { n: 'Alle Einträge', l: 'Alle Themen' },
-    listeUnter: { n: 'Nach Stadtbezirk, Stand oder Stichwort filtern – die neuesten zuerst.', l: 'Hier können Sie suchen. Zum Beispiel nach Ihrem Stadt-Bezirk.' },
+    listeUnter: { n: 'Nach Ebene, Lebenslage, Stand oder Stichwort filtern – die neuesten zuerst.', l: 'Hier können Sie suchen. Zum Beispiel nach einem Thema.' },
     titelZeigen: { n: 'Auch {n} Punkte ohne Zusammenfassung zeigen (nur Titel)', l: 'Auch {n} Themen ohne Erklärung zeigen' },
     titelVerbergen: { n: 'Nur Einträge mit Zusammenfassung zeigen', l: 'Nur Themen mit Erklärung zeigen' },
     filtersHeadH2: { n: 'Wonach möchten Sie schauen?', l: 'Was möchten Sie sehen?' },
@@ -166,9 +166,9 @@
       n: 'Amtlicher Beschlusstext (Niederschrift)',
       l: 'So steht es im Protokoll',
     },
-    herkunftStadt:   { n: 'Stadtrat/Ausschuss', l: 'Stadt-Rat' },
-    herkunftBza:     { n: 'Bezirksausschuss', l: 'Bezirks-Ausschuss' },
-    herkunftBezirkObb: { n: 'Bezirk Oberbayern', l: 'Bezirk Oberbayern' },
+    herkunftBueren:   { n: 'Stadt Büren', l: 'Stadt Büren' },
+    herkunftKreis:    { n: 'Kreis Paderborn', l: 'Kreis Paderborn' },
+    herkunftSonst:    { n: 'Anderes Gremium', l: 'Anderes Gremium' },
     herkunftEntwurf: { n: 'automatisch verschlagwortet', l: 'automatisch sortiert' },
     ort: { n: 'Ort: ', l: 'Ort: ' },
     ortKnopfTitel: { n: 'Alle Einträge zu diesem Ort zeigen', l: 'Alle Themen zu diesem Ort zeigen' },
@@ -188,14 +188,14 @@
     ansichtZurueck: { n: 'Zurück zur ganzen Liste', l: 'Zurück zu allen Themen' },
     ketteKopf: { n: 'Ein Vorgang in {n} Sitzungen', l: 'Ein Thema in {n} Treffen' },
     ketteKopfText: {
-      n: 'Diese Punkte standen im selben Bezirksausschuss unter demselben Aktenzeichen oder demselben Titel auf der Tagesordnung. Die Verbindung ist automatisch entstanden. Ob es derselbe Vorgang ist, zeigt das Original.',
+      n: 'Diese Punkte standen im selben Gremium unter demselben Aktenzeichen oder demselben Titel auf der Tagesordnung. Die Verbindung ist automatisch entstanden. Ob es derselbe Vorgang ist, zeigt das Original.',
       l: 'Diese Themen haben den gleichen Namen oder die gleiche Nummer. Ein Computer-Programm hat sie verbunden. Es kann sich irren.'
     },
     vorgangTitel: { n: 'Derselbe Vorgang in anderen Sitzungen', l: 'Dieses Thema gab es öfter' },
     vorgangKnopf: { n: 'Verlauf zeigen ({n} Punkte)', l: 'Alle {n} zeigen' },
     vorgangKurz: { n: 'Verlauf ({n})', l: 'Verlauf ({n})' },
     vorgangQuelle: {
-      n: 'Automatisch verbunden: gleiches Aktenzeichen oder gleicher Titel im selben Bezirksausschuss.',
+      n: 'Automatisch verbunden: gleiches Aktenzeichen oder gleicher Titel im selben Gremium.',
       l: 'Ein Computer-Programm hat die Themen verbunden.'
     },
     unfallTitel: { n: 'Unfälle mit Verletzten, {von} bis {bis}', l: 'Unfälle von {von} bis {bis}' },
@@ -228,8 +228,8 @@
     ortBaustellen: { n: 'Gemeldete Baustellen und Sperrungen an diesem Ort', l: 'Baustellen an diesem Ort' },
     baustellenKeine: { n: 'Keine gemeldet.', l: 'Es gibt keine.' },
     baustellenStand: {
-      n: 'Stand {d}: Vorschau der Stadt für 14 Tage. Quelle: Stadt Ingolstadt (open.bydata), CC BY 4.0.',
-      l: 'Stand: {d}. Die Liste kommt von der Stadt Ingolstadt (open.bydata), CC BY 4.0.'
+      n: 'Stand {d}: Vorschau des Herausgebers für 14 Tage (Quelle siehe Datensatz, BAUSTELLEN_URL in scraper/orte_bauen.py).',
+      l: 'Stand: {d}. Die Liste kommt vom Herausgeber der Baustellen-Daten.'
     },
     baustellenAb: { n: 'ab {d}', l: 'ab {d}' },
     baustellenBis: { n: 'bis {d}', l: 'bis {d}' },
@@ -242,8 +242,8 @@
     },
     footerH2: { n: 'Wie das hier funktioniert', l: 'So funktioniert diese Seite' },
     footerP1: {
-      n: 'Alles auf dieser Seite stammt aus dem Ratsinfoportal der Stadt Ingolstadt — den öffentlich einsehbaren Sitzungskalendern, Tagesordnungen und Vorlagen. Ein Programm liest sie regelmäßig aus, fasst die Punkte mit KI-Unterstützung zusammen und ordnet ihnen Schlagworte zu: für wen es interessant ist, wo es passiert, worum es geht.',
-      l: 'Alle Infos kommen vom Rats-Info-Portal der Stadt Ingolstadt. Dort stehen Sitzungs-Termine, Themen-Listen und Dokumente. Das darf jede und jeder lesen. Ein Computer-Programm liest diese Seiten regelmäßig. Es fasst jedes Thema kurz zusammen. Es ordnet jedes Thema: Für wen ist es wichtig? Wo passiert es? Worum geht es?'
+      n: 'Alles auf dieser Seite stammt aus dem Ratsinfosystem der Stadt Büren und dem Kreistagsinformationssystem des Kreises Paderborn — den öffentlich einsehbaren Sitzungskalendern, Tagesordnungen und Vorlagen. Ein Programm liest sie regelmäßig aus, fasst die Punkte mit KI-Unterstützung zusammen und ordnet ihnen Schlagworte zu: für wen es interessant ist, wo es passiert, worum es geht.',
+      l: 'Alle Infos kommen vom Rats-Info-Portal der Stadt Büren und vom Kreis-Tags-Portal des Kreises Paderborn. Dort stehen Sitzungs-Termine, Themen-Listen und Dokumente. Das darf jede und jeder lesen. Ein Computer-Programm liest diese Seiten regelmäßig. Es fasst jedes Thema kurz zusammen. Es ordnet jedes Thema: Für wen ist es wichtig? Wo passiert es? Worum geht es?'
     },
     footerP2: {
       n: '<strong>Ich sehe nur einen Teil davon durch, deshalb können Fehler vorkommen.</strong> Was auf den Unterseiten steht, habe ich durchgesehen; die Einträge in der Liste entstehen automatisch und sind nicht einzeln geprüft. Die Zusammenfassungen ersetzen deshalb nicht das Originaldokument, sondern führen dorthin. Bei jedem Eintrag ist die Quelle einen Klick entfernt.',
@@ -266,16 +266,14 @@
     statSitzungen: { n: 'Sitzungen ausgelesen', l: 'Sitzungen gelesen' },
     statTops:      { n: 'Tagesordnungspunkte', l: 'Themen' },
     statKuratiert: { n: 'mit Zusammenfassung', l: 'mit Erklärung' },
-    statBezirke:   { n: 'Stadtbezirke', l: 'Stadt-Bezirke' },
+    statPortale:   { n: 'Portale ausgelesen', l: 'Internet-Seiten gelesen' },
     achseLebenslage: { n: 'Lebenslage', l: 'Ihr Leben' },
-    achseBezirk:     { n: 'Stadtbezirk', l: 'Ihr Stadt-Bezirk' },
+    achseBezirk:     { n: 'Gebiet', l: 'Ihr Gebiet' },
     achseAnlass:     { n: 'Anlass', l: 'Das Thema' },
     achseEbene:      { n: 'Wer berät', l: 'Wer redet darüber?' },
     ebenenTitel:     { n: 'Anzeigen:', l: 'Zeigen:' },
-    ebenenOhneObb:   { n: 'Der Bezirk Oberbayern ist ausgeblendet. Er ist eine eigene Ebene neben Stadt und Landkreis und zuständig für Soziales, Kliniken und Kultur in ganz Oberbayern.',
-                       l: 'Der Bezirk Oberbayern ist nicht dabei. Er ist größer als die Stadt. Sie können ihn dazu schalten.' },
-    ebenenNurObb:    { n: 'Sie sehen nur den Bezirk Oberbayern, nichts aus Ingolstadt.',
-                       l: 'Sie sehen nur den Bezirk Oberbayern. Die Stadt Ingolstadt ist nicht dabei.' },
+    ebenenOhneNeben: { n: 'Eine Ebene ist ausgeblendet.', l: 'Eine Ebene ist nicht dabei.' },
+    ebenenNurNeben:  { n: 'Sie sehen nur eine Ebene.', l: 'Sie sehen nur eine Ebene.' },
     achseStatus:     { n: 'Stand', l: 'Wie weit ist es?' }
   };
 
@@ -289,7 +287,7 @@
     'Senior:innen': 'Ältere Menschen',
     'Gesundheit & Pflege': 'Gesundheit und Pflege',
     'Geld & Soziales': 'Geld vom Staat',
-    'Zuwanderung & Integration': 'Menschen, die neu in Ingolstadt sind',
+    'Zuwanderung & Integration': 'Menschen, die neu in Büren oder im Kreis Paderborn sind',
     'Wohnen & Miete': 'Wohnen und Miete',
     'Gewerbe & Gastro': 'Geschäfte und Restaurants',
     'Unterwegs': 'Verkehr',
@@ -310,11 +308,10 @@
     'Satzung & Regeln': 'Regeln von der Stadt',
     'Konzept & Planung': 'Plan für die Zukunft'
   };
-  var BEZIRK_LEICHT = { 'stadtweit': 'in ganz Ingolstadt' };
+  var BEZIRK_LEICHT = { 'stadtweit': 'im ganzen Gebiet' };
   var EBENE_LEICHT = {
-    'Stadtrat & Ausschüsse': 'Stadt-Rat',
-    'Bezirksausschüsse': 'Bezirks-Ausschüsse',
-    'Bezirk Oberbayern': 'Bezirk Oberbayern'
+    'Stadt Büren — Rat & Ausschüsse': 'Stadt Büren',
+    'Kreis Paderborn — Kreistag & Ausschüsse': 'Kreis Paderborn'
   };
   /* Filterchips der Achse "status": nur die zwei Fragen, nach denen man
      sucht (feed_bauen.py::STATUS_FILTER). */
@@ -442,9 +439,9 @@
     daten.achsen.status = ['Noch offen', 'Entschieden'];
   }
   if (!daten.achsen.ebene) {
-    var EBENE_AUS_QUELLE = { stadt: 'Stadtrat & Ausschüsse', bza: 'Bezirksausschüsse', bezirk_obb: 'Bezirk Oberbayern' };
-    daten.eintraege.forEach(function (e) { e.ebene = [EBENE_AUS_QUELLE[e.quelle] || EBENE_AUS_QUELLE.stadt]; });
-    daten.achsen.ebene = ['Stadtrat & Ausschüsse', 'Bezirksausschüsse', 'Bezirk Oberbayern'];
+    var EBENE_AUS_QUELLE = { stadt_bueren: 'Stadt Büren — Rat & Ausschüsse', kreis_paderborn: 'Kreis Paderborn — Kreistag & Ausschüsse' };
+    daten.eintraege.forEach(function (e) { e.ebene = [EBENE_AUS_QUELLE[e.quelle] || 'Sonstiges Gremium']; });
+    daten.achsen.ebene = ['Stadt Büren — Rat & Ausschüsse', 'Kreis Paderborn — Kreistag & Ausschüsse'];
   }
 
   /* Die zwoelf Stadtbezirke (I-Mitte ... XII-Muenchener Strasse), ohne
@@ -474,8 +471,8 @@
      ganze Seite: Termine, "mitreden", "entschieden" und die Liste. Der Bezirk
      Oberbayern ist anfangs aus — er ist fuer die meisten Besucher nicht das,
      was sie unter "Stadtpolitik" suchen, fuellte aber Termine und Liste. */
-  var QUELLE_EBENE = { stadt: 'Stadtrat & Ausschüsse', bza: 'Bezirksausschüsse', bezirk_obb: 'Bezirk Oberbayern' };
-  var EBENE_OBB = 'Bezirk Oberbayern';
+  var QUELLE_EBENE = { stadt_bueren: 'Stadt Büren — Rat & Ausschüsse', kreis_paderborn: 'Kreis Paderborn — Kreistag & Ausschüsse' };
+  var EBENE_OBB = null;  /* Quelle, die standardmäßig ausgeblendet ist (hier: keine) */
   function ebeneStandard() {
     var ohne = daten.achsen.ebene.filter(function (w) { return w !== EBENE_OBB; });
     return ohne.length ? ohne : daten.achsen.ebene.slice();
@@ -484,7 +481,7 @@
     return a.length === b.length && a.every(function (w) { return b.indexOf(w) !== -1; });
   }
   function ebeneAn(quelle) {
-    return aktiv.ebene.indexOf(QUELLE_EBENE[quelle] || QUELLE_EBENE.stadt) !== -1;
+    return aktiv.ebene.indexOf(QUELLE_EBENE[quelle] || 'Sonstiges Gremium') !== -1;
   }
   function baueEbenen() {
     var box = document.getElementById('ebenen-schalter');
@@ -515,8 +512,9 @@
       box.appendChild(b);
     });
     var hinweis = document.getElementById('ebenen-hinweis');
-    hinweis.textContent = aktiv.ebene.indexOf(EBENE_OBB) === -1 ? txt('ebenenOhneObb')
-      : aktiv.ebene.length === 1 ? txt('ebenenNurObb') : '';
+    hinweis.textContent = (EBENE_OBB && daten.achsen.ebene.indexOf(EBENE_OBB) !== -1)
+      ? (aktiv.ebene.indexOf(EBENE_OBB) === -1 ? txt('ebenenOhneNeben') : aktiv.ebene.length === 1 ? txt('ebenenNurNeben') : '')
+      : '';
   }
 
   function urlLesen() {
@@ -586,7 +584,7 @@
          tops_kuratiert als "davon aufbereitet" — darin steckten aber auch
          alle Eintraege, die nur den amtlichen Titel wiederholen. */
       [st.tops_kuratiert - (st.duenn || 0), txt('statKuratiert')],
-      [st.stadtbezirke || stadtbezirke().length, txt('statBezirke')]
+      [st.portale || Object.keys(st.je_quelle || {}).length, txt('statPortale')]
     ].forEach(function (paar) {
       var box2 = el('div', 'stat');
       box2.appendChild(el('div', 'stat-num', String(paar[0])));
@@ -689,9 +687,9 @@
      Was wurde entschieden? Die beiden letzten nur Stadt und Bezirks-
      ausschuesse; Bezirk-Oberbayern-Themen haetten sie sonst gefuellt. */
   function herkunftLabel(quelle) {
-    if (quelle === 'bza') return txt('herkunftBza');
-    if (quelle === 'bezirk_obb') return txt('herkunftBezirkObb');
-    return txt('herkunftStadt');
+    if (quelle === 'stadt_bueren') return txt('herkunftBueren');
+    if (quelle === 'kreis_paderborn') return txt('herkunftKreis');
+    return txt('herkunftSonst');
   }
 
   /* Der Scraper schneidet "Sitzung des/der" ab; der Rest steht im Genitiv
@@ -1348,15 +1346,15 @@
   }
 
   function karte(e) {
-    var c = el('article', 'card' + (e.quelle !== 'stadt' ? ' quelle-' + e.quelle : ''));
+    var c = el('article', 'card' + (e.quelle !== 'stadt_bueren' ? ' quelle-' + e.quelle : ''));
 
     var kopf = el('div', 'card-head');
     kopf.appendChild(el('span', 'card-date', e.datum_anzeige));
     kopf.appendChild(el('span', 'card-gremium', e.gremium));
-    if (e.quelle === 'bza') {
-      kopf.appendChild(el('span', 'herkunft bza', txt('herkunftBza')));
-    } else if (e.quelle === 'bezirk_obb') {
-      kopf.appendChild(el('span', 'herkunft bezirk_obb', txt('herkunftBezirkObb')));
+    if (e.quelle === 'kreis_paderborn') {
+      kopf.appendChild(el('span', 'herkunft kreis', txt('herkunftKreis')));
+    } else if (e.quelle !== 'stadt_bueren') {
+      kopf.appendChild(el('span', 'herkunft sonst', txt('herkunftSonst')));
     }
     /* "maschineller Entwurf" war zu pauschal: die Ueberschrift ist bei diesen
        Eintraegen der Titel aus dem Ratsinfoportal, nur von Aktenzeichen
@@ -1544,12 +1542,12 @@
      Titel, keine Zusammenfassung; siehe feed_bauen.py::ist_duenn). */
   function sammelkarte(gruppe) {
     var e0 = gruppe[0];
-    var c = el('article', 'card card-sammel' + (e0.quelle !== 'stadt' ? ' quelle-' + e0.quelle : ''));
+    var c = el('article', 'card card-sammel' + (e0.quelle !== 'stadt_bueren' ? ' quelle-' + e0.quelle : ''));
     var kopf = el('div', 'card-head');
     kopf.appendChild(el('span', 'card-date', e0.datum_anzeige));
     kopf.appendChild(el('span', 'card-gremium', e0.gremium));
-    if (e0.quelle === 'bza') kopf.appendChild(el('span', 'herkunft bza', txt('herkunftBza')));
-    else if (e0.quelle === 'bezirk_obb') kopf.appendChild(el('span', 'herkunft bezirk_obb', txt('herkunftBezirkObb')));
+    if (e0.quelle === 'kreis_paderborn') kopf.appendChild(el('span', 'herkunft kreis', txt('herkunftKreis')));
+    else if (e0.quelle !== 'stadt_bueren') kopf.appendChild(el('span', 'herkunft sonst', txt('herkunftSonst')));
     c.appendChild(kopf);
     c.appendChild(el('h3', null, txt(gruppe.length > 1 ? 'sammelTitel' : 'sammelTitelEins')));
 

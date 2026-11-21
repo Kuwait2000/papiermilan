@@ -16,11 +16,11 @@ Schlüssel ist `<quelle>:<sitzungs-id>#<top-nr>`, z. B. `stadt:13534#Ö 2`.
 
 ```json
 {
-  "klartext_titel": "Wie viele Kita-Plätze Ingolstadt in den nächsten Jahren braucht",
+  "klartext_titel": "Wie viele Kita-Plätze Büren in den nächsten Jahren braucht",
   "klartext": "Die Stadt schreibt ihre Bedarfsplanung für Kindertageseinrichtungen fort. Dazu liegen Zahlen zum stadtweiten Bedarf und zu den geplanten Plätzen vor.",
 
-  "klartext_titel_leicht": "Ingolstadt plant neue Kita-Plätze",
-  "klartext_leicht": "Kitas sind Häuser für kleine Kinder. Die Stadt hat gezählt: So viele Plätze braucht Ingolstadt in den nächsten Jahren. Der Stadt-Rat hat den Plan besprochen.",
+  "klartext_titel_leicht": "Büren plant neue Kita-Plätze",
+  "klartext_leicht": "Kitas sind Häuser für kleine Kinder. Die Stadt hat gezählt: So viele Plätze braucht Büren in den nächsten Jahren. Der Stadt-Rat hat den Plan besprochen.",
 
   "lebenslage": ["Eltern & Kinder"],
   "bezirk": ["stadtweit"],
@@ -272,7 +272,7 @@ Das betrifft mehr als `kuration.json`. Zwei Fassungen brauchen auch:
 | Bereich | Beispiel normal | Beispiel leicht |
 |---|---|---|
 | Überschrift | „Der Stadtrat entscheidet ständig etwas." | „Der Stadt-Rat entscheidet viel." |
-| Hinweisbalken | „Kein offizielles Angebot der Stadt Ingolstadt." | „Diese Seite ist nicht von der Stadt." |
+| Hinweisbalken | „Kein offizielles Angebot der Stadt Büren oder des Kreises Paderborn.“ | „Diese Seite ist nicht von der Stadt und nicht vom Kreis.“ |
 | Filter-Überschriften | „Was betrifft Sie?" | „Was ist für Sie wichtig?" |
 | Achsennamen | „Lebenslage", „Anlass" | „Ihr Leben", „Das Thema" |
 | Achsenwerte | „Bauleitplanung", „Wohnen & Miete" | „Bau-Planung", „Wohnen und Miete" |

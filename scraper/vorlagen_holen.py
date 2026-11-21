@@ -40,7 +40,7 @@ sys.path.insert(0, HIER)
 from entwuerfe_bauen import ist_beteiligung, ist_sammelueberschrift  # noqa: E402
 from feed_bauen import thema_schluessel, leitstation  # noqa: E402
 from referenzen import bare_positionen, top_ref  # noqa: E402
-from ris_ingolstadt import USER_AGENT, PAUSE_SEKUNDEN  # noqa: E402
+from ris_ingolstadt import HAUPT_QUELLE, QUELLEN, USER_AGENT, PAUSE_SEKUNDEN  # noqa: E402
 
 # Anlagen erkennt man am Titel. Alles andere ist die Vorlage selbst, ein
 # Beschluss oder ein Fraktionsantrag — also das, was wir lesen wollen.
@@ -131,8 +131,8 @@ def auffaelligkeiten(text):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--max", type=int, default=25, help="wie viele Themen")
-    ap.add_argument("--quelle", choices=["stadt", "bza", "bezirk_obb"], default="stadt",
-                     help="welche Gremienebene (Default: stadt)")
+    ap.add_argument("--quelle", choices=[*QUELLEN], default=HAUPT_QUELLE,
+                     help="welche Quelle (Default: Hauptquelle)")
     ap.add_argument("--liste", action="store_true", help="nur zeigen")
     args = ap.parse_args()
 
@@ -155,7 +155,7 @@ def main():
     # blossen Ref "<quelle>:<id>#Ö" teilen wuerden.
     themen = collections.defaultdict(list)
     for s in roh["sitzungen"]:
-        if s.get("quelle", "stadt") != args.quelle or ist_beteiligung(s["gremium"]):
+        if s.get("quelle", HAUPT_QUELLE) != args.quelle or ist_beteiligung(s["gremium"]):
             continue
         bare_pos = bare_positionen(s)
         for t in s["tops"]:
@@ -190,14 +190,14 @@ def main():
     # eigener, einfacherer Zweig: kein Beratungsweg, keine "Leitstation",
     # jeder Antrag hat sein eigenes Dokument schon direkt zur Hand.
     offene_antraege = []
-    if args.quelle == "stadt":
+    if args.quelle == HAUPT_QUELLE:
         antraege_pfad = os.path.join(DATEN_VZ, "offene_antraege.json")
         if os.path.exists(antraege_pfad):
             with open(antraege_pfad, encoding="utf-8") as f:
                 alle_antraege = json.load(f)["antraege"]
             offene_antraege = [
                 a for a in alle_antraege
-                if f"stadt:antrag:{a['kvonr']}" not in erledigt
+                if f"{HAUPT_QUELLE}:antrag:{a['kvonr']}" not in erledigt
             ]
             offene_antraege.sort(key=lambda a: a["antragsdatum"] or "", reverse=True)
     restplatz = max(args.max - len(gewaehlt), 0)

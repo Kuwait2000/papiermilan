@@ -36,6 +36,7 @@ DATEN_VZ = os.path.join(os.path.dirname(HIER), "data")
 
 sys.path.insert(0, HIER)
 from referenzen import bare_positionen, top_ref  # noqa: E402
+from ris_ingolstadt import HAUPT_QUELLE  # noqa: E402
 
 
 def norm(titel):
@@ -47,7 +48,7 @@ def top_index(roh):
     """{ref: (sitzung, top)} ueber alle Tagesordnungspunkte."""
     index = {}
     for sitzung in roh["sitzungen"]:
-        quelle = sitzung.get("quelle", "stadt")
+        quelle = sitzung.get("quelle", HAUPT_QUELLE)
         bare_pos = bare_positionen(sitzung)
         for top in sitzung["tops"]:
             index[top_ref(quelle, sitzung, top, bare_pos)] = (sitzung, top)

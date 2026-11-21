@@ -7,23 +7,23 @@
      Drittressourcen, kein Nachladen von fremden Servern. Deckt auch den Fall
      ab, dass ein kuenftiger Datenfehler eine externe URL in href/src schleust
      — 'self' laesst nur Ressourcen von dieser Seite selbst zu. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self' https://mnkeller.goatcounter.com; object-src 'none'; base-uri 'self'; form-action 'self'">
-<title>PapierPanther — Schanzer Stadtpolitik. Mit einem Klick. Auf einen Blick.</title>
-<meta name="description" content="Der PapierPanther schnüffelt durchs Ingolstädter Ratsinfoportal und sortiert Entscheidungen nach Lebenslage, Ort und Anlass.">
-<link rel="canonical" href="https://schanzer-papierpanther.de/">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; worker-src 'self' blob:; child-src 'self' blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'">
+<title>PapierPanther — Politik in Büren und im Kreis Paderborn. Auf einen Blick.</title>
+<meta name="description" content="Der PapierPanther liest das Ratsinfosystem der Stadt Büren und das Kreistagsinformationssystem des Kreises Paderborn aus und sortiert Entscheidungen nach Lebenslage, Ort und Anlass.">
+<link rel="canonical" href="https://DEINE-DOMAIN.example/">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="PapierPanther Ingolstadt">
-<meta property="og:url" content="https://schanzer-papierpanther.de/">
-<meta property="og:title" content="PapierPanther — Schanzer Stadtpolitik. Mit einem Klick. Auf einen Blick.">
-<meta property="og:description" content="Der PapierPanther schnüffelt durchs Ingolstädter Ratsinfoportal und sortiert Entscheidungen nach Lebenslage, Ort und Anlass.">
-<meta property="og:image" content="https://schanzer-papierpanther.de/vorschau.png">
+<meta property="og:site_name" content="PapierPanther Büren & Kreis Paderborn">
+<meta property="og:url" content="https://DEINE-DOMAIN.example/">
+<meta property="og:title" content="PapierPanther — Politik in Büren und im Kreis Paderborn. Auf einen Blick.">
+<meta property="og:description" content="Der PapierPanther liest das Ratsinfosystem der Stadt Büren und das Kreistagsinformationssystem des Kreises Paderborn aus und sortiert Entscheidungen nach Lebenslage, Ort und Anlass.">
+<meta property="og:image" content="https://DEINE-DOMAIN.example/vorschau.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="de_DE">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="PapierPanther — Schanzer Stadtpolitik. Mit einem Klick. Auf einen Blick.">
-<meta name="twitter:description" content="Der PapierPanther schnüffelt durchs Ingolstädter Ratsinfoportal und sortiert Entscheidungen nach Lebenslage, Ort und Anlass.">
-<meta name="twitter:image" content="https://schanzer-papierpanther.de/vorschau.png">
+<meta name="twitter:title" content="PapierPanther — Politik in Büren und im Kreis Paderborn. Auf einen Blick.">
+<meta name="twitter:description" content="Der PapierPanther liest das Ratsinfosystem der Stadt Büren und das Kreistagsinformationssystem des Kreises Paderborn aus und sortiert Entscheidungen nach Lebenslage, Ort und Anlass.">
+<meta name="twitter:image" content="https://DEINE-DOMAIN.example/vorschau.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23003E59'/%3E%3Cg transform='translate%286 8%29 scale%281.3%29'%3E%3Cpath d='M12.6 15 L9 4.5 L18.2 10.4 Z' fill='%23fff'/%3E%3Cpath d='M27.4 15 L31 4.5 L21.8 10.4 Z' fill='%23fff'/%3E%3Cellipse cx='20' cy='21' rx='11.5' ry='11' fill='%23fff'/%3E%3Ccircle cx='16' cy='19.5' r='2' fill='%23003E59'/%3E%3Ccircle cx='24' cy='19.5' r='2' fill='%23003E59'/%3E%3Cpath d='M18.4 24.2l1.6 2.2 1.6-2.2z' fill='%23B00E2B'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preload" href="schrift/source-serif-4-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="schrift.css">
@@ -570,14 +570,14 @@
       <circle cx="24" cy="19.5" r="2" fill="#003E59"/>
       <path d="M18.4 24.2l1.6 2.2 1.6-2.2z" fill="#B00E2B"/>
     </svg>
-    <a class="wordmark" href="index.html">PapierPanther <span>Ingolstadt</span></a>
+    <a class="wordmark" href="index.html">PapierPanther <span>Büren & Kreis Paderborn</span></a>
     <button class="btn-leicht" id="btn-leicht" type="button" aria-pressed="false">Einfache Sprache</button>
   </div>
 </header>
 
 <div class="disclaimer" role="region" aria-label="Hinweis zu diesem Angebot">
   <div class="container">
-    <p id="disclaimer-text"><strong>Privates Projekt, kein Angebot der Stadt.</strong> Die Zusammenfassungen entstehen mit KI-Unterstützung und können Fehler enthalten – verbindlich ist das verlinkte Original. <a href="#transparenz">Mehr dazu</a></p>
+    <p id="disclaimer-text"><strong>Privates Projekt, kein Angebot der Stadt Büren oder des Kreises Paderborn.</strong> Die Zusammenfassungen entstehen mit KI-Unterstützung und können Fehler enthalten – verbindlich ist das verlinkte Original. <a href="#transparenz">Mehr dazu</a></p>
   </div>
 </div>
 
@@ -604,14 +604,14 @@
         <circle cx="69" cy="41" r="2.6" fill="#003E59"/>
         <path d="M55 51l3 4 3-4z" fill="#B00E2B"/>
       </svg>
-      <h1 id="hero-h1">Schanzer Stadtpolitik —<br><em>mit einem Klick. Auf einen Blick.</em></h1>
+      <h1 id="hero-h1">Politik in Büren und im Kreis Paderborn —<br><em>mit einem Klick. Auf einen Blick.</em></h1>
       <p id="hero-p">
-        Ob Fahrradbügel, Kita-Plätze oder Gebühren: Der Stadtrat und die zwölf
-        Bezirksausschüsse behandeln jede Woche Themen, die den Alltag in
-        Ingolstadt betreffen. Alles steht öffentlich im Ratsinfoportal — nur
-        eben verteilt über hunderte Einzelpunkte in Amtssprache. Der
-        PapierPanther sammelt sie ein, fasst sie zusammen und sortiert sie
-        danach, wen sie betreffen.
+        Ob Kita-Plätze, Radwege oder Gebühren: Rat der Stadt Büren und
+        Kreistag des Kreises Paderborn behandeln jede Woche Themen, die den
+        Alltag betreffen. Alles steht öffentlich im Ratsinfosystem bzw.
+        Kreistagsinformationssystem — nur eben verteilt über hunderte
+        Einzelpunkte in Amtssprache. Der PapierPanther sammelt sie ein, fasst
+        sie zusammen und sortiert sie danach, wen sie betreffen.
       </p>
     </div>
   </section>
@@ -690,7 +690,8 @@
     <h2 id="footer-h2">Wie das hier funktioniert</h2>
     <div class="hero-stats" id="hero-stats"></div>
     <p id="footer-p1">
-      Alles auf dieser Seite stammt aus dem Ratsinfoportal der Stadt Ingolstadt
+      Alles auf dieser Seite stammt aus dem Ratsinfosystem der Stadt Büren und
+      dem Kreistagsinformationssystem des Kreises Paderborn
       — den öffentlich einsehbaren Sitzungskalendern, Tagesordnungen und
       Vorlagen. Ein Programm liest sie regelmäßig aus, fasst die Punkte
       mit KI-Unterstützung zusammen und ordnet ihnen Schlagworte zu: für wen es interessant ist, wo
@@ -715,14 +716,17 @@
     <p class="footer-dank" id="footer-dank">
       PapierPanther folgt der Idee von
       <a href="https://igorschwarzmann.com/meinbezirk/toolkit/" rel="noopener noreferrer" target="_blank">MeinBezirk</a>,
-      einem Toolkit von Igor Schwarzmann für kommunale Transparenz.
+      einem Toolkit von Igor Schwarzmann für kommunale Transparenz, und ist eine
+      Weiterentwicklung von
+      <a href="https://github.com/mnkeller/papierpanther" rel="noopener noreferrer" target="_blank">PapierPanther (Ingolstadt)<span class="sr-only"> (öffnet in neuem Tab)</span></a>.
     </p>
     <div class="footer-recht">
       <a href="impressum.html" id="footer-link-impressum">Impressum</a>
       <a href="datenschutz.html" id="footer-link-datenschutz">Datenschutz</a>
     <a href="barrierefreiheit.html">Barrierefreiheit</a>
       <a href="https://github.com/mnkeller/papierpanther" rel="noopener noreferrer" target="_blank" id="footer-link-quellcode">Quellcode<span class="sr-only"> (öffnet in neuem Tab)</span></a>
-      <a href="https://www.ingolstadt.de/Rathaus/Aktuelles/Newsletter/" rel="noopener noreferrer" target="_blank">Offizieller Newsletter der Stadt<span class="sr-only"> (öffnet in neuem Tab)</span></a>
+      <a href="https://www.bueren.de/" rel="noopener noreferrer" target="_blank">Offizielle Seite der Stadt Büren<span class="sr-only"> (öffnet in neuem Tab)</span></a>
+      <a href="https://www.kreis-paderborn.de/" rel="noopener noreferrer" target="_blank">Offizielle Seite des Kreises Paderborn<span class="sr-only"> (öffnet in neuem Tab)</span></a>
     </div>
   </div>
 </footer>
@@ -735,7 +739,6 @@
 <script src="seiten/hilfen.js"></script>
 <script src="seiten/index.js"></script>
 <script src="kopf.js" defer></script>
-<script src="grafik/kern.js" defer></script>
 <script src="zaehler.js" defer></script>
 </body>
 </html>

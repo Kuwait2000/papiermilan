@@ -65,6 +65,8 @@ HIER = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HIER)
 import wege_bauen  # noqa: E402
 from wege_bauen import abrufen, im_polygon, sauberer_name, schreibe, speichere, utm32_nach_wgs84, vereinfache, xy  # noqa: E402
+from ris_ingolstadt import QUELLEN  # noqa: E402
+from feed_bauen import KETTEN_QUELLEN  # noqa: E402
 
 # --neu soll hier nur den Unfallatlas neu holen, nicht den OpenStreetMap-Auszug:
 # der gehoert wege_bauen.py, sonst laufen Wegenetz und Ortsschicht auseinander.
@@ -86,7 +88,12 @@ UNFALL_JAHRE = 5
 
 UNFALL_INDEX = 'https://www.opengeodata.nrw.de/produkte/transport_verkehr/unfallatlas/index.json'
 UNFALL_BASIS = 'https://www.opengeodata.nrw.de/produkte/transport_verkehr/unfallatlas/'
-BAUSTELLEN_URL = 'https://www.ingolstadt.de/openbydata/VMS/Baustellen_14_Tage_Ingolstadt.geojson'
+# Baustellen als GeoJSON (EPSG:25832), z. B. vom Kreis oder der Stadt als Open
+# Data. Leer lassen, wenn es keinen solchen Datensatz gibt — dann wird die
+# Baustellen-Schicht einfach nicht gebaut.
+BAUSTELLEN_URL = ''
+# Unfallatlas: Land / Regierungsbezirk / Kreis (AGS). Kreis Paderborn = 05 / 3 / 74.
+UNFALL_LAND, UNFALL_REGBEZ, UNFALL_KREIS = '05', '3', '74' 
 
 ROEMISCH = {'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7, 'VIII': 8, 'IX': 9, 'X': 10, 'XI': 11, 'XII': 12}
 
@@ -102,7 +109,7 @@ ALLGEMEIN = set('''grundschule mittelschule realschule gymnasium schule berufssc
     kinderspielplatz fussballplatz tennisplatz basketballplatz skatepark stadion museum pfarrheim pfarrzentrum
     berufsfachschule fachoberschule berufsoberschule wirtschaftsschule volkshochschule musikschule
     stadtteilpark wasserspielplatz abenteuerspielplatz schuetzen schuetzenheim sportheim vereinsheim
-    der die das und am an im in st sankt ingolstadt staedtische staedtischer staedtisches katholische
+    der die das und am an im in st sankt bueren paderborn staedtische staedtischer staedtisches katholische
     evangelische kath evang ev'''.split())
 # Namen, die als Wort im Text etwas anderes meinen koennen: nie ein Ort
 NICHT_ALS_ORT = {'rathaus', 'ring', 'anger', 'markt', 'promenade'}
@@ -413,14 +420,14 @@ def unfaelle_lesen():
                 text = z.read(name).decode('utf-8-sig', 'replace')
             for r in csv.DictReader(io.StringIO(text), delimiter=';'):
                 r = {k.upper(): v for k, v in r.items() if k}
-                if (r.get('ULAND'), r.get('UREGBEZ'), r.get('UKREIS')) not in (('09', '1', '61'), ('9', '1', '61')):
+                if (r.get('ULAND'), r.get('UREGBEZ'), r.get('UKREIS')) not in ((UNFALL_LAND, UNFALL_REGBEZ, UNFALL_KREIS), (UNFALL_LAND.lstrip('0'), UNFALL_REGBEZ.lstrip('0'), UNFALL_KREIS.lstrip('0'))):
                     continue
                 x = float(r['LINREFX'].replace(',', '.'))
                 zeilen.append({
                     'x': x - 32000000 if x > 3e7 else x, 'y': float(r['LINREFY'].replace(',', '.')),
                     'kat': int(r['UKATEGORIE']), 'rad': int(r.get('ISTRAD') or 0), 'fuss': int(r.get('ISTFUSS') or 0)})
             if not zeilen:
-                raise SystemExit('Unfallatlas %d: keine Zeile fuer Ingolstadt, Spalten pruefen' % jahr)
+                print('Unfallatlas %d: keine Zeile fuer AGS %s%s%s — Unfaellzahlen bleiben leer (AGS in orte_bauen.py pruefen)' % (jahr, UNFALL_LAND, UNFALL_REGBEZ, UNFALL_KREIS))
             speichere(pfad, json.dumps(zeilen).encode())
         with open(pfad, encoding='utf-8') as f:
             for z in json.load(f):
@@ -470,6 +477,8 @@ def sauberer_text(text):
 
 
 def baustellen_bauen():
+    if not BAUSTELLEN_URL:
+        return None   # kein Baustellen-Datensatz konfiguriert
     pfad = os.path.join(CACHE, 'baustellen.geojson')
     frisch = True
     try:
@@ -498,8 +507,8 @@ def baustellen_bauen():
     liste.sort(key=lambda b: (b[2], b[4]))
     stand = date.today().isoformat() if frisch else date.fromtimestamp(os.path.getmtime(pfad)).isoformat()
     return {'erzeugt_von': 'scraper/orte_bauen.py', 'stand': stand,
-            'quelle': 'Stadt Ingolstadt, Baustellen (open.bydata), CC BY 4.0',
-            'quelle_url': 'https://open.bydata.de/datasets?publisher=Stadt%20Ingolstadt',
+            'quelle': 'Baustellen-Vorschau des Herausgebers (siehe BAUSTELLEN_URL in orte_bauen.py)',
+            'quelle_url': BAUSTELLEN_URL,
             'format': 'liste: [lat, lon, ort, querstrassen, beginn, ende, arbeiten, verkehr]',
             'liste': liste}
 
@@ -509,6 +518,12 @@ def baustellen_bauen():
 def main():
     with open(os.path.join(DATEN, 'feed.json'), encoding='utf-8') as f:
         feed = json.load(f)
+    if not os.path.exists(os.path.join(DATEN, 'wege-adressen.json')):
+        print('wege-adressen.json fehlt — die Ortsschicht braucht den OSM-Auszug von')
+        print('scraper/wege_bauen.py (GEMEINDE/LAT0/LON0 dort auf den Kreis Paderborn')
+        print('umstellen, dann: python3 wege_bauen.py). Ueberspringe orte_bauen.py;')
+        print('pruefen.py meldet das als Warnung, die Startseite laeuft auch ohne Orte.')
+        return
     bezirke = Bezirke()
     strassen = strassen_lesen(bezirke)
     einrichtungen, gleicher_ort = einrichtungen_lesen()
@@ -533,10 +548,10 @@ def main():
 
     zuordnung, treffer_je_name, verworfen = {}, collections.Counter(), collections.Counter()
     for e in feed['eintraege']:
-        if e['quelle'] not in ('stadt', 'bza'):
+        if e['quelle'] not in QUELLEN:
             continue
         bza = 0
-        if e['quelle'] == 'bza':
+        if e['quelle'] in KETTEN_QUELLEN:
             m = re.search(r'Bezirksausschuss ([IVX]+)\b', e['gremium'])
             bza = ROEMISCH.get(m.group(1), 0) if m else 0
         titel = glatt(e['amtlicher_titel'])
@@ -572,7 +587,7 @@ def main():
                 anzeige = name
                 if len(s['stuecke']) > 1:
                     b_nr = bza or next(iter(teile[0]['bezirke']), 0)
-                    anzeige = '%s (%s)' % (name, bezirke.name.get(b_nr, 'Ingolstadt'))
+                    anzeige = '%s (%s)' % (name, bezirke.name.get(b_nr, 'Kreis Paderborn'))
                 # Hausnummer direkt dahinter: nur wenn es die Adresse gibt und kein Datum, Mass oder Betrag folgt
                 hn = re.match(r'\s*(\d{1,3})(\s?[a-h](?![a-z]))?(?![\d:/]|[.,]\d|\s*(uhr|km|m\b|euro|prozent|%|stueck|jahre|tage))', text[b:b + 24])
                 nr = ''
@@ -662,7 +677,7 @@ def main():
 
     # Quellenvermerk, wie ihn der Unfallatlas verlangt, mit dem Jahr des Abrufs
     vermerk = '© Statistische Ämter des Bundes und der Länder, Deutschland, %d' % date.today().year
-    im_blick = [e for e in feed['eintraege'] if e['quelle'] in ('stadt', 'bza')]
+    im_blick = [e for e in feed['eintraege'] if e['quelle'] in QUELLEN]
     statistik = {
         'eintraege': len(im_blick), 'mit_ort': len(zuordnung),
         'orte': len(orte), 'je_art': dict(collections.Counter(o['art'] for o in orte)),

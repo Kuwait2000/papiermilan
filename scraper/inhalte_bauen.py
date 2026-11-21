@@ -24,11 +24,13 @@ from collections import Counter
 from datetime import date
 
 HIER = os.path.dirname(os.path.abspath(__file__))
+sys.path.insert(0, HIER)
+from ris_ingolstadt import QUELLEN  # noqa: E402
 WURZEL = os.path.dirname(HIER)
 DATEN_VZ = os.path.join(WURZEL, "data")
 ZIEL = os.path.join(WURZEL, "INHALTE.md")
-WEB = "https://schanzer-papierpanther.de/"
-CC_BY_RAT = "CC BY 4.0, Namensnennung: „PapierPanther, Michael Keller, schanzer-papierpanther.de, CC BY 4.0“"
+WEB = "https://DEINE-DOMAIN.example/"  # eigene Domain eintragen
+CC_BY_RAT = "CC BY 4.0, Namensnennung: „PapierPanther (Büren & Kreis Paderborn), DEINE-DOMAIN.example, CC BY 4.0“ — an eigene Domain/Name anpassen"
 
 WARNUNGEN = []
 
@@ -68,22 +70,21 @@ def datum_de(iso):
 def z_start():
     f = lade("feed.json")
     st = f["statistik"]
-    o = lade("orte.json")["statistik"]
-    u = lade("orte.json")["unfall"]
+    je_quelle = ", ".join(f"{k} {de(v)}" for k, v in st["je_quelle"].items())
     zeilen = [
         f"{de(st['sitzungen_ausgelesen'])} Sitzungen und {de(st['tops_ausgelesen'])} Tagesordnungspunkte ausgelesen "
-        f"({f['zeitraum']['von']} bis {f['zeitraum']['bis']}), davon {de(st['tops_kuratiert'])} als Eintrag in Klartext",
-        f"Einträge je Quelle: Stadtrat und Ausschüsse {de(st['je_quelle']['stadt'])}, "
-        f"Bezirksausschüsse {de(st['je_quelle']['bza'])}, Bezirk Oberbayern {de(st['je_quelle']['bezirk_obb'])}",
+        f"({f['zeitraum']['von']} bis {f['zeitraum']['bis']}) aus {de(st['portale'])} Portalen, "
+        f"davon {de(st['tops_kuratiert'])} als Eintrag in Klartext",
+        f"Einträge je Quelle: {je_quelle}",
         f"{de(st['leichte_sprache'])} Einträge auch in Einfacher Sprache",
         "Stand der Einträge: " + ", ".join(f"{k} {de(v)}" for k, v in
                                           sorted(st["stand"].items(), key=lambda kv: -kv[1])),
-        f"{de(o['mit_ort'])} von {de(o['eintraege'])} Einträgen tragen einen Ort ({de(o['orte'])} verschiedene Orte)",
-        f"Unfallatlas {u['von']}–{u['bis']}: {de(u['anzahl'])} Unfälle mit Verletzten im Stadtgebiet",
     ]
-    je_bezirk = Counter(b for e in f["eintraege"] for b in e.get("bezirk", []))
-    if je_bezirk:
-        zeilen.append("Einträge je Stadtbezirk: " + ", ".join(f"{k} {de(v)}" for k, v in je_bezirk.most_common()))
+    if os.path.exists(os.path.join(DATEN_VZ, "orte.json")):
+        o = lade("orte.json")["statistik"]
+        u = lade("orte.json")["unfall"]
+        zeilen.append(f"{de(o['mit_ort'])} von {de(o['eintraege'])} Einträge tragen einen Ort ({de(o['orte'])} verschiedene Orte)")
+        zeilen.append(f"Unfallatlas {u['von']}–{u['bis']}: {de(u['anzahl'])} Unfälle mit Verletzten im Gebiet")
     return f"Daten abgerufen {datum_de(f['daten_abgerufen_am'])}, Feed gebaut {datum_de(f['feed_gebaut_am'])}", zeilen
 
 
@@ -266,123 +267,51 @@ ZAHLEN = {
 # ---------------------------------------------------------------------------
 
 SEITEN = [
-    dict(href="index.html", titel="Startseite: alle Einträge aus Stadtrat und Bezirksausschüssen",
-         worum="Jeder öffentliche Tagesordnungspunkt von Stadtrat, Ausschüssen, den zwölf Bezirksausschüssen und dem "
-               "Bezirk Oberbayern in Klartext und Einfacher Sprache, sortiert nach Lebenslage, Stadtbezirk und Anlass. "
-               "Jeder Eintrag verlinkt Sitzung, Vorlage und Dokumente der Stadt.",
-         kann="Filter nach Bezirk, Lebenslage und Stand; Orte an Einträgen anklickbar (`?ort=`); „In meiner Nähe“ mit "
-              "Umkreis; Vorgangsketten der Bezirksausschüsse (`?kette=`); Unfallzahlen an Verkehrsthemen; Baustellen der "
-              "nächsten 14 Tage; kommende Sitzungstermine.",
-         grafik="Schaubild mit Szenen „start“, „orte“ (Stadtkarte mit Orten der Einträge) und „themen“.",
-         quellen="Ratsinfoportale der Stadt (SessionNet) und des Bezirks Oberbayern; Kurztexte teils mit Sprachmodell. "
-                 f"Lizenz der kuratierten Ratsdaten: {CC_BY_RAT}. Unfallatlas: dl-de/by-2-0. Baustellen: Stadt Ingolstadt, "
-                 "CC BY 4.0. Orte/Straßen: OpenStreetMap, ODbL.",
-         vorsicht="Verbindlich ist immer das Originaldokument. „Nur besprochen“ heißt nicht beschlossen. Unfallatlas "
-                  "zählt nur Unfälle mit Verletzten, die die Polizei aufgenommen hat. Baustellen veralten nach 14 Tagen.",
-         ideen="Wochenvorschau „Das kommt in den Rat“; Beschluss der Woche erklärt; „Was dein Bezirksausschuss gerade "
-               "macht“; ein Ort, viele Vorgänge."),
-    dict(href="antraege.html", titel="Anträge der Parteien",
-         worum="Alle Anträge der Stadtratsfraktionen in der Wahlperiode, je Fraktion, mit Klartext und Stand: in "
-               "Beratung oder noch auf keiner Tagesordnung.",
-         kann="Je Partei aufklappbar, Stand je Antrag, Link zum Antrag als PDF.",
-         grafik="Szene „antraege“.",
-         quellen=f"Ratsinfoportal der Stadt. {CC_BY_RAT}.",
-         vorsicht="Zahl der Anträge sagt nichts über Qualität oder Erfolg; Gemeinschaftsanträge eigens gezählt. "
-                  "Parteipolitisch neutral bleiben, keine Rangliste als Wertung.",
-         ideen="„Liegt seit Monaten: Anträge ohne Termin“; ein Antrag aus jeder Fraktion zum selben Thema."),
-    dict(href="haushalt.html", titel="Haushalt: das Geld der Stadt",
-         worum="Einnahmen und Ausgaben der Stadt, Verwaltungs- und Vermögenshaushalt, Referate, Plan gegen Ergebnis "
-               "der Vorjahre, Schulden und Rücklage.",
-         kann="Aufschlüsselung nach Referaten und Hauptgruppen, Zeitreihe seit 2022.",
-         grafik="Szene „haushalt“.",
-         quellen=f"Haushaltsplan und Vorbericht der Stadt Ingolstadt. {CC_BY_RAT}.",
-         vorsicht="Plan ist nicht Ergebnis; Schulden je Einwohner ab 2024 selbst berechnet, bis 2023 amtlich.",
-         ideen="„Von 100 € gibt die Stadt so viel aus für …“; Schulden von 0 auf … in drei Jahren."),
-    dict(href="hsk.html", titel="Sparplan (Haushaltssicherungskonzept)",
-         worum="Wo die Stadt bis 2029 sparen will: Maßnahmenkatalog mit Beträgen je Jahr, Stand jeder Maßnahme, "
-               "freiwillige Leistungen einzeln, Schuldenszenarien mit und ohne Sparen. Jede Maßnahme in Klartext und "
-               "Leichter Sprache.",
-         kann="Maßnahmen nach Bereich und Stand; Betroffene einzelner Maßnahmen auf der Karte „Deine 15 Minuten“.",
-         grafik="Szene „sparplan“.",
-         quellen="Haushaltssicherungskonzept, Vorlage V0652/26 (Stadtrat 29.10.2026), Anlagen 1 und 5, mit Seitenangaben. "
-                 f"{CC_BY_RAT}.",
-         vorsicht="Viele Beträge sind Schätzungen der Verwaltung; „geplant“ ist nicht „beschlossen“. Seitenzahlen beim "
-                  "Zitieren mitnennen.",
-         ideen="Karussell „5 Maßnahmen, die du merkst“; was eine Million im Haushalt bedeutet; Schulden-Szenario 2036."),
-    dict(href="beteiligungen.html", titel="Unternehmen der Stadt",
-         worum="Stadtwerke, Klinikum, Busse, Bäder und weitere Beteiligungen: wem was gehört, wer wem zahlt, wo der "
-               "Haushalt zuschießt. Gibt wieder, was im Beteiligungsbericht steht, ohne zu bewerten.",
-         kann="Neun Alltagsbereiche (Wohnungen, Wasser, Busse …); Waage „Energiegewinn, Verlust, Einlage“ der Stadtwerke.",
-         grafik="Szene „waage“ mit Reglern (vereinfachte Rechnung, Annahmen in der Fußzeile).",
-         quellen=f"Beteiligungsbericht 2026, Vorlage V0569/26, jede Zahl mit Seitenzahl. {CC_BY_RAT}.",
-         vorsicht="Berichtsjahr 2025, bei Stadtwerken das Geschäftsjahr 10/2024–9/2025.",
-         ideen="„Dein Bus, dein Bad, dein Wasser: gehört alles der Stadt“; wer den Busverkehr bezahlt."),
-    dict(href="klima.html", titel="Klima",
-         worum="Wetter seit 1961 (heiße Tage, Tropennächte, Frosttage), Solaranlagen und Speicher, öffentliche "
-               "Ladepunkte, Klimaziele und Treibhausgasbilanz der Stadt.",
-         kann="Zeitreihen je Jahr, Vergleich mit Referenzperiode 1971–2000.",
-         grafik="Szenen „klima“ und „sonne“ (Altstadt in 3D mit Sonnenstand).",
-         quellen="Deutscher Wetterdienst (Station Kösching), Marktstammdatenregister, Ladesäulenregister der "
-                 "Bundesnetzagentur, Fortschrittsberichte der Stabsstelle Klima. Lizenzen der jeweiligen Quellen.",
-         vorsicht="Station Kösching liegt außerhalb der Stadt (dieselbe wie im Bericht der Stadt). Industrie macht rund "
-                  "die Hälfte der Emissionen aus.",
-         ideen="„So viele heiße Tage wie nie“; Balkonkraftwerke-Boom; Ziel 2035 und wie weit wir sind."),
-    dict(href="waerme.html", titel="Wärmeplan",
-         worum="Was die kommunale Wärmeplanung für jede Adresse vorsieht (Fernwärme, Prüfgebiet Gas/Wärmepumpe, "
-               "Einzelversorgung), Zahlen je Stadtbezirk, Heizung heute je Baublock und was der Plan nicht ist.",
-         kann="Adresssuche mit Antwort in einem Satz; Karte mit Baublöcken; Ratsbeschlüsse seit dem Plan.",
-         grafik="Szene „waerme“ (Stadtkarte mit Adresssuche).",
-         quellen="Eignungsgebiete der Stadt (2035.de, ohne Lizenzangabe), Abschlussbericht greenventory 28.05.2024, "
-                 "Energie-Atlas Bayern/LfU (CC BY 4.0), Adressen OpenStreetMap (ODbL).",
-         vorsicht="Plan ist nicht bindend, keine Anschlusszusage, kein Termin, kein Anschlusszwang. Seit 29.07.2026 gilt "
-                  "§ 43 GModG; Seiten von Stadt und Stadtwerken nennen noch die alte 65-Prozent-Regel. Bezirkszahlen "
-                  "sind eigene Auswertung.",
-         ideen="„Kommt Fernwärme in meine Straße?“; Mythos-Check 65-Prozent-Regel; Bezirksvergleich."),
-    dict(href="wohnen.html", titel="Wohnen",
-         worum="Mieten oder besitzen, wem die Wohnungen gehören, Leerstand, was die Stadt tun kann und was nicht, "
-               "Wohnen im Haushalt, Stadtratsvorgänge. Erklärt statt fordert.",
-         kann="Vergleich Zensus 2011 und 2022; Werkzeuge der Stadt im festen Raster.",
-         grafik="Szene „wohnen“.",
-         quellen="Zensus 2022, © Statistische Ämter des Bundes und der Länder, dl-de/by-2-0.",
-         vorsicht="Zensuszahlen von 2022, nächster Zensus 2031.",
-         ideen="„Fast zwei Drittel wohnen zur Miete“; wem Ingolstadts Wohnungen gehören."),
-    dict(href="miete.html", titel="Miete",
-         worum="Mietspiegel-Rechner (was für die eigene Wohnung üblich ist), Mietpreisbremse und Kappungsgrenze, "
-               "Ablauf, Ausnahmen, wer profitiert.",
-         kann="Rechner im Browser, Eingaben werden nicht gespeichert.",
-         grafik="Szene „miete“.",
-         quellen="Mietspiegel-Broschüre November 2025, Bayerische Mieterschutzverordnung.",
-         vorsicht="Angebotsmieten fehlen bewusst (keine offenen Daten). Keine Rechtsberatung.",
-         ideen="„Zahlst du zu viel? In 1 Minute nachrechnen“; Mietpreisbremse in 3 Sätzen."),
-    dict(href="plaene.html", titel="Baugebiete und Pläne",
-         worum="Stand jedes Bebauungsplans: Grundsatz, Aufstellung, Entwurf, Satzung, in Kraft; mit Planzeichnung, "
-               "Gutachten nach Alltagsfragen (Verkehr, Lärm, Natur …) und Beratungen im Bezirksausschuss. Angestoßen "
-               "durch einen Antrag des BZA Friedrichshofen/Hollerstauden.",
-         kann="Suche nach Plan, Bezirk und Stand; Umgriffe auf der Karte.",
-         grafik="Szene „plaene“ (Stadtkarte).",
-         quellen="Ratsinfoportal (CC BY 4.0) und Bauleitpläne Bayern (LDBV, CC BY-ND 4.0).",
-         vorsicht="Umgriffe und Planzeichnungen aus Bauleitpläne Bayern: CC BY-ND, also nicht verändern, nicht "
-                  "zuschneiden oder einfärben. Ob ein Plan gilt, entscheidet die Bekanntmachung im Amtsblatt.",
-         ideen="„Was wird hier gebaut?“ je Plan; ein Plan von der Idee bis zur Satzung."),
-    dict(href="wege.html", titel="Deine 15 Minuten",
-         worum="Was man von einem Punkt in 5, 10 und 15 Minuten zu Fuß erreicht, für fünf Personen und unter Nacht- "
-               "und Hitzebedingungen; Auswertung je Bezirk; Betroffene von Sparplan-Maßnahmen.",
-         kann="Adresse oder Standort eingeben, Person wählen, Erreichbarkeit auf der Karte; „Alle Personen“ als "
-              "Schichtbild; Wegsuche im Browser.",
-         grafik="Szenen „wege“ und „wege-apotheke“.",
-         quellen="OpenStreetMap (ODbL), Zensus-Gitter 2022 (dl-de/by-2-0), Fahrplan VGI (GTFS), Bezirke der Stadt.",
-         vorsicht="Bezirkswerte hängen daran, ob OpenStreetMap ein Ziel kennt; 0 % in einem Bezirk nicht als "
-                  "Schlagzeile verwenden. Gehtempo je Person ist eine Annahme (Tabelle auf der Seite).",
-         ideen="„Kommt deine Oma zu Fuß zur Apotheke?“; Kind allein zur Schule; Hitze-Wege."),
-    dict(href="beteiligen.html", titel="Beteiligen",
-         worum="Wie man mitreden kann: gewählte Vertreter:innen im Bezirksausschuss ansprechen, Mängelmelder, "
-               "Beteiligungsprojekte der Stadt, eigene Projektideen (MitmacherINnen), Wege und Orte in "
-               "OpenStreetMap eintragen.",
-         kann="Bezirk wählen und sehen, wer dort sitzt; Links zu Mängelmelder und Projekten.",
-         grafik="Szene „beteiligen“.",
-         quellen="Stadt Ingolstadt.",
-         vorsicht="Namen von Mitgliedern nur in ihrer öffentlichen Rolle nennen.",
-         ideen="„Dein Bezirksausschuss: Wer, wann, wo“; so stellst du einen Antrag im BZA."),
+    dict(href="index.html", titel="Startseite: alle Einträge aus Rat und Kreistag",
+         worum="Jeder öffentliche Tagesordnungspunkt von Rat und Ausschüssen der Stadt Büren sowie Kreistag und "
+               "Ausschüssen des Kreises Paderborn in Klartext und Einfacher Sprache, sortiert nach Lebenslage, Ebene "
+               "und Anlass. Jeder Eintrag verlinkt Sitzung, Vorlage und Dokumente.",
+         kann="Filter nach Ebene, Lebenslage, Stand und Stichwort; kommende Sitzungstermine. Optional (sobald "
+              "scraper/wege_bauen.py + orte_bauen.py gelaufen sind): Orte an Einträgen anklickbar (?ort=), "
+              "„In meiner Nähe“ mit Umkreis, Unfallzahlen an Verkehrsthemen.",
+         grafik="In dieser Portierung deaktiviert (braucht Karten-/Ortsdaten); im Originalprojekt Szenen „start“, „orte“, „themen“.",
+         quellen="Ratsinfosystem der Stadt Büren und Kreistagsinformationssystem des Kreises Paderborn (SessionNet/OWL-IT); "
+                 f"Kurztexte teils mit Sprachmodell. Lizenz der kuratierten Ratsdaten: {CC_BY_RAT}.",
+         vorsicht="Verbindlich ist immer das Originaldokument. „Nur besprochen“ heißt nicht beschlossen.",
+         ideen="Wochenvorschau „Das kommt in den Rat“; Beschluss der Woche erklärt; ein Ort, viele Vorgänge."),
+    dict(href="themen.html", titel="Themen im Überblick",
+         worum="Kacheln je Lebenslage mit Zahl der Einträge, verlinkt auf die gefilterte Startseite.",
+         kann="Schneller Überblick, worum es zuletzt ging.",
+         grafik="Szene „themen“ (Originalprojekt).",
+         quellen="data/feed.json (aus den beiden Portalen).",
+         vorsicht="Zahlen sind der Stand beim letzten Datenlauf.",
+         ideen="„Diese Woche im Rat: Wohnen“ als Shareable."),
+    dict(href="so-funktionierts.html", titel="So funktioniert’s",
+         worum="Fabrik: wie aus einem Tagesordnungspunkt ein Eintrag wird — von den Portalen bis zur Website, "
+               "Station für Station.",
+         kann="Scroll-Geschichte mit 3D-Fabrik (WebGL).",
+         grafik="Die Fabrik selbst.",
+         quellen="data/fabrik.js (Zahlen aus feed_bauen.py).",
+         vorsicht="Beispieltexte sind fest im Skript hinterlegt.",
+         ideen="„So entsteht ein Eintrag“ als Erklär-Post."),
+    dict(href="impressum.html", titel="Impressum",
+         worum="Anbieterkennzeichnung (§ 5 DDG) mit Platzhaltern für Name/Adresse — vor Veröffentlichung ausfüllen!",
+         kann="Kontakt für Fehlerhinweise.",
+         grafik="—",
+         quellen="—",
+         vorsicht="Ohne echte Adresse nicht live schalten.",
+         ideen="—"),
+    dict(href="datenschutz.html", titel="Datenschutzerklärung",
+         worum="Art. 13/14 DSGVO: keine Cookies, keine externen Ressourcen, Zählung deaktiviert.",
+         kann="—", grafik="—", quellen="—",
+         vorsicht="Bei eingeschalteter Zählung (zaehler.js) Abschnitt 4 anpassen.",
+         ideen="—"),
+    dict(href="barrierefreiheit.html", titel="Erklärung zur Barrierefreiheit",
+         worum="Freiwillige WCAG-2.1-AA-Erklärung mit Selbstprüfung.",
+         kann="Meldemöglichkeit für Barrieren.",
+         grafik="—", quellen="—",
+         vorsicht="Domain-Platzhalter ersetzen.",
+         ideen="—"),
 ]
 
 
@@ -392,13 +321,13 @@ def ratsgeschehen():
     zeilen = ["## Aktuell aus dem Rat", "",
               f"Stand {datum_de(f['feed_gebaut_am'])}. Veraltet schnell, vor einem Post auf der Seite gegenprüfen.", "",
               "### Kommende Sitzungen", ""]
-    for t in [t for t in f["kommende_termine"] if t["datum"] >= f["feed_gebaut_am"] and t["quelle"] != "bezirk_obb"][:12]:
+    for t in [t for t in f["kommende_termine"] if t["datum"] >= f["feed_gebaut_am"] and t["quelle"] in QUELLEN][:12]:
         zeit = f" {t['zeit']}" if t.get("zeit") else ""
         zeilen.append(f"- {t['datum_anzeige']}{zeit}: {t['gremium']}")
     zeilen += ["", "### Zuletzt entschieden", "",
                "Ein Ergebnis steht erst fest, wenn die Niederschrift erschienen ist; das dauert oft Wochen.", ""]
     neu = sorted((e for e in f["eintraege"] if e.get("status") == "Entschieden"
-                  and e.get("quelle") != "bezirk_obb" and e.get("klartext_titel")),
+                  and e.get("quelle") in QUELLEN and e.get("klartext_titel")),
                  key=lambda e: e["datum"], reverse=True)
     for e in neu[:25]:
         formel = (e.get("beschluss") or {}).get("formel", "")
@@ -411,7 +340,10 @@ def ratsgeschehen():
 
 
 def main():
-    kacheln = {k["href"]: k for k in lade_js("themen.js", "THEMEN_DATEN")}
+    try:
+        kacheln = {k["href"]: k for k in lade_js("themen.js", "THEMEN_DATEN")}
+    except Exception:
+        kacheln = {}   # themen.js fehlt noch (erst nach themen_bauen.py da)
     heute = date.today().strftime("%d.%m.%Y")
     out = [
         "# PapierPanther: Inhaltskatalog",
@@ -425,12 +357,12 @@ def main():
         "",
         "## Grundsätzliches",
         "",
-        f"- Website: {WEB} (Schanzer PapierPanther). Kein offizielles Angebot der Stadt Ingolstadt.",
-        "- Idee: Was der Ingolstädter Stadtrat entscheidet, und wen es betrifft. Tagesordnungen in Klartext und "
+        f"- Website: {WEB}. Kein offizielles Angebot der Stadt Büren oder des Kreises Paderborn.",
+        "- Idee: Was Rat und Kreistag in Büren und im Kreis Paderborn entscheiden, und wen es betrifft. Tagesordnungen in Klartext und "
         "Einfacher Sprache, sortiert nach Betroffenheit.",
         "- Haltung: erklärt, bewertet nicht. Parteipolitisch neutral. Verbindlich ist immer das Originaldokument, "
         "jeder Eintrag verlinkt es.",
-        "- Jede Seite gibt es in Alltagssprache, Einfacher Sprache und als Schaubild (`#grafisch` an die Adresse hängen).",
+        "- Jede Seite gibt es in Alltagssprache und in Einfacher Sprache (Umschalter oben).",
         f"- Lizenzen: Code EUPL-1.2; eigene Texte CC BY 4.0; kuratierte Ratsdaten {CC_BY_RAT}. Fremddaten behalten "
         "ihre Lizenz (bei jeder Seite genannt). Name, Wortmarke und Maskottchen „PapierPanther“ sind nicht "
         "mitlizenziert.",
@@ -453,12 +385,16 @@ def main():
         out.append("")
         out.append(f"**Was man dort tun kann:** {s['kann']}")
         out.append("")
-        try:
-            stand, zahlen = ZAHLEN[s["href"]]()
+        fn = ZAHLEN.get(s["href"])
+        if not fn:
+            pass   # fuer diese Seite gibt es keine Zahlenfunktion
+        else:
+          try:
+            stand, zahlen = fn()
             out.append(f"**Zahlen**{' (' + stand + ')' if stand else ''}:")
             out.append("")
             out += [f"- {z}" for z in zahlen]
-        except Exception as fehler:  # eine kaputte Datei soll den Katalog nicht verhindern
+          except Exception as fehler:  # eine kaputte Datei soll den Katalog nicht verhindern
             WARNUNGEN.append(f"{s['href']}: {fehler!r}")
             out.append(f"**Zahlen:** konnten nicht gelesen werden ({fehler!r}). Bitte Skript prüfen.")
         out.append("")
@@ -477,7 +413,7 @@ def main():
     out += ["", "## Weiterlesen im Repository", "",
             "- `README.md`: Technik, Datenwege, Skripte",
             "- `KURATION.md`: Regeln für Kurztexte und Einfache Sprache",
-            "- `PROTOTYP-INGOLSTADT.md`: Datenlage und Befunde",
+            "- `PROTOTYP-INGOLSTADT.md`: Datenlage und Befunde des Originalprojekts (Ingolstadt)",
             "- `NOTICE`: Lizenzen im Einzelnen", ""]
     with open(ZIEL, "w", encoding="utf-8") as f:
         f.write("\n".join(out))

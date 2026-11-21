@@ -2,23 +2,23 @@
 """
 Liest Ratsinformationssysteme auf Basis von SessionNet / Somacos "Session" aus.
 
-Drei Quellen, gleiche Software, zwei Auslieferungsvarianten (.php bei der
-Stadt Ingolstadt, das aeltere .asp beim Bezirk Oberbayern), deshalb derselbe
-Parser mit einer Dateiendung als Konfigurationswert je Quelle:
-  stadt       — Stadtrat, Ausschuesse, Aufsichts- und Verwaltungsraete (Ingolstadt)
-  bza         — die 12 Bezirksausschuesse der Stadt Ingolstadt
-  bezirk_obb  — Bezirkstag und Ausschuesse des Bezirks Oberbayern
+Zwei Quellen, gleiche Software, gleiche Auslieferungsvariante (.asp, gehostet
+beim kommunalen IT-Dienstleister OWL-IT), deshalb derselbe Parser mit einer
+Dateiendung als Konfigurationswert je Quelle:
+  stadt_bueren    — Rat und Ausschuesse der Stadt Bueren
+  kreis_paderborn — Kreistag und Ausschuesse des Kreises Paderborn
+
+(Adaptiert von der Ingolstadt-Fassung dieses Skripts; siehe README.md.)
 
 Nur oeffentlich zugaengliche Seiten, keine Anmeldung, kein Verwaltungszugang.
-robots.txt der Stadt Ingolstadt sperrt weder /sessionnet/ noch /sessionnetbza/
-(geprueft 2026-07-29). Beim Bezirk Oberbayern existiert unter /robots.txt gar
-keine Datei (HTTP 404, geprueft 2026-08-16) — also ebenfalls keine Sperre.
+Vor dem ersten Lauf robots.txt der Quelle pruefen, z. B.:
+    curl -s https://sessionnet.owl-it.de/robots.txt
 
 Verwendung:
     python3 ris_ingolstadt.py                        # alle Quellen, letzte 3 Monate
     python3 ris_ingolstadt.py --von 2026-01 --bis 2026-07
-    python3 ris_ingolstadt.py --quelle bza           # nur Bezirksausschuesse Ingolstadt
-    python3 ris_ingolstadt.py --quelle bezirk_obb    # nur Bezirk Oberbayern
+    python3 ris_ingolstadt.py --quelle stadt_bueren    # nur Rat/Ausschuesse Bueren
+    python3 ris_ingolstadt.py --quelle kreis_paderborn # nur Kreistag Paderborn
     python3 ris_ingolstadt.py --ohne-beratungen      # Beratungsweg nicht laden
     python3 ris_ingolstadt.py --no-cache             # Cache ignorieren (alles neu)
 
@@ -41,13 +41,12 @@ import urllib.error
 import urllib.request
 from datetime import date
 
-# IPv4 zuerst versuchen. www.ingolstadt.de hat auch eine IPv6-Adresse, die von
+# IPv4 zuerst versuchen. Manche Hosts haben auch eine IPv6-Adresse, die von
 # manchen Anschluessen aus nicht antwortet; urllib probiert sie zuerst und
-# wartet dann den vollen Timeout ab, bevor es auf IPv4 ausweicht — 30 Sekunden
-# je Abruf statt einer halben (beobachtet 2026-10-13). IPv6 bleibt als
-# Ausweichadresse erhalten. Gilt fuer alle Skripte, die dieses Modul
-# importieren, also auch fuer die PDF-Abrufe in niederschriften_lesen.py,
-# vorlagen_holen.py und haushalt_holen.py.
+# wartet dann den vollen Timeout ab, bevor es auf IPv4 ausweicht. IPv6 bleibt
+# als Ausweichadresse erhalten. Gilt fuer alle Skripte, die dieses Modul
+# importieren, also auch fuer die PDF-Abrufe in niederschriften_lesen.py und
+# vorlagen_holen.py.
 _getaddrinfo = socket.getaddrinfo
 
 
@@ -59,30 +58,26 @@ def _ipv4_zuerst(*args, **kwargs):
 socket.getaddrinfo = _ipv4_zuerst
 
 QUELLEN = {
-    "stadt": {
-        "name": "Ratsinfoportal der Stadt Ingolstadt — Stadtrat und Ausschüsse",
-        "software": "Session (Somacos GmbH & Co. KG)",
-        "basis_url": "https://www.ingolstadt.de/sessionnet",
-        "endung": "php",
+    "stadt_bueren": {
+        "name": "Ratsinformationssystem der Stadt Bueren — Rat und Ausschuesse",
+        "software": "SessionNet (Somacos GmbH & Co. KG, gehostet bei der OWL-IT)",
+        "basis_url": "https://sessionnet.owl-it.de/bueren/bi",
+        "endung": "asp",
     },
-    "bza": {
-        "name": "Ratsinfoportal der Bezirksausschüsse der Stadt Ingolstadt",
-        "software": "Session (Somacos GmbH & Co. KG)",
-        "basis_url": "https://www.ingolstadt.de/sessionnetbza",
-        "endung": "php",
-    },
-    "bezirk_obb": {
-        "name": "Bürgerinfoportal des Bezirks Oberbayern",
-        "software": "Session (Somacos GmbH & Co. KG)",
-        "basis_url": "https://buergerinfo-bezirk-obb.digitalfabrix.de",
-        # Aeltere Session-Auslieferung: dieselben Seiten, .asp statt .php.
+    "kreis_paderborn": {
+        "name": "Kreistagsinformationssystem des Kreises Paderborn — Kreistag und Ausschuesse",
+        "software": "SessionNet (Somacos GmbH & Co. KG, gehostet bei der OWL-IT)",
+        "basis_url": "https://sessionnet.owl-it.de/kreis_paderborn/bi",
         "endung": "asp",
     },
 }
 
+# Die Quelle, deren Gremien den Hauptteil der Seite bilden (Rat bzw. Kreistag).
+HAUPT_QUELLE = "stadt_bueren"
+
 USER_AGENT = (
-    "PapierPanther-Ingolstadt/1.0 (Buergerinformation; "
-    "+https://schanzer-papierpanther.de/impressum.html)"
+    "PapierPanther-Bueren-KreisPaderborn/1.0 (Buergerinformation; "
+    "+https://DEINE-DOMAIN.example/impressum.html)"
 )
 PAUSE_SEKUNDEN = 1.2  # hoeflich bleiben
 
@@ -182,8 +177,9 @@ VORLAGE_FRISCH_TAGE = 21     # ... bei Beratungswegen bis so viele Tage zurueck
 
 def cache_pfad(pfad, basis):
     # Die Quelle muss in den Cache-Schluessel, sonst ueberschreiben sich
-    # gleichnamige Seiten der beiden Instanzen gegenseitig.
-    kennung = basis.rstrip("/").rsplit("/", 1)[-1]
+    # gleichnamige Seiten verschiedener Instanzen gegenseitig (bei OWL-IT
+    # heisst der letzte Pfadteil beider Portale bloss "bi").
+    kennung = re.sub(r"[^A-Za-z0-9_.-]", "_", basis.replace("https://", "").replace("http://", ""))[:60]
     schluessel = kennung + "_" + re.sub(r"[^A-Za-z0-9_.-]", "_", pfad)[:140] + ".html"
     return os.path.join(CACHE_VZ, schluessel)
 

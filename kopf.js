@@ -6,19 +6,10 @@
 (function () {
   'use strict';
 
-  var THEMEN = [
-    ['antraege.html', 'Anträge der Parteien', 'Was die Fraktionen beantragen', 'Anträge der Parteien', 'Was die Parteien wollen'],
-    ['haushalt.html', 'Haushalt', 'Woher das Geld kommt und wohin es geht', 'Das Geld der Stadt', 'Wie viel Geld die Stadt hat'],
-    ['hsk.html', 'Sparplan', 'Wo die Stadt sparen will', 'Spar-Plan', 'Wo die Stadt sparen will'],
-    ['beteiligungen.html', 'Unternehmen der Stadt', 'Stadtwerke, Klinikum, Busse: wer sie bezahlt', 'Firmen der Stadt', 'Wem gehören Bus, Wasser und Bad?'],
-    ['klima.html', 'Klima', 'Wetter, Solarstrom, Ladepunkte', 'Klima', 'Wetter und Strom aus Sonne'],
-    ['waerme.html', 'Wärmeplan', 'Was für Ihre Adresse im Plan steht', 'Wärme-Plan', 'Wie heizt mein Haus in Zukunft?'],
-    ['wohnen.html', 'Wohnen', 'Mieten oder besitzen, Eigentümer, Leerstand', 'Wohnen', 'Wem gehören die Wohnungen?'],
-    ['miete.html', 'Miete', 'Mietspiegel-Rechner, Mietpreisbremse', 'Miete', 'Wie viel Miete ist üblich?'],
-    ['plaene.html', 'Baugebiete und Pläne', 'Wie weit jeder Bebauungsplan ist', 'Bau-Gebiete und Pläne', 'Wo darf gebaut werden?'],
-    ['wege.html', 'Deine 15 Minuten', 'Was Sie zu Fuß erreichen', 'Deine 15 Minuten', 'Wie weit Sie zu Fuß kommen'],
-    ['beteiligen.html', 'Beteiligen', 'Wie Sie mitreden können', 'Mitmachen', 'So können Sie mitreden']
-  ];
+  /* Themenseiten (Haushalt, Klima, Wege ...) aus dem Originalprojekt sind in
+     dieser Portierung nicht verlinkt — siehe README.md, Abschnitt
+     "Themenseiten übernehmen". Hier nur die Übersicht. */
+  var THEMEN = [];
   var TEXT = {
     start: ['Start', 'Start'],
     themen: ['Themen', 'Themen'],

@@ -6,8 +6,8 @@
   var KEY = 'papierpanther-leichte-sprache';
   var T = {
     h1: ['Themen im Überblick', 'Themen'],
-    intro: ['Zu einigen Themen gibt es mehr als einzelne Tagesordnungspunkte: Zahlen, Rechner und Hintergründe. Hier finden Sie alle auf einen Blick.',
-            'Zu diesen Themen gibt es mehr Infos. Zum Beispiel Zahlen und Rechner.']
+    intro: ['Hier sehen Sie, worum es in Rat und Kreistag ging — gruppiert nach Lebenslage. Ein Klick auf eine Kachel zeigt die passenden Einträge auf der Startseite.',
+            'Hier sehen Sie, worum es ging. Zum Beispiel bei Wohnen oder Verkehr. Ein Klick zeigt die passenden Themen.']
   };
   var btn = document.getElementById('btn-leicht');
   var leicht = false;

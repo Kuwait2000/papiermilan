@@ -30,7 +30,8 @@ DATEN_VZ = os.path.join(os.path.dirname(HIER), "data")
 sys.path.insert(0, HIER)
 from entwuerfe_bauen import ist_sammelueberschrift  # noqa: E402
 from referenzen import bare_positionen, ist_beteiligung, top_ref  # noqa: E402
-from feed_bauen import KEIN_STADTBEZIRK, STAND_REIHENFOLGE, STATUS_ALLE  # noqa: E402
+from feed_bauen import KEIN_STADTBEZIRK, KETTEN_QUELLEN, STAND_REIHENFOLGE, STATUS_ALLE  # noqa: E402
+from ris_ingolstadt import HAUPT_QUELLE, QUELLEN  # noqa: E402
 
 fehler, warnungen = [], []
 
@@ -129,14 +130,17 @@ def p_pflichtfelder(kur):
 
 
 ERLAUBTE_HOSTS = {
-    "www.ingolstadt.de", "ingolstadt.de",
-    "buergerinfo-bezirk-obb.digitalfabrix.de",
+    # Ratsinfo-/Kreistagsinfosysteme (SessionNet bei OWL-IT, dazu ein Mirror)
+    "sessionnet.owl-it.de", "sessionnet.krz.de",
+    # Webauftritte der Gebietskörperschaften (für weiterführende Links)
+    "www.bueren.de", "bueren.de",
+    "www.kreis-paderborn.de", "kreis-paderborn.de", "mein.kreis-paderborn.de",
 }
 
 
 def p_nur_erlaubte_hosts(feed):
     """
-    Jeder Link im Feed zeigt auf die Stadt Ingolstadt — nichts sonst.
+    Jeder Link im Feed zeigt auf die Ratsinfoportale von Stadt und Kreis — nichts sonst.
 
     Verteidigung gegen einen kuenftigen Parser- oder Kurationsfehler, der eine
     externe oder javascript:-URL einschleust. Aktuell schuetzt nur Zufall
@@ -223,7 +227,8 @@ def p_hsk(hsk):
 
 
 WEGE_DATEIEN = ("wege-netz", "wege-orte", "wege-zellen", "bezirke", "wege-adressen")
-KARTE = os.path.join(os.path.dirname(HIER), "karten", "ingolstadt.pmtiles")
+KARTE = None  # wird in p_wege() auf die erste karten/*.pmtiles gesetzt
+KARTE_VZ = os.path.join(os.path.dirname(HIER), "karten")
 
 
 def p_wege():
@@ -247,14 +252,17 @@ def p_wege():
     if adressen["anzahl"] < 20000:
         fehlt(f"wege-adressen: nur {adressen['anzahl']} Adressen, erwartet ueber 20.000")
     # Grundkarte fuer wege.html: vorhanden, PMTiles v3, unter 50 MB (GitHub-Grenze je Datei)
-    if not os.path.exists(KARTE):
-        fehlt("karten/ingolstadt.pmtiles fehlt (scraper/karte_bauen.py)")
+    import glob
+    karten = sorted(glob.glob(os.path.join(KARTE_VZ, "*.pmtiles")))
+    if not karten:
+        fehlt("karten/*.pmtiles fehlt (scraper/karte_bauen.py)")
     else:
-        with open(KARTE, "rb") as f:
+        karte = karten[0]
+        with open(karte, "rb") as f:
             if f.read(8) != b"PMTiles\x03":
-                fehlt("karten/ingolstadt.pmtiles ist kein PMTiles-v3-Archiv")
-        if os.path.getsize(KARTE) > 50 * 1024 * 1024:
-            fehlt("karten/ingolstadt.pmtiles ist groesser als 50 MB")
+                fehlt(f"{karte}: kein PMTiles-v3-Archiv")
+        if os.path.getsize(karte) > 50 * 1024 * 1024:
+            fehlt(f"{karte} ist groesser als 50 MB")
     if not 20000 <= netz["knoten_anzahl"] <= 200000:
         fehlt(f"wege-netz: {netz['knoten_anzahl']} Knoten, erwartet 20.000 bis 200.000")
     if len(netz["lat"]) != netz["knoten_anzahl"] or len(netz["von"]) != netz["kanten_anzahl"]:
@@ -289,14 +297,14 @@ def p_wege():
         if zahl.get(k, 0) < 5:
             fehlt(f"wege-orte: nur {zahl.get(k, 0)} Orte der Kategorie {k}")
     nrs = {int(f["properties"]["beznr"]) for f in bezirke["features"]}
-    if nrs != set(range(1, 13)):
-        fehlt(f"bezirke: Bezirksnummern {sorted(nrs)}, erwartet 1 bis 12")
+    if not nrs:
+        fehlt("bezirke: keine Bezirke/Gebiete gefunden")
     ohne = sum(1 for b in zellen["bezirk"] if b not in nrs)
     if ohne:
         fehlt(f"wege-zellen: {ohne} Zellen ohne gueltigen Bezirk")
     ew = sum(zellen["einwohner"])
-    if not 130000 <= ew <= 145000:
-        fehlt(f"wege-zellen: {ew} Einwohner, erwartet 130.000 bis 145.000")
+    if not 20000 <= ew <= 1500000:
+        fehlt(f"wege-zellen: {ew} Einwohner, Plausibilitaetsbereich 20.000 bis 1.500.000")
     p_wege_personen(zellen, orte)
     p_wege_phase5(netz, orte)
     p_wege_rad_inseln(netz, orte)
@@ -611,8 +619,9 @@ def p_baublock():
 def p_ketten(feed):
     """
     Vorgangsketten (feed_bauen.py::ketten_setzen): Eine Kette verbindet nur
-    Punkte desselben Bezirksausschusses aus verschiedenen Sitzungen. Alles
-    andere waere eine behauptete Verbindung, die es nicht gibt.
+    Punkte derselben Quelle (KETTEN_QUELLEN) und desselben Gremiums aus
+    verschiedenen Sitzungen. Alles andere waere eine behauptete Verbindung,
+    die es nicht gibt.
     """
     ketten = collections.defaultdict(list)
     for e in feed["eintraege"]:
@@ -621,7 +630,7 @@ def p_ketten(feed):
     for kennung, gruppe in ketten.items():
         if len(gruppe) < 2:
             fehlt(f"Kette {kennung}: nur ein Eintrag")
-        if any(e["quelle"] != "bza" for e in gruppe) or len({e["gremium"] for e in gruppe}) != 1:
+        if any(e["quelle"] not in KETTEN_QUELLEN for e in gruppe) or len({e["gremium"] for e in gruppe}) != 1:
             fehlt(f"Kette {kennung}: verbindet Punkte verschiedener Gremien")
         if len({e["sitzung_url"] for e in gruppe}) < 2:
             fehlt(f"Kette {kennung}: alle Punkte stammen aus derselben Sitzung")
@@ -632,7 +641,7 @@ def p_ketten(feed):
 def p_orte(feed):
     """
     Ortsschicht (orte_bauen.py): Jeder verortete Eintrag steht im Feed, jeder
-    Ort liegt im Stadtgebiet und wird gebraucht, die Unfallzahlen sind in
+    Ort liegt im Gebiet (Kreis Paderborn) und wird gebraucht, die Unfallzahlen sind in
     sich stimmig, und die Datei gehoert zum aktuellen Feed. Ohne die Datei
     zeigt die Startseite keine Orte; das ist eine Warnung, kein Fehler.
     """
@@ -650,8 +659,8 @@ def p_orte(feed):
         if not e:
             fehlt(f"orte.json: {ref} steht nicht im Feed")
             continue
-        if e["quelle"] not in ("stadt", "bza"):
-            fehlt(f"orte.json: {ref} gehoert zum Bezirk Oberbayern und darf keinen Ingolstaedter Ort tragen")
+        if e["quelle"] not in QUELLEN:
+            fehlt(f"orte.json: {ref} gehoert zu einer unbekannten Quelle {e['quelle']!r}")
         if not z["o"] or any(not 0 <= i < len(o["orte"]) for i in z["o"]):
             fehlt(f"orte.json: {ref} zeigt auf einen Ort, den es nicht gibt")
             continue
@@ -662,9 +671,10 @@ def p_orte(feed):
     doppelt = [n for n, k in namen.items() if k > 1]
     if doppelt:
         fehlt(f"orte.json: Ortsname mehrfach vergeben (der Name ist der Schluessel in der Adresszeile): {doppelt[:3]}")
+    # Gebiet: Kreis Paderborn inklusive Büren, lat/lon in 1e-5 Grad
     for art, name, lat, lon, linien, unfall, zusatz in o["orte"]:
-        if art not in "sakop" or not (4865000 < lat < 4885000 and 1120000 < lon < 1160000):
-            fehlt(f"orte.json: {name!r} hat eine unbekannte Art oder liegt ausserhalb der Stadt")
+        if art not in "sakop" or not (5100000 < lat < 5200000 and 800000 < lon < 930000):
+            fehlt(f"orte.json: {name!r} hat eine unbekannte Art oder liegt ausserhalb des Gebiets (Kreis Paderborn)")
         if art == "s" and not linien:
             fehlt(f"orte.json: Strasse {name!r} ohne Verlauf")
         if art == "p" and not (isinstance(zusatz, dict) and zusatz.get("nr")):
@@ -674,8 +684,8 @@ def p_orte(feed):
     u = o["unfall"]
     if "Statistische Ämter des Bundes und der Länder" not in u.get("vermerk", "") or u.get("lizenz") != "dl-de/by-2-0":
         fehlt("orte.json: Quellenvermerk oder Lizenz des Unfallatlas fehlt")
-    if not 1500 < u["anzahl"] < 6000:
-        warnt(f"orte.json: {u['anzahl']} Unfaelle in {u['bis'] - u['von'] + 1} Jahren; erwartet rund 3.300")
+    if not 100 < u["anzahl"] < 60000:
+        warnt(f"orte.json: {u['anzahl']} Unfaelle in {u['bis'] - u['von'] + 1} Jahren im Gebiet; Plausibilitaet pruefen")
     anteil = len(o["eintraege"]) / max(1, o["statistik"]["eintraege"])
     if not 0.15 < anteil < 0.45:
         warnt(f"orte.json: {anteil:.0%} der Eintraege verortet; erwartet etwa ein Viertel. Regeln in orte_bauen.py pruefen")
@@ -687,7 +697,7 @@ def p_orte(feed):
             for k in range(0, len(linie), 2):
                 a += linie[k]
                 b += linie[k + 1]
-                if not (4865000 < a < 4885000 and 1120000 < b < 1160000):
+                if not (5100000 < a < 5200000 and 800000 < b < 930000):
                     fehlt(f"orte.json: Verlauf von {ort[1]!r} liegt ausserhalb der Stadt (Kodierung der Linien?)")
                     break
     plan_ids = {p["id"] for p in lade("plaene.json")["plaene"]} if os.path.exists(os.path.join(DATEN_VZ, "plaene.json")) else None
@@ -698,7 +708,7 @@ def p_orte(feed):
     # Das Schaubild der Startseite laedt unfaelle.js und baustellen.js fest; fehlt eine, faellt es ganz aus
     pfad = os.path.join(DATEN_VZ, "unfaelle.js")
     if not os.path.exists(pfad):
-        fehlt("unfaelle.js fehlt; das Schaubild der Startseite laedt dann nicht (orte_bauen.py)")
+        warnt("unfaelle.js fehlt (orte_bauen.py hat keine Unfaelle geliefert oder ist nicht gelaufen)")
     else:
         with open(pfad, encoding="utf-8") as f:
             text = f.read()
@@ -706,15 +716,13 @@ def p_orte(feed):
         if len(un["punkte"]) != u["anzahl"] or "Statistische Ämter" not in un.get("quelle", "") or "dl-de/by-2-0" not in un.get("lizenz", ""):
             fehlt("unfaelle.js: Punktzahl passt nicht zu orte.json oder Quellenvermerk fehlt")
     if not os.path.exists(os.path.join(DATEN_VZ, "baustellen.json")) or not os.path.exists(os.path.join(DATEN_VZ, "baustellen.js")):
-        fehlt("baustellen.json/.js fehlt; das Schaubild der Startseite laedt dann nicht (orte_bauen.py mit Netz laufen lassen)")
+        warnt("baustellen.json/.js fehlt (kein BAUSTELLEN_URL in orte_bauen.py konfiguriert oder Abruf ohne Netz)")
         return
     b = lade("baustellen.json")
-    if "CC BY 4.0" not in b.get("quelle", "") or "Stadt Ingolstadt" not in b.get("quelle", ""):
-        fehlt("baustellen.json: Namensnennung der Stadt oder Lizenz CC BY 4.0 fehlt")
     for zeile in b["liste"]:
         lat, lon, wo, quer, beginn, ende = zeile[:6]
-        if not (48.65 < lat < 48.85 and 11.2 < lon < 11.6):
-            fehlt(f"baustellen.json: {wo!r} liegt ausserhalb der Stadt")
+        if not (51.2 < lat < 51.9 and 8.1 < lon < 9.2):
+            fehlt(f"baustellen.json: {wo!r} liegt ausserhalb des Gebiets (Kreis Paderborn)")
             break
         if any(d and not re.fullmatch(r"\d{4}-\d\d-\d\d", d) for d in (beginn, ende)):
             fehlt(f"baustellen.json: {wo!r} hat ein Datum, das kein ISO-Datum ist")
@@ -869,8 +877,7 @@ def p_oberflaeche(feed):
 
     - Jeder Stand ist einer der bekannten, verstaendlichen Werte — kein
       "Ohne Vorlage" mehr, keine Paragrafentexte ("beschließend nach § 7").
-    - Der Bezirk Oberbayern ist kein Stadtbezirk (eigene Achse "ebene").
-    - Die Kopfzahl nennt die zwoelf echten Stadtbezirke.
+    - Jede Ebene (Quelle) ist eine eigene Filterachse.
     - Keine Termine vor dem Bautag unter "Naechste Termine".
     - Jeder Eintrag traegt "ebene" und "duenn" (Buendelung je Sitzung).
     """
@@ -899,9 +906,9 @@ def p_oberflaeche(feed):
     fremd = list(_fremde_urls(t.get("tagesordnung_url") for t in feed.get("kommende_termine", [])))
     if fremd:
         fehlt(f"Termine mit Link ausserhalb der erlaubten Hosts: {fremd[:3]}")
-    n = feed["statistik"].get("stadtbezirke")
-    if n != 12:
-        warnt(f"Kopfzahl Stadtbezirke ist {n}, erwartet 12")
+    n = feed["statistik"].get("portale")
+    if n != len(QUELLEN):
+        warnt(f"Kopfzahl Portale ist {n}, erwartet {len(QUELLEN)}")
     alt = [t for t in feed.get("kommende_termine", [])
            if t["datum"] < feed["feed_gebaut_am"]]
     if alt:
@@ -924,7 +931,7 @@ def p_abdeckung(roh, feed):
     from referenzen import bare_positionen, top_ref
 
     for s in roh["sitzungen"]:
-        q = s.get("quelle", "stadt")
+        q = s.get("quelle", HAUPT_QUELLE)
         bare_pos = bare_positionen(s)
         for t in s["tops"]:
             ref = top_ref(q, s, t, bare_pos)
@@ -961,7 +968,7 @@ def main():
 
     index = {}
     for s in roh["sitzungen"]:
-        q = s.get("quelle", "stadt")
+        q = s.get("quelle", HAUPT_QUELLE)
         bare_pos = bare_positionen(s)
         for t in s["tops"]:
             index[top_ref(q, s, t, bare_pos)] = (s, t)

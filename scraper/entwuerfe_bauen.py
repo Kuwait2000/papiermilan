@@ -34,6 +34,11 @@ DATEN_VZ = os.path.join(os.path.dirname(HIER), "data")
 
 sys.path.insert(0, HIER)
 from referenzen import bare_positionen, ist_beteiligung, top_ref  # noqa: E402
+from ris_ingolstadt import HAUPT_QUELLE, QUELLEN  # noqa: E402
+
+# Quelle -> fester Wert fuer die Bezirk-Achse (z. B. ein Bezirk, der keine
+# Stadtbezirke hat). Hier leer: die Bezirk-Achse bleibt ungenutzt.
+QUELLE_BEZIRK = {}
 
 # Stichwort -> Lebenslage. Mehrere Treffer sind erlaubt.
 #
@@ -220,8 +225,8 @@ def bezirk_aus_gremium(gremium):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--quelle", choices=["stadt", "bza", "bezirk_obb"],
-                        help="nur eine Quelle")
+    parser.add_argument("--quelle", choices=[*QUELLEN, "alle"], default="alle",
+                        help="nur eine Quelle (Standard: alle)")
     parser.add_argument("--max", type=int, default=0, help="hoechstens N Entwuerfe")
     parser.add_argument("--mit-beteiligungen", action="store_true",
                         help="Aufsichtsraete, Zweckverbaende und Beiraete mitnehmen")
@@ -237,8 +242,8 @@ def main():
 
     offen = []
     for sitzung in roh["sitzungen"]:
-        quelle = sitzung.get("quelle", "stadt")
-        if args.quelle and quelle != args.quelle:
+        quelle = sitzung.get("quelle", HAUPT_QUELLE)
+        if args.quelle != "alle" and quelle != args.quelle:
             continue
         if not args.mit_beteiligungen and ist_beteiligung(sitzung["gremium"]):
             continue
@@ -259,7 +264,7 @@ def main():
     # zaehlen mit dazu, sonst blieben sie bis zur Terminierung ganz ohne
     # Kurationseintrag unsichtbar (feed_bauen.py zeigt nur, was hier schon
     # zumindest einen Entwurf hat).
-    if not args.quelle or args.quelle == "stadt":
+    if args.quelle in ("alle", HAUPT_QUELLE):
         antraege_pfad = os.path.join(DATEN_VZ, "offene_antraege.json")
         if os.path.exists(antraege_pfad):
             with open(antraege_pfad, encoding="utf-8") as f:
@@ -292,8 +297,8 @@ def main():
         eintrag["klartext"] = ""        # bleibt leer: die Oberflaeche zeigt dann
                                         # nur den Titel, statt Text zu erfinden
         eintrag["lebenslage"] = schlagworte(suchtext, LEBENSLAGE_STICHWORTE)
-        if quelle == "bezirk_obb":
-            eintrag["bezirk"] = ["Bezirk Oberbayern"]
+        if quelle in QUELLE_BEZIRK:
+            eintrag["bezirk"] = [QUELLE_BEZIRK[quelle]]
         else:
             eintrag["bezirk"] = bezirk_aus_gremium(sitzung["gremium"])
         eintrag["ort"] = []

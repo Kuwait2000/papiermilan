@@ -63,7 +63,12 @@ DATEN_VZ = os.path.join(os.path.dirname(HIER), "data")
 PDF_CACHE = os.path.join(HIER, ".cache", "pdf")
 
 sys.path.insert(0, HIER)
-from ris_ingolstadt import USER_AGENT, PAUSE_SEKUNDEN, sauber  # noqa: E402
+from ris_ingolstadt import HAUPT_QUELLE, QUELLEN, USER_AGENT, PAUSE_SEKUNDEN, sauber  # noqa: E402
+
+# Quellen, deren Protokolle ein anderes Format haben (in Ingolstadt: der Bezirk
+# Oberbayern mit .asp-Portal). Hier leer — falls bei einer Quelle keine
+# Beschluesse gefunden werden, dort "sonderformat": True in QUELLEN setzen.
+SONDERFORMAT_QUELLEN = {q for q, v in QUELLEN.items() if v.get("sonderformat")}
 from referenzen import bare_positionen, top_ref  # noqa: E402
 
 try:
@@ -74,8 +79,7 @@ except ImportError:
 
 def hole_pdf(url, bezeichnung, cache=True):
     """Wie haushalt_holen.py::hole(), aber mit voller URL statt einer an
-    ingolstadt.de gebundenen id — Niederschriften kommen von drei Hosts
-    (stadt/bza/bezirk_obb, siehe ris_ingolstadt.py::QUELLEN)."""
+    der jeweiligen Quelle gebundenen id — siehe ris_ingolstadt.py::QUELLEN."""
     schluessel = re.sub(r"[^A-Za-z0-9]", "_", url) + ".pdf"
     pfad = os.path.join(PDF_CACHE, schluessel)
     os.makedirs(PDF_CACHE, exist_ok=True)
@@ -413,8 +417,8 @@ def obb_beschluesse(volltext, sitzung):
 
 
 def protokoll_kennung(volltext, quelle):
-    """Datum (und beim Bezirk die Sitzungsnummer), die im PDF selbst stehen."""
-    if quelle == "bezirk_obb":
+    """Datum (und ggf. die Sitzungsnummer), die im PDF selbst stehen."""
+    if quelle in SONDERFORMAT_QUELLEN:
         nummer = re.search(r"^Nummer (\S+)", volltext, re.M)
         datum = re.search(r"^Datum \w+, (\d\d\.\d\d\.\d{4})", volltext, re.M)
         return (nummer.group(1) if nummer else None, datum.group(1) if datum else None)
@@ -481,14 +485,14 @@ def main():
     pdfs_gelesen = 0
 
     je_kennung = {
-        (s.get("quelle", "stadt"), s["kennung"]): s for s in roh["sitzungen"]
+        (s.get("quelle", HAUPT_QUELLE), s["kennung"]): s for s in roh["sitzungen"]
     }
 
     for angehaengt_an in roh["sitzungen"]:
         url = niederschrift_url(angehaengt_an)
         if not url:
             continue
-        quelle = angehaengt_an.get("quelle", "stadt")
+        quelle = angehaengt_an.get("quelle", HAUPT_QUELLE)
 
         pfad = hole_pdf(url, f"{angehaengt_an['kennung']} {angehaengt_an['datum_anzeige']}", cache=cache)
         if not pfad:
@@ -499,7 +503,7 @@ def main():
         # Zu welcher Sitzung gehoert das Protokoll wirklich? (Vor dem
         # Entfernen der Seitenfuesse — dort steht das Datum.)
         nummer, datum = protokoll_kennung(volltext, quelle)
-        if quelle == "bezirk_obb":
+        if quelle in SONDERFORMAT_QUELLEN:
             volltext = OBB_KOPFZEILE.sub("\n", volltext)
         else:
             # Seitenfuesse mitten im Beschlusstext ("Niederschrift Sitzung des
@@ -524,7 +528,7 @@ def main():
         if not kandidaten:
             continue
 
-        if quelle == "bezirk_obb":
+        if quelle in SONDERFORMAT_QUELLEN:
             for nr, ergebnis in obb_beschluesse(volltext, sitzung).items():
                 top = next(t for t in kandidaten if t["nr"] == nr) if any(t["nr"] == nr for t in kandidaten) else None
                 if top:

@@ -28,6 +28,7 @@ sys.path.insert(0, HIER)
 from entwuerfe_bauen import ist_sammelueberschrift  # noqa: E402
 import anker_setzen  # noqa: E402
 from referenzen import bare_positionen, ist_beteiligung, top_ref  # noqa: E402
+from ris_ingolstadt import HAUPT_QUELLE, QUELLEN  # noqa: E402
 
 # Frueher "Ohne Vorlage" — ein Verwaltungsbegriff, der nichts ueber das
 # Ergebnis sagt. Gemeint sind muendliche Berichte und alle BZA-Punkte: Dazu
@@ -124,14 +125,17 @@ def ist_duenn(kur):
     return not text or bool(SCHABLONE_DUENN.match(text))
 
 
-# Wer berät? Eigene Filterachse statt "Bezirk Oberbayern" als 13. Stadtbezirk
-# — der Bezirk ist eine andere Verwaltungsebene, kein Stadtteil.
+# Wer berät? Eigene Filterachse je Quelle (Rat der Stadt, Kreistag des
+# Kreises) — zwei Verwaltungsebenen, die nebeneinander stehen.
 EBENE = {
-    "stadt": "Stadtrat & Ausschüsse",
-    "bza": "Bezirksausschüsse",
-    "bezirk_obb": "Bezirk Oberbayern",
+    "stadt_bueren": "Stadt Büren — Rat & Ausschüsse",
+    "kreis_paderborn": "Kreis Paderborn — Kreistag & Ausschüsse",
 }
-KEIN_STADTBEZIRK = {"Bezirk Oberbayern"}
+KEIN_STADTBEZIRK = set()
+# Quellen, deren Punkte keine Vorlagen tragen und deshalb über Aktenzeichen
+# und Titel zu Vorgängerketten verbunden werden (in Ingolstadt waren das die
+# Bezirksausschüsse). Hier leer: Rat und Kreistag arbeiten mit Vorlagen.
+KETTEN_QUELLEN = set()
 
 
 def termin_artikel(termin):
@@ -144,7 +148,7 @@ def termin_artikel(termin):
     """
     if "artikel" in termin:
         return termin["artikel"]
-    if termin.get("quelle") == "bezirk_obb":
+    if termin.get("quelle") not in EBENE:
         return ""
     g = termin.get("gremium", "")
     if g.startswith("Bürgerversammlung"):
@@ -190,7 +194,7 @@ KETTE_ROUTINE = re.compile(
 # Woerter, die zwei Titel nicht zum selben Vorgang machen
 KETTE_FUELLWORT = {
     "antrag", "antraege", "stellungnahme", "schreiben", "stadt", "verwaltung", "referat", "bezirksausschuss",
-    "sitzung", "zuschuss", "buergerhaushalt", "anschaffung", "oeffentlich", "nicht", "strasse", "ingolstadt",
+    "sitzung", "zuschuss", "buergerhaushalt", "anschaffung", "oeffentlich", "nicht", "strasse", "bueren", "paderborn",
     "bereich", "errichtung", "aufstellung", "sanierung", "aufwertung", "situation", "betreffend", "hoehe",
     "zwischen", "sowie", "einer", "eines", "einem", "durch", "ueber", "unter", "neben", "wegen",
     "strassen", "bezirk", "bericht", "stadtrat", "aenderung", "massnahme", "pruefung", "ortstermin"}
@@ -235,7 +239,7 @@ def ketten_setzen(feed):
     verschiedene Sitzungen. Jeder Eintrag einer Kette bekommt dasselbe Feld
     "kette"; die Seite zeigt daraus den Verlauf.
     """
-    bza = [e for e in feed if e["quelle"] == "bza"]
+    bza = [e for e in feed if e["quelle"] in KETTEN_QUELLEN]
     eltern = {e["ref"]: e["ref"] for e in bza}
 
     def wurzel(r):
@@ -317,7 +321,7 @@ def leitstation(auftritte):
 def stand_ohne_vorlage(sitzung, heute_iso):
     """Stand fuer Punkte ohne Vorlage: muendliche Berichte und alle BZA-Punkte.
     Haengt an Quelle und Sitzungsdatum, siehe Kommentar bei STAND_ANGEKUENDIGT."""
-    bza = sitzung.get("quelle", "stadt") == "bza"
+    bza = sitzung.get("quelle", "") in KETTEN_QUELLEN
     kommt_noch = (sitzung.get("datum") or "") > heute_iso
     if bza:
         return STAND_BZA_KOMMT if kommt_noch else STAND_BZA_BEHANDELT
@@ -411,7 +415,7 @@ def main():
     # ueberschreiben sich mehrere davon in derselben Sitzung gegenseitig.
     index = {}
     for sitzung in roh["sitzungen"]:
-        quelle = sitzung.get("quelle", "stadt")
+        quelle = sitzung.get("quelle", HAUPT_QUELLE)
         bare_pos = bare_positionen(sitzung)
         for top in sitzung["tops"]:
             index[top_ref(quelle, sitzung, top, bare_pos)] = (sitzung, top)
@@ -446,7 +450,7 @@ def main():
 
     auftritte_je_thema = collections.defaultdict(list)
     for sitzung in roh["sitzungen"]:
-        quelle = sitzung.get("quelle", "stadt")
+        quelle = sitzung.get("quelle", HAUPT_QUELLE)
         for top in sitzung["tops"]:
             schluessel = thema_schluessel(quelle, top)
             if schluessel:
@@ -475,7 +479,7 @@ def main():
             fehlend.append(ref)
             continue
         sitzung, top = index[ref]
-        schluessel = thema_schluessel(sitzung.get("quelle", "stadt"), top) or ref
+        schluessel = thema_schluessel(sitzung.get("quelle", HAUPT_QUELLE), top) or ref
         if schluessel in je_thema:
             alt_ref, alt_kur = je_thema[schluessel]
             if guete(kur) <= guete(alt_kur):
@@ -497,7 +501,7 @@ def main():
         # eigentliche Beobachtung, "Entscheidung angesetzt" nur die Vermutung
         # aus dem Beratungsweg davor.
         beschluss_ref = top_ref(
-            sitzung.get("quelle", "stadt"), sitzung, top, bare_positionen(sitzung)
+            sitzung.get("quelle", HAUPT_QUELLE), sitzung, top, bare_positionen(sitzung)
         )
         beschluss = beschluesse.get(beschluss_ref)
         # Nur ein Beschluss aus der Entscheidungssitzung selbst entscheidet
@@ -571,7 +575,7 @@ def main():
                 "klartext_leicht": kur.get("klartext_leicht", ""),
                 "lebenslage": kur.get("lebenslage", []),
                 "bezirk": [b for b in kur.get("bezirk", []) if b not in KEIN_STADTBEZIRK],
-                "ebene": [EBENE.get(sitzung.get("quelle", "stadt"), EBENE["stadt"])],
+                "ebene": [EBENE.get(sitzung.get("quelle", ""), "Sonstiges Gremium")],
                 "anlass": kur.get("anlass", []),
                 "ort": kur.get("ort", []),          # freier Vermerk, kein Filter
                 "entwurf": kur.get("entwurf", False),
@@ -588,7 +592,7 @@ def main():
                     if beschluss else None
                 ),
                 # --- unveraenderte Angaben aus der Quelle ---
-                "quelle": sitzung.get("quelle", "stadt"),
+                "quelle": sitzung.get("quelle", HAUPT_QUELLE),
                 "amtlicher_titel": top["titel"],
                 "top_nr": top["nr"],
                 "vorlage": top["vorlage"],
@@ -644,7 +648,7 @@ def main():
                 "klartext_leicht": kur.get("klartext_leicht", ""),
                 "lebenslage": kur.get("lebenslage", []),
                 "bezirk": [b for b in kur.get("bezirk", []) if b not in KEIN_STADTBEZIRK],
-                "ebene": [EBENE.get(antrag["quelle"], EBENE["stadt"])],
+                "ebene": [EBENE.get(antrag["quelle"], "Sonstiges Gremium")],
                 "anlass": kur.get("anlass", []),
                 "ort": kur.get("ort", []),
                 "entwurf": kur.get("entwurf", False),
@@ -748,7 +752,7 @@ def main():
     alle_jahre = set()
     offene_jahre = collections.Counter()
     for sitzung in roh["sitzungen"]:
-        q = sitzung.get("quelle", "stadt")
+        q = sitzung.get("quelle", HAUPT_QUELLE)
         jahr = (sitzung["datum"] or "")[:4]
         if jahr:
             alle_jahre.add(jahr)
@@ -775,7 +779,7 @@ def main():
     jahre_rueckstand = sorted(offene_jahre)
 
     ausgabe = {
-        "stadt": "Ingolstadt",
+        "stadt": "Büren und der Kreis Paderborn",
         "quellen": roh["quellen"],
         "hinweis": roh.get("hinweis", ""),
         "daten_abgerufen_am": roh["abgerufen_am"],
@@ -783,6 +787,7 @@ def main():
         "zeitraum": roh["zeitraum"],
         "statistik": {
             "sitzungen_ausgelesen": roh["anzahl_sitzungen"],
+            "portale": len(roh["quellen"]),
             "tops_ausgelesen": roh["anzahl_tops"],
             "tops_verfahren": roh.get("anzahl_verfahren", 0),
             "tops_kuratiert": len(feed),          # Themen — nach Vorlage entdoppelt
@@ -864,7 +869,7 @@ def main():
         f"{len(ausgabe['achsen']['stand'])} Staende"
     )
 
-    print(f"  Vorgangsketten in den Bezirksausschuessen: {ketten} "
+    print(f"  Vorgangsketten: {ketten} "
           f"({sum(1 for e in feed if e.get('kette'))} Eintraege)")
     mehrfach = sum(1 for e in feed if len(e["auftritte"]) > 1)
     print(
@@ -885,12 +890,11 @@ def main():
         for schluessel, verworfen in doppelt:
             print(f"    - {verworfen}  ({schluessel})")
 
-    # Die Bezirk-Stadtteile-Achse gilt nur fuer stadt/bza — beim Bezirk
-    # Oberbayern ist "kein Stadtteil" der korrekte, gewollte Zustand, keine
-    # Kuratierungsluecke.
-    ohne_bezirk = [
-        e["ref"] for e in feed if not e["bezirk"] and e["quelle"] != "bezirk_obb"
-    ]
+    # Die Bezirk-Achse existiert nur, wenn _achsen.bezirk Eintraege hat
+    # (Stadtbezirke). Ohne solche Eintraege waere die Liste endlos lang.
+    ohne_bezirk = (
+        [e["ref"] for e in feed if not e["bezirk"]] if bezirk_ordnung else []
+    )
     if ohne_bezirk:
         print(
             f"\n  {len(ohne_bezirk)} Eintraege ohne Stadtbezirk "
@@ -925,6 +929,7 @@ def fabrik_js_schreiben(ausgabe):
         "leichte_sprache": sum(1 for e in feed if e.get("klartext_leicht") and not e["duenn"]),
         "entschieden": st["status"].get("Entschieden", 0),
         "stadtbezirke": st["stadtbezirke"],
+        "portale": st["portale"],
         "themen": st["tops_kuratiert"],
     }
     pfad = os.path.join(DATEN_VZ, "fabrik.js")
