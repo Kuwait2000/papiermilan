@@ -79,6 +79,24 @@ Ein Doppelklick auf `index.html` funktioniert meist auch — die Daten liegen in
 über `file://` geladen werden. Manche Browser (Safari) verweigern das Nachladen
 lokaler Dateien; dann nimm den Server aus Schritt 7.
 
+**Klartexte in zwei Stufen:** `entwuerfe_bauen.py` erzeugt nur Entwürfe
+(geputzter Titel + Schlagworte; `klartext` bleibt absichtlich leer). Solche
+„dünnen“ Einträge erscheinen in der Liste nur gebündelt unter „Themen dieser
+Sitzung“ — nicht als eigene Karte und nicht in den Abschnitten „Hier können
+Sie mitreden“ / „Zuletzt entschieden“ (die zeigen nur Einträge mit echtem
+Text). Echte Zusammenfassungen entstehen im zweiten Schritt:
+
+```bash
+python3 entwuerfe_bauen.py --max 30 --prompt-bundle entwuerfe.md
+```
+
+`data/entwuerfe.md` fütterst du einem Sprachmodell (z. B. Le Chat, ChatGPT,
+lokales Modell) — die Datei enthält Aufgabe und Regeln (siehe `KURATION.md`,
+auch zu Prompt-Injection in Vorlagen). Dessen JSON-Antwort trägst du in
+`data/kuration.json` bei den betreffenden Schlüsseln ein und entfernst
+`"entwurf": true`. Danach `feed_bauen.py` + `pruefen.py` erneut laufen lassen.
+Einzelne Einträge kannst du auch direkt von Hand in `kuration.json` formulieren.
+
 **Regelmäßiges Aktualisieren:** Schritte 1–6 erneut ausführen. Ohne
 `--no-cache` lädt der Scraper nur neu, was sich noch ändern kann (Kalender ab
 Vormonat, Sitzungen der letzten 70 Tage, laufende Beratungswege); alles Ältere
