@@ -40,7 +40,7 @@ sys.path.insert(0, HIER)
 from entwuerfe_bauen import ist_beteiligung, ist_sammelueberschrift  # noqa: E402
 from feed_bauen import thema_schluessel, leitstation  # noqa: E402
 from referenzen import bare_positionen, top_ref  # noqa: E402
-from ris_ingolstadt import HAUPT_QUELLE, QUELLEN, USER_AGENT, PAUSE_SEKUNDEN  # noqa: E402
+from ris_ingolstadt import HAUPT_QUELLE, QUELLEN, USER_AGENT, PAUSE_SEKUNDEN, OPENER  # noqa: E402
 
 # Anlagen erkennt man am Titel. Alles andere ist die Vorlage selbst, ein
 # Beschluss oder ein Fraktionsantrag — also das, was wir lesen wollen.
@@ -69,7 +69,7 @@ def pdf_text(url):
     else:
         anfrage = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
         try:
-            with urllib.request.urlopen(anfrage, timeout=60) as antwort:
+            with OPENER.open(anfrage, timeout=60) as antwort:
                 roh = antwort.read()
         except (urllib.error.URLError, TimeoutError) as fehler:
             return "", 0, f"nicht ladbar: {fehler}"

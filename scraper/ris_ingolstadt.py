@@ -31,6 +31,7 @@ Ergebnis: ../data/rohdaten.json
 
 import argparse
 import html
+import http.cookiejar
 import json
 import os
 import re
@@ -56,6 +57,11 @@ def _ipv4_zuerst(*args, **kwargs):
 
 
 socket.getaddrinfo = _ipv4_zuerst
+
+# Session-Cookie wie im Browser mitfuehren: manche Instanzen (z. B.
+# gremien.info mit PHP-Session) liefern ohne Cookie nur die Anmeldeseite.
+COOKIE_JAR = http.cookiejar.CookieJar()
+OPENER = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(COOKIE_JAR))
 
 QUELLEN = {
     "stadt_bueren": {
@@ -228,7 +234,7 @@ def hole(pfad, basis, cache=True, frisch=False):
     url = f"{basis}/{pfad}"
     anfrage = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     try:
-        with urllib.request.urlopen(anfrage, timeout=30) as antwort:
+        with OPENER.open(anfrage, timeout=30) as antwort:
             rohdaten = antwort.read()
     except urllib.error.URLError as fehler:
         print(f"  ! Fehler bei {url}: {fehler}", file=sys.stderr)

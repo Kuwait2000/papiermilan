@@ -63,7 +63,7 @@ DATEN_VZ = os.path.join(os.path.dirname(HIER), "data")
 PDF_CACHE = os.path.join(HIER, ".cache", "pdf")
 
 sys.path.insert(0, HIER)
-from ris_ingolstadt import HAUPT_QUELLE, QUELLEN, USER_AGENT, PAUSE_SEKUNDEN, sauber  # noqa: E402
+from ris_ingolstadt import HAUPT_QUELLE, QUELLEN, USER_AGENT, PAUSE_SEKUNDEN, sauber, OPENER  # noqa: E402
 
 # Quellen, deren Protokolle ein anderes Format haben (in Ingolstadt: der Bezirk
 # Oberbayern mit .asp-Portal). Hier leer — falls bei einer Quelle keine
@@ -89,7 +89,7 @@ def hole_pdf(url, bezeichnung, cache=True):
 
     anfrage = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     try:
-        with urllib.request.urlopen(anfrage, timeout=60) as antwort:
+        with OPENER.open(anfrage, timeout=60) as antwort:
             roh = antwort.read()
     except (urllib.error.URLError, TimeoutError) as fehler:
         print(f"  ! Fehler bei {bezeichnung} ({url}): {fehler}", file=sys.stderr)
