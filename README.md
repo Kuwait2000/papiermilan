@@ -18,13 +18,15 @@ unter der EUPL-1.2, die Texte unter CC BY 4.0 (siehe unten, Abschnitt Lizenz).
 
 ## Datenquellen
 
-Beide Portale laufen auf derselben Software (SessionNet / Somacos „Session“),
-gehostet bei zwei verschiedenen Anbietern (OWL-IT bzw. gremien.info), und sind
-öffentlich ohne Anmeldung erreichbar:
+Zwei Portale, zwei Systeme, beide öffentlich ohne Anmeldung erreichbar: Der
+Kreis Paderborn nutzt das klassische SessionNet (gehostet bei der OWL-IT), die
+Stadt Büren das moderne more!-rubin-Frontend auf gremien.info — dessen
+JSON-Schnittstelle (`api.php`, z. B. `api.php?id=calendar&action=get`) der
+Scraper direkt ausliest:
 
 | Quelle (Schlüssel) | Portal | Gremium |
 |---|---|---|
-| `stadt_bueren` | https://bueren.gremien.info/info.php | Rat und Ausschüsse der Stadt Büren (verlinkt von [bueren.de → Rathaus → Rat und Ausschüsse](https://www.bueren.de/de/rathaus/ratsinfosystem.php)) |
+| `stadt_bueren` | https://bueren.gremien.info/ (JSON-API: `/api.php?id=calendar&action=get…`, `/api.php?id=meetings&action=get…`) | Rat und Ausschüsse der Stadt Büren (verlinkt von [bueren.de → Rathaus → Rat und Ausschüsse](https://www.bueren.de/de/rathaus/ratsinfosystem.php)) |
 | `kreis_paderborn` | https://sessionnet.owl-it.de/kreis_paderborn/bi/info.asp | Kreistag und Ausschüsse des Kreises Paderborn (verlinkt von [kreis-paderborn.de](https://www.kreis-paderborn.de/kreis_paderborn/politik/kreistag/kreistagsinformationssystem/kreistagsinformationssystem.php)) |
 
 Eingetragen in `scraper/ris_ingolstadt.py` im Dictionary `QUELLEN`.

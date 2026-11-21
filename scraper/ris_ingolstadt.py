@@ -2,11 +2,14 @@
 """
 Liest Ratsinformationssysteme auf Basis von SessionNet / Somacos "Session" aus.
 
-Zwei Quellen, gleiche Software (SessionNet), aber zwei Hoster mit
-unterschiedlicher Auslieferungsvariante, deshalb derselbe Parser mit
-Basis-URL und Dateiendung als Konfigurationswerte je Quelle:
-  stadt_bueren    — Rat und Ausschuesse der Stadt Bueren (gremien.info, .php)
-  kreis_paderborn — Kreistag und Ausschuesse des Kreises Paderborn (OWL-IT, .asp)
+Zwei Quellen, zwei Auslieferungsvarianten:
+  stadt_bueren    — Rat und Ausschuesse der Stadt Bueren. bueren.gremien.info
+                    nutzt das moderne more!-rubin-Frontend; die klassischen
+                    SessionNet-Seiten liefern nur die App-Shell, die Daten
+                    kommen als JSON von api.php (siehe mr_*-Funktionen unten).
+  kreis_paderborn — Kreistag und Ausschuesse des Kreises Paderborn. Klassisches
+                    SessionNet (OWL-IT, .asp), HTML-Parser mit Basis-URL und
+                    Dateiendung als Konfigurationswerte je Quelle.
 
 (Adaptiert von der Ingolstadt-Fassung dieses Skripts; siehe README.md.)
 
@@ -39,6 +42,7 @@ import socket
 import sys
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 from datetime import date
 
@@ -66,7 +70,8 @@ OPENER = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(COOKIE_J
 QUELLEN = {
     "stadt_bueren": {
         "name": "Ratsinformationssystem der Stadt Bueren — Rat und Ausschuesse",
-        "software": "SessionNet (Somacos GmbH & Co. KG, gehostet auf gremien.info)",
+        "software": "more! rubin (more! software GmbH, gehostet auf gremien.info)",
+        "frontend": "more-rubin",
         "basis_url": "https://bueren.gremien.info",
         "endung": "php",
     },
@@ -186,18 +191,18 @@ SITZUNG_FRISCH_TAGE = 70     # ... bei Sitzungen bis so viele Tage zurueck
 VORLAGE_FRISCH_TAGE = 21     # ... bei Beratungswegen bis so viele Tage zurueck
 
 
-def cache_pfad(pfad, basis):
+def cache_pfad(pfad, basis, endung_datei=".html"):
     # Die Quelle muss in den Cache-Schluessel, sonst ueberschreiben sich
     # gleichnamige Seiten verschiedener Instanzen gegenseitig (OWL-IT und
     # gremien.info liefern beide z. B. eine si0040.<endung>).
     kennung = re.sub(r"[^A-Za-z0-9_.-]", "_", basis.replace("https://", "").replace("http://", ""))[:60]
-    schluessel = kennung + "_" + re.sub(r"[^A-Za-z0-9_.-]", "_", pfad)[:140] + ".html"
+    schluessel = kennung + "_" + re.sub(r"[^A-Za-z0-9_.-]", "_", pfad)[:140] + endung_datei
     return os.path.join(CACHE_VZ, schluessel)
 
 
-def cache_veraltet(pfad, basis, stunden=FRISCH_STUNDEN):
+def cache_veraltet(pfad, basis, stunden=FRISCH_STUNDEN, endung_datei=".html"):
     """True, wenn die Cache-Datei fehlt oder aelter als `stunden` ist."""
-    datei = cache_pfad(pfad, basis)
+    datei = cache_pfad(pfad, basis, endung_datei)
     if not os.path.exists(datei):
         return True
     return time.time() - os.path.getmtime(datei) > stunden * 3600
@@ -253,6 +258,51 @@ def hole(pfad, basis, cache=True, frisch=False):
         f.write(text)
     time.sleep(PAUSE_SEKUNDEN)
     return text
+
+
+def hole_json(pfad, basis, cache=True, frisch=False):
+    """
+    Wie hole(), aber fuer JSON-Antworten (api.php des more!-rubin-Frontends).
+
+    Fehler der API kommen als Liste [{ErrorCode, ErrorText}] oder als
+    PHP-Array-Ausdruck — beides ist kein brauchbares Objekt und wird wie
+    ein HTTP-Fehler behandelt (Cache bleibt erhalten, frischer Abruf beim
+    naechsten Lauf).
+    """
+    os.makedirs(CACHE_VZ, exist_ok=True)
+    cache_datei = cache_pfad(pfad, basis, ".json")
+    vorhanden = os.path.exists(cache_datei)
+
+    def aus_cache():
+        with open(cache_datei, encoding="utf-8") as f:
+            return json.load(f)
+
+    if cache and vorhanden and not (frisch and cache_veraltet(pfad, basis, endung_datei=".json")):
+        return aus_cache()
+
+    url = f"{basis}/{pfad}"
+    anfrage = urllib.request.Request(
+        url, headers={"User-Agent": USER_AGENT, "Accept": "application/json"}
+    )
+    try:
+        with OPENER.open(anfrage, timeout=30) as antwort:
+            rohdaten = antwort.read()
+    except urllib.error.URLError as fehler:
+        print(f"  ! Fehler bei {url}: {fehler}", file=sys.stderr)
+        return aus_cache() if vorhanden else None
+
+    try:
+        daten = json.loads(rohdaten.decode("utf-8", errors="replace"))
+    except ValueError:
+        print(f"  ! Keine JSON-Antwort bei {url}", file=sys.stderr)
+        return aus_cache() if vorhanden else None
+    if isinstance(daten, list):
+        print(f"  ! API-Fehler bei {url}: {daten}", file=sys.stderr)
+        return aus_cache() if vorhanden else None
+    with open(cache_datei, "w", encoding="utf-8") as f:
+        json.dump(daten, f, ensure_ascii=False)
+    time.sleep(PAUSE_SEKUNDEN)
+    return daten
 
 
 # ------------------------------------------------------------------- Hilfsteil
@@ -546,6 +596,187 @@ def parse_sitzung(sitzungs_id, seite, basis, endung="php", seiten_name="si0056")
     return sitzung
 
 
+# ------------------------------------------------- more! rubin (gremien.info)
+# bueren.gremien.info nutzt das moderne more!-rubin-Frontend: die klassischen
+# SessionNet-Seiten (si0040.php ...) liefern nur die App-Shell, die oeffentlichen
+# Daten kommen als JSON von api.php (id=<Modul>&action=<Aktion>&...).
+# Kalender:  api.php?id=calendar&action=get&from=YYYY-MM&to=YYYY-MM&view=list
+# Sitzung:   api.php?id=meetings&action=get&meeting_id=<nummer>
+# Dokumente: documentUrl in den JSON-Daten; ohne &json=1 liefert sie die Datei.
+
+def mr_kalender(basis, jahr, monat, cache=True, frisch=False):
+    """Monatskalender des more-rubin-Frontends als Liste von Meeting-Summaries."""
+    pfad = (f"api.php?id=calendar&action=get&from={jahr}-{monat:02d}"
+            f"&to={jahr}-{monat:02d}&view=list")
+    daten = hole_json(pfad, basis, cache=cache, frisch=frisch)
+    return (daten or {}).get("meetings", [])
+
+
+def mr_sichtbar(meeting):
+    """Fraktionssitzungen und rein nicht-oeffentliche Sitzungen fallen raus.
+
+    status: 1 oeffentlich, 2 nicht oeffentlich, 4 oeffentlich/nicht oeffentlich
+    (gemischt hat einen oeffentlichen Teil und bleibt drin).
+    """
+    return meeting.get("fraktionssitzung") != "1" and meeting.get("status") != 2
+
+
+def mr_dokument_url(url):
+    """documentUrl der API endet auf &json=1 (liefert Metadaten); ohne json=1 die Datei."""
+    return re.sub(r"[?&]json=1", "", url) if url else ""
+
+
+def mr_datum_anzeige(iso):
+    if not iso or len(iso) < 10:
+        return iso or ""
+    return f"{iso[8:10]}.{iso[5:7]}.{iso[0:4]}"
+
+
+def mr_gremium_aus_titel(titel):
+    """'8. Sitzung des Rates der Stadt Bueren' -> (gremium, artikel)."""
+    treffer = re.search(r"Sitzung\s+(des|der)\s+(.+)$", titel or "", re.S)
+    if treffer:
+        return treffer.group(2).strip(), treffer.group(1)
+    return titel or "", ""
+
+
+def mr_top_aus_agenda_item(ai, basis):
+    """Agenda-Item der api.php in das TOP-Format der Pipeline umwandeln."""
+    titel = sauber(ai.get("title", ""))
+    sub = ai.get("submission") or {}
+    dokumente = []
+    if sub.get("documentUrl"):
+        dokumente.append({
+            "titel": sub.get("documentName") or sub.get("name") or "Vorlage",
+            "url": mr_dokument_url(sub["documentUrl"]),
+        })
+    for d in ai.get("documents") or []:
+        url = mr_dokument_url(d.get("documentUrl", ""))
+        if url and d.get("documentPublicStatusId", 1) == 1:
+            dokumente.append({"titel": d.get("documentName") or "Dokument", "url": url})
+    beratungen = []
+    for c in sub.get("consultations") or []:
+        beratungen.append({
+            "datum": c.get("sitzungsdatum") or "",
+            "datum_anzeige": mr_datum_anzeige(c.get("sitzungsdatum")),
+            "gremium": (c.get("committee") or {}).get("name") or c.get("gremium") or "",
+            "top_nr": str(ai.get("topnummer") or ai.get("number") or ""),
+            "oeffentlich": c.get("topstatus") == 1,
+            "rolle": c.get("beratungsstatus_lang") or c.get("status") or "",
+            "sitzung_url": (c.get("meeting") or {}).get("full_url") or "",
+        })
+    beratungen.sort(key=lambda b: b["datum"])
+    return {
+        "nr": str(ai.get("topnummer") or ai.get("number") or ""),
+        "titel": titel,
+        "zusatz": "",
+        "antragsteller": "",
+        "nachtrag": "",
+        "oeffentlich": ai.get("status") == 1,
+        "verfahren": ist_verfahren(titel),
+        "vorlage": sub.get("alias") or sub.get("name") or "",
+        "vorlage_url": f"{basis}/submission?id={sub['id']}" if sub.get("id") else "",
+        "dokumente": dokumente,
+        "beratungen": beratungen,
+    }
+
+
+def mr_sitzung(m, basis, kuerzel):
+    """Meeting-JSON der api.php in das Sitzungsformat der Pipeline umwandeln."""
+    committees = m.get("committees") or []
+    gremium = committees[0].get("name", "") if committees else ""
+    if not gremium:
+        gremium, _ = mr_gremium_aus_titel(m.get("titel", ""))
+    dokumente = []
+    for d in m.get("documents") or []:
+        url = mr_dokument_url(d.get("documentUrl", ""))
+        if url and d.get("documentPublicStatusId", 1) == 1:
+            dokumente.append({"titel": d.get("documentName") or "Dokument", "url": url})
+    return {
+        "id": str(m.get("id", "")),
+        "kennung": m.get("nummer") or "",
+        "gremium": re.sub(r"\s+", " ", gremium).strip(),
+        "raum": (m.get("room") or {}).get("Bezeichnung") or m.get("raum") or "",
+        "datum": m.get("datum") or "",
+        "datum_anzeige": mr_datum_anzeige(m.get("datum")),
+        "zeit": (m.get("beginn") or "")[:5],
+        "url": m.get("full_url") or f"{basis}/meeting?id={m.get('nummer', '')}",
+        "dokumente": dokumente,
+        "tops": [mr_top_aus_agenda_item(ai, basis) for ai in m.get("agenda_items") or []],
+        "quelle": kuerzel,
+    }
+
+
+def mr_quelle_auslesen(kuerzel, zeitraum, cache, mit_beratungen):
+    """more-rubin-Quelle komplett auslesen (Kalender + Sitzungsdetails via api.php)."""
+    basis = QUELLEN[kuerzel]["basis_url"]
+    print(f"\n=== Quelle '{kuerzel}' ({basis}, more-rubin-API) ===")
+
+    nummern = []
+    for jahr, monat in zeitraum:
+        print(f"  Kalender {MONATSNAMEN[monat]} {jahr} ...", end=" ", flush=True)
+        heute = date.today()
+        bewegt_sich = (jahr, monat) >= ((heute.year, heute.month - 1) if heute.month > 1
+                                        else (heute.year - 1, 12))
+        meetings = mr_kalender(basis, jahr, monat, cache=cache, frisch=bewegt_sich)
+        neu = [m for m in meetings if mr_sichtbar(m) and m.get("nummer") not in nummern]
+        nummern.extend(m["nummer"] for m in neu)
+        print(f"{len(neu)} Sitzungen")
+
+    print(f"  {len(nummern)} Sitzungen, lade Tagesordnungen ...")
+    sitzungen = []
+    for nummer, m_nummer in enumerate(nummern, 1):
+        pfad = f"api.php?id=meetings&action=get&meeting_id={urllib.parse.quote(m_nummer)}"
+        m = hole_json(pfad, basis, cache=cache)
+        if not m:
+            continue
+        sitzung = mr_sitzung(m, basis, kuerzel)
+        if (cache and tage_her(sitzung["datum"]) <= SITZUNG_FRISCH_TAGE
+                and cache_veraltet(pfad, basis, endung_datei=".json")):
+            m = hole_json(pfad, basis, cache=cache, frisch=True)
+            if m:
+                sitzung = mr_sitzung(m, basis, kuerzel)
+        sitzungen.append(sitzung)
+        oeff = sum(1 for t in sitzung["tops"] if t["oeffentlich"])
+        print(
+            f"    [{nummer}/{len(nummern)}] {sitzung['datum_anzeige']} "
+            f"{sitzung['gremium'][:44]:44} {oeff} oeff. TOPs"
+        )
+    # Beratungswege (consultations) sind in den Vorlagen der api.php schon
+    # eingebettet — kein Extra-Abruf noetig.
+    return sitzungen
+
+
+def mr_kommende_termine(kuerzel, cache):
+    """Kommende Termine ohne veroeffentlichte Tagesordnung (aktueller Monat + 2)."""
+    basis = QUELLEN[kuerzel]["basis_url"]
+    heute = date.today()
+    jahr, monat = heute.year, heute.month
+    monate_liste = []
+    for _ in range(3):
+        monate_liste.append((jahr, monat))
+        monat += 1
+        if monat > 12:
+            monat, jahr = 1, jahr + 1
+
+    ergebnis = []
+    for jahr, monat in monate_liste:
+        for m in mr_kalender(basis, jahr, monat, cache=cache, frisch=True):
+            if not mr_sichtbar(m) or m.get("datum", "") < heute.isoformat():
+                continue
+            gremium, artikel = mr_gremium_aus_titel(m.get("titel", ""))
+            ergebnis.append({
+                "gremium": gremium,
+                "artikel": artikel,
+                "datum": m.get("datum", ""),
+                "datum_anzeige": mr_datum_anzeige(m.get("datum")),
+                "zeit": (m.get("beginn") or "")[:5],
+                "ort": (m.get("room") or {}).get("Bezeichnung") or "",
+                "quelle": kuerzel,
+            })
+    return ergebnis
+
+
 # ------------------------------------------------------------------- Ablauf
 
 def monate(von, bis):
@@ -564,6 +795,8 @@ def monate(von, bis):
 
 def quelle_auslesen(kuerzel, zeitraum, cache, mit_beratungen):
     """Liest eine komplette Instanz aus und liefert die Sitzungsliste."""
+    if QUELLEN[kuerzel].get("frontend") == "more-rubin":
+        return mr_quelle_auslesen(kuerzel, zeitraum, cache, mit_beratungen)
     basis = QUELLEN[kuerzel]["basis_url"]
     endung = QUELLEN[kuerzel].get("endung", "php")
     print(f"\n=== Quelle '{kuerzel}' ({basis}) ===")
@@ -647,6 +880,8 @@ def kommende_termine_auslesen(kuerzel, cache):
     veroeffentlicht (z.B. eine formlos gebliebene Aufsichtsratssitzung),
     nicht "kommend".
     """
+    if QUELLEN[kuerzel].get("frontend") == "more-rubin":
+        return mr_kommende_termine(kuerzel, cache)
     basis = QUELLEN[kuerzel]["basis_url"]
     endung = QUELLEN[kuerzel].get("endung", "php")
     heute = date.today()
