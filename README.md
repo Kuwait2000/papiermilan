@@ -19,17 +19,17 @@ unter der EUPL-1.2, die Texte unter CC BY 4.0 (siehe unten, Abschnitt Lizenz).
 ## Datenquellen
 
 Beide Portale laufen auf derselben Software (SessionNet / Somacos „Session“),
-gehostet beim kommunalen IT-Dienstleister OWL-IT, und sind öffentlich ohne
-Anmeldung erreichbar:
+gehostet bei zwei verschiedenen Anbietern (OWL-IT bzw. gremien.info), und sind
+öffentlich ohne Anmeldung erreichbar:
 
 | Quelle (Schlüssel) | Portal | Gremium |
 |---|---|---|
-| `stadt_bueren` | https://sessionnet.owl-it.de/bueren/bi/info.asp | Rat und Ausschüsse der Stadt Büren (verlinkt von [bueren.de → Rathaus → Rat und Ausschüsse](https://www.bueren.de/de/rathaus/ratsinfosystem.php)) |
+| `stadt_bueren` | https://bueren.gremien.info/info.php | Rat und Ausschüsse der Stadt Büren (verlinkt von [bueren.de → Rathaus → Rat und Ausschüsse](https://www.bueren.de/de/rathaus/ratsinfosystem.php)) |
 | `kreis_paderborn` | https://sessionnet.owl-it.de/kreis_paderborn/bi/info.asp | Kreistag und Ausschüsse des Kreises Paderborn (verlinkt von [kreis-paderborn.de](https://www.kreis-paderborn.de/kreis_paderborn/politik/kreistag/kreistagsinformationssystem/kreistagsinformationssystem.php)) |
 
 Eingetragen in `scraper/ris_ingolstadt.py` im Dictionary `QUELLEN`.
 Vor dem ersten Lauf `robots.txt` der Quelle prüfen
-(`curl -s https://sessionnet.owl-it.de/robots.txt`). Der Scraper hält 1,2 s
+(`curl -s https://bueren.gremien.info/robots.txt`). Der Scraper hält 1,2 s
 Pause je Abruf, schickt einen eigenen User-Agent und puffert alles in
 `scraper/.cache/` (liegt in `.gitignore`).
 
@@ -144,8 +144,9 @@ Zusammenfassungen eines Sprachmodells. Drei Sicherungen greifen hintereinander:
 2. **Content-Security-Policy ohne `'unsafe-inline'` für Skripte** in jeder Seite
    (`script-src 'self'`) — selbst eingeschleustes HTML führt keinen Code aus.
 3. **`pruefen.py`**: Links im Feed zeigen nur auf die erlaubten Hosts
-   (`ERLAUBTE_HOSTS`: sessionnet.owl-it.de, sessionnet.krz.de, bueren.de,
-   kreis-paderborn.de), keine nicht-öffentlichen TOPs kuratiert, jeder
+   (`ERLAUBTE_HOSTS`: bueren.gremien.info, sessionnet.owl-it.de,
+   sessionnet.krz.de, bueren.de, kreis-paderborn.de), keine nicht-öffentlichen
+   TOPs kuratiert, jeder
    „Entschieden“-Eintrag braucht Beschlusstext + Protokoll-Link.
 
 ## Optionale Erweiterungen (im Originalprojekt vorhanden)

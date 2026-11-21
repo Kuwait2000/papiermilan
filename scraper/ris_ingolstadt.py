@@ -2,17 +2,17 @@
 """
 Liest Ratsinformationssysteme auf Basis von SessionNet / Somacos "Session" aus.
 
-Zwei Quellen, gleiche Software, gleiche Auslieferungsvariante (.asp, gehostet
-beim kommunalen IT-Dienstleister OWL-IT), deshalb derselbe Parser mit einer
-Dateiendung als Konfigurationswert je Quelle:
-  stadt_bueren    — Rat und Ausschuesse der Stadt Bueren
-  kreis_paderborn — Kreistag und Ausschuesse des Kreises Paderborn
+Zwei Quellen, gleiche Software (SessionNet), aber zwei Hoster mit
+unterschiedlicher Auslieferungsvariante, deshalb derselbe Parser mit
+Basis-URL und Dateiendung als Konfigurationswerte je Quelle:
+  stadt_bueren    — Rat und Ausschuesse der Stadt Bueren (gremien.info, .php)
+  kreis_paderborn — Kreistag und Ausschuesse des Kreises Paderborn (OWL-IT, .asp)
 
 (Adaptiert von der Ingolstadt-Fassung dieses Skripts; siehe README.md.)
 
 Nur oeffentlich zugaengliche Seiten, keine Anmeldung, kein Verwaltungszugang.
 Vor dem ersten Lauf robots.txt der Quelle pruefen, z. B.:
-    curl -s https://sessionnet.owl-it.de/robots.txt
+    curl -s https://bueren.gremien.info/robots.txt
 
 Verwendung:
     python3 ris_ingolstadt.py                        # alle Quellen, letzte 3 Monate
@@ -60,9 +60,9 @@ socket.getaddrinfo = _ipv4_zuerst
 QUELLEN = {
     "stadt_bueren": {
         "name": "Ratsinformationssystem der Stadt Bueren — Rat und Ausschuesse",
-        "software": "SessionNet (Somacos GmbH & Co. KG, gehostet bei der OWL-IT)",
-        "basis_url": "https://sessionnet.owl-it.de/bueren/bi",
-        "endung": "asp",
+        "software": "SessionNet (Somacos GmbH & Co. KG, gehostet auf gremien.info)",
+        "basis_url": "https://bueren.gremien.info",
+        "endung": "php",
     },
     "kreis_paderborn": {
         "name": "Kreistagsinformationssystem des Kreises Paderborn — Kreistag und Ausschuesse",
@@ -177,8 +177,8 @@ VORLAGE_FRISCH_TAGE = 21     # ... bei Beratungswegen bis so viele Tage zurueck
 
 def cache_pfad(pfad, basis):
     # Die Quelle muss in den Cache-Schluessel, sonst ueberschreiben sich
-    # gleichnamige Seiten verschiedener Instanzen gegenseitig (bei OWL-IT
-    # heisst der letzte Pfadteil beider Portale bloss "bi").
+    # gleichnamige Seiten verschiedener Instanzen gegenseitig (OWL-IT und
+    # gremien.info liefern beide z. B. eine si0040.<endung>).
     kennung = re.sub(r"[^A-Za-z0-9_.-]", "_", basis.replace("https://", "").replace("http://", ""))[:60]
     schluessel = kennung + "_" + re.sub(r"[^A-Za-z0-9_.-]", "_", pfad)[:140] + ".html"
     return os.path.join(CACHE_VZ, schluessel)

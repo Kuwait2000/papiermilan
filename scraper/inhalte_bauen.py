@@ -275,7 +275,7 @@ SEITEN = [
               "scraper/wege_bauen.py + orte_bauen.py gelaufen sind): Orte an Einträgen anklickbar (?ort=), "
               "„In meiner Nähe“ mit Umkreis, Unfallzahlen an Verkehrsthemen.",
          grafik="In dieser Portierung deaktiviert (braucht Karten-/Ortsdaten); im Originalprojekt Szenen „start“, „orte“, „themen“.",
-         quellen="Ratsinfosystem der Stadt Büren und Kreistagsinformationssystem des Kreises Paderborn (SessionNet/OWL-IT); "
+         quellen="Ratsinfosystem der Stadt Büren und Kreistagsinformationssystem des Kreises Paderborn (SessionNet von Somacos); "
                  f"Kurztexte teils mit Sprachmodell. Lizenz der kuratierten Ratsdaten: {CC_BY_RAT}.",
          vorsicht="Verbindlich ist immer das Originaldokument. „Nur besprochen“ heißt nicht beschlossen.",
          ideen="Wochenvorschau „Das kommt in den Rat“; Beschluss der Woche erklärt; ein Ort, viele Vorgänge."),

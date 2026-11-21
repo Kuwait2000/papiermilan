@@ -130,8 +130,9 @@ def p_pflichtfelder(kur):
 
 
 ERLAUBTE_HOSTS = {
-    # Ratsinfo-/Kreistagsinfosysteme (SessionNet bei OWL-IT, dazu ein Mirror)
-    "sessionnet.owl-it.de", "sessionnet.krz.de",
+    # Ratsinfo-/Kreistagsinfosysteme (SessionNet bei OWL-IT und gremien.info,
+    # dazu ein KRZ-Mirror)
+    "sessionnet.owl-it.de", "sessionnet.krz.de", "bueren.gremien.info",
     # Webauftritte der Gebietskörperschaften (für weiterführende Links)
     "www.bueren.de", "bueren.de",
     "www.kreis-paderborn.de", "kreis-paderborn.de", "mein.kreis-paderborn.de",
