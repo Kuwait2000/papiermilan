@@ -75,6 +75,11 @@ QUELLEN = {
 # Die Quelle, deren Gremien den Hauptteil der Seite bilden (Rat bzw. Kreistag).
 HAUPT_QUELLE = "stadt_bueren"
 
+# Sitzungs-Detailseiten je SessionNet-Version, Reihenfolge: Seite mit
+# Tagesordnung zuerst. Der Kalender verlinkt Sitzungen je nach Version unter
+# verschiedenen Namen (si0056, si0050, to0040, si0057 ...).
+SITZUNGS_SEITEN = ("si0056", "si0050", "to0040", "si0057")
+
 USER_AGENT = (
     "PapierPanther-Bueren-KreisPaderborn/1.0 (Buergerinformation; "
     "+https://DEINE-DOMAIN.example/impressum.html)"
@@ -285,13 +290,14 @@ def dokumente_aus(fragment, basis):
 def parse_kalender(seite, endung="php"):
     """Liefert Sitzungs-IDs aus einer Monatsansicht (si0040.<endung>).
 
-    Je nach Version verlinkt der Kalender die Sitzung ueber si0056 (Einladung/
-    Tagesordnung), to0040 oder si0057 (Niederschrift), und __ksinr steht nicht
-    immer als erster Parameter im Link.
+    Je nach Version verlinkt der Kalender die Sitzung unter verschiedenen
+    Seitennamen (si0056 Einladung/Tagesordnung, si0050 Termin, to0040
+    Sitzung, si0057 Niederschrift), und __ksinr steht nicht immer als
+    erster Parameter im Link.
     """
     ids = []
     for treffer in re.findall(
-        rf"(?:si0056|to0040|si0057)\.{endung}\?[^\"']*?__ksinr=(\d+)", seite
+        rf"(?:si|to)\d{{4}}\.{endung}\?[^\"']*?__ksinr=(\d+)", seite
     ):
         if treffer not in ids:
             ids.append(treffer)
@@ -306,7 +312,7 @@ def parse_kalender_ohne_tagesordnung(seite, jahr, monat, endung="php"):
     Erkennungsmerkmal: das Gremium steht als reiner Text in der Zelle
     ('<div class="smc-el-h ">GREMIUM<!--SMCINFO...--></div>'), waehrend eine
     veroeffentlichte Tagesordnung denselben Text als Link auf eine
-    Sitzungsseite (si0056/to0040/si0057) einpackt. Nur der zuerst gesehene Kalendertag
+    Sitzungsseite (z. B. si0056, si0050 oder to0040) einpackt. Nur der zuerst gesehene Kalendertag
     fuellt die Tageszelle; Folgezeilen fuer denselben Tag lassen sie leer —
     der Tag wird deshalb ueber die Zeilen hinweg fortgefuehrt.
     """
@@ -334,7 +340,7 @@ def parse_kalender_ohne_tagesordnung(seite, jahr, monat, endung="php"):
         if not div:
             continue
         innen = div.group(1)
-        if re.search(rf"(?:si0056|to0040|si0057)\.{endung}\?", innen):
+        if re.search(rf"(?:si|to)\d{{4}}\.{endung}\?[^\"']*__ksinr=", innen):
             continue  # Sitzung schon verlinkt -- kein "kommender" Termin mehr
 
         gremium = sauber(re.sub(r"<!--.*?-->", "", innen, flags=re.S))
@@ -412,7 +418,9 @@ def parse_beratungen(seite, basis, endung="php"):
         tag, monat, jahr = datum_de.split(".")
 
         sitzung_url = ""
-        link = re.search(rf'href="(si0056\.{endung}\?__ksinr=\d+[^"]*)"', block)
+        link = re.search(
+            rf'href="((?:si|to)\d{{4}}\.{endung}\?[^"]*?__ksinr=\d+[^"]*)"', block
+        )
         if link:
             sitzung_url = absolut(link.group(1), basis)
 
@@ -432,7 +440,7 @@ def parse_beratungen(seite, basis, endung="php"):
     return stationen
 
 
-def parse_sitzung(sitzungs_id, seite, basis, endung="php"):
+def parse_sitzung(sitzungs_id, seite, basis, endung="php", seiten_name="si0056"):
     """Baut ein Sitzungsobjekt inkl. Tagesordnungspunkten."""
     if not seite:
         return None
@@ -457,7 +465,7 @@ def parse_sitzung(sitzungs_id, seite, basis, endung="php"):
         "datum": datum_iso,
         "datum_anzeige": datum_de,
         "zeit": feld("yytime"),
-        "url": f"{basis}/si0056.{endung}?__ksinr={sitzungs_id}",
+        "url": f"{basis}/{seiten_name}.{endung}?__ksinr={sitzungs_id}",
         "dokumente": [],
         "tops": [],
     }
@@ -509,7 +517,7 @@ def parse_sitzung(sitzungs_id, seite, basis, endung="php"):
         titel = re.sub(r"\s*—\s*-?\s*$", "", titel).strip()
 
         vorlage = re.search(
-            rf'href="(vo0050\.{endung}\?__kvonr=\d+)"[^>]*>\s*(?:<[^>]+>\s*)*([^<]+?)\s*<',
+            rf'href="(vo0050\.{endung}\?[^"]*?__kvonr=\d+[^"]*)"[^>]*>\s*(?:<[^>]+>\s*)*([^<]+?)\s*<',
             karte,
             re.S,
         )
@@ -571,9 +579,18 @@ def quelle_auslesen(kuerzel, zeitraum, cache, mit_beratungen):
     print(f"  {len(sitzungs_ids)} Sitzungen, lade Tagesordnungen ...")
     sitzungen = []
     for nummer, sitzungs_id in enumerate(sitzungs_ids, 1):
-        sitzungs_pfad = f"si0056.{endung}?__ksinr={sitzungs_id}"
-        seite = hole(sitzungs_pfad, basis, cache=cache)
-        sitzung = parse_sitzung(sitzungs_id, seite, basis, endung)
+        # Je nach Version liegt die Sitzung unter verschiedenen Seitennamen;
+        # die erste Seite, die wirklich Inhalt liefert, gewinnt.
+        sitzung = None
+        sitzungs_pfad = ""
+        seiten_name = SITZUNGS_SEITEN[0]
+        for seiten_name in SITZUNGS_SEITEN:
+            sitzungs_pfad = f"{seiten_name}.{endung}?__ksinr={sitzungs_id}"
+            seite = hole(sitzungs_pfad, basis, cache=cache)
+            sitzung = parse_sitzung(sitzungs_id, seite, basis, endung, seiten_name)
+            if sitzung and (sitzung["datum"] or sitzung["gremium"] or sitzung["tops"]):
+                break
+            sitzung = None
         # Kommende und juengere Sitzungen aendern sich noch (Nachtraege,
         # Umnummerierung, spaeter die Niederschrift). Ob eine Sitzung dazu
         # gehoert, steht erst in der Seite selbst — deshalb erst lesen, dann
@@ -581,7 +598,7 @@ def quelle_auslesen(kuerzel, zeitraum, cache, mit_beratungen):
         if (cache and sitzung and tage_her(sitzung["datum"]) <= SITZUNG_FRISCH_TAGE
                 and cache_veraltet(sitzungs_pfad, basis)):
             seite = hole(sitzungs_pfad, basis, cache=cache, frisch=True)
-            sitzung = parse_sitzung(sitzungs_id, seite, basis, endung) or sitzung
+            sitzung = parse_sitzung(sitzungs_id, seite, basis, endung, seiten_name) or sitzung
         if not sitzung:
             continue
         sitzung["quelle"] = kuerzel
