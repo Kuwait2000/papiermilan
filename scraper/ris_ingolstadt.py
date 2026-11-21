@@ -283,9 +283,16 @@ def dokumente_aus(fragment, basis):
 # ------------------------------------------------------------------- Parser
 
 def parse_kalender(seite, endung="php"):
-    """Liefert Sitzungs-IDs aus einer Monatsansicht (si0040.<endung>)."""
+    """Liefert Sitzungs-IDs aus einer Monatsansicht (si0040.<endung>).
+
+    Je nach Version verlinkt der Kalender die Sitzung ueber si0056 (Einladung/
+    Tagesordnung), to0040 oder si0057 (Niederschrift), und __ksinr steht nicht
+    immer als erster Parameter im Link.
+    """
     ids = []
-    for treffer in re.findall(rf"si0056\.{endung}\?__ksinr=(\d+)", seite):
+    for treffer in re.findall(
+        rf"(?:si0056|to0040|si0057)\.{endung}\?[^\"']*?__ksinr=(\d+)", seite
+    ):
         if treffer not in ids:
             ids.append(treffer)
     return ids
@@ -298,8 +305,8 @@ def parse_kalender_ohne_tagesordnung(seite, jahr, monat, endung="php"):
 
     Erkennungsmerkmal: das Gremium steht als reiner Text in der Zelle
     ('<div class="smc-el-h ">GREMIUM<!--SMCINFO...--></div>'), waehrend eine
-    veroeffentlichte Tagesordnung denselben Text als Link auf
-    si0056.<endung>?__ksinr=... einpackt. Nur der zuerst gesehene Kalendertag
+    veroeffentlichte Tagesordnung denselben Text als Link auf eine
+    Sitzungsseite (si0056/to0040/si0057) einpackt. Nur der zuerst gesehene Kalendertag
     fuellt die Tageszelle; Folgezeilen fuer denselben Tag lassen sie leer —
     der Tag wird deshalb ueber die Zeilen hinweg fortgefuehrt.
     """
@@ -327,8 +334,8 @@ def parse_kalender_ohne_tagesordnung(seite, jahr, monat, endung="php"):
         if not div:
             continue
         innen = div.group(1)
-        if f"si0056.{endung}" in innen:
-            continue  # Tagesordnung schon da — kein "kommender" Termin mehr
+        if re.search(rf"(?:si0056|to0040|si0057)\.{endung}\?", innen):
+            continue  # Sitzung schon verlinkt -- kein "kommender" Termin mehr
 
         gremium = sauber(re.sub(r"<!--.*?-->", "", innen, flags=re.S))
         if not gremium or ist_beteiligung(gremium):
