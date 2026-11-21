@@ -644,6 +644,13 @@ def mr_top_aus_agenda_item(ai, basis):
     """Agenda-Item der api.php in das TOP-Format der Pipeline umwandeln."""
     titel = sauber(ai.get("title", ""))
     sub = ai.get("submission") or {}
+    nummer = str(ai.get("topnummer") or ai.get("number") or ai.get("ai_id") or "")
+    oeffentlich = ai.get("status") == 1
+    # Wie im klassischen SessionNet: oeffentliche TOPs tragen das Präfix "Ö",
+    # nicht-oeffentliche nicht — sonst kollidieren die Nummern im Ref
+    # (quelle:sitzung#nr), weil oeffentlicher und nicht-oeffentlicher Teil
+    # getrennt durchnummeriert sind.
+    nr = f"Ö {nummer}" if oeffentlich else nummer
     dokumente = []
     if sub.get("documentUrl"):
         dokumente.append({
@@ -660,19 +667,19 @@ def mr_top_aus_agenda_item(ai, basis):
             "datum": c.get("sitzungsdatum") or "",
             "datum_anzeige": mr_datum_anzeige(c.get("sitzungsdatum")),
             "gremium": (c.get("committee") or {}).get("name") or c.get("gremium") or "",
-            "top_nr": str(ai.get("topnummer") or ai.get("number") or ""),
+            "top_nr": nr,
             "oeffentlich": c.get("topstatus") == 1,
             "rolle": c.get("beratungsstatus_lang") or c.get("status") or "",
             "sitzung_url": (c.get("meeting") or {}).get("full_url") or "",
         })
     beratungen.sort(key=lambda b: b["datum"])
     return {
-        "nr": str(ai.get("topnummer") or ai.get("number") or ""),
+        "nr": nr,
         "titel": titel,
         "zusatz": "",
         "antragsteller": "",
         "nachtrag": "",
-        "oeffentlich": ai.get("status") == 1,
+        "oeffentlich": oeffentlich,
         "verfahren": ist_verfahren(titel),
         "vorlage": sub.get("alias") or sub.get("name") or "",
         "vorlage_url": f"{basis}/submission?id={sub['id']}" if sub.get("id") else "",

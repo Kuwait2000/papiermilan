@@ -106,7 +106,8 @@ def rolle_art(rolle):
         return "entscheidung"
     if "vorberatung" in r or r.startswith("vorberatend"):
         return "vorberatung"
-    if "bekanntgabe" in r or "kenntnisnahme" in r:
+    # more! rubin nennt die Rolle "zur Kenntnis" (statt "Kenntnisnahme")
+    if "bekanntgabe" in r or "kenntnis" in r:
         return "bekanntgabe"
     return ""
 
