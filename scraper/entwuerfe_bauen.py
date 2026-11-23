@@ -347,13 +347,24 @@ def main():
         print(f"\nGeschrieben: {kur_pfad} ({len(vorhanden)} Eintraege insgesamt)")
 
     if args.prompt_bundle and bundle_refs:
+        # Vorlagentexte aus vorlagen_holen.py (data/vorlagen_charge.json), soweit
+        # vorhanden — ohne Dokumenttext bleibt es beim Titel.
+        charge = {}
+        charge_pfad = os.path.join(DATEN_VZ, "vorlagen_charge.json")
+        if os.path.exists(charge_pfad):
+            with open(charge_pfad, encoding="utf-8") as f:
+                for c in json.load(f):
+                    charge[c.get("ref")] = c
+        else:
+            print("\nTipp: python3 vorlagen_holen.py --max 30 holt zusaetzlich die "
+                  "Vorlagentexte (data/vorlagen_charge.json).")
         ziel = os.path.join(DATEN_VZ, args.prompt_bundle)
         with open(ziel, "w", encoding="utf-8") as f:
             f.write(
                 "# Entwuerfe zur sprachlichen Nachbearbeitung\n\n"
-                "Aufgabe: fuer jeden Punkt einen Klartext-Titel (Alltagssprache, "
-                "keine erfundenen Fakten) und 1-2 Saetze Klartext schreiben. "
-                "Nur umformulieren, was im amtlichen Titel steht.\n\n"
+                "Aufgabe: fuer jeden Punkt einen Klartext-Titel (Alltagssprache) und "
+                "Klartext in normaler + Einfacher Sprache schreiben (Regeln siehe "
+                "KURATION.md). Nichts erfinden, was nicht in Titel/Vorlagentext steht.\n\n"
             )
             for ref in bundle_refs:
                 sitzung, top, _quelle = kandidaten[ref]
@@ -365,8 +376,15 @@ def main():
                     f.write(f"- Zusatz: {top['zusatz']}\n")
                 if top.get("vorlage"):
                     f.write(f"- Vorlage: {top['vorlage']}\n")
-                f.write(f"- Entwurf-Titel: {entwurf_titel}\n\n")
-        print(f"Textbuendel: {ziel} ({len(bundle_refs)} Punkte)")
+                f.write(f"- Entwurf-Titel: {entwurf_titel}\n")
+                c = charge.get(ref)
+                if c and c.get("text"):
+                    auszug = re.sub(r"\s+", " ", c["text"]).strip()[:2500]
+                    f.write(f"- Vorlagentext (Auszug; vollstaendig in "
+                            f"data/vorlagen_charge.json):\n  {auszug}\n")
+                f.write("\n")
+        print(f"Textbuendel: {ziel} ({len(bundle_refs)} Punkte, "
+              f"{sum(1 for r in bundle_refs if charge.get(r, {}).get('text'))} mit Vorlagentext)")
 
 
 if __name__ == "__main__":

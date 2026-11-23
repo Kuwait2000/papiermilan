@@ -53,6 +53,12 @@ python3 ris_ingolstadt.py                      # letzte 3 Monate, beide Portale
 # 2. Vorschlaege fuer Klartexte erzeugen (legt Eintraege in data/kuration.json an)
 python3 entwuerfe_bauen.py --max 30 --probelauf # erst trocken testen
 python3 entwuerfe_bauen.py                      # schreibt nach data/kuration.json
+# 2b. Vorlagentexte holen (PDFs der Vorlagen, Text liegt danach in data/vorlagen_charge.json)
+python3 vorlagen_holen.py --max 30              # braucht feed.json (Schritt 3) und pdfplumber
+# 2c. Textbuendel fuer das Sprachmodell erzeugen (Titel + Vorlagentext-Auszuege)
+python3 entwuerfe_bauen.py --prompt-bundle entwuerfe.md
+#     data/entwuerfe.md + Regeln aus KURATION.md ins LLM geben, JSON-Antwort
+#     nach data/kuration.json uebertragen ("entwurf": true entfernen) — Details unten
 
 # 3. Feed bauen (data/feed.json + feed.js, data/fabrik.js)
 python3 feed_bauen.py
